@@ -1,0 +1,7 @@
+{
+  "name": "Scheduling",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

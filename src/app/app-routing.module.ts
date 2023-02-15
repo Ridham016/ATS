@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'send-email',
+    loadChildren: () => import('./send-email/send-email.module').then( m => m.SendEmailPageModule)
+  },
 ];
 
 @NgModule({

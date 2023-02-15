@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button fill="clear" (click)="dismiss()">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-button>
+    <ion-title>sendEmail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card  >
+    <ion-item>
+      <ion-label position="floating" class="large-label" >To:</ion-label>
+      <ion-input class="large-input" type="email" [(ngModel)]="email.to"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" class="large-label">CC:</ion-label>
+      <ion-input class="large-input" type="email" [(ngModel)]="email.cc"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" class="large-label">BCC:</ion-label>
+      <ion-input  class="large-input" type="email" [(ngModel)]="email.bcc"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" class="large-label">Subject:</ion-label>
+      <ion-input class="large-input" type="text" [(ngModel)]="email.subject"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" class="large-label">Body:</ion-label>
+      <ion-textarea class="large-input" type="text" [(ngModel)]="email.body"></ion-textarea>
+    </ion-item>
+  </ion-card>
+      <ion-button (click)="onSubmit()" expand="block" fill="outline">Send</ion-button>
+
+
+</ion-content>

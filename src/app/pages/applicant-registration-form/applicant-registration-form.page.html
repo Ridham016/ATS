@@ -26,7 +26,7 @@
 
       <ion-item fill="outline" shape="round" >
         <ion-label position="floating"> Mobile No. </ion-label>
-        <ion-input  type="tel" maxlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Mobile"></ion-input>
+        <ion-input  type="tel" maxlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Phone"></ion-input>
       </ion-item>
 
       <ion-item fill="outline" shape="round" >
@@ -36,7 +36,7 @@
 
 
       <ion-item fill="outline" shape="round" >
-        <ion-select interface="popover" placeholder="Select Person"  name="person" required [(ngModel)]="details.EntryPerson">
+        <ion-select interface="popover" placeholder="Select Person"  name="person" required [(ngModel)]="details.EntryBy">
           <ion-select-option value="apples">Ridham</ion-select-option>
           <ion-select-option value="oranges">Smit</ion-select-option>
           <ion-select-option value="bananas">Harsh</ion-select-option>
@@ -47,12 +47,18 @@
       </ion-item>
       <ion-item>
         <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)">  Next  </ion-button>
+        <ion-button shape="round" fill="solid" size="medium"  (click)="onCreate()">  Create </ion-button>
       </ion-item>
     </form>
   </ion-card>
   </ng-template>
-  <ng-template swiperSlide>
-    Swag
-  </ng-template>
+
 </swiper>
+
+  <ion-card *ngFor="let item of list">
+  <ion-item >{{item.Name}}
+  </ion-item>
+    <ion-button (click)="onUpdate(item.ApplicantId)">Update</ion-button>
+
+</ion-card>
 </ion-content>

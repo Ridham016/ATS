@@ -1,7 +1,27 @@
+
+
 ion-item{
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+
+  }
+  .my-input {
+    --border-color: #e3e6ea;
+    --border-width: 2px ;
+    --border-style: solid;/* change this to your desired color */
   }
 
+swiper
+{
+  width: 100%;
+  height: 100%;
+}
+ion-card{
+  box-shadow: 0 0 11px 1px  rgb(0,0,0,50%);
+  border-radius: 10px;
+
+  margin: 20px;
+
+}

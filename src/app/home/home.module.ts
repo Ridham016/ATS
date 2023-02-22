@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { HomePageRoutingModule } from './home-routing.module';
 
+import { SwiperModule } from 'swiper/angular';
 
 
 
@@ -16,6 +17,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     NgCalendarModule,
     HomePageRoutingModule,
+    SwiperModule
 
   ],
   declarations: [HomePage]

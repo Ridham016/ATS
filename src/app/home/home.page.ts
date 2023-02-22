@@ -5,7 +5,6 @@ import { CalendarComponent, CalendarMode,Step  } from 'ionic2-calendar';
 import { IEvent } from 'ionic2-calendar/calendar.interface';
 import { SendEmailPage } from '../send-email/send-email.page';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

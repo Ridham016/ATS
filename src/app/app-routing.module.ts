@@ -8,13 +8,18 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'applicant-registration-form',
     pathMatch: 'full'
   },
   {
     path: 'send-email',
     loadChildren: () => import('./send-email/send-email.module').then( m => m.SendEmailPageModule)
   },
+  {
+    path: 'applicant-registration-form',
+    loadChildren: () => import('./pages/applicant-registration-form/applicant-registration-form.module').then( m => m.ApplicantRegistrationFormPageModule)
+  },
+
 ];
 
 @NgModule({

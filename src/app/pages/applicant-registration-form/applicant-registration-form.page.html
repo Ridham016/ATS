@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>Applicant_registration_form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar [value]=".25"></ion-progress-bar>
+<swiper>
+  <ng-template swiperSlide>
+    <ion-card>
+    <form class="ion-padding">
+
+      <ion-title>Personal Details</ion-title>
+
+      <ion-item fill="outline" shape="round" >
+        <ion-label position="floating"> Name </ion-label>
+        <ion-input  type="text" placeholder="Enter Name"  name="name" required [(ngModel)]="details.Name"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" shape="round" >
+        <ion-label position="floating"> Email </ion-label>
+        <ion-input  type="email" placeholder="Enter Email"  name="email" required  [(ngModel)]="details.Email"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" shape="round" >
+        <ion-label position="floating"> Mobile No. </ion-label>
+        <ion-input  type="tel" maxlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Mobile"></ion-input>
+      </ion-item>
+
+      <ion-item fill="outline" shape="round" >
+        <ion-label position="floating"> Address </ion-label>
+        <ion-textarea placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.Address"></ion-textarea>
+      </ion-item>
+
+
+      <ion-item fill="outline" shape="round" >
+        <ion-select interface="popover" placeholder="Select Person"  name="person" required [(ngModel)]="details.EntryPerson">
+          <ion-select-option value="apples">Ridham</ion-select-option>
+          <ion-select-option value="oranges">Smit</ion-select-option>
+          <ion-select-option value="bananas">Harsh</ion-select-option>
+          <ion-select-option value="bananas">Nidhi</ion-select-option>
+          <ion-select-option value="bananas">Meet</ion-select-option>
+          <ion-select-option value="bananas">Darshan</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)">  Next  </ion-button>
+      </ion-item>
+    </form>
+  </ion-card>
+  </ng-template>
+  <ng-template swiperSlide>
+    Swag
+  </ng-template>
+</swiper>
+</ion-content>

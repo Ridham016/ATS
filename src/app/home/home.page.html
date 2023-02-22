@@ -5,17 +5,39 @@
     </ion-title>
 
   </ion-toolbar>
-  <ion-searchbar [debounce]="1000" (ionChange)="handleChange($event)" (click)="visible=!visible"></ion-searchbar>
+  <ion-searchbar [debounce]="1000" (ionChange)="handleChange($event)" [(ngModel)]="searchTerm" (click)="visible=!visible"></ion-searchbar>
+  <ion-list>
+    <ion-item>
+      <ion-select placeholder="Select type of Event" interface="popover"  [(ngModel)]="searchTerm"  >
+        <ion-select-option value="Event">Event </ion-select-option>
+        <ion-select-option value="All Day">All Day</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-select placeholder="Intrested Event" name="TypeofEvent"  [(ngModel)]="searchEvent">
+        <ion-select-option value="Recruting Event">Recruting Event</ion-select-option>
+        <ion-select-option value="Product Launch">Product Launch</ion-select-option>
+        <ion-select-option value="Networking">Networking Event</ion-select-option>
+        <ion-select-option value="Team Building">Team Building Events</ion-select-option>
+        <ion-select-option value="Conferance">Conferance</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="handleChangeAS()" (click)="visible=!visible" >Apply filter</ion-button>
+    </ion-item>
+
+  </ion-list>
 </ion-header>
 
 
 <ion-content >
-  <ion-list *ngIf="visible">
+  <ion-list *ngIf="!visible">
     <ion-item *ngFor="let result of results" (click)="onitemSelect(result)" >
-      <ion-label>{{ result }}</ion-label>
+      <ion-label>{{ result.title}}</ion-label>
+      <ion-label>{{ result.TypeofEvent}}</ion-label>
     </ion-item>
   </ion-list>
-<ion-button (click)="createRandomEvents()" (click)="visible=visible">random</ion-button>
+<ion-button (click)="createRandomEvents()" (click)=" visible=visible"  >random</ion-button>
 
   <ion-card>
     <ion-card-header color="secondary" tappable (click)="collapseCard =!collapseCard" >
@@ -45,6 +67,15 @@
             <ion-datetime [showDefaultButtons]="true" id="endtime" [(ngModel)]="event.endTime"></ion-datetime>
           </ng-template>
         </ion-popover>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-select placeholder="Intrested Event" name="TypeofEvent" [(ngModel)]="event.TypeofEvent">
+          <ion-select-option value="Recruting Event">Recruting Event</ion-select-option>
+          <ion-select-option value="Product Launch">Product Launch</ion-select-option>
+          <ion-select-option value="Networking">Networking Event</ion-select-option>
+          <ion-select-option value="Team Building">Team Building Events</ion-select-option>
+          <ion-select-option value="Conferance">Conferance</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-button fill="outline" expand="block" (click)="addEvent()">ADD Meeting</ion-button>
 

@@ -24,6 +24,7 @@
     "@ionic/cordova-builders": "^7.0.0",
     "ionic2-calendar": "^1.0.1",
     "ionicons": "^6.0.3",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "^6.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

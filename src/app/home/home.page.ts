@@ -14,16 +14,20 @@ import { SendEmailPage } from '../send-email/send-email.page';
 export class HomePage implements OnInit {
 
   collapseCard:any;
+
   event= {
     title:'',
     startTime:'',
     desc:'',
-    endTime:''
+    endTime:'',
+    TypeofEvent:''
   };
 
   eventSource:any=[];
   currentMonth='';
 
+  searchTerm!:string;
+  searchEvent!:string;
 
   public data:any = [];
   public results = [...this.eventSource];
@@ -31,7 +35,9 @@ export class HomePage implements OnInit {
   minDate = new Date();
   visible:any;
 
-  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,public modalCtrl: ModalController,) {}
+  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,public modalCtrl: ModalController,) {
+
+  }
   calendar = {
     mode: 'day' as CalendarMode,
     currentDate: new Date(),
@@ -45,12 +51,21 @@ ViewTitle='Secheduling';
 
 handleChange(event:any) {
   const searchTerm = event.detail.value.toLowerCase();
+  console.log(searchTerm);
   let searchSource:any[]=[];
-  searchSource = this.eventSource.filter((d:any) => d.title.toLowerCase().includes(searchTerm));
+  searchSource = this.eventSource.filter((d:any) => d.TypeofEvent.toLowerCase().includes(searchTerm) || d.title.toLowerCase().includes(searchTerm));
+  console.log(searchSource)
+  this.results=searchSource
 
-  this.results=searchSource.map(obj=>obj.title);
 
-  console.log(this.results);
+}
+handleChangeAS() {
+  const searchTerm =[this.searchTerm,this.searchEvent];
+  let searchSource:any[]=[];
+  searchSource = this.eventSource.filter((d:any) => d.title.toLowerCase().includes(searchTerm[0].toLowerCase()) && d.TypeofEvent.toLowerCase().includes(searchTerm[1].toLowerCase()));
+  console.log(searchSource);
+
+  this.results=searchSource
 }
 
   ngOnInit(){
@@ -62,11 +77,12 @@ handleChange(event:any) {
       title:this.event.title,
       startTime: new Date(this.event.startTime),
       desc:this.event.desc,
-      endTime: new Date(this.event.endTime)
+      endTime: new Date(this.event.endTime),
+      TypeofEvent: this.event.TypeofEvent
     };
     this.eventSource.push(Copyevent);
 
-      this.results.push(Copyevent['title']);
+    this.results.push(Copyevent['title']);
     this.mycal.loadEvents();
     this.resetEvent();
   }
@@ -76,7 +92,8 @@ handleChange(event:any) {
       title:'',
       startTime: new Date().toISOString(),
       desc:'',
-      endTime: new Date().toISOString()
+      endTime: new Date().toISOString(),
+      TypeofEvent:''
     };
   }
 
@@ -93,7 +110,7 @@ handleChange(event:any) {
     const alert = await this.alertCtrl.create({
       header: 'Title :- '+event.title,
       subHeader: 'Desc :- '+ event.desc,
-      message: 'From: ' + start + '<br><br>To: ' + end,
+      message: 'From: ' + start + '<br><br>To: ' + end+ '<br><br>Type of Event: ' + event.TypeofEvent,
       buttons:  [{
         text: 'Cancel',
         role: 'cancel',
@@ -127,7 +144,7 @@ handleChange(event:any) {
       const alert = await this.alertCtrl.create({
         header: 'Title :- '+this.eventSource[g]['title'],
         subHeader: 'Desc :- '+ this.eventSource[g]['desc'],
-        message: 'From: ' + start + '<br><br>To: ' + end,
+        message: 'From: ' + start + '<br><br>To: ' + end + '<br><br>Type of event: ' + this.eventSource[g]['TypeofEvent'],
         buttons:  [{
           text: 'Cancel',
           role: 'cancel',
@@ -176,13 +193,14 @@ handleChange(event:any) {
   createRandomEvents() {
     var events = [];
     for (var i = 0; i < 50; i += 1) {
+      var tof1="";
       var date = new Date();
       var eventType = Math.floor(Math.random() * 2);
       var startDay = Math.floor(Math.random() * 90) - 45;
       var endDay = Math.floor(Math.random() * 2) + startDay;
       var startTime;
       var endTime;
-      var desc;
+
       if (eventType === 0) {
         startTime = new Date(
           Date.UTC(
@@ -201,14 +219,25 @@ handleChange(event:any) {
             date.getUTCDate() + endDay
           )
         );
-        events.push({
-          title: "All Day - " + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: true,
-          desc:"DEMO - "+i
-        });
-      } else {
+        if(i%2===0){
+
+          tof1="Recruting Event"
+          console.log(tof1)
+        }
+          else{
+            tof1="Product Launch"
+          }
+          events.push({
+            title: "All Day - " + i,
+            startTime: startTime,
+            endTime: endTime,
+            allDay: true,
+            desc:"DEMO - "+i,
+            TypeofEvent:tof1
+          });
+      }
+     else {
+
         var startMinute = Math.floor(Math.random() * 24 * 60);
         var endMinute = Math.floor(Math.random() * 180) + startMinute;
         startTime = new Date(
@@ -225,21 +254,37 @@ handleChange(event:any) {
           0,
           date.getMinutes() + endMinute
         );
-        events.push({
-          title: "Event - " + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: false,
-          desc:"DEMO - "+i
-        });
+        if(i%2===0){
+
+          tof1="Networking Event"
+          events.push({
+            title: "Event - " + i,
+            startTime: startTime,
+            endTime: endTime,
+            allDay: true,
+            desc:"DEMO - "+i,
+            TypeofEvent:tof1
+          });
+
+        }
+          else{
+            tof1="Conferance"
+            events.push({
+              title: "Event - " + i,
+              startTime: startTime,
+              endTime: endTime,
+              allDay: true,
+              desc:"DEMO - "+i,
+              TypeofEvent:tof1
+            });
+          }
       }
     }
     this.eventSource = events;
-    for(i=0;i<this.eventSource.length;i++){
-      this.data=events[i].title;
-      this.results.push(this.data);
-    }
-
-
+    this.results=events;
+    // for(i=0;i<this.eventSource.length;i++){
+    //   this.data=events[i].title;
+    //   this.results.push(this.data);
+    // }
   }
 }

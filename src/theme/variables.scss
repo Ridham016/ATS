@@ -227,13 +227,14 @@
 
     --ion-item-background: #f4f7fa;
     --ion-toolbar-background: #3051d3;
-    --ion-input{
-      --border-color: #e3e6ea;
-      --border-width: 4px ;
-      --border-style: solid;
-    }
+
     --ion-tab-bar-background: #1f1f1f;
     --ion-card-background: #ffffff;
   }
 
 }
+
+
+
+
+@import "bootstrap";

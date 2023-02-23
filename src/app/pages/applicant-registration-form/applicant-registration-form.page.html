@@ -9,14 +9,14 @@
   <ion-progress-bar [value]=".25"></ion-progress-bar>
 <swiper>
   <ng-template swiperSlide>
-    <ion-card style="  width: 100%;">
+    <ion-card  class=" w-100">
     <form class="ion-padding" >
 
-      <ion-title>Personal Details</ion-title>
+      <ion-title class="display-1 fw-bold">Personal Details</ion-title>
 
       <ion-item fill="outline" class="my-input"  shape="round"  >
         <ion-label position="floating"> Name </ion-label>
-        <ion-input type="text" placeholder="Enter Name"  name="name"  required [(ngModel)]="details.Name"></ion-input>
+        <ion-input type="text" placeholder="Enter Name"  name="name" required [(ngModel)]="details.Name"></ion-input>
       </ion-item>
 
       <ion-item fill="outline" shape="round" class="my-input" >
@@ -36,7 +36,7 @@
 
 
       <ion-item fill="outline" shape="round" class="my-input" >
-        <ion-select interface="popover" placeholder="Select Person" style="size: large;"  name="person" required [(ngModel)]="details.EntryBy">
+        <ion-select  interface="popover"  placeholder="Select Person" style="size: large;"  name="person" required [(ngModel)]="details.EntryBy">
           <ion-select-option value="apples">Ridham</ion-select-option>
           <ion-select-option value="oranges">Smit</ion-select-option>
           <ion-select-option value="bananas">Harsh</ion-select-option>

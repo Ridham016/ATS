@@ -10,23 +10,27 @@ import { SwiperComponent } from 'swiper/angular';
 })
 export class ApplicantRegistrationFormPage implements OnInit {
 @ViewChild(SwiperComponent) swiper!:SwiperComponent;
+
+currentDate = new Date().toISOString();
   constructor(private a:ApiService) {
+
   }
 
   ngOnInit() {
   }
-
+date=new Date();
 list:any;
+
   details=new Applicant()
 
   onButtonClick(swiperINdex:number){
     this.swiper.swiperRef.slideTo(swiperINdex);
-    this.a.getApplicantsData().then(gg=>{
-      this.list=JSON.parse(gg.data)
-      this.list=this.list['Result']
-      console.log(this.list)
+    // this.a.getApplicantsData().then(gg=>{
+    //   this.list=JSON.parse(gg.data)
+    //   this.list=this.list['Result']
+    //   console.log(this.list)
 
-    });
+    // });
 
   }
   onUpdate(id:number){

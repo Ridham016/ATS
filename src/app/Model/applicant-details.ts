@@ -12,4 +12,8 @@ export class Applicant {
   UpdatedBy!: string;
   UpdateDate!: Date;
   IsActive!: boolean;
+  CurrentCompany! : string;
+  CurrentDesignation!: string;
+  dob!:Date;
+
 }

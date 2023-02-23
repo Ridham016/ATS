@@ -9,27 +9,27 @@
   <ion-progress-bar [value]=".25"></ion-progress-bar>
 <swiper>
   <ng-template swiperSlide>
-    <ion-card>
-    <form class="ion-padding">
+    <ion-card style="  width: 100%;">
+    <form class="ion-padding" >
 
       <ion-title>Personal Details</ion-title>
 
-      <ion-item fill="outline" shape="round" >
+      <ion-item fill="outline" class="my-input"  shape="round"  >
         <ion-label position="floating"> Name </ion-label>
-        <ion-input  type="text" placeholder="Enter Name"  name="name" required [(ngModel)]="details.Name"></ion-input>
+        <ion-input type="text" placeholder="Enter Name"  name="name"  required [(ngModel)]="details.Name"></ion-input>
       </ion-item>
 
-      <ion-item fill="outline" shape="round" >
+      <ion-item fill="outline" shape="round" class="my-input" >
         <ion-label position="floating"> Email </ion-label>
         <ion-input  type="email" placeholder="Enter Email"  name="email" required  [(ngModel)]="details.Email"></ion-input>
       </ion-item>
 
-      <ion-item fill="outline" shape="round" >
+      <ion-item fill="outline" shape="round" class="my-input">
         <ion-label position="floating"> Mobile No. </ion-label>
         <ion-input  type="tel" maxlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Phone"></ion-input>
       </ion-item>
 
-      <ion-item fill="outline" shape="round" >
+      <ion-item fill="outline" shape="round" class="my-input">
         <ion-label position="floating"> Address </ion-label>
         <ion-textarea  placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.Address"></ion-textarea>
       </ion-item>
@@ -51,18 +51,16 @@
 
       <ion-item fill="outline" shape="round" >
         <ion-select interface="popover" placeholder="Select Person"  name="person" required [(ngModel)]="details.EntryBy">
-          <ion-select-option value="Ridham">Ridham</ion-select-option>
-          <ion-select-option value="Smit">Smit</ion-select-option>
-          <ion-select-option value="Harsh">Harsh</ion-select-option>
-          <ion-select-option value="Nidhi">Nidhi</ion-select-option>
-          <ion-select-option value="Meet">Meet</ion-select-option>
-          <ion-select-option value="Darshan">Darshan</ion-select-option>
+          <ion-select-option value="apples">Ridham</ion-select-option>
+          <ion-select-option value="oranges">Smit</ion-select-option>
+          <ion-select-option value="bananas">Harsh</ion-select-option>
+          <ion-select-option value="bananas">Nidhi</ion-select-option>
+          <ion-select-option value="bananas">Meet</ion-select-option>
+          <ion-select-option value="bananas">Darshan</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item>
-        <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)">  Next  </ion-button>
-        <ion-button shape="round" fill="solid" size="medium"  (click)="onCreate()">  Create </ion-button>
-      </ion-item>
+      <ion-button shape="round" fill="solid" size="large"  (click)="onButtonClick(2)">  Next  </ion-button>
+      <ion-button shape="round" fill="solid" size="large"  (click)="onCreate()">  Create </ion-button>
     </form>
     <ng-template swiperSlide>
       <ion-card>
@@ -88,7 +86,7 @@
 </swiper>
 
   <ion-card *ngFor="let item of list">
-  <ion-item >{{item.Name}}
+  <ion-item lines="none">{{item.Name}}
   </ion-item>
     <ion-button (click)="onUpdate(item.ApplicantId)">Update</ion-button>
 

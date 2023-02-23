@@ -1,14 +1,15 @@
+
+
 ion-item{
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+
+  }
+  .my-input {
+    --border-color: #e3e6ea;
+    --border-width: 2px ;
+    --border-style: solid;/* change this to your desired color */
   }
 
-ion-input{
-
-  border : 3px soild red;
-}
-.my-input {
-  border: 2px solid green;
-}

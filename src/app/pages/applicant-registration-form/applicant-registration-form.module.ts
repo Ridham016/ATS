@@ -8,6 +8,7 @@ import { ApplicantRegistrationFormPageRoutingModule } from './applicant-registra
 
 import { ApplicantRegistrationFormPage } from './applicant-registration-form.page';
 
+
 @NgModule({
   imports: [
     CommonModule,

@@ -31,18 +31,32 @@
 
       <ion-item fill="outline" shape="round" >
         <ion-label position="floating"> Address </ion-label>
-        <ion-textarea placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.Address"></ion-textarea>
+        <ion-textarea  placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.Address"></ion-textarea>
       </ion-item>
+
+      <ion-item fill="outline" shape="round" >
+        <ion-label >  DOB</ion-label>
+        <ion-datetime-button datetime="date" > </ion-datetime-button>
+
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime  presentation="date" [showDefaultButtons]="true" displayFormat="DD-MM-YYYY"   id="date"  name="dob" required [(ngModel)]="details.dob"></ion-datetime>
+         </ng-template>
+      </ion-modal>
+
+      </ion-item>
+
+
 
 
       <ion-item fill="outline" shape="round" >
         <ion-select interface="popover" placeholder="Select Person"  name="person" required [(ngModel)]="details.EntryBy">
-          <ion-select-option value="apples">Ridham</ion-select-option>
-          <ion-select-option value="oranges">Smit</ion-select-option>
-          <ion-select-option value="bananas">Harsh</ion-select-option>
-          <ion-select-option value="bananas">Nidhi</ion-select-option>
-          <ion-select-option value="bananas">Meet</ion-select-option>
-          <ion-select-option value="bananas">Darshan</ion-select-option>
+          <ion-select-option value="Ridham">Ridham</ion-select-option>
+          <ion-select-option value="Smit">Smit</ion-select-option>
+          <ion-select-option value="Harsh">Harsh</ion-select-option>
+          <ion-select-option value="Nidhi">Nidhi</ion-select-option>
+          <ion-select-option value="Meet">Meet</ion-select-option>
+          <ion-select-option value="Darshan">Darshan</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
@@ -50,6 +64,24 @@
         <ion-button shape="round" fill="solid" size="medium"  (click)="onCreate()">  Create </ion-button>
       </ion-item>
     </form>
+    <ng-template swiperSlide>
+      <ion-card>
+        <form>
+
+      <ion-item fill="outline" shape="round" >
+        <ion-label position="floating"> CurrentCompany </ion-label>
+        <ion-textarea  placeholder="Enter CurrentCompany" type="text" name="company" required [(ngModel)]="details.CurrentCompany"></ion-textarea>
+      </ion-item>
+
+      <ion-item fill="outline" shape="round" >
+        <ion-label position="floating"> Current Designation </ion-label>
+        <ion-textarea  placeholder="Enter Current Designation" type="text" name="designation" required [(ngModel)]="details.CurrentDesignation"></ion-textarea>
+      </ion-item>
+
+
+        </form>
+      </ion-card>
+    </ng-template>
   </ion-card>
   </ng-template>
 

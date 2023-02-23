@@ -7,9 +7,22 @@ ion-item{
   padding-bottom: 10px;
 
   }
-  // .my-input {
-  //   --border-color: #e3e6ea;
-  //   --border-width: 2px ;
-  //   --border-style: solid;
-  // }
+  .my-input {
+    --border-color: #e3e6ea;
+    --border-width: 2px ;
+    --border-style: solid;
+  }
+ion-datetime{
+  color: #000000;
+  background-color: #ffffff;
+}
+ion-datetime-button::part(native) {
+  background: #5dcb50;
+}
+swiper
+{
+
+  width: 100%;
+ 
+}
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Applicant, ApplicantDetails } from 'src/app/Model/applicant-details';
 import { ApiService } from 'src/app/services/api.service';
-import { SwiperSlideDirective, SwiperComponent } from 'swiper/angular';
+import { SwiperComponent } from 'swiper/angular';
 
 @Component({
   selector: 'app-applicant-registration-form',

@@ -154,10 +154,6 @@
           <ion-note *ngIf="!pref_loc.valid && pref_loc.touched" color="danger"> Location is required</ion-note>
         </ion-item>
 
-      <ion-item fill="outline" shape="round" class="my-input">
-        <ion-label> Active </ion-label>
-        <ion-toggle color="secondary" name="IsActive" [(ngModel)]="details.IsActive" ></ion-toggle>
-      </ion-item>
       <ion-button shape="round" fill="solid" size="medium" slot="start" (click)="onButtonClick(1)" (click)="progress=.66" >
         <ion-icon name="chevron-back-sharp"></ion-icon> Prev   </ion-button>
       <ion-button shape="round" fill="solid" size="medium" (click)="onCreate()"  [disabled]="!form.valid" >  Create  </ion-button>

@@ -3,17 +3,18 @@
   <ion-toolbar>
     <ion-title class="page-title">Applicant_registration_form</ion-title>
   </ion-toolbar>
+
+  <!-- first slide -->
 </ion-header>
 <ion-progress-bar [value]="progress"></ion-progress-bar>
 <ion-content>
 
-<swiper>
+<swiper #swiper [config]="config" [allowTouchMove]="false">
 
-  <!-- first slide -->
   <ng-template swiperSlide>
 
     <ion-card  class=" w-100">
-    <form class="ion-padding" >
+    <form class="ion-padding"  #form="ngForm">
 
       <ion-title class="h1 fw-bold">Personal Details</ion-title>
 
@@ -48,7 +49,10 @@
       </ion-modal>
 
       </ion-item>
-      <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(1)" (click)="progress=.66" >  Next  </ion-button>
+      <ion-button shape="round" fill="solid" size="medium" slot="end" (click)="onButtonClick(1)" [disabled]="!form.valid" (click)="progress=.66"  >
+
+        <ion-icon slot="end" name="chevron-forward-sharp"></ion-icon>  Next </ion-button>
+
     </form>
 
   </ion-card>
@@ -56,7 +60,7 @@
   </ng-template>
   <ng-template swiperSlide>
     <ion-card>
-      <form class="ion-padding">
+      <form class="ion-padding" #form="ngForm">
         <ion-title class="h1 fw-bold ion-text-left" >Professional Details</ion-title>
 
         <ion-item fill="outline" shape="round"  class="my-input" >
@@ -71,26 +75,30 @@
 
         <ion-item fill="outline" shape="round"  class="my-input" >
           <ion-label position="floating"> Total Experience </ion-label>
-          <ion-input  placeholder="Total Experience" type="text" name="totalexp" required [(ngModel)]="details.TotalExperience"></ion-input>
+          <ion-input  placeholder="Total Experience" type="number" name="totalexp" required [(ngModel)]="details.TotalExperience"></ion-input>
         </ion-item>
 
         <ion-item fill="outline" shape="round" class="my-input">
           <ion-label position="floating"> Detailed Experience </ion-label>
-          <ion-textarea  placeholder="Detailed Experience" type="text" name="detailedexp" required [(ngModel)]="details.DetailedExperience"></ion-textarea>
+          <ion-textarea  placeholder="Detailed Experience" type="number" name="detailedexp" required [(ngModel)]="details.DetailedExperience"></ion-textarea>
         </ion-item>
 
         <ion-item fill="outline" shape="round"  class="my-input" >
           <ion-label position="floating"> Notic Period </ion-label>
           <ion-input  placeholder="Enter  Notic Period" type="number" name="noticperios" required [(ngModel)]="details.NoticePeriod"></ion-input>
         </ion-item>
-        <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)" (click)="progress=1">  Next  </ion-button>
+        <ion-button shape="round" fill="solid" size="medium" slot="start" (click)="onButtonClick(0)" (click)="progress=.33" [disabled]="!form.valid">
+          <ion-icon name="chevron-back-sharp"></ion-icon> Prev</ion-button>
+        <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)" (click)="progress=1" [disabled]="!form.valid">  Next <ion-icon name="chevron-forward-sharp"></ion-icon>   </ion-button>
+
+
 
       </form>
     </ion-card>
   </ng-template>
   <ng-template swiperSlide>
     <ion-card>
-      <form class="ion-padding">
+      <form class="ion-padding"#form="ngForm">
         <ion-title class="h1 fw-bold ion-text-left" >Professional Details</ion-title>
 
         <ion-item fill="outline" shape="round"  class="my-input" >
@@ -121,7 +129,9 @@
         <ion-label> Active </ion-label>
         <ion-toggle color="secondary" checked="details.IsActive" ></ion-toggle>
       </ion-item>
-      <ion-button shape="round" fill="solid" size="medium" (click)="onCreate()" >  Create  </ion-button>
+      <ion-button shape="round" fill="solid" size="medium" slot="start" (click)="onButtonClick(1)" (click)="progress=.66" [disabled]="!form.valid">
+        <ion-icon name="chevron-back-sharp"></ion-icon> Prev   </ion-button>
+      <ion-button shape="round" fill="solid" size="medium" (click)="onCreate()"  [disabled]="!form.valid" >  Create  </ion-button>
 
       </form>
     </ion-card>

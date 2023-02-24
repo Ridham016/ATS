@@ -1,6 +1,7 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -82,21 +83,36 @@
    */
 
  body {
+.list-md, .list-ios{
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: var(--ion-item-background, var(--ion-background-color, #fff));
 
+}
+  --ion-background-color: #dff0ff;
 
      --ion-item-background: #f4f7fa;
     --ion-toolbar-background: var(--ion-color-primary);
+    ion-toolbar{
+      --color:#fff;
+    }
+
+    ion-select {
+      --placeholder-color: #a1a9b1;
+    }
 
     --ion-tab-bar-background: #1f1f1f;
-    --ion-tab-bar-text-color: #1f1f1f;
+    --ion-tab-bar-color: #fff;
     --ion-card-background: #ffffff;
 
     --ion-datetime-background:#ffffff;
     --ion-text-color: #000000;
-
-    $loading-spinner-lines: 10; // number of lines in the spinner
-    $loading-spinner-duration: 1.4s; // animation duration
-    --ion-loading-spinner-color: #000000; // color of the spinner
 
     --ion-color-primary: #3051d3;
     --ion-color-primary-rgb: 66,140,255;

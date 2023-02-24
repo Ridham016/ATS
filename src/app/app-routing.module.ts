@@ -8,11 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-<<<<<<< Updated upstream
-    redirectTo: 'applicant-registration-form',
-=======
-    redirectTo: 'login',
->>>>>>> Stashed changes
+    redirectTo: 'user-dash-board',
     pathMatch: 'full'
   },
   {
@@ -31,6 +27,11 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'user-dash-board',
+    loadChildren: () => import('./pages/user-dash-board/user-dash-board.module').then( m => m.UserDashBoardPageModule)
+  },
+
 
 
 

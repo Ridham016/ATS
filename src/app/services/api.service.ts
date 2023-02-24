@@ -9,11 +9,12 @@ import { Platform } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ApiService {
-  baseUrl='https://f471-116-72-9-56.in.ngrok.io/api/';
+  baseUrl='https://331a-2409-4041-6eb9-35e0-88fd-68e1-3cb8-4d4d.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,private plt : Platform) {
       this.plt.ready().then(_=>{
         this.api.setHeader('Access-Control-Allow-Origin',this.baseUrl,'');
+        this.api.setRequestTimeout(5.0);
       })
 
   }

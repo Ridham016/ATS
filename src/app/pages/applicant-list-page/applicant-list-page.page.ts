@@ -27,8 +27,9 @@ async ionViewWillEnter(){
   onLoadData(){
     this.api.showLoader()
     this.api.getApplicantsData().then(gg=>{
+      console.log(gg)
       this.list=JSON.parse(gg.data)
-      this.list=this.list['Result']
+      // this.list=this.list['Result']
       console.log(this.list)
       this.api.hideLoader();
     });

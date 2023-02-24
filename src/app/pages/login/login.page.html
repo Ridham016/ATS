@@ -1,0 +1,26 @@
+
+<ion-content >
+<ion-card >
+  <ion-card-header>
+    <ion-card-title>Login</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <ion-item shape="round" fill="outline">
+          <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required name="email" type="text" ></ion-input>
+        </ion-item>
+        <ion-item shape="round" fill="outline">
+          <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
+          <ion-input required name="password" type="text"></ion-input>
+        </ion-item>
+        <ion-button block color="primary" type="submit" slot="" [disabled]="!form.invalid">
+          Login
+        </ion-button>
+      </form>
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>

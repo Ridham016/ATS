@@ -8,7 +8,11 @@ const routes: Routes = [
   },
   {
     path: '',
+<<<<<<< Updated upstream
     redirectTo: 'applicant-registration-form',
+=======
+    redirectTo: 'login',
+>>>>>>> Stashed changes
     pathMatch: 'full'
   },
   {
@@ -23,6 +27,11 @@ const routes: Routes = [
     path: 'applicant-list-page',
     loadChildren: () => import('./pages/applicant-list-page/applicant-list-page.module').then( m => m.ApplicantListPagePageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+
 
 
 ];

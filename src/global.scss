@@ -28,3 +28,8 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+ion-loading.custom-loading {
+  --background: #e3edff;
+  --spinner-color: rgb(0, 149, 255);
+}
+

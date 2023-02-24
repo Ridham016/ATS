@@ -15,20 +15,22 @@ export class ApplicantListPagePage implements OnInit {
   constructor(private api:ApiService , private plt:Platform) {
 
    }
-
+async ionViewWillEnter(){
+  this.plt.ready().then(_=>{
+    this.onLoadData();
+  })
+}
   async ngOnInit() {
-    this.plt.ready().then(_=>{
-      this.onLoadData();
-    })
 
   }
 
   onLoadData(){
+    this.api.showLoader()
     this.api.getApplicantsData().then(gg=>{
       this.list=JSON.parse(gg.data)
       this.list=this.list['Result']
       console.log(this.list)
-
+      this.api.hideLoader();
     });
   }
 }

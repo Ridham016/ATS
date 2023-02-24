@@ -4,13 +4,14 @@
     <ion-title class="page-title">Applicant_registration_form</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-progress-bar [value]="progress"></ion-progress-bar>
 <ion-content>
-  <ion-progress-bar [value]=".25"></ion-progress-bar>
+
 <swiper>
 
   <!-- first slide -->
   <ng-template swiperSlide>
+
     <ion-card  class=" w-100">
     <form class="ion-padding" >
 
@@ -47,7 +48,7 @@
       </ion-modal>
 
       </ion-item>
-      <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(1)">  Next  </ion-button>
+      <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(1)" (click)="progress=.66" >  Next  </ion-button>
     </form>
 
   </ion-card>
@@ -82,7 +83,7 @@
           <ion-label position="floating"> Notic Period </ion-label>
           <ion-input  placeholder="Enter  Notic Period" type="number" name="noticperios" required [(ngModel)]="details.NoticePeriod"></ion-input>
         </ion-item>
-        <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)">  Next  </ion-button>
+        <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)" (click)="progress=1">  Next  </ion-button>
 
       </form>
     </ion-card>
@@ -114,13 +115,13 @@
 
         <ion-item fill="outline" shape="round"  class="my-input" >
           <ion-label position="floating"> PreferedLocation </ion-label>
-          <ion-input  placeholder="Enter PreferedLocation" type="number" name="noticperios" required [(ngModel)]="details.PreferedLocation"></ion-input>
+          <ion-input  placeholder="Enter PreferedLocation" type="text" name="noticperios" required [(ngModel)]="details.PreferedLocation"></ion-input>
         </ion-item>
       <ion-item fill="outline" shape="round" class="my-input">
         <ion-label> Active </ion-label>
-        <ion-toggle color="secondary"  ></ion-toggle>
+        <ion-toggle color="secondary" checked="details.IsActive" ></ion-toggle>
       </ion-item>
-      <ion-button shape="round" fill="solid" size="medium" >  Create  </ion-button>
+      <ion-button shape="round" fill="solid" size="medium" (click)="onCreate()" >  Create  </ion-button>
 
       </form>
     </ion-card>

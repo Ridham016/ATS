@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Applicant, ApplicantDetails } from 'src/app/Model/applicant-details';
 import { ApiService } from 'src/app/services/api.service';
 import { SwiperComponent } from 'swiper/angular';
@@ -12,7 +13,8 @@ export class ApplicantRegistrationFormPage implements OnInit {
 @ViewChild(SwiperComponent) swiper!:SwiperComponent;
 
 currentDate = new Date().toISOString();
-  constructor(private a:ApiService) {
+  constructor(private a:ApiService,
+    private router:Router) {
 
   }
 
@@ -20,17 +22,12 @@ currentDate = new Date().toISOString();
   }
 date=new Date();
 list:any;
-
+progress=.33;
   details=new Applicant()
 
   onButtonClick(swiperINdex:number){
     this.swiper.swiperRef.slideTo(swiperINdex);
-    // this.a.getApplicantsData().then(gg=>{
-    //   this.list=JSON.parse(gg.data)
-    //   this.list=this.list['Result']
-    //   console.log(this.list)
 
-    // });
 
   }
   onUpdate(id:number){
@@ -41,5 +38,6 @@ list:any;
    console.log(this.details)
 
    this.a.createApplicant(this.details)
+   this.router.navigate(['applicant-list-page']);
   }
 }

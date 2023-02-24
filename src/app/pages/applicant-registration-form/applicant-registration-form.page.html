@@ -44,7 +44,7 @@
 
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
-            <ion-datetime  presentation="date" [showDefaultButtons]="true" displayFormat="DD-MM-YYYY"  max="{{currentDate}}" id="date"  name="dob" required [(ngModel)]="details.dob"></ion-datetime>
+            <ion-datetime  presentation="date" [showDefaultButtons]="true" displayFormat="YYYY-DD-MM"  max="{{currentDate}}" id="date"  name="dob" required [(ngModel)]="details.DateOfBirth"></ion-datetime>
          </ng-template>
       </ion-modal>
 
@@ -84,8 +84,8 @@
         </ion-item>
 
         <ion-item fill="outline" shape="round"  class="my-input" >
-          <ion-label position="floating"> Notic Period </ion-label>
-          <ion-input  placeholder="Enter  Notic Period" type="number" name="noticperios" required [(ngModel)]="details.NoticePeriod"></ion-input>
+          <ion-label position="floating"> Notice Period </ion-label>
+          <ion-input  placeholder="Enter  Notice Period" type="number" name="NoticePeriod" required [(ngModel)]="details.NoticePeriod"></ion-input>
         </ion-item>
         <ion-button shape="round" fill="solid" size="medium" slot="start" (click)="onButtonClick(0)" (click)="progress=.33" [disabled]="!form.valid">
           <ion-icon name="chevron-back-sharp"></ion-icon> Prev</ion-button>
@@ -113,7 +113,7 @@
 
         <ion-item fill="outline" shape="round"  class="my-input" >
           <ion-label position="floating"> Reason For Change  </ion-label>
-          <ion-input  placeholder="Reason For Change" type="text" name="reason" required [(ngModel)]="details.ReasonsForChange"></ion-input>
+          <ion-input  placeholder="Reason For Change" type="text" name="reason" required [(ngModel)]="details.ReasonForChange"></ion-input>
         </ion-item>
 
         <ion-item fill="outline" shape="round" class="my-input">
@@ -123,11 +123,11 @@
 
         <ion-item fill="outline" shape="round"  class="my-input" >
           <ion-label position="floating"> PreferedLocation </ion-label>
-          <ion-input  placeholder="Enter PreferedLocation" type="text" name="noticperios" required [(ngModel)]="details.PreferedLocation"></ion-input>
+          <ion-input  placeholder="Enter PreferedLocation" type="text" name="PreferedLocation" required [(ngModel)]="details.PreferedLocation"></ion-input>
         </ion-item>
       <ion-item fill="outline" shape="round" class="my-input">
         <ion-label> Active </ion-label>
-        <ion-toggle color="secondary" checked="details.IsActive" ></ion-toggle>
+        <ion-toggle color="secondary" name="IsActive" [(ngModel)]="details.IsActive" ></ion-toggle>
       </ion-item>
       <ion-button shape="round" fill="solid" size="medium" slot="start" (click)="onButtonClick(1)" (click)="progress=.66" [disabled]="!form.valid">
         <ion-icon name="chevron-back-sharp"></ion-icon> Prev   </ion-button>

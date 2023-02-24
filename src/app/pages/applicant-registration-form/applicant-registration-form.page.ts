@@ -22,6 +22,7 @@ pagination:true
 };
 
 currentDate = new Date().toISOString();
+date!:Date;
   constructor(private a:ApiService,
     private router:Router) {
 
@@ -29,11 +30,10 @@ currentDate = new Date().toISOString();
 
   ngOnInit() {
   }
-date=new Date();
-list:any;
-progress=.33;
-  details=new Applicant()
 
+  list:any;
+  progress=.33;
+  details=new Applicant()
   onButtonClick(swiperINdex:number){
     this.swiper.swiperRef.slideTo(swiperINdex);
   }
@@ -42,6 +42,7 @@ progress=.33;
   }
 
   onUpdate(id:number){
+
     this.details['ApplicantId']=id
     this.a.updateApplicant(this.details,id);
   }
@@ -51,4 +52,5 @@ progress=.33;
    this.a.createApplicant(this.details)
    this.router.navigate(['applicant-list-page']);
   }
+
 }

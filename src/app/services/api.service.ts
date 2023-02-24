@@ -9,7 +9,7 @@ import { Platform } from '@ionic/angular';
   providedIn: 'root'
 })
 export class ApiService {
-  baseUrl='https://42cc-116-72-9-56.in.ngrok.io/api/';
+  baseUrl='https://f471-116-72-9-56.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,private plt : Platform) {
       this.plt.ready().then(_=>{

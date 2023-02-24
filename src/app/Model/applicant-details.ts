@@ -9,14 +9,14 @@ export class Applicant {
   IsActive!: boolean;
   CurrentCompany! : string;
   CurrentDesignation!: string;
-  dob!:Date;
+  DateOfBirth!:Date;
   TotalExperience!: string;
   ApplicantDate!:Date;
   DetailedExperience!: string;
   CurrentCTC!: number;
   ExpectedCTC!: number;
   NoticePeriod!: number;
-  ReasonsForChange!: string;
+  ReasonForChange!: string;
   CurrentLocation!: string;
   PreferedLocation!: string;
 }

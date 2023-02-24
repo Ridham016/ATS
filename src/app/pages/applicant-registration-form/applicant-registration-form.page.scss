@@ -28,4 +28,7 @@ height: 100%;
   width: 100%;
 
 }
-
+.swiper-wrapper{
+  --touch-action: none;
+  --pointer-events: none;
+}

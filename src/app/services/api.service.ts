@@ -29,6 +29,7 @@ export class ApiService {
       }
     ).catch(error=>console.log(error));
   }
+
   updateApplicant(g:Applicant,id:number){
     this.api.post(this.baseUrl+'/Registrations/Register/',g,{}).then(
       res=>{

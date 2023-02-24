@@ -4,11 +4,7 @@ import { Applicant, ApplicantDetails } from 'src/app/Model/applicant-details';
 import { ApiService } from 'src/app/services/api.service';
 import { SwiperComponent } from 'swiper/angular';
 import {SwiperOptions} from 'swiper';
-import Swiper, {
-  Pagination
-} from 'swiper';
 
-Swiper.use([Pagination]);
 @Component({
   selector: 'app-applicant-registration-form',
   templateUrl: './applicant-registration-form.page.html',
@@ -17,9 +13,7 @@ Swiper.use([Pagination]);
 export class ApplicantRegistrationFormPage implements OnInit {
 @ViewChild(SwiperComponent) swiper!:SwiperComponent;
 
-config: SwiperOptions ={
-pagination:true
-};
+
 
 currentDate = new Date().toISOString();
 date!:Date;

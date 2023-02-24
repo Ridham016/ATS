@@ -80,7 +80,7 @@
 
         <ion-item fill="outline" shape="round" class="my-input">
           <ion-label position="floating"> Detailed Experience </ion-label>
-          <ion-textarea  placeholder="Detailed Experience" type="number" name="detailedexp" required [(ngModel)]="details.DetailedExperience"></ion-textarea>
+          <ion-input placeholder="Detailed Experience" type="number" name="detailedexp" required [(ngModel)]="details.DetailedExperience"></ion-input>
         </ion-item>
 
         <ion-item fill="outline" shape="round"  class="my-input" >
@@ -90,9 +90,6 @@
         <ion-button shape="round" fill="solid" size="medium" slot="start" (click)="onButtonClick(0)" (click)="progress=.33" [disabled]="!form.valid">
           <ion-icon name="chevron-back-sharp"></ion-icon> Prev</ion-button>
         <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)" (click)="progress=1" [disabled]="!form.valid">  Next <ion-icon name="chevron-forward-sharp"></ion-icon>   </ion-button>
-
-
-
       </form>
     </ion-card>
   </ng-template>
@@ -118,7 +115,7 @@
 
         <ion-item fill="outline" shape="round" class="my-input">
           <ion-label position="floating">  Current Location </ion-label>
-          <ion-input  placeholder=" Current Location" type="text" name="detailedexp" required [(ngModel)]="details.CurrentLocation"></ion-input>
+          <ion-input  placeholder=" Current Location" type="text" name="Current_loc" required [(ngModel)]="details.CurrentLocation"></ion-input>
         </ion-item>
 
         <ion-item fill="outline" shape="round"  class="my-input" >

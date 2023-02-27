@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'user-dash-board',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -30,7 +30,8 @@ const routes: Routes = [
   {
     path: 'user-dash-board',
     loadChildren: () => import('./pages/user-dash-board/user-dash-board.module').then( m => m.UserDashBoardPageModule)
-  },  {
+  },
+  {
     path: 'signup',
     loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
   },

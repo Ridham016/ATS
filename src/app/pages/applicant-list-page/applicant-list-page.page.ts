@@ -13,16 +13,16 @@ export class ApplicantListPagePage implements OnInit {
 
   list:any;
 
-  constructor(private api:ApiService , private plt:Platform,public modalController: ModalController) {
+  constructor(public api:ApiService , private plt:Platform,public modalController: ModalController) {
 
    }
 async ionViewWillEnter(){
-  this.plt.ready().then(_=>{
-    this.onLoadData();
-  })
+
 }
   async ngOnInit() {
-
+    this.plt.ready().then(_=>{
+      this.onLoadData();
+    })
   }
   async openSearchFilter() {
     const modal = await this.modalController.create({
@@ -31,10 +31,9 @@ async ionViewWillEnter(){
     });
 
     modal.onDidDismiss().then(data=>{
-      // if(data && data.data){
-      //   this.updateList(\data.data)
-      // }
+      this.list=this.api.Activelist
     })
+    
     await modal.present();
 
   }
@@ -42,11 +41,14 @@ async ionViewWillEnter(){
   onLoadData(){
     this.api.showLoader()
     this.api.getApplicantsData().then(gg=>{
-      console.log(gg)
+      if(gg){
       this.list=JSON.parse(gg.data)
       this.list=this.list['Result']
-      console.log(this.list)
+      this.api.Activelist=this.list;
       this.api.hideLoader();
+    }}).catch(error=>{
+      this.api.showAlertF();
     });
+
   }
 }

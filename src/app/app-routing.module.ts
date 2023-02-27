@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'user-dash-board',
     loadChildren: () => import('./pages/user-dash-board/user-dash-board.module').then( m => m.UserDashBoardPageModule)
   },
+  {
+    path: 'applicant-filter',
+    loadChildren: () => import('./pages/filter/applicant-filter/applicant-filter.module').then( m => m.ApplicantFilterPageModule)
+  },
+
 
 
 

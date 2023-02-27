@@ -22,9 +22,21 @@
       <ion-title class="h1 fw-bold">Personal Details</ion-title>
 
       <ion-item fill="outline" class="my-input"  shape="round"  >
-        <ion-label position="floating"> Name </ion-label>
-        <ion-input type="text" placeholder="Enter Name"  name="name" required [(ngModel)]="details.Name" #name="ngModel"></ion-input>
-        <ion-note *ngIf="!name.valid && name.touched" color="danger">Name is required</ion-note>
+        <ion-label position="floating"> First Name </ion-label>
+        <ion-input type="text" placeholder="Enter First Name"  name="firstname" required [(ngModel)]="details.FirstName" #name="ngModel"></ion-input>
+        <ion-note *ngIf="!name.valid && name.touched" color="danger">First Name is required</ion-note>
+      </ion-item>
+
+      <ion-item fill="outline" class="my-input"  shape="round">
+        <ion-label position="floating"> Middle Name (optional) </ion-label>
+        <ion-input type="text" placeholder="Enter Middle Name"  name="middlename"  [(ngModel)]="details.MiddleName" #name="ngModel"></ion-input>
+        <!-- <ion-note *ngIf="!name.valid && name.touched" color="danger">Middle Name is required</ion-note> -->
+      </ion-item>
+
+      <ion-item fill="outline" class="my-input"  shape="round"  >
+        <ion-label position="floating"> Last Name </ion-label>
+        <ion-input type="text" placeholder="Enter First Name"  name="lastname" required [(ngModel)]="details.LastName" #name="ngModel"></ion-input>
+        <ion-note *ngIf="!name.valid && name.touched" color="danger">Last Name is required</ion-note>
       </ion-item>
 
 
@@ -72,9 +84,9 @@
   </ion-card>
 
   </ng-template>
-  <ng-template swiperSlide>
-    <ion-card>
-      <form class="ion-padding" #form="ngForm">
+  <ng-template swiperSlide >
+    <ion-card class="ion-padding">
+      <form   #form="ngForm">
         <ion-title class="h1 fw-bold ion-text-left" >Professional Details</ion-title>
 
         <ion-item fill="outline" shape="round"  class="my-input" >

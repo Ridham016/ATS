@@ -2,7 +2,9 @@ export class ApplicantDetails {
 }
 export class Applicant {
   ApplicantId!: number;
-  Name!: string;
+  FirstName!: string;
+  MiddleName!: string;
+  LastName!: string;
   Email!: string;
   Phone!: string;
   Address!: string;

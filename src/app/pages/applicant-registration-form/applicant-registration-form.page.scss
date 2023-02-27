@@ -21,9 +21,13 @@ ion-datetime-button::part(native) {
 }
 swiper
 {
-height: 100%;
+
   width: 100%;
 
+}
+.customswipper{
+  height: 100%;
+  width: 100%;
 }
 .swiper-wrapper{
   --touch-action: none;

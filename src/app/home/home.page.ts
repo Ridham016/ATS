@@ -3,7 +3,7 @@ import { Component, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { CalendarComponent, CalendarMode,Step  } from 'ionic2-calendar';
 import { IEvent } from 'ionic2-calendar/calendar.interface';
-import { SendEmailPage } from '../send-email/send-email.page';
+import { SendEmailPage } from '../pages/send-email/send-email.page';
 
 @Component({
   selector: 'app-home',

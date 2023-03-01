@@ -22,7 +22,14 @@
     <ion-col  size="3" size-md="2" size-lg="2">{{item.ApplicantId}}</ion-col>
     <ion-col  size="3" size-md="2" size-lg="2">{{item.FirstName}}</ion-col>
     <ion-col  size="3" size-md="2" size-lg="2">{{item.LastName}}</ion-col>
-    <ion-col  size="3" size-md="2" size-lg="2"></ion-col>
+    <ion-col  size="3" size-md="2" size-lg="2">
+     <ion-button fill="clear"  color="success" (click)="navigate(item.ApplicantId)">
+      <ion-icon slot="icon-only" [src]="myCustomIcon"></ion-icon>
+     </ion-button>
+    </ion-col>
   </ion-row>
+  <ion-infinite-scroll (ionInfinite)="onLoadData($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-grid>
 </ion-content>

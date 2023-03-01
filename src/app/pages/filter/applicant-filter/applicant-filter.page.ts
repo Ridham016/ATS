@@ -33,23 +33,23 @@ export class ApplicantFilterPage implements OnInit {
   }
 
   onLoadData(){
-    this.api.showLoader()
-    this.api.getApplicantsData().then(gg=>{
-      console.log(gg)
-      this.list=JSON.parse(gg.data)
-      this.list=this.list['Result']
-      this.api.Activelist=this.list
-      console.log(this.api.Activelist)
-      for (let i = 0; i < this.list.length; i++) {
-        if(!this.currList.includes(this.list[i]['CurrentLocation'])){
-        this.currList.push(this.list[i]['CurrentLocation'])}
-        if(!this.preeList.includes(this.list[i]['PreferedLocation'])){
-        this.preeList.push(this.list[i]['PreferedLocation'])
-        console.log(this.preeList)
-        }
-    }
-      this.api.hideLoader();
-    });
+    // this.api.showLoader()
+    // this.api.getApplicantsData().then(gg=>{
+    //   console.log(gg)
+    //   this.list=JSON.parse(gg.data)
+    //   this.list=this.list['Result']
+    //   this.api.Activelist=this.list
+    //   console.log(this.api.Activelist)
+    //   for (let i = 0; i < this.list.length; i++) {
+    //     if(!this.currList.includes(this.list[i]['CurrentLocation'])){
+    //     this.currList.push(this.list[i]['CurrentLocation'])}
+    //     if(!this.preeList.includes(this.list[i]['PreferedLocation'])){
+    //     this.preeList.push(this.list[i]['PreferedLocation'])
+    //     console.log(this.preeList)
+    //     }
+    // }
+    //   this.api.hideLoader();
+    // });
   }
 
   clearFilters(){

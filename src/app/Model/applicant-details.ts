@@ -1,6 +1,9 @@
 export class ApplicantDetails {
+
 }
+
 export class Applicant {
+
   ApplicantId!: number;
   FirstName!: string;
   MiddleName!: string;
@@ -8,7 +11,7 @@ export class Applicant {
   Email!: string;
   Phone!: string;
   Address!: string;
-  IsActive!: boolean;
+  IsActive: boolean=true;
   CurrentCompany! : string;
   CurrentDesignation!: string;
   DateOfBirth!:Date;

@@ -1,9 +1,13 @@
+
+import { Router } from '@angular/router';
 import { ApplicantFilterPage } from './../filter/applicant-filter/applicant-filter.page';
 import { Component, OnInit } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { ApiService } from 'src/app/services/api.service';
 import { Platform } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { Constant } from 'src/app/constant';
+
 @Component({
   selector: 'app-applicant-list-page',
   templateUrl: './applicant-list-page.page.html',
@@ -11,9 +15,17 @@ import { ModalController } from '@ionic/angular';
 })
 export class ApplicantListPagePage implements OnInit {
 
-  list:any;
+  list:any[]=[];
+  pageNumber = 1;
+  myCustomIcon = "/assets/view-details-icon.svg";
 
-  constructor(public api:ApiService , private plt:Platform,public modalController: ModalController) {
+  constructor(public api:ApiService ,
+     private plt:Platform,
+     public modalController: ModalController,
+     private router:Router,
+    
+
+     ) {
 
    }
 async ionViewWillEnter(){
@@ -33,22 +45,41 @@ async ionViewWillEnter(){
     modal.onDidDismiss().then(data=>{
       this.list=this.api.Activelist
     })
-    
+
     await modal.present();
 
   }
 
-  onLoadData(){
+  onLoadData(event?: any){
+    let ApiList=[];
     this.api.showLoader()
-    this.api.getApplicantsData().then(gg=>{
-      if(gg){
-      this.list=JSON.parse(gg.data)
-      this.list=this.list['Result']
+    this.api.getApplicantsData(this.pageNumber).then(gg=>{
+      console.log(gg)
+      if(event){
+        event.target.complete();
+      }
+      ApiList=JSON.parse(gg.data)
+      ApiList=ApiList['Result']
+      this.list=[...this.list,...ApiList]
       this.api.Activelist=this.list;
       this.api.hideLoader();
-    }}).catch(error=>{
+      this.pageNumber++;
+      console.log(ApiList.length)
+      if(ApiList.length===0){
+        event.target.disabled = true;
+      }
+    }).catch(error=>{
       this.api.showAlertF();
     });
 
   }
-}
+
+
+
+  navigate(Applicantid:number){
+    this.router.navigate(['applicant-detail'], {
+      queryParams: {
+        id:Applicantid
+      }
+    })}
+  }

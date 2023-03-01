@@ -10,7 +10,7 @@ import { Platform } from '@ionic/angular';
 })
 export class ApiService {
   Activelist: any[] = [];
-  baseUrl='https://41db-116-72-9-56.in.ngrok.io/api/';
+  baseUrl='https://b3c1-2402-3a80-e73-412f-a942-b8a6-5a27-222f.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -22,8 +22,12 @@ export class ApiService {
 
   }
 
-  getApplicantsData(){
-    return this.api.get(this.baseUrl+'Registrations/GetAllApplicants',{},{})
+  getApplicantsData(PageNumber:number,PageSize:number=23){
+    const g={
+      'CurrentPageNumber':PageNumber,
+      'PageSize':PageSize
+    }
+    return this.api.post(this.baseUrl+'Registrations/GetAllApplicants',g,{})
   }
 
   createApplicant(g:Applicant){
@@ -73,6 +77,11 @@ export class ApiService {
      await alert.present();
   }
 
-
+  async getApplicant(id:number){
+   const param={
+      'ApplicantId':id
+    }
+    return this.api.get(this.baseUrl+'Registrations/GetApplicantById',param,{})
+  }
 
 }

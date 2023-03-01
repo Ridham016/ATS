@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'send-email',
-    loadChildren: () => import('./send-email/send-email.module').then( m => m.SendEmailPageModule)
+    loadChildren: () => import('./pages/send-email/send-email.module').then( m => m.SendEmailPageModule)
   },
   {
     path: 'applicant-registration-form',
@@ -38,7 +38,11 @@ const routes: Routes = [
   {
     path: 'applicant-filter',
     loadChildren: () => import('./pages/filter/applicant-filter/applicant-filter.module').then( m => m.ApplicantFilterPageModule)
+  },  {
+    path: 'applicant-detail',
+    loadChildren: () => import('./pages/applicant-detail/applicant-detail.module').then( m => m.ApplicantDetailPageModule)
   },
+
 
 
 

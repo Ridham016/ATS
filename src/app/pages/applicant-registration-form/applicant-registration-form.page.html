@@ -17,11 +17,12 @@
   <ng-template swiperSlide>
 
     <ion-card  class=" w-100">
+
     <form class="ion-padding"  #form="ngForm">
 
       <ion-title class="h1 fw-bold">Personal Details</ion-title>
 
-      <ion-item fill="outline" class="my-input"  shape="round"  >
+      <ion-item fill="outline" class="my-input"  shape="round">
         <ion-label position="floating"> First Name </ion-label>
         <ion-input type="text" placeholder="Enter First Name"  name="firstname" required [(ngModel)]="details.FirstName" #name="ngModel"></ion-input>
         <ion-note *ngIf="!name.valid && name.touched" color="danger">First Name is required</ion-note>
@@ -33,13 +34,11 @@
         <!-- <ion-note *ngIf="!name.valid && name.touched" color="danger">Middle Name is required</ion-note> -->
       </ion-item>
 
-      <ion-item fill="outline" class="my-input"  shape="round"  >
+      <ion-item fill="outline" class="my-input"  shape="round">
         <ion-label position="floating"> Last Name </ion-label>
         <ion-input type="text" placeholder="Enter First Name"  name="lastname" required [(ngModel)]="details.LastName" #name="ngModel"></ion-input>
         <ion-note *ngIf="!name.valid && name.touched" color="danger">Last Name is required</ion-note>
       </ion-item>
-
-
 
       <ion-item fill="outline" shape="round" class="my-input">
         <ion-label position="floating"> Email </ion-label>
@@ -47,25 +46,21 @@
         <ion-note *ngIf="!email.valid && email.touched" color="danger">Email is invalid</ion-note>
       </ion-item>
 
-
       <ion-item fill="outline" shape="round" class="my-input">
         <ion-label position="floating"> Mobile No. </ion-label>
         <ion-input  type="tel" maxlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Phone" #mobile="ngModel"></ion-input>
         <ion-note *ngIf="!mobile.valid && mobile.touched" color="danger">Mobile is required</ion-note>
-
       </ion-item>
 
       <ion-item fill="outline" shape="round" class="my-input">
         <ion-label position="floating"> Address </ion-label>
         <ion-textarea  placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.Address" #address="ngModel"></ion-textarea>
         <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
-
       </ion-item>
 
       <ion-item fill="outline" shape="round"  class="my-input" >
         <ion-label >  DOB</ion-label>
         <ion-datetime-button datetime="date" color="" > </ion-datetime-button>
-
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
             <ion-datetime   presentation="date" [showDefaultButtons]="true" displayFormat="YYYY-DD-MM"  max="{{currentDate}}" id="date"  name="dob" required [(ngModel)]="details.DateOfBirth" #dob="ngModel"></ion-datetime>
@@ -73,20 +68,19 @@
          </ng-template>
       </ion-modal>
 
-
       </ion-item>
       <ion-button shape="round" fill="solid" size="medium" slot="end" (click)="onButtonClick(1)" [disabled]="!form.valid" (click)="progress=.66"  >
-
-        <ion-icon slot="end" name="chevron-forward-sharp"></ion-icon>  Next </ion-button>
-
-    </form>
+        <ion-icon slot="end" name="chevron-forward-sharp"></ion-icon> Next </ion-button>
+      </form>
 
   </ion-card>
-
   </ng-template>
+
   <ng-template swiperSlide >
+
     <ion-card class="ion-padding">
       <form   #form="ngForm">
+
         <ion-title class="h1 fw-bold ion-text-left" >Professional Details</ion-title>
 
         <ion-item fill="outline" shape="round"  class="my-input" >
@@ -125,14 +119,15 @@
           <ion-icon name="chevron-back-sharp"></ion-icon> Prev</ion-button>
         <ion-button shape="round" fill="solid" size="medium"  (click)="onButtonClick(2)" (click)="progress=1" [disabled]="!form.valid">  Next <ion-icon name="chevron-forward-sharp"></ion-icon>   </ion-button>
 
-
-
       </form>
     </ion-card>
   </ng-template>
+
   <ng-template swiperSlide>
+
     <ion-card>
       <form class="ion-padding"#form="ngForm">
+
         <ion-title class="h1 fw-bold ion-text-left" >Professional Details</ion-title>
 
         <ion-item fill="outline" shape="round"  class="my-input" >
@@ -145,7 +140,6 @@
           <ion-label position="floating"> Expected CTC  in Lakhs </ion-label>
           <ion-input  placeholder="Enter Expected CTC" type="tel" maxlength="4" name="expectedctc" required [(ngModel)]="details.ExpectedCTC" #expctc="ngModel"></ion-input>
           <ion-note *ngIf="!expctc.valid && expctc.touched" color="danger"> CTC is required</ion-note>
-
         </ion-item>
 
         <ion-item fill="outline" shape="round"  class="my-input" >

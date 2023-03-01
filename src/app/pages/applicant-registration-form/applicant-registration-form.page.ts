@@ -17,9 +17,9 @@ export class ApplicantRegistrationFormPage implements OnInit {
 
 currentDate = new Date().toISOString();
 date!:Date;
+
   constructor(private a:ApiService,
     private router:Router) {
-
   }
 
   ngOnInit() {
@@ -28,21 +28,22 @@ date!:Date;
   list:any;
   progress=.33;
   details=new Applicant()
+
   onButtonClick(swiperINdex:number){
     this.swiper.swiperRef.slideTo(swiperINdex);
   }
+
   prev(swiperIndex :number){
     this.swiper.swiperRef.slideTo(swiperIndex);
   }
 
   onUpdate(id:number){
-
     this.details['ApplicantId']=id
     this.a.updateApplicant(this.details,id);
   }
+
   onCreate(){
    console.log(this.details)
-
    this.a.createApplicant(this.details)
    this.router.navigate(['applicant-list-page']);
   }

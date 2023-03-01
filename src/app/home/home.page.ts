@@ -37,6 +37,7 @@ export class HomePage implements OnInit {
   constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,public modalCtrl: ModalController,) {
 
   }
+  
   calendar = {
     mode: 'day' as CalendarMode,
     currentDate: new Date(),
@@ -281,9 +282,6 @@ handleChangeAS() {
     }
     this.eventSource = events;
     this.results=events;
-    // for(i=0;i<this.eventSource.length;i++){
-    //   this.data=events[i].title;
-    //   this.results.push(this.data);
-    // }
+
   }
 }

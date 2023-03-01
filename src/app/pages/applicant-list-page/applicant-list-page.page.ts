@@ -28,14 +28,16 @@ export class ApplicantListPagePage implements OnInit {
      ) {
 
    }
-async ionViewWillEnter(){
+  async ionViewWillEnter(){
 
-}
+  }
+
   async ngOnInit() {
     this.plt.ready().then(_=>{
       this.onLoadData();
     })
   }
+
   async openSearchFilter() {
     const modal = await this.modalController.create({
       component: ApplicantFilterPage,
@@ -45,9 +47,14 @@ async ionViewWillEnter(){
     modal.onDidDismiss().then(data=>{
       this.list=this.api.Activelist
     })
+<<<<<<< Updated upstream
 
     await modal.present();
+=======
+>>>>>>> Stashed changes
 
+    await modal.present();
+  
   }
 
   onLoadData(event?: any){

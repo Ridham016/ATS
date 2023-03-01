@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { UserDashBoardPageRoutingModule } from './user-dash-board-routing.module';
-
+import { NgCalendarModule } from 'ionic2-calendar';
 import { UserDashBoardPage } from './user-dash-board.page';
 
 @NgModule({
@@ -13,7 +13,9 @@ import { UserDashBoardPage } from './user-dash-board.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    UserDashBoardPageRoutingModule
+    UserDashBoardPageRoutingModule,
+    NgCalendarModule,
+
   ],
   declarations: [UserDashBoardPage]
 })

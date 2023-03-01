@@ -7,107 +7,104 @@
 </ion-header>
 
 <ion-content fullscreen="true" >
-<img src="/assets/avatar.svg" class="center">
-<h3 class="ion-text-center ion-ma" >{{data.FirstName}}{{data.LastName}}</h3>
-<ion-accordion-group value="1" expand="inset">
-<ion-accordion value="1">
-  <ion-item slot="header" >
-    <ion-label>Personal Details</ion-label>
-  </ion-item>
-  <div  class="ion-padding accord-lable" slot="content">
-  <ion-list lines="none" class="gg">
-    <ion-item >
-      <ion-label slot="start">{{lable.FirstName}}</ion-label>
-      <p >{{data.FirstName}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.MiddleName}}</ion-label>
-      <p >{{data.MiddleName}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.LastName}}</ion-label>
-      <p slot="end">{{data.LastName}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.Email}}</ion-label>
-      <p >{{data.Email}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.Phone}}</ion-label>
-      <p >{{data.Phone}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.Address}}</ion-label>
-      <p >{{data.Address}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.DateOfBirth}}</ion-label>
-      <p >{{data.DateOfBirth}}</p>
-    </ion-item>
-  </ion-list>
-  </div>
-</ion-accordion>
-<ion-accordion value="2">
-  <ion-item slot="header">
-    <ion-label>Professional Details</ion-label>
-  </ion-item>
-  <div  class="ion-padding " slot="content">
-  <ion-list lines="none" class="gg">
-    <ion-item >
-      <ion-label slot="start">{{lable.CurrentCompany}}</ion-label>
-      <p>{{data.CurrentCompany}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.CurrentDesignation}}</ion-label>
-      <p>{{data.CurrentDesignation}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.TotalExperience}}</ion-label>
-      <p >{{data.TotalExperience}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.DetailedExperience}}</ion-label>
-      <p>{{data.DetailedExperience}}</p>
-    </ion-item>
-    <ion-item>
-      <ion-label slot="start">{{lable.NoticePeriod}}</ion-label>
-      <p>{{data.NoticePeriod}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.CurrentCTC}}</ion-label>
-      <p>{{data.CurrentCTC}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.ExpectedCTC}}</ion-label>
-      <p>{{data.ExpectedCTC}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.ReasonForChange}}</ion-label>
-      <p>{{data.ReasonForChange}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.CurrentLocation}}</ion-label>
-      <p>{{data.CurrentLocation}}</p>
-    </ion-item>
-    <ion-item  >
-      <ion-label slot="start">{{lable.PreferedLocation}}</ion-label>
-      <p>{{data.PreferedLocation}}</p>
-    </ion-item>
-  </ion-list>
-  </div>
-</ion-accordion>
-<ion-accordion value="3">
-  <ion-item slot="header">
-    <ion-label>Authetication</ion-label>
-  </ion-item>
-  <div class="ion-padding" slot="content">
-
-    <ion-button (click)="onClick(data.ApplicantId)" expand="block" fill="clear" shape="round">
-      Click me
-    </ion-button>
-  </div>
-</ion-accordion>
-</ion-accordion-group>
+  <img src="/assets/avatar.svg" class="center">
+  <h3 class="ion-text-center ion-ma" >{{data.FirstName}}{{data.LastName}}</h3>
+  <ion-accordion-group value="1" expand="inset">
+    <ion-accordion value="1">
+      <ion-item slot="header" >
+        <ion-label>Personal Details</ion-label>
+      </ion-item>
+      <div class="ion-padding accord-lable" slot="content">
+        <ion-list lines="none" class="gg">
+          <ion-item >
+            <ion-label slot="start">{{lable.FirstName}}</ion-label>
+            <p >{{data.FirstName}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-label slot="start">{{lable.MiddleName}}</ion-label>
+            <p >{{data.MiddleName}}</p>
+          </ion-item>
+          <ion-item  >
+            <ion-label slot="start">{{lable.LastName}}</ion-label>
+            <p >{{data.LastName}}</p>
+          </ion-item>
+          <ion-item >
+            <ion-label slot="start">{{lable.Email}}</ion-label>
+            <p >{{data.Email}}</p>
+          </ion-item>
+          <ion-item  >
+            <ion-label slot="start">{{lable.Phone}}</ion-label>
+            <p >{{data.Phone}}</p>
+          </ion-item>
+          <ion-item  >
+            <ion-label slot="start">{{lable.Address}}</ion-label>
+            <p >{{data.Address}}</p>
+          </ion-item>
+          <ion-item  >
+            <ion-label slot="start">{{lable.DateOfBirth}}</ion-label>
+            <p >{{data.DateOfBirth}}</p>
+          </ion-item>
+          </ion-list>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="2">
+        <ion-item slot="header">
+            <ion-label>Professional Details</ion-label>
+        </ion-item>
+        <div  class="ion-padding " slot="content">
+            <ion-list lines="none" class="gg">
+              <ion-item >
+                  <ion-label slot="start">{{lable.CurrentCompany}}</ion-label>
+                  <p>{{data.CurrentCompany}}</p>
+              </ion-item>
+              <ion-item>
+                  <ion-label slot="start">{{lable.CurrentDesignation}}</ion-label>
+                  <p>{{data.CurrentDesignation}}</p>
+              </ion-item>
+              <ion-item  >
+                  <ion-label slot="start">{{lable.TotalExperience}}</ion-label>
+                  <p >{{data.TotalExperience}}</p>
+              </ion-item>
+              <ion-item  >
+                  <ion-label slot="start">{{lable.DetailedExperience}}</ion-label>
+                  <p>{{data.DetailedExperience}}</p>
+              </ion-item>
+              <ion-item>
+                  <ion-label slot="start">{{lable.NoticePeriod}}</ion-label>
+                  <p>{{data.NoticePeriod}}</p>
+              </ion-item>
+              <ion-item  >
+                  <ion-label slot="start">{{lable.CurrentCTC}}</ion-label>
+                  <p>{{data.CurrentCTC}}</p>
+              </ion-item>
+              <ion-item  >
+                  <ion-label slot="start">{{lable.ExpectedCTC}}</ion-label>
+                  <p>{{data.ExpectedCTC}}</p>
+              </ion-item>
+              <ion-item  >
+                  <ion-label slot="start">{{lable.ReasonForChange}}</ion-label>
+                  <p>{{data.ReasonForChange}}</p>
+              </ion-item>
+              <ion-item  >
+                  <ion-label slot="start">{{lable.CurrentLocation}}</ion-label>
+                  <p>{{data.CurrentLocation}}</p>
+              </ion-item>
+              <ion-item  >
+                  <ion-label slot="start">{{lable.PreferedLocation}}</ion-label>
+                  <p>{{data.PreferedLocation}}</p>
+              </ion-item>
+            </ion-list>
+        </div>
+    </ion-accordion>
+    <ion-accordion value="3">
+        <ion-item slot="header">
+            <ion-label>Authetication</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+            <ion-button (click)="onClick(data.ApplicantId)"  shape="round">
+              Schedule Call
+            </ion-button>
+        </div>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>
-
-

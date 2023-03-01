@@ -34,6 +34,6 @@ export class ApplicantDetailPage implements OnInit {
   }
 
   onClick(id:number){
-    this.router.navigate([''])
+    this.router.navigate(['scheduling-form'])
   }
 }

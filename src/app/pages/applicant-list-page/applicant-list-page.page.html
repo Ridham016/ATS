@@ -13,9 +13,9 @@
 
 <ion-grid [fixed]="true" >
   <ion-row>
-    <ion-col size="3" size-md="2" size-lg="2">Applicant Id</ion-col>
-    <ion-col size="3" size-md="2" size-lg="2">FirstName</ion-col>
-    <ion-col size="3" size-md="2" size-lg="2">LastName</ion-col>
+    <ion-col size="3" size-md="2" size-lg="2">{{label.ApplicantId}}</ion-col>
+    <ion-col size="3" size-md="2" size-lg="2">{{label.FirstName}}</ion-col>
+    <ion-col size="3" size-md="2" size-lg="2">{{label.LastName}}</ion-col>
     <ion-col size="3" size-md="2" size-lg="2"></ion-col>
   </ion-row>
   <ion-row *ngFor="let item of list ">
@@ -29,7 +29,7 @@
     </ion-col>
   </ion-row>
   <ion-infinite-scroll (ionInfinite)="onLoadData($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-grid>
 </ion-content>

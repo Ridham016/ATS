@@ -18,15 +18,13 @@ export class ApplicantListPagePage implements OnInit {
   list:any[]=[];
   pageNumber = 1;
   myCustomIcon = "/assets/view-details-icon.svg";
+  label=Constant;
 
   constructor(public api:ApiService ,
      private plt:Platform,
      public modalController: ModalController,
      private router:Router,
-
-
-
-     ) {
+      ) {
 
    }
   async ionViewWillEnter(){
@@ -68,7 +66,7 @@ export class ApplicantListPagePage implements OnInit {
       this.api.Activelist=this.list;
       this.api.hideLoader();
       this.pageNumber++;
-      console.log(ApiList.length)
+
       if(ApiList.length===0){
         event.target.disabled = true;
       }
@@ -88,3 +86,5 @@ export class ApplicantListPagePage implements OnInit {
       }
     })}
   }
+
+// add 2 number 

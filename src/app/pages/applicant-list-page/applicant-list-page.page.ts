@@ -23,7 +23,7 @@ export class ApplicantListPagePage implements OnInit {
      private plt:Platform,
      public modalController: ModalController,
      private router:Router,
-    
+
 
      ) {
 
@@ -47,14 +47,11 @@ export class ApplicantListPagePage implements OnInit {
     modal.onDidDismiss().then(data=>{
       this.list=this.api.Activelist
     })
-<<<<<<< Updated upstream
 
     await modal.present();
-=======
->>>>>>> Stashed changes
 
     await modal.present();
-  
+
   }
 
   onLoadData(event?: any){

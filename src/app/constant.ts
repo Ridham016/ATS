@@ -20,4 +20,11 @@ export const Constant= {
    ReasonForChange: "Reason For Change",
    CurrentLocation: "Current Location",
    PreferedLocation: "PreferedLocation",
+
+   //Scheduling Labals
+   ScheduleDate: "Schedule",
+   Description :"Description",
+   Link :"Link",
+   InterviewerName:"Interviewer Name"
+
 }

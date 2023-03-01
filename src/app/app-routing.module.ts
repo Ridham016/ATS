@@ -38,9 +38,14 @@ const routes: Routes = [
   {
     path: 'applicant-filter',
     loadChildren: () => import('./pages/filter/applicant-filter/applicant-filter.module').then( m => m.ApplicantFilterPageModule)
-  },  {
+  },
+  {
     path: 'applicant-detail',
     loadChildren: () => import('./pages/applicant-detail/applicant-detail.module').then( m => m.ApplicantDetailPageModule)
+  },
+  {
+    path: 'scheduling-form',
+    loadChildren: () => import('./pages/scheduling-form/scheduling-form.module').then( m => m.SchedulingFormPageModule)
   },
 
 

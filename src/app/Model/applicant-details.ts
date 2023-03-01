@@ -25,3 +25,9 @@ export class Applicant {
   CurrentLocation!: string;
   PreferedLocation!: string;
 }
+export class Scheduling{
+  Description!:string;
+  DateAndTime!:Date;
+  Link!:string;
+  InterviewerName!: string;
+}

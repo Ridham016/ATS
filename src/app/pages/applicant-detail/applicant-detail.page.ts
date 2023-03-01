@@ -3,7 +3,7 @@ import { Constant } from './../../constant';
 import { Applicant } from 'src/app/Model/applicant-details';
 import { ApiService } from 'src/app/services/api.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-applicant-detail',
@@ -18,6 +18,7 @@ export class ApplicantDetailPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private api:ApiService,
+    private router:Router,
 
   ) { }
 
@@ -32,4 +33,7 @@ export class ApplicantDetailPage implements OnInit {
     })
   }
 
+  onClick(id:number){
+    this.router.navigate([''])
+  }
 }

@@ -9,20 +9,20 @@
 <ion-content fullscreen="true" >
 <img src="/assets/avatar.svg" class="center">
 <h3 class="ion-text-center ion-ma" >{{data.FirstName}}{{data.LastName}}</h3>
-<ion-accordion-group>
+<ion-accordion-group value="1" expand="inset">
 <ion-accordion value="1">
-  <ion-item slot="header" color="primary">
+  <ion-item slot="header" >
     <ion-label>Personal Details</ion-label>
   </ion-item>
-  <div  class="ion-padding" slot="content">
+  <div  class="ion-padding accord-lable" slot="content">
   <ion-list lines="none" class="gg">
-    <ion-item  >
+    <ion-item >
       <ion-label slot="start">{{lable.FirstName}}</ion-label>
-      <p slot="end">{{data.FirstName}}</p>
+      <p >{{data.FirstName}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.MiddleName}}</ion-label>
-      <p slot="end">{{data.MiddleName}}</p>
+      <p >{{data.MiddleName}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.LastName}}</ion-label>
@@ -30,100 +30,84 @@
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.Email}}</ion-label>
-      <p slot="end">{{data.Email}}</p>
+      <p >{{data.Email}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.Phone}}</ion-label>
-      <p slot="end">{{data.Phone}}</p>
+      <p >{{data.Phone}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.Address}}</ion-label>
-      <p slot="end">{{data.Address}}</p>
+      <p >{{data.Address}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.DateOfBirth}}</ion-label>
-      <p slot="end">{{data.DateOfBirth}}</p>
+      <p >{{data.DateOfBirth}}</p>
     </ion-item>
   </ion-list>
   </div>
 </ion-accordion>
 <ion-accordion value="2">
-  <ion-item slot="header" color="primary">
+  <ion-item slot="header">
     <ion-label>Professional Details</ion-label>
   </ion-item>
   <div  class="ion-padding " slot="content">
   <ion-list lines="none" class="gg">
-    <ion-item  >
+    <ion-item >
       <ion-label slot="start">{{lable.CurrentCompany}}</ion-label>
-      <p slot="end">{{data.CurrentCompany}}</p>
+      <p>{{data.CurrentCompany}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.CurrentDesignation}}</ion-label>
-      <p slot="end">{{data.CurrentDesignation}}</p>
+      <p>{{data.CurrentDesignation}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.TotalExperience}}</ion-label>
-      <p slot="end">{{data.TotalExperience}}</p>
+      <p >{{data.TotalExperience}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.DetailedExperience}}</ion-label>
-      <p slot="end">{{data.DetailedExperience}}</p>
+      <p>{{data.DetailedExperience}}</p>
     </ion-item>
-    <ion-item  >
+    <ion-item>
       <ion-label slot="start">{{lable.NoticePeriod}}</ion-label>
-      <p slot="end">{{data.NoticePeriod}}</p>
+      <p>{{data.NoticePeriod}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.CurrentCTC}}</ion-label>
-      <p slot="end">{{data.CurrentCTC}}</p>
+      <p>{{data.CurrentCTC}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.ExpectedCTC}}</ion-label>
-      <p slot="end">{{data.ExpectedCTC}}</p>
+      <p>{{data.ExpectedCTC}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.ReasonForChange}}</ion-label>
-      <p slot="end">{{data.ReasonForChange}}</p>
+      <p>{{data.ReasonForChange}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.CurrentLocation}}</ion-label>
-      <p slot="end">{{data.CurrentLocation}}</p>
+      <p>{{data.CurrentLocation}}</p>
     </ion-item>
     <ion-item  >
       <ion-label slot="start">{{lable.PreferedLocation}}</ion-label>
-      <p slot="end">{{data.PreferedLocation}}</p>
+      <p>{{data.PreferedLocation}}</p>
     </ion-item>
   </ion-list>
   </div>
 </ion-accordion>
+<ion-accordion value="3">
+  <ion-item slot="header">
+    <ion-label>Authetication</ion-label>
+  </ion-item>
+  <div class="ion-padding" slot="content">
+
+    <ion-button (click)="onClick(data.ApplicantId)" expand="block" fill="clear" shape="round">
+      Click me
+    </ion-button>
+  </div>
+</ion-accordion>
 </ion-accordion-group>
-
-
 </ion-content>
 
-<div class="but ">
-    <ion-buttons>
-    <ion-button  expand="block" fill="solid" color="primary" size="large
-    " shape="round">
-      Click me1
-    </ion-button>
-    <ion-button  expand="block" fill="solid" color="primary" size="large
-    " shape="round">
-      Click me2
-    </ion-button>
-    <ion-button  expand="block" fill="solid"  color="primary" size="large
-    " shape="round">
-      Click me3
-    </ion-button>
-  </ion-buttons>
-  <ion-buttons>
-    <ion-button  expand="block" fill="solid" color="primary" size="large
-    " shape="round">
-      Click me4
-    </ion-button>
-    <ion-button  expand="block" fill="solid" color="primary" size="large
-    " shape="round">
-      Click me5
-    </ion-button>
-  </ion-buttons>
-</div>
+

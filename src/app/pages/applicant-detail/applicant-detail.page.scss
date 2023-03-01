@@ -13,10 +13,6 @@ img{
 ion-content{
   position: relative;
 }
-.but{
-  position: absolute;
-  bottom: 5%;
-}
 .gg{
   height: 240px;
   overflow-y:scroll;
@@ -43,4 +39,41 @@ ion-content{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: red;
+}
+p {
+  margin-top: 11.4%;
+  margin-bottom: 1rem;
+}
+
+ion-list[slot="fixed"] {
+  bottom: 1%;
+  align-items: center;
+}
+
+.accord-lable>ion-label{
+  font-weight: bold;
+}
+
+ion-accordion {
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+ion-accordion.accordion-expanding,
+ion-accordion.accordion-expanded {
+
+
+  margin: 16px auto;
+}
+
+ion-accordion.accordion-collapsing ion-item[slot="header"],
+ion-accordion.accordion-collapsed ion-item[slot="header"] {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+}
+
+ion-accordion.accordion-expanding ion-item[slot="header"],
+ion-accordion.accordion-expanded ion-item[slot="header"] {
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-secondary-contrast);
 }

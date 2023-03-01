@@ -25,6 +25,7 @@ export class ApplicantListPagePage implements OnInit {
      private router:Router,
 
 
+
      ) {
 
    }
@@ -50,8 +51,6 @@ export class ApplicantListPagePage implements OnInit {
 
     await modal.present();
 
-    await modal.present();
-
   }
 
   onLoadData(event?: any){
@@ -64,6 +63,7 @@ export class ApplicantListPagePage implements OnInit {
       }
       ApiList=JSON.parse(gg.data)
       ApiList=ApiList['Result']
+      console.log(ApiList)
       this.list=[...this.list,...ApiList]
       this.api.Activelist=this.list;
       this.api.hideLoader();
@@ -72,6 +72,7 @@ export class ApplicantListPagePage implements OnInit {
       if(ApiList.length===0){
         event.target.disabled = true;
       }
+
     }).catch(error=>{
       this.api.showAlertF();
     });

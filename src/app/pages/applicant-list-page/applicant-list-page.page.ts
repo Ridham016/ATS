@@ -18,12 +18,8 @@ export class ApplicantListPagePage implements OnInit {
   list:any[]=[];
   pageNumber = 1;
   myCustomIcon = "/assets/view-details-icon.svg";
-<<<<<<< Updated upstream
   label=Constant;
 
-=======
-lable=Constant;
->>>>>>> Stashed changes
   constructor(public api:ApiService ,
      private plt:Platform,
      public modalController: ModalController,
@@ -91,4 +87,4 @@ lable=Constant;
     })}
   }
 
-// add 2 number 
+// add 2 number

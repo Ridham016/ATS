@@ -1,5 +1,9 @@
-import { Component, OnInit ,ViewChild } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, OnInit ,ViewChild, LOCALE_ID, Inject } from '@angular/core';
 import { CalendarComponent, CalendarMode } from 'ionic2-calendar';
+import { IEvent } from 'ionic2-calendar/calendar.interface';
+import { AlertController, ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-user-dash-board',
@@ -18,7 +22,7 @@ export class UserDashBoardPage implements OnInit {
 
   @ViewChild(CalendarComponent) myCal! :CalendarComponent;
 
-  constructor() { }
+  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,public modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
@@ -98,6 +102,25 @@ export class UserDashBoardPage implements OnInit {
 
   removeEvents() {
     this.eventSource = [];
+  }
+  async onEventSelected(event: IEvent){
+    let start = formatDate(event.startTime, 'medium', this.locale);
+    let end = formatDate(event.endTime, 'medium', this.locale);
+    console.log(this.eventSource);
+    const alert = await this.alertCtrl.create({
+      header: 'Title : '+event.title,
+      subHeader: 'Desc : '+ event.desc,
+      message: 'From : ' + start + '<br><br>To : ' + end+ '<br><br>Level: '  +'<br> <br> Interviewer Name:',
+      buttons:  [{
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+
+        },
+      },
+    ]
+      });
+    alert.present();
   }
 
 }

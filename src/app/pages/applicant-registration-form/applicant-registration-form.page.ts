@@ -4,6 +4,7 @@ import { Applicant, ApplicantDetails } from 'src/app/Model/applicant-details';
 import { ApiService } from 'src/app/services/api.service';
 import { SwiperComponent } from 'swiper/angular';
 import {SwiperOptions} from 'swiper';
+import { Constant } from 'src/app/constant';
 
 @Component({
   selector: 'app-applicant-registration-form',
@@ -14,7 +15,7 @@ export class ApplicantRegistrationFormPage implements OnInit {
 @ViewChild(SwiperComponent) swiper!:SwiperComponent;
 
 
-
+lable=Constant;
 currentDate = new Date().toISOString();
 date!:Date;
 

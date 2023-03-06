@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { SwiperModule } from 'swiper/angular';
 import { HTTP } from '@ionic-native/http/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SwiperModule],

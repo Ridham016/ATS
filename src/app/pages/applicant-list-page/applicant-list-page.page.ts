@@ -18,8 +18,7 @@ export class ApplicantListPagePage implements OnInit {
   list:any[]=[];
   pageNumber = 1;
   myCustomIcon = "/assets/view-details-icon.svg";
-  label=Constant;
-
+  lable=Constant;
   constructor(public api:ApiService ,
      private plt:Platform,
      public modalController: ModalController,

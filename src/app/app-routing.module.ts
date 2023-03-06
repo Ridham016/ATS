@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'scheduling-form',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {

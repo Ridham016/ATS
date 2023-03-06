@@ -1,3 +1,4 @@
+import { UserDashBoardPageModule } from './../pages/user-dash-board/user-dash-board.module';
 import { Injectable } from '@angular/core';
 import { HTTP } from "@ionic-native/http/ngx";
 import { Applicant } from '../Model/applicant-details';
@@ -10,7 +11,10 @@ import { Platform } from '@ionic/angular';
 })
 export class ApiService {
   Activelist: any[] = [];
-  baseUrl='https://4c9a-116-72-9-56.in.ngrok.io/api/';
+  list:any
+  UploadApplicantId:number=0;
+
+  baseUrl='https://347c-116-72-9-56.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -27,22 +31,52 @@ export class ApiService {
       'CurrentPageNumber':PageNumber,
       'PageSize':PageSize
     }
-    return this.api.post(this.baseUrl+'Registrations/GetApplicantList',g,{})
+    return this.api.post(this.baseUrl+'Registrations/GetApplicantList',g,{}).then()
   }
 
-  createApplicant(g:Applicant){
-    this.api.post(this.baseUrl+'/Registrations/Register',g,{}).then(
+  createApplicant(g:Applicant,formdata:any=''){
+    this.api.post(this.baseUrl+'Registrations/Register',g,{}).then(
       res=>{
-        console.log(res)
+        console.log('create:-',res)
+        this.api.setDataSerializer('json');
+        this.list=JSON.parse(res.data)
+        this.UploadApplicantId=this.list['Result']
+
+        this.api.setDataSerializer('multipart');
+        this.api.post(this.baseUrl+'Upload/UploadFile?databaseName=ATS',formdata,{}).then(
+            Upload_res=>{
+
+             this.api.setDataSerializer('json');
+              this.list=JSON.parse(Upload_res.data)
+              console.log(this.list)
+
+              this.list=this.list['Result']
+
+              console.log(this.list)
+
+              const g={
+                FileName:this.list.FileName,
+                FilePath:this.list.FilePath
+              }
+              this.api.post(this.baseUrl+'Registrations/FileUpload?ApplicantId='+this.UploadApplicantId,g,{}).then(
+                response=>{
+                  console.log('Database Res:-',response)
+                }
+              ).catch( error=>console.log('Database:-',error));
+            }
+        ).catch(error=>{
+             console.log('Upload Error:- ',error)
+        });
+
       }
     ).catch(error=>{
-      console.log(error)
+      console.log('CreateError:- ',error)
       this.showAlertF();
     });
   }
 
   updateApplicant(g:Applicant,id:number){
-    this.api.post(this.baseUrl+'/Registrations/Register/',g,{}).then(
+    this.api.post(this.baseUrl+'Registrations/Register/',g,{}).then(
       res=>{
         console.log(res)
       }

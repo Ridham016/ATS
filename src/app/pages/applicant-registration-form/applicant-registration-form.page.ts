@@ -6,6 +6,8 @@ import { SwiperComponent } from 'swiper/angular';
 import {SwiperOptions} from 'swiper';
 import { Constant } from 'src/app/constant';
 
+
+
 @Component({
   selector: 'app-applicant-registration-form',
   templateUrl: './applicant-registration-form.page.html',
@@ -14,13 +16,16 @@ import { Constant } from 'src/app/constant';
 export class ApplicantRegistrationFormPage implements OnInit {
 @ViewChild(SwiperComponent) swiper!:SwiperComponent;
 
-
+file!:File;
 lable=Constant;
 currentDate = new Date().toISOString();
 date!:Date;
+selectedFileUrl: string = '';
 
   constructor(private a:ApiService,
-    private router:Router) {
+    private router:Router,
+
+    ) {
   }
 
   ngOnInit() {
@@ -30,6 +35,18 @@ date!:Date;
   progress=.33;
   details=new Applicant()
 
+  onFileChange(event:any){
+    console.log(event)
+    this.file=event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(this.file);
+
+    reader.onload = () => {
+    this.selectedFileUrl = reader.result as string;
+
+  };
+
+  }
   onButtonClick(swiperINdex:number){
     this.swiper.swiperRef.slideTo(swiperINdex);
   }
@@ -42,10 +59,17 @@ date!:Date;
     this.details['ApplicantId']=id
     this.a.updateApplicant(this.details,id);
   }
+  upload(file:File){
+    console.log(file)
+
+  }
 
   onCreate(){
-   console.log(this.details)
-   this.a.createApplicant(this.details)
+    let formData =new FormData();
+    let name='document'
+    formData.append('file',this.file);
+
+    this.a.createApplicant(this.details,formData)
    this.router.navigate(['applicant-list-page']);
   }
 

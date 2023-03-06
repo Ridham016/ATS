@@ -12,11 +12,11 @@
 <ion-progress-bar [value]="progress"></ion-progress-bar>
 <ion-content>
 
-<swiper #swiper  [allowTouchMove]="false">
+<swiper #swiper  [allowTouchMove]="false" >
 
-  <ng-template swiperSlide>
+  <ng-template swiperSlide >
 
-    <ion-card  class=" w-100">
+    <ion-card  class=" w-100 ">
 
     <form class="ion-padding"  #form="ngForm">
 
@@ -158,6 +158,14 @@
           <ion-input  placeholder="Enter PreferedLocation" type="text" name="PreferedLocation" required [(ngModel)]="details.PreferedLocation" #pref_loc="ngModel"></ion-input>
           <ion-note *ngIf="!pref_loc.valid && pref_loc.touched" color="danger"> Location is required</ion-note>
         </ion-item>
+        <ion-item>
+          <ion-label>File Upload</ion-label>
+          <ion-input type="file" slot="end" (change)="onFileChange($event)"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="file">
+            <img [src]="selectedFileUrl" />
+        </ion-item>
+
 
       <ion-button shape="round" fill="solid" size="medium" slot="start" (click)="onButtonClick(1)" (click)="progress=.66" >
         <ion-icon name="chevron-back-sharp"></ion-icon> Prev   </ion-button>

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-icon name="options" slot="end" size="large" color="white" (click)="openSearchFilter()">
+    <ion-icon name="funnel-outline" slot="end" class="filterIcon"  color="white" (click)="openSearchFilter()">
   </ion-icon>
     <ion-title>ApplicantListPage</ion-title>
   </ion-toolbar>
@@ -12,13 +12,13 @@
 <ion-content>
 
 <ion-grid [fixed]="true" >
-  <ion-row>
-    <ion-col size="3" size-md="2" size-lg="2">{{label.ApplicantId}}</ion-col>
-    <ion-col size="3" size-md="2" size-lg="2">{{label.FirstName}}</ion-col>
-    <ion-col size="3" size-md="2" size-lg="2">{{label.LastName}}</ion-col>
+  <ion-row class="header-row">
+    <ion-col size="3" size-md="2" size-lg="2">{{lable.ApplicantId}}</ion-col>
+    <ion-col size="3" size-md="2" size-lg="2">{{lable.FirstName}}</ion-col>
+    <ion-col size="3" size-md="2" size-lg="2">{{lable.LastName}}</ion-col>
     <ion-col size="3" size-md="2" size-lg="2"></ion-col>
   </ion-row>
-  <ion-row *ngFor="let item of list ">
+  <ion-row *ngFor="let item of list " class="data-row">
     <ion-col  size="3" size-md="2" size-lg="2">{{item.ApplicantId}}</ion-col>
     <ion-col  size="3" size-md="2" size-lg="2">{{item.FirstName}}</ion-col>
     <ion-col  size="3" size-md="2" size-lg="2">{{item.LastName}}</ion-col>

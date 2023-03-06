@@ -5,6 +5,7 @@ import { Applicant } from '../Model/applicant-details';
 
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
+import { CustomAlertService } from './custom-alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class ApiService {
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private alertServices :CustomAlertService
     ) {
       this.plt.ready().then(_=>{
         this.api.setHeader('Access-Control-Allow-Origin',this.baseUrl,'');

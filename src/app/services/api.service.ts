@@ -11,10 +11,12 @@ import { Platform } from '@ionic/angular';
 })
 export class ApiService {
   Activelist: any[] = [];
+  CopyActivelist: any[] = [];
   list:any
   UploadApplicantId:number=0;
+  retryValue=5;
 
-  baseUrl='https://347c-116-72-9-56.in.ngrok.io/api/';
+  baseUrl='https://0138-116-72-9-56.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -22,16 +24,22 @@ export class ApiService {
     ) {
       this.plt.ready().then(_=>{
         this.api.setHeader('Access-Control-Allow-Origin',this.baseUrl,'');
+        this.api.setHeader("retry",this.retryValue.toString(),'');
+        this.api.setRequestTimeout(10.0)
       })
 
   }
 
   getApplicantsData(PageNumber:number,PageSize:number=23){
+
     const g={
       'CurrentPageNumber':PageNumber,
-      'PageSize':PageSize
+      'PageSize':PageSize,
+      'IsAscending':true,
+      'OrderByColumn': 'FirstName'
     }
-    return this.api.post(this.baseUrl+'Registrations/GetApplicantList',g,{}).then()
+    return this.api.post(this.baseUrl+'Registrations/GetApplicantList',g,{})
+
   }
 
   createApplicant(g:Applicant,formdata:any=''){
@@ -90,7 +98,6 @@ export class ApiService {
     const loading = await this.loadingController.create({
       cssClass: 'custom-loading',
       translucent:true,
-      duration:1500,
     });
     await loading.present();
 

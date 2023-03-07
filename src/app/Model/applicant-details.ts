@@ -31,3 +31,4 @@ export class Scheduling{
   Link!:string;
   InterviewerName!: string;
 }
+

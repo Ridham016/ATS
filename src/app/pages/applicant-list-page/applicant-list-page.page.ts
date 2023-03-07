@@ -49,6 +49,14 @@ export class ApplicantListPagePage implements OnInit {
     await modal.present();
 
   }
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      this.list=[]
+      this.pageNumber=1;
+      this.onLoadData()
+      event.target.complete();
+    }, 2000);
+  };
 
   onLoadData(event?: any){
     let ApiList=[];
@@ -63,6 +71,7 @@ export class ApplicantListPagePage implements OnInit {
       console.log(ApiList)
       this.list=[...this.list,...ApiList]
       this.api.Activelist=this.list;
+      this.api.CopyActivelist=this.list;
       this.api.hideLoader();
       this.pageNumber++;
 
@@ -71,6 +80,7 @@ export class ApplicantListPagePage implements OnInit {
       }
 
     }).catch(error=>{
+      this.api.hideLoader();
       this.api.showAlertF();
     });
 

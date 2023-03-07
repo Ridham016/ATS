@@ -25,6 +25,10 @@ export const Constant= {
    ScheduleDate: "Schedule",
    Description :"Description",
    Link :"Link",
-   InterviewerName:"Interviewer Name"
+   InterviewerName:"Interviewer Name",
+
+
+    StoredCurrentLocation:'',
+    StoredPreferedLocation:''
 
 }

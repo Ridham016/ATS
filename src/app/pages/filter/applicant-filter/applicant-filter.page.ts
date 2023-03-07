@@ -1,3 +1,4 @@
+import { Constant } from 'src/app/constant';
 import { ApiService } from 'src/app/services/api.service';
 import { ModalController, Platform } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
@@ -10,11 +11,14 @@ import { Component, OnInit } from '@angular/core';
 export class ApplicantFilterPage implements OnInit {
   selectedCurrentLoaction:any;
   selectedPreferedLoaction:any;
-  CurrentLoaction:any;
-  PreferedLoaction:any;
   list:any;
-  currList:any=[];
-  preeList:any=[];
+
+  currList:any=[]
+  preeList:any=[] 
+  label=Constant;
+
+  CurrentLoaction=this.label.StoredCurrentLocation;
+  PreferedLoaction=this.label.StoredPreferedLocation;
 
   constructor(
     public modalCtrl: ModalController,
@@ -22,39 +26,34 @@ export class ApplicantFilterPage implements OnInit {
      private plt:Platform,
 
      ) {
+      this.api.Activelist=this.api.CopyActivelist
       this.selectedCurrentLoaction=this.CurrentLoaction;
       this.selectedPreferedLoaction=this.PreferedLoaction;
       }
 
   ngOnInit() {
     this.plt.ready().then(_=>{
+
+      this.list=this.api.Activelist;
       this.onLoadData();
     })
   }
 
   onLoadData(){
-    // this.api.showLoader()
-    // this.api.getApplicantsData().then(gg=>{
-    //   console.log(gg)
-    //   this.list=JSON.parse(gg.data)
-    //   this.list=this.list['Result']
-    //   this.api.Activelist=this.list
-    //   console.log(this.api.Activelist)
-    //   for (let i = 0; i < this.list.length; i++) {
-    //     if(!this.currList.includes(this.list[i]['CurrentLocation'])){
-    //     this.currList.push(this.list[i]['CurrentLocation'])}
-    //     if(!this.preeList.includes(this.list[i]['PreferedLocation'])){
-    //     this.preeList.push(this.list[i]['PreferedLocation'])
-    //     console.log(this.preeList)
-    //     }
-    // }
-    //   this.api.hideLoader();
-    // });
+
+    for (let i = 0; i < this.list.length; i++) {
+      if(!this.currList.includes(this.list[i]['CurrentLocation'])){
+      this.currList.push(this.list[i]['CurrentLocation'])}
+      if(!this.preeList.includes(this.list[i]['PreferedLocation'])){
+      this.preeList.push(this.list[i]['PreferedLocation'])
+      console.log(this.preeList)
+      }
+  }
   }
 
   clearFilters(){
-    this.selectedCurrentLoaction='';
-    this.selectedPreferedLoaction='';
+    this.label.StoredCurrentLocation='';
+    this.label.StoredPreferedLocation='';
    this.modalCtrl.dismiss();
   }
 
@@ -63,8 +62,8 @@ export class ApplicantFilterPage implements OnInit {
   let searchSource:any[]=[];
   searchSource = this.api.Activelist.filter((d:any) => d.CurrentLocation.toLowerCase().includes(searchTerm[0].toLowerCase()) && d.PreferedLocation.toLowerCase().includes(searchTerm[1].toLowerCase()));
   this.api.Activelist=searchSource;
-  this.CurrentLoaction=this.selectedCurrentLoaction;
-  this.PreferedLoaction=this.selectedPreferedLoaction;
+  this.label.StoredCurrentLocation=this.selectedCurrentLoaction;
+  this.label.StoredPreferedLocation=this.selectedPreferedLoaction;
     await this.modalCtrl.dismiss();
   }
 

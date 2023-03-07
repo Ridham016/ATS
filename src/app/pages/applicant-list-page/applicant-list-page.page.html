@@ -10,19 +10,22 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
 <ion-grid [fixed]="true" >
   <ion-row class="header-row">
-    <ion-col size="3" size-md="2" size-lg="2">{{lable.ApplicantId}}</ion-col>
-    <ion-col size="3" size-md="2" size-lg="2">{{lable.FirstName}}</ion-col>
-    <ion-col size="3" size-md="2" size-lg="2">{{lable.LastName}}</ion-col>
-    <ion-col size="3" size-md="2" size-lg="2"></ion-col>
+    <ion-col size="3" >{{lable.ApplicantId}}</ion-col>
+    <ion-col size="3" >{{lable.FirstName}}</ion-col>
+    <ion-col size="3" >{{lable.LastName}}</ion-col>
+    <ion-col size="3" ></ion-col>
   </ion-row>
-  <ion-row *ngFor="let item of list " class="data-row">
-    <ion-col  size="3" size-md="2" size-lg="2">{{item.ApplicantId}}</ion-col>
-    <ion-col  size="3" size-md="2" size-lg="2">{{item.FirstName}}</ion-col>
-    <ion-col  size="3" size-md="2" size-lg="2">{{item.LastName}}</ion-col>
-    <ion-col  size="3" size-md="2" size-lg="2">
+  <ion-row *ngFor="let item of list ; let i=index " class="data-row">
+    <ion-col  size="3">{{i+1}}</ion-col>
+    <ion-col  size="3">{{item.FirstName}}</ion-col>
+    <ion-col  size="3">{{item.LastName}}</ion-col>
+    <ion-col  size="3">
      <ion-button fill="clear"  color="success" (click)="navigate(item.ApplicantId)">
       <ion-icon slot="icon-only" [src]="myCustomIcon"></ion-icon>
      </ion-button>

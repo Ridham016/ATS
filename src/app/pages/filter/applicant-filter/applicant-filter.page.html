@@ -12,14 +12,14 @@
   <ion-list>
     <ion-item>
       <ion-icon name="briefcase" slot="start"></ion-icon>
-      <ion-label>CurrentLocation:</ion-label>
+      <ion-label>{{label.CurrentDesignation}}:</ion-label>
       <ion-select interface="popover" slot [(ngModel)]="selectedCurrentLoaction"  placeholder={{selectedCurrentLoaction}}>
         <ion-select-option *ngFor="let curr of currList">{{curr}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-icon name="business" slot="start"></ion-icon>
-      <ion-label>Office:</ion-label>
+      <ion-label>{{label.PreferedLocation}}:</ion-label>
       <ion-select interface="popover" slot [(ngModel)]="selectedPreferedLoaction" placeholder={{selectedPreferedLoaction}}>
         <ion-select-option *ngFor="let office of preeList" >{{office}}</ion-select-option>
       </ion-select>

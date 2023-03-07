@@ -32,3 +32,64 @@ ion-loading.custom-loading {
   --background: #e3edff;
   --spinner-color: rgb(0, 149, 255);
 }
+
+.sucessalert .alert-wrapper{
+
+.alert-head{
+  background:#2dd36f;
+  color: rgb(255, 255, 255);
+  margin-bottom: 15px;
+    h2{
+      color: rgb(255, 254, 253);
+    }
+}
+ .alert-button-group{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  button{
+    border: 1px solid rgb(0, 0, 0);
+    width: 40%;
+    border-radius: 10px;
+  }
+  span{
+    display: flex;
+    justify-content: center;
+  }
+ }
+}
+
+
+.dangeralert .alert-wrapper{
+
+  .alert-head{
+    background:#eb445a;
+    color: rgb(255, 255, 255);
+    margin-bottom: 15px;
+      h2{
+        color: rgb(255, 254, 253);
+      }
+  }
+   .alert-button-group{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    button{
+      border: 1px solid rgb(0, 0, 0);
+      width: 40%;
+      border-radius: 10px;
+
+      &:last-child{
+        background: blue;
+        color: #e3edff;
+        border: 1px solid whitesmoke;
+      }
+    }
+    span{
+      display: flex;
+      justify-content: center;
+    }
+   }
+  }

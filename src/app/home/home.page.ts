@@ -4,6 +4,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { CalendarComponent, CalendarMode,Step  } from 'ionic2-calendar';
 import { IEvent } from 'ionic2-calendar/calendar.interface';
 import { SendEmailPage } from '../pages/send-email/send-email.page';
+import { CustomAlertService } from '../services/custom-alert.service';
 
 @Component({
   selector: 'app-home',
@@ -34,10 +35,12 @@ export class HomePage implements OnInit {
   minDate = new Date();
   visible:any;
 
-  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,public modalCtrl: ModalController,) {
+  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,public modalCtrl: ModalController,private alertServices :CustomAlertService) {
 
   }
-  
+  showAlert() {
+    this.alertServices.normalAlert('Alert', 'This is an example alert.');
+  }
   calendar = {
     mode: 'day' as CalendarMode,
     currentDate: new Date(),
@@ -136,6 +139,7 @@ handleChangeAS() {
 
 
   }
+
  async onitemSelect(i :any){
     for(var g=0;g<this.eventSource.length;g++)
     if(this.eventSource[g]['title']==i){

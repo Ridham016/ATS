@@ -27,12 +27,12 @@ export class CustomAlertService {
     await alert.present();
   }
 
-  async dangerAlert(header: string, message: string, buttons: any[] = ['OK',{
+  async dangerAlert( message?: string, buttons: any[] = ['OK',{
     text: 'Cancel',
     role: 'cancel'
   }]) {
     const alert = await this.alertController.create({
-      header: header,
+      header: 'Are YOu Sure??',
       message: message,
       buttons: buttons,
       cssClass: 'dangeralert'

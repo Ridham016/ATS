@@ -3,14 +3,20 @@
 ion-item{
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+
+
+  --border-radius:8px;
+  margin-top: 24px;
+
 
   }
+
   .my-input {
     --border-color: #e3e6ea;
     --border-width: 2px ;
     --border-style: solid;
+    --background:#252525;
+
   }
 ion-datetime{
   color: #000000;

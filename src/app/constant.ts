@@ -19,7 +19,8 @@ export const Constant= {
    NoticePeriod: "Notice Period",
    ReasonForChange: "Reason For Change",
    CurrentLocation: "Current Location",
-   PreferedLocation: "PreferedLocation",
+   PreferedLocation: "Prefered Location",
+   StatusName:"Current Status",
 
    //Scheduling Labals
    ScheduleDate: "Schedule",
@@ -29,6 +30,7 @@ export const Constant= {
 
 
     StoredCurrentLocation:'',
-    StoredPreferedLocation:''
+    StoredPreferedLocation:'',
+    StoredStatus:''
 
 }

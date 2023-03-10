@@ -8,7 +8,8 @@
 
 <ion-content fullscreen="true" >
   <img src="/assets/avatar.svg" class="center">
-  <h3 class="ion-text-center ion-ma" >{{data.FirstName}}{{data.LastName}}</h3>
+  <h3 class="ion-text-center ion-ma" >{{data.FirstName}} {{data.LastName}}<br>
+    <ion-badge [color]="color">{{data.StatusName}}</ion-badge></h3>
   <ion-accordion-group value="1" expand="inset">
     <ion-accordion value="1">
       <ion-item slot="header" >
@@ -100,10 +101,8 @@
         <ion-item slot="header">
             <ion-label>Authetication</ion-label>
         </ion-item>
-        <div class="ion-padding" slot="content">
-            <ion-button (click)="onClick()"  shape="round">
-              Schedule Call
-            </ion-button>
+        <div class="ion-padding" slot="content" class="center1" >
+              <ion-button *ngFor="let but of but_data" (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)" shape="round">{{but.ButtonName}}</ion-button>
         </div>
     </ion-accordion>
   </ion-accordion-group>

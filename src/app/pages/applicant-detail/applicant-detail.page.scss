@@ -4,11 +4,27 @@ img{
   width:36px;
   margin-bottom: 20px;
 }
+
+ion-badge {
+  --color: white;
+  --padding-end: 20px;
+  --padding-start: 20px;
+}
+
 .center{
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.center1{
+  display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: space-around;
 }
 ion-content{
   position: relative;

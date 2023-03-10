@@ -11,14 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class ApplicantFilterPage implements OnInit {
   selectedCurrentLoaction:any;
   selectedPreferedLoaction:any;
+  selectedStatus:any;
   list:any;
 
   currList:any=[]
-  preeList:any=[] 
+  preeList:any=[]
+  currStatusList:any=[]
   label=Constant;
 
   CurrentLoaction=this.label.StoredCurrentLocation;
   PreferedLoaction=this.label.StoredPreferedLocation;
+  CurrentStatus=this.label.StoredStatus;
 
   constructor(
     public modalCtrl: ModalController,
@@ -29,6 +32,7 @@ export class ApplicantFilterPage implements OnInit {
       this.api.Activelist=this.api.CopyActivelist
       this.selectedCurrentLoaction=this.CurrentLoaction;
       this.selectedPreferedLoaction=this.PreferedLoaction;
+      this.selectedStatus=this.CurrentStatus;
       }
 
   ngOnInit() {
@@ -43,10 +47,14 @@ export class ApplicantFilterPage implements OnInit {
 
     for (let i = 0; i < this.list.length; i++) {
       if(!this.currList.includes(this.list[i]['CurrentLocation'])){
-      this.currList.push(this.list[i]['CurrentLocation'])}
-      if(!this.preeList.includes(this.list[i]['PreferedLocation'])){
+      this.currList.push(this.list[i]['CurrentLocation'])
+    }
+    if(!this.preeList.includes(this.list[i]['PreferedLocation'])){
       this.preeList.push(this.list[i]['PreferedLocation'])
       console.log(this.preeList)
+      }
+     if(!this.currStatusList.includes(this.list[i]['StatusName'])){
+        this.currStatusList.push(this.list[i]['StatusName']);
       }
   }
   }
@@ -54,15 +62,17 @@ export class ApplicantFilterPage implements OnInit {
   clearFilters(){
     this.label.StoredCurrentLocation='';
     this.label.StoredPreferedLocation='';
+    this.label.StoredStatus='';
    this.modalCtrl.dismiss();
   }
 
   async applyFilters(){
-    const searchTerm =[this.selectedCurrentLoaction,this.selectedPreferedLoaction];
+    const searchTerm =[this.selectedCurrentLoaction,this.selectedPreferedLoaction,this.selectedStatus];
   let searchSource:any[]=[];
-  searchSource = this.api.Activelist.filter((d:any) => d.CurrentLocation.toLowerCase().includes(searchTerm[0].toLowerCase()) && d.PreferedLocation.toLowerCase().includes(searchTerm[1].toLowerCase()));
+  searchSource = this.api.Activelist.filter((d:any) => d.CurrentLocation.toLowerCase().includes(searchTerm[0].toLowerCase()) && d.PreferedLocation.toLowerCase().includes(searchTerm[1].toLowerCase()) && d.StatusName.toLowerCase().includes(searchTerm[2].toLowerCase()));
   this.api.Activelist=searchSource;
   this.label.StoredCurrentLocation=this.selectedCurrentLoaction;
+  this.label.StoredStatus=this.selectedStatus;
   this.label.StoredPreferedLocation=this.selectedPreferedLoaction;
     await this.modalCtrl.dismiss();
   }

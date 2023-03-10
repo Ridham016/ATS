@@ -1,4 +1,4 @@
-import { UserDashBoardPageModule } from './../pages/user-dash-board/user-dash-board.module';
+
 import { Injectable } from '@angular/core';
 import { HTTP } from "@ionic-native/http/ngx";
 import { Applicant } from '../Model/applicant-details';
@@ -17,7 +17,7 @@ export class ApiService {
   UploadApplicantId:number=0;
   retryValue=5;
 
-  baseUrl='https://0138-116-72-9-56.in.ngrok.io/api/';
+  baseUrl='https://985b-2402-3a80-16a3-769a-c169-3689-968b-1ec0.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -26,21 +26,20 @@ export class ApiService {
     ) {
       this.plt.ready().then(_=>{
         this.api.setHeader('Access-Control-Allow-Origin',this.baseUrl,'');
-        this.api.setHeader("retry",this.retryValue.toString(),'');
         this.api.setRequestTimeout(10.0)
       })
 
   }
 
-  getApplicantsData(PageNumber:number,PageSize:number=23){
+  getApplicantsData(PageNumber:number,PageSize:number=23,IsAscending=true,OrderByColumn='FirstName'){
 
     const g={
       'CurrentPageNumber':PageNumber,
       'PageSize':PageSize,
-      'IsAscending':true,
-      'OrderByColumn': 'FirstName'
+      'IsAscending':IsAscending,
+      'OrderByColumn': OrderByColumn
     }
-    return this.api.post(this.baseUrl+'Registrations/GetApplicantList',g,{})
+    return this.api.post(this.baseUrl+'Schedules/GetApplicantList',g,{})
 
   }
 
@@ -98,7 +97,9 @@ export class ApiService {
 
   async showLoader() {
     const loading = await this.loadingController.create({
-      cssClass: 'custom-loading',
+      spinner: null,
+      cssClass:'custom-loading',
+      message: '<div class="safeloader"><div id="preloader_2"><div class="load-1"></div><div class="load-2"></div><div class="load-3"></div></div></div>  ',
       translucent:true,
     });
     await loading.present();
@@ -124,7 +125,15 @@ export class ApiService {
    const param={
       'ApplicantId':id
     }
-    return this.api.get(this.baseUrl+'Registrations/GetApplicantById',param,{})
+    return this.api.get(this.baseUrl+'Schedules/GetApplicant',param,{})
+  }
+  async getActiveActionButton(id:number){
+
+    return this.api.get(this.baseUrl+'Schedules/GetButtons?StatusId='+id,{},{})
   }
 
+  StatusUpdate(applicantID:number,nextStatusId:number){
+    return this.api.post(this.baseUrl+'Schedules/UpdateStatus/?ApplicantId='+applicantID+'&StatusId='+nextStatusId,{},{})
+
+  }
 }

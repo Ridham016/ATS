@@ -3,7 +3,7 @@
     <ion-button fill="block" color="white" slot="start" (click)="clearFilters()">
       <ion-icon name="arrow-back-sharp" slot="icon-only"></ion-icon>
     </ion-button>
-    <ion-title>Filter Employees</ion-title>
+    <ion-title>Filter Applicant</ion-title>
     <ion-button (click)="applyFilters()" slot="end" color="white" fill="block" class="mx-auto">Apply</ion-button>
   </ion-toolbar>
 </ion-header>
@@ -12,7 +12,7 @@
   <ion-list>
     <ion-item>
       <ion-icon name="briefcase" slot="start"></ion-icon>
-      <ion-label>{{label.CurrentDesignation}}:</ion-label>
+      <ion-label>{{label.CurrentLocation}}:</ion-label>
       <ion-select interface="popover" slot [(ngModel)]="selectedCurrentLoaction"  placeholder={{selectedCurrentLoaction}}>
         <ion-select-option *ngFor="let curr of currList">{{curr}}</ion-select-option>
       </ion-select>
@@ -22,6 +22,13 @@
       <ion-label>{{label.PreferedLocation}}:</ion-label>
       <ion-select interface="popover" slot [(ngModel)]="selectedPreferedLoaction" placeholder={{selectedPreferedLoaction}}>
         <ion-select-option *ngFor="let office of preeList" >{{office}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="list" slot="start"></ion-icon>
+      <ion-label>{{label.StatusName}}:</ion-label>
+      <ion-select interface="popover" slot [(ngModel)]="selectedStatus" placeholder={{selectedStatus}}>
+        <ion-select-option *ngFor="let status of currStatusList" >{{status}}</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>

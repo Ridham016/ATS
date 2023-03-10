@@ -2,7 +2,6 @@
 import { Router } from '@angular/router';
 import { ApplicantFilterPage } from './../filter/applicant-filter/applicant-filter.page';
 import { Component, OnInit } from '@angular/core';
-import { HTTP } from '@ionic-native/http/ngx';
 import { ApiService } from 'src/app/services/api.service';
 import { Platform } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
@@ -26,9 +25,8 @@ export class ApplicantListPagePage implements OnInit {
       ) {
 
    }
-  async ionViewWillEnter(){
 
-  }
+
 
   async ngOnInit() {
     this.plt.ready().then(_=>{
@@ -80,6 +78,7 @@ export class ApplicantListPagePage implements OnInit {
       }
 
     }).catch(error=>{
+      console.log(error)
       this.api.hideLoader();
       this.api.showAlertF();
     });
@@ -96,4 +95,3 @@ export class ApplicantListPagePage implements OnInit {
     })}
   }
 
-// add 2 number

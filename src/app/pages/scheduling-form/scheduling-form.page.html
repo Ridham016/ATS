@@ -26,27 +26,25 @@
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.DateAndTime" > </ion-datetime>
+          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.ScheduleDateTime" > </ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-item>
 
     <ion-item fill="outline" class="my-input"  shape="round">
       <ion-label position="floating">{{labal.Link}} </ion-label>
-      <ion-textarea type="text" placeholder="Enter First Name"  name="link" required [(ngModel)]="schedule.Link" #link="ngModel"></ion-textarea>
+      <ion-textarea type="text" placeholder="Enter First Name"  name="link" required [(ngModel)]="schedule.ScheduleLink" #link="ngModel"></ion-textarea>
       <ion-note *ngIf="!link.valid && link.touched" color="danger"> Link is required</ion-note>
     </ion-item>
 
     <ion-item fill="outline" class="my-input"  shape="round">
         <ion-label position="floating"> {{labal.InterviewerName}}</ion-label>
-        <ion-select placeholder="Select Interviewer" name="interviewer" requried [(ngModel)]="schedule.InterviewerName" #interviewer="ngModel">
-          <ion-select-option value="Ridham">Ridham</ion-select-option>
-          <ion-select-option value="Smit">Smit</ion-select-option>
-          <ion-select-option value="Meet">Meet</ion-select-option>
+        <ion-select placeholder="Select Interviewer" name="interviewer" requried [(ngModel)]="schedule.InterviewerId" #interviewer="ngModel">
+          <ion-select-option *ngFor="let item of interviewerList" value={{item.InterviewerId}}>{{item.InterviewerName}}</ion-select-option>
         </ion-select>
         <ion-note *ngIf="!interviewer.valid && link.touched" color="danger"> Link is required</ion-note>
     </ion-item>
-    <ion-button  expand="block"  color="primary" shape="round" routerLink="/user-dash-board" [disabled]="!form.valid" >
+    <ion-button  expand="block"  color="primary" shape="round" (click)="onScheduleCall()" [disabled]="!form.valid" >
       Schedule
     </ion-button>
   </form>

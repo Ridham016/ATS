@@ -26,8 +26,6 @@ export class ApplicantListPagePage implements OnInit {
 
    }
 
-
-
   async ngOnInit() {
     this.plt.ready().then(_=>{
       this.onLoadData();
@@ -84,8 +82,6 @@ export class ApplicantListPagePage implements OnInit {
     });
 
   }
-
-
 
   navigate(Applicantid:number){
     this.router.navigate(['applicant-detail'], {

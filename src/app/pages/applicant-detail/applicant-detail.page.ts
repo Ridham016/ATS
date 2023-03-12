@@ -17,10 +17,13 @@ export class ApplicantDetailPage implements OnInit {
   //*Local Variales
   ApplicantId!:number;
   data:any=[];
+  ActionId! : number |any;
   but_data:any=[];
+  reasonList:any=[];
   lable=Constant;
   StatusId=0;
   color='red';
+  selectedvalue:any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -46,14 +49,69 @@ export class ApplicantDetailPage implements OnInit {
           this.but_data=this.but_data.Result
           console.log(this.but_data)
         })
-      })
+      }).then(_=>{
+        this.api.getOtherReasons().then(res=>{
+        this.reasonList=JSON.parse(res.data)
+        this.reasonList=this.reasonList['Result']
+
+        console.log(this.reasonList)
+
+      })})
 
   }
   async onStatusUpdate(currStatusId:number,nextStatusId:number){
     //*Navigate to schedulling Page
     if(currStatusId==3){
-    this.router.navigate(['scheduling-form'])
+    this.router.navigate(['scheduling-form'],
+    {
+      queryParams: {
+        id:this.ApplicantId,
+        nextStatus: nextStatusId
+      }
+    }
+    )
   }
+  else if(currStatusId==7){
+    const alert = await this.alertCtrl.create({
+      header: 'Select an option',
+      message: 'Choose an option from the dropdown',
+      inputs: this.reasonList.map((val:any) => {
+
+        return {
+          type: 'radio',
+          label: val.Reason,
+          value: val.ReasonId
+        }
+      }),
+
+      buttons: [
+        {
+          text: 'Submit',
+          handler: (alert) => {
+           console.log('Selected value:', alert);
+          this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(async (res)=>{
+              console.log(res.data)
+              this.ActionId = JSON.parse(res.data)
+              this.ActionId = this.ActionId['Result']
+              this.ActionId = this.ActionId[1]
+              console.log(this.ActionId);
+            if (res.status==200){
+             await this.api.upDateReason(this.ActionId,alert).then(res=>{
+                if(res.status==200){
+                  this.router.navigate(['applicant-list-page']).then(() => {
+                    window.location.reload();;
+                  })
+                }
+              })
+            }
+          })
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   else{
     const alert = await this.alertCtrl.create({
       header: 'Confirm',

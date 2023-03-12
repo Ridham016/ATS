@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { HTTP } from "@ionic-native/http/ngx";
-import { Applicant } from '../Model/applicant-details';
+import { Applicant, Scheduling } from '../Model/applicant-details';
 
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
@@ -17,7 +17,8 @@ export class ApiService {
   UploadApplicantId:number=0;
   retryValue=5;
 
-  baseUrl='https://985b-2402-3a80-16a3-769a-c169-3689-968b-1ec0.in.ngrok.io/api/';
+
+  baseUrl='https://c491-2402-3a80-e4d-546d-9c46-a795-5c26-db4e.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -135,5 +136,32 @@ export class ApiService {
   StatusUpdate(applicantID:number,nextStatusId:number){
     return this.api.post(this.baseUrl+'Schedules/UpdateStatus/?ApplicantId='+applicantID+'&StatusId='+nextStatusId,{},{})
 
+  }
+
+  scheduleMeeting(gg:Scheduling,ActionId:number){
+   const g = {
+      "Description":gg.Description,
+      "ScheduleDateTime":gg.ScheduleDateTime,
+      "ScheduleLink":gg.ScheduleLink,
+      "InterviewerId": gg.InterviewerId,
+      "ActionId": ActionId
+   }
+   console.log(g);
+    return this.api.post(this.baseUrl+'Schedules/ScheduleInterview',g,{} )
+  }
+
+  getInterviwer(){
+    return this.api.get(this.baseUrl+'Schedules/GetInterviewers',{},{})
+  }
+
+  getOtherReasons(){
+    return this.api.get(this.baseUrl+'Schedules/GetReasons',{},{})
+  }
+
+  upDateReason(actionID:number,resonId:number){
+    const g={
+      "ReasonId":resonId
+    }
+    return this.api.post(this.baseUrl+'Schedules/UpdateReason?ActionId='+actionID,g,{})
   }
 }

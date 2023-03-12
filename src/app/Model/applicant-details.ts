@@ -27,8 +27,8 @@ export class Applicant {
 }
 export class Scheduling{
   Description!:string;
-  DateAndTime!:Date;
-  Link!:string;
-  InterviewerName!: string;
+  ScheduleDateTime!:Date;
+  ScheduleLink!:string;
+  InterviewerId!: number;
 }
 

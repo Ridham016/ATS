@@ -15,13 +15,13 @@
 </ion-card-header>
 
   <form #form="ngForm">
-    <ion-item fill="outline" class="my-input"  shape="round">
+    <ion-item fill="outline" class="custom-item"  >
       <ion-label position="floating">{{labal.Description}} </ion-label>
-      <ion-textarea type="text" placeholder="Enter First Name"  name="description" required [(ngModel)]="schedule.Description" #desc="ngModel"></ion-textarea>
+      <ion-textarea type="text" placeholder="Enter First Name" class="h-25" name="description" rows="1" required [(ngModel)]="schedule.Description" #desc="ngModel"></ion-textarea>
       <ion-note *ngIf="!desc.valid && desc.touched" color="danger">Description is required</ion-note>
     </ion-item>
 
-    <ion-item fill="outline" class="my-input"  shape="round">
+    <ion-item fill="outline" class="my-input mt-4 mt-4"  >
       <ion-label > {{labal.ScheduleDate}} </ion-label>
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
@@ -31,13 +31,13 @@
       </ion-modal>
     </ion-item>
 
-    <ion-item fill="outline" class="my-input"  shape="round">
+    <ion-item fill="outline" class="my-input mt-4"  >
       <ion-label position="floating">{{labal.Link}} </ion-label>
       <ion-textarea type="text" placeholder="Enter First Name"  name="link" required [(ngModel)]="schedule.ScheduleLink" #link="ngModel"></ion-textarea>
       <ion-note *ngIf="!link.valid && link.touched" color="danger"> Link is required</ion-note>
     </ion-item>
 
-    <ion-item fill="outline" class="my-input"  shape="round">
+    <ion-item fill="outline" class="my-input mt-4"  >
         <ion-label position="floating"> {{labal.InterviewerName}}</ion-label>
         <ion-select placeholder="Select Interviewer" name="interviewer" requried [(ngModel)]="schedule.InterviewerId" #interviewer="ngModel">
           <ion-select-option *ngFor="let item of interviewerList" value={{item.InterviewerId}}>{{item.InterviewerName}}</ion-select-option>

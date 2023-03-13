@@ -23,6 +23,7 @@
     "@ionic-native/http": "^5.36.0",
     "@ionic/cordova-builders": "^7.0.0",
     "bootstrap": "^5.2.3",
+    "date-fns": "^2.29.3",
     "ionic2-calendar": "^1.0.1",
     "ionicons": "^6.0.3",
     "ng2-search-filter": "^0.5.1",

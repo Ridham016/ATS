@@ -192,16 +192,27 @@
   border: 1px solid #ddd !important;
 }
 
-ion-item {
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
+    color: #d9d9d9;
+  }
+
+
+
+ion-item[fill="outline"]::part(native) {
+  border: none;
   border-radius: 10px;
+
 }
 
+//For Changing color for the folating label when on focus
 
-
-.weekview-allday-table {
-   
-    display: none;
+.ion-focused.label-stacked.sc-ion-label-md-h:not(.ion-color),
+.ion-focused .label-stacked.sc-ion-label-md-h:not(.ion-color),
+.ion-focused.label-floating.sc-ion-label-md-h:not(.ion-color),
+.ion-focused .label-floating.sc-ion-label-md-h:not(.ion-color),
+ .item-has-focus.label-stacked.sc-ion-label-md-h:not(.ion-color),
+ .item-has-focus .label-stacked.sc-ion-label-md-h:not(.ion-color),
+ .item-has-focus.label-floating.sc-ion-label-md-h:not(.ion-color),
+ .item-has-focus .label-floating.sc-ion-label-md-h:not(.ion-color){
+  color: magenta;
 }
-
-
-

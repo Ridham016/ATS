@@ -13,6 +13,7 @@ import { CustomAlertService } from '../services/custom-alert.service';
 })
 export class HomePage implements OnInit {
 
+   mode =['date','date-time']
   collapseCard:any;
 
   event= {

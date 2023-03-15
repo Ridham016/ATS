@@ -1,3 +1,4 @@
+import { SwiperModule } from 'swiper/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { ApplicantListPagePage } from './applicant-list-page.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ApplicantListPagePageRoutingModule
+    ApplicantListPagePageRoutingModule,
+    SwiperModule
   ],
   declarations: [ApplicantListPagePage]
 })

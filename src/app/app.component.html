@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane contentId="main-content" (ionSplitPaneVisible)="handleSplitPaneVisible($event)" [disabled]="!isSplitPaneVisible">
     <ion-menu contentId="main-content" type="overlay" autoHide="false">
       <ion-content>
         <ion-list id="inbox-list" class="menu-list">

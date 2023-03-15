@@ -19,12 +19,12 @@
 'badge-8': data.StatusId === 8
 }"
 >{{data.StatusName}}</ion-badge></h3>
-  <ion-accordion-group value="1" expand="inset">
-    <ion-accordion value="1">
+  <ion-accordion-group value="1" expand="inset" >
+    <ion-accordion value="1" >
       <ion-item slot="header" >
         <ion-label>Personal Details</ion-label>
       </ion-item>
-      <div class="ion-padding accord-lable" slot="content">
+      <div class="accord-lable" slot="content">
         <ion-list lines="none" class="gg">
           <ion-item >
             <ion-label slot="start">{{lable.FirstName}}</ion-label>
@@ -61,7 +61,7 @@
         <ion-item slot="header">
             <ion-label>Professional Details</ion-label>
         </ion-item>
-        <div  class="ion-padding " slot="content">
+        <div   slot="content">
             <ion-list lines="none" class="gg">
               <ion-item >
                   <ion-label slot="start">{{lable.CurrentCompany}}</ion-label>
@@ -110,21 +110,22 @@
         <ion-item slot="header">
             <ion-label>Authetication</ion-label>
         </ion-item>
-        <div class="ion-padding" slot="content" class="center1" >
-              <ion-button
-              *ngFor="let but of but_data" (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)" shape="round"
-              [ngClass]=
-              "{
-              'badge-1': but.ButtonId === 1,
-              'badge-2': but.ButtonId === 2,
-              'badge-4': but.ButtonId === 4,
-              'badge-5': but.ButtonId === 5,
-              'badge-8': but.ButtonId === 8
-            }"
-              >{{but.ButtonName}}
 
-            </ion-button>
-      </div>
+        <div class="button-grid" slot="content">
+          <ion-button *ngFor="let but of but_data"
+          [ngClass]=
+          "{
+          'button-1': but.ButtonId === 1,
+          'button-2': but.ButtonId === 2,
+          'button-3': but.ButtonId === 3,
+          'button-6': but.ButtonId === 6,
+          'button-7': but.ButtonId === 7,
+          'button-4': but.ButtonId === 4,
+          'button-5': but.ButtonId === 5,
+          'button-8': but.ButtonId === 8
+        }"
+        >{{but.ButtonName}}</ion-button>
+        </div>
     </ion-accordion>
   </ion-accordion-group>
 </ion-content>

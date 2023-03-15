@@ -32,7 +32,7 @@ export class ApiService {
 
   }
 
-  getApplicantsData(PageNumber:number,PageSize:number=8,IsAscending=true,OrderByColumn='FirstName'){
+  getApplicantsData(PageNumber:number,PageSize:number=1000,IsAscending=true,OrderByColumn='FirstName'){
 
     const g={
       'CurrentPageNumber':PageNumber,

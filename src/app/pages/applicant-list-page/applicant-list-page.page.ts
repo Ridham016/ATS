@@ -14,10 +14,14 @@ import { Constant } from 'src/app/constant';
 })
 export class ApplicantListPagePage implements OnInit {
 
+
+
   list:any[]=[];
+  slides: any[][] = [];
   pageNumber = 1;
   myCustomIcon = "/assets/view-details-icon.svg";
   lable=Constant;
+  totalRecord:any;
   constructor(public api:ApiService ,
      private plt:Platform,
      public modalController: ModalController,
@@ -53,6 +57,59 @@ export class ApplicantListPagePage implements OnInit {
       event.target.complete();
     }, 2000);
   };
+
+  // onNextPageLoad(){
+  //   let ApiList=[];
+  //   this.api.showLoader()
+  //   this.api.getApplicantsData(this.pageNumber).then(gg=>{
+  //     console.log(gg)
+  //     ApiList=JSON.parse(gg.data)
+  //     ApiList=ApiList['Result']
+  //     console.log(ApiList)
+  //     this.list=ApiList
+
+  //     this.api.Activelist=this.list;
+  //     this.api.CopyActivelist=this.list;
+  //     this.api.hideLoader();
+  //     this.pageNumber++;
+
+  //   }).catch(error=>{
+  //     console.log(error)
+  //     this.api.hideLoader();
+  //     this.api.showAlertF();
+  //   });
+
+  // }
+
+  // onLoadData(event?: any){
+  //   let ApiList=[];
+  //   this.api.showLoader()
+  //   this.api.getApplicantsData(this.pageNumber).then(gg=>{
+  //     console.log(gg)
+  //     ApiList=JSON.parse(gg.data)
+  //     ApiList=ApiList['Result']
+  //     console.log(ApiList)
+  //     this.list=ApiList
+  //     this.api.Activelist=this.list;
+  //     for (let i = 0; i < this.list.length; i += 8) {
+  //       this.slides.push(this.list.slice(i, i + 8));
+  //     }
+  //     this.totalRecord=Math.round(this.list[0]['TotalRecords']/8)
+  //     console.log(this.slides)
+  //     this.api.CopyActivelist=this.list;
+  //     this.api.hideLoader();
+  //     this.pageNumber++;
+
+  //   }).catch(error=>{
+  //     console.log(error)
+  //     this.api.hideLoader();
+  //     this.api.showAlertF();
+  //   });
+
+  // }
+
+
+
 
   onLoadData(event?: any){
     let ApiList=[];

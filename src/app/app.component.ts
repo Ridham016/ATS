@@ -1,3 +1,4 @@
+import { Router, RouterEvent} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   activePageTitle = 'Dashboard';
   activeIndex!:number;
+  isSplitPaneVisible: boolean = false;
   Pages = [
     {
       title: 'DashBoard',
@@ -26,10 +28,18 @@ export class AppComponent implements OnInit {
     },
 
   ];
-  constructor() {
-
+  constructor(private router:Router) {
+    // router.events.subscribe((event: RouterEvent) => {
+    //   this.showMenu = event.url !== '/login'; // hide menu for login page
+    // });
   }
 
   ngOnInit(): void {
+
+}
+
+public handleSplitPaneVisible (event: any) {
+  console.log(event);
+  this.isSplitPaneVisible = false;
 }
 }

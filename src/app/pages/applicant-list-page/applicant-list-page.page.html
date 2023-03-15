@@ -45,13 +45,16 @@
 }">
   <ion-grid fixed>
     <ion-row>
-      <ion-col class="applicant_name">{{item.FirstName}} {{item.MiddleName}} {{item.LastName}}</ion-col>
+      <ion-col class="applicant-name">{{item.FirstName}} {{item.MiddleName}} {{item.LastName}}</ion-col>
 
+    </ion-row>
+    <ion-row>
+      <ion-col class="applicant-email"> {{item.Email}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12">
         <div      >
-        Status: <span class="ion-text-uppercase">{{item.StatusName}}</span>
+      <span class="ion-text-uppercase">{{item.StatusName}}</span>
       </div></ion-col>
       <!-- <ion-col size="4">
         <ion-badge

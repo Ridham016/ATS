@@ -14,6 +14,7 @@ export class UserDashBoardPage implements OnInit {
 
   eventSource :any = [];
   viewTitle! :string ;
+  
 
   calendar = {
     mode: 'month' as CalendarMode,

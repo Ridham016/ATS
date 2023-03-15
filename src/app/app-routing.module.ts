@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'applicant-list-page',
     pathMatch: 'full'
   },
   {

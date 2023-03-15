@@ -13,7 +13,18 @@
   border-bottom: 1px solid #9e9e9e;
 }
 
-
+.swiper-slide{
+  display: block !important;
+  /* position: relative; */
+  /* flex-shrink: 0; */
+  align-items: center !important;
+  justify-content: center !important;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* font-size: 18px; */
+  text-align: left !important;
+  box-sizing: border-box !important;
+}
 
 
 

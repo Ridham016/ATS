@@ -26,12 +26,17 @@
 
     }
 
-    .applicant_name{
-      font-size: 26px;
-      font-weight: 900;
+    .applicant-name{
+      font-size: 20px;
+      font-weight: 700;
       color: #4d4d4d;
     }
 
+    .applicant-email{
+      font-size: 16px;
+      font-weight: 500;
+      color: #6c757d;
+    }
 
     .custom-status{
       // padding: 8px 16px;
@@ -41,7 +46,7 @@
       // border-radius: 20px;
       // box-shadow: 1px 2px 9px #333;
       // background-color: #ffff7c;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 900;
       color: red;
 
@@ -207,7 +212,7 @@
     }
     ion-item{
       box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.05);
-      
+
 
     }
 
@@ -419,6 +424,13 @@
       pointer-events: auto;
       font-size: 24px;
   }
+  .swiper-slide{
+    display: block !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
 
     // --ion-tab-bar-background: #1f1f1f;
 
@@ -458,56 +470,148 @@
       color: #fff;
   }
 
-    //Custom button depending Status
+
+  //Custom button depending Status
+
+
 .badge-1{
   --background: #e5efff;  //for BAdge
-  background-color: #e5efff;
+  // background-color: #e5efff;
   color: #367bf5;
-     font-size: 24px;
-      font-weight: 900;
-      box-shadow: 1px 4px 8px rgba(#367bf5, .3);
+     font-size: 20px;
+      font-weight: 500;
+        box-shadow: 0 10px 10px rgba(0,10,10,.1);
+      // box-shadow: 1px 4px 8px rgba(#367bf5, .3);
       border: 1px solid #367bf5;
+      border-left: 5px solid #367bf5;
 
 }
 .badge-2{
   --background:#dcd0ff;
-background-color:#dcd0ff;
+// background-color:#dcd0ff;
 color: #7c4dff;
-   font-size: 24px;
-      font-weight: 900;
-      box-shadow: 1px 4px 8px rgba( #7c4dff,.3);
+   font-size: 20px;
+      font-weight: 500;
+        box-shadow: 0 10px 10px rgba(0,10,10,.1);
+      // box-shadow: 1px 4px 8px rgba( #7c4dff,.3);
       border: 1px solid #7c4dff;
+      border-left: 5px solid #7c4dff;
 
 }
 .badge-4{
   --background:#c2f0f0;
-  background-color: #c2f0f0;
+  // background-color: #c2f0f0;
   color:#00aba9;
-  font-size: 24px;
-  font-weight: 900;
-   box-shadow: 1px 4px 8px rgba(#00aba9 ,.3);
+  font-size: 20px;
+  font-weight: 500;
+    box-shadow: 0 10px 10px rgba(0,10,10,.1);
+  //  box-shadow: 1px 4px 8px rgba(#00aba9 ,.3);
    border: 1px solid #00aba9;
+   border-left: 5px solid #00aba9;
 }
 .badge-5{
   --background:#fcf3d7;;
-  background-color: #fcf3d7;
+  // background-color: #fcf3d7;
   color: #f3aa18;
-  font-size: 24px;
-  font-weight: 900;
-   box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
+  font-size: 20px;
+  font-weight: 500;
+    box-shadow: 0 10px 10px rgba(0,10,10,.1);
+  //  box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
    border: 1px solid #f3aa18;
+   border-left: 5px solid #f3aa18
 }
 .badge-8{
   --background:#ffe6d0;
-background-color:#ffe6d0;
+// background-color:#ffe6d0;
 // color:var(--ion-color-warning-shade);
+--border:1px solid #fff;
 color:#fb8622;
-
-   font-size: 24px;
-      font-weight: 900;
-       box-shadow: 1px 4px 8px rgba( #fb8622,.3);
+   font-size: 20px;
+      font-weight: 500;
+        box-shadow: 0 10px 10px rgba(0,10,10,.1);
+      //  box-shadow: 1px 4px 8px rgba( #fb8622,.3);
        border: 1px solid #fb8622;
+       border-left: 5px solid #fb8622;
 }
+
+
+//Custom Button depending upon status
+
+
+.button-1{
+  --background:#7c4dff;
+// background-color:#dcd0ff;
+color: #fff;
+font-size: 20px;
+--border-radius: 8px;
+        box-shadow: 0 10px 10px rgba(0,10,10,.1);
+      // box-shadow: 1px 4px 8px rgba( #7c4dff,.3);
+
+
+}
+.button-2{
+  --background:#989aa2;
+// background-color:#dcd0ff;
+color: #fff;
+font-size: 20px;
+--border-radius: 8px;
+        box-shadow: 0 10px 10px rgba(0,10,10,.1);
+      // box-shadow: 1px 4px 8px rgba( #7c4dff,.3);
+
+
+}
+.button-3{
+  --background:#00aba9;
+  // background-color: #c2f0f0;
+  color:#fff;
+  font-size: 20px;
+  --border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0,10,10,.1);
+  //  box-shadow: 1px 4px 8px rgba(#00aba9 ,.3);
+
+}
+.button-4{
+  --background:#f3aa18;
+  // background-color: #fcf3d7;
+  color: #fff;
+  font-size: 20px;
+  --border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0,10,10,.1);
+  //  box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
+
+}
+.button-5{
+  --background:#2dda2d;
+  // background-color: #fcf3d7;
+  color: #fff;
+  font-size: 20px;
+  --border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0,10,10,.1);
+  //  box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
+
+}
+.button-6{
+  --background:#ff4d61;;
+  // background-color: #fcf3d7;
+  color: #fff;
+  font-size: 20px;
+  --border-radius: 8px;
+    box-shadow: 0 10px 10px rgba(0,10,10,.1);
+  //  box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
+
+}
+.button-7{
+  --background:#fb8622;
+--border:1px solid #fff;
+color:#fff;
+font-size: 20px;
+--border-radius: 8px;
+   box-shadow: 0 10px 10px rgba(0,10,10,.1);
+      //  box-shadow: 1px 4px 8px rgba( #fb8622,.3);
+
+}
+
+
 
 
 

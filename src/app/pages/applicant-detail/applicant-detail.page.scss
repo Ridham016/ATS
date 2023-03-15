@@ -9,13 +9,25 @@ ion-badge {
   --color: white;
   --padding-end: 20px;
   --padding-start: 20px;
+  box-shadow: none !important ;
+  border: 0 !important;
 }
+
+
 
 .center{
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 4px;
 }
 
 .center1{
@@ -61,13 +73,15 @@ p {
   margin-bottom: 1rem;
 }
 
-ion-list[slot="fixed"] {
-  bottom: 1%;
-  align-items: center;
+ion-label[slot="start"]{
+  font-weight: 500;
+  white-space: pre-wrap;
 }
 
+
+
 .accord-lable>ion-label{
-  font-weight: bold;
+  font-weight: 500;
 }
 
 ion-accordion {
@@ -77,14 +91,13 @@ ion-accordion {
 
 ion-accordion.accordion-expanding,
 ion-accordion.accordion-expanded {
-
   margin: 16px auto;
 }
 
 ion-accordion.accordion-collapsing ion-item[slot="header"],
 ion-accordion.accordion-collapsed ion-item[slot="header"] {
   --background: linear-gradient(to left ,var(--ion-color-primary-dark),var(--ion-color-primary-light)) ;
-  --color:#000;
+  --color:#fff;
   font-size: 22px;
 
 }

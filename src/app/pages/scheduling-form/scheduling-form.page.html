@@ -9,13 +9,13 @@
 </ion-header>
 
 <ion-content>
-<ion-card>
+<ion-card class="custom-card">
 <ion-card-header>
-  <ion-title class="ion-text-center">Schedule Interview</ion-title>
+  <ion-title class="form-title">Schedule Interview</ion-title>
 </ion-card-header>
 
   <form #form="ngForm">
-    <ion-item fill="outline" class="custom-item"  >
+    <ion-item fill="outline"  >
       <ion-label position="floating">{{labal.Description}} </ion-label>
       <ion-textarea type="text" placeholder="Enter First Name" class="h-25" name="description" rows="1" required [(ngModel)]="schedule.Description" #desc="ngModel"></ion-textarea>
       <ion-note *ngIf="!desc.valid && desc.touched" color="danger">Description is required</ion-note>
@@ -26,7 +26,7 @@
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.ScheduleDateTime" > </ion-datetime>
+          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" showDefaultButtons="true" pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.ScheduleDateTime" > </ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-item>

@@ -1,6 +1,6 @@
 export const Constant= {
   // FOR Applicant List
-   ApplicantId: "Applicant ID",
+   ApplicantId: "ID",
    FirstName: "First Name",
    MiddleName: "Middle Name(optional)",
    LastName: "Last Name",

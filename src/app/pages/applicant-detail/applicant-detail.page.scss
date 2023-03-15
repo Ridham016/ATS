@@ -78,18 +78,20 @@ ion-accordion {
 ion-accordion.accordion-expanding,
 ion-accordion.accordion-expanded {
 
-
   margin: 16px auto;
 }
 
 ion-accordion.accordion-collapsing ion-item[slot="header"],
 ion-accordion.accordion-collapsed ion-item[slot="header"] {
-  --background: var(--ion-color-primary);
-  --color: var(--ion-color-primary-contrast);
+  --background: linear-gradient(to left ,var(--ion-color-primary-dark),var(--ion-color-primary-light)) ;
+  --color:#000;
+  font-size: 22px;
+
 }
 
 ion-accordion.accordion-expanding ion-item[slot="header"],
 ion-accordion.accordion-expanded ion-item[slot="header"] {
-  --background: var(--ion-color-secondary);
-  --color: var(--ion-color-secondary-contrast);
+  --background: linear-gradient(to right ,var(--ion-color-primary-dark),var(--ion-color-primary-light)) ;
+  --color: #fff;
+  font-size: 22px;
 }

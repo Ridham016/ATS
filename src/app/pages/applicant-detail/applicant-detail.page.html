@@ -9,7 +9,16 @@
 <ion-content fullscreen="true" >
   <img src="/assets/avatar.svg" class="center">
   <h3 class="ion-text-center ion-ma" >{{data.FirstName}} {{data.LastName}}<br>
-    <ion-badge [color]="color">{{data.StatusName}}</ion-badge></h3>
+    <ion-badge
+    [ngClass]=
+"{
+'badge-1': data.StatusId === 1,
+'badge-2': data.StatusId === 2,
+'badge-4': data.StatusId === 4,
+'badge-5': data.StatusId === 5,
+'badge-8': data.StatusId === 8
+}"
+>{{data.StatusName}}</ion-badge></h3>
   <ion-accordion-group value="1" expand="inset">
     <ion-accordion value="1">
       <ion-item slot="header" >
@@ -102,7 +111,19 @@
             <ion-label>Authetication</ion-label>
         </ion-item>
         <div class="ion-padding" slot="content" class="center1" >
-              <ion-button *ngFor="let but of but_data" (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)" shape="round">{{but.ButtonName}}</ion-button>
+              <ion-button
+              *ngFor="let but of but_data" (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)" shape="round"
+              [ngClass]=
+              "{
+              'badge-1': but.ButtonId === 1,
+              'badge-2': but.ButtonId === 2,
+              'badge-4': but.ButtonId === 4,
+              'badge-5': but.ButtonId === 5,
+              'badge-8': but.ButtonId === 8
+            }"
+              >{{but.ButtonName}}
+
+            </ion-button>
       </div>
     </ion-accordion>
   </ion-accordion-group>

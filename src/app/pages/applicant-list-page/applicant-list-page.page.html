@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
+      <ion-menu-button autoHide="false" class=""></ion-menu-button>
     </ion-buttons>
     <ion-icon name="funnel-outline" slot="end" class="filterIcon"  color="white" (click)="openSearchFilter()">
   </ion-icon>
@@ -14,15 +14,16 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+<!--
 <ion-grid [fixed]="true" >
   <ion-row class="header-row ion-text-center">
-    <ion-col size="3" >{{lable.ApplicantId}}</ion-col>
+    <ion-col size="1" >{{lable.ApplicantId}}</ion-col>
     <ion-col size="3" >{{lable.FirstName}}</ion-col>
     <ion-col size="3" >{{lable.StatusName}}</ion-col>
-    <ion-col size="3" ></ion-col>
+    <ion-col size="3" >Details</ion-col>
   </ion-row>
   <ion-row *ngFor="let item of list ; let i=index " class="data-row ion-text-center">
-    <ion-col  size="3">{{i+1}}</ion-col>
+    <ion-col  size="1">{{i+1}}</ion-col>
     <ion-col  size="3">{{item.FirstName}} {{item.MiddleName}} {{item.LastName}}</ion-col>
     <ion-col  size="3">{{item.StatusName}}</ion-col>
     <ion-col  size="3">
@@ -31,8 +32,38 @@
      </ion-button>
     </ion-col>
   </ion-row>
-  <ion-infinite-scroll (ionInfinite)="onLoadData($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-</ion-grid>
+
+</ion-grid> -->
+
+<ion-card *ngFor="let item of list ; let i=index " (click)="navigate(item.ApplicantId)" class="custom-card"   [ngClass]=
+"{
+'badge-1': item.StatusId === 1,
+'badge-2': item.StatusId === 2,
+'badge-4': item.StatusId === 4,
+'badge-5': item.StatusId === 5,
+'badge-8': item.StatusId === 8
+}">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col class="applicant_name">{{item.FirstName}} {{item.MiddleName}} {{item.LastName}}</ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <div      >
+        Status: <span class="ion-text-uppercase">{{item.StatusName}}</span>
+      </div></ion-col>
+      <!-- <ion-col size="4">
+        <ion-badge
+       >
+          ID :{{item.ApplicantId}}
+        </ion-badge>
+      </ion-col> -->
+
+    </ion-row>
+  </ion-grid>
+</ion-card>
+<ion-infinite-scroll (ionInfinite)="onLoadData($event)">
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
 </ion-content>

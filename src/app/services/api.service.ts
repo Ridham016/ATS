@@ -18,7 +18,7 @@ export class ApiService {
   retryValue=5;
 
 
-  baseUrl='https://c491-2402-3a80-e4d-546d-9c46-a795-5c26-db4e.in.ngrok.io/api/';
+  baseUrl='https://4849-2402-3a80-e53-e2e9-cc9-482b-4f07-380a.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -32,7 +32,7 @@ export class ApiService {
 
   }
 
-  getApplicantsData(PageNumber:number,PageSize:number=23,IsAscending=true,OrderByColumn='FirstName'){
+  getApplicantsData(PageNumber:number,PageSize:number=8,IsAscending=true,OrderByColumn='FirstName'){
 
     const g={
       'CurrentPageNumber':PageNumber,
@@ -100,7 +100,7 @@ export class ApiService {
     const loading = await this.loadingController.create({
       spinner: null,
       cssClass:'custom-loading',
-      message: '<div class="safeloader"><div id="preloader_2"><div class="load-1"></div><div class="load-2"></div><div class="load-3"></div></div></div>  ',
+      message: '<div class="safeloader"><div> <div class="load-1"><div class="load-2"><div class="load-3"></div></div></div></div></div>',
       translucent:true,
     });
     await loading.present();
@@ -162,6 +162,15 @@ export class ApiService {
     const g={
       "ReasonId":resonId
     }
-    return this.api.post(this.baseUrl+'Schedules/UpdateReason?ActionId='+actionID,g,{})
+    return this.api.post(this.baseUrl+'Schedules/UpdateReason?ActionId='+actionID+'&ReasonId='+resonId,{},{})
+  }
+
+
+  onHoldStatus(actionID:number,desc:string){
+    const body={
+      "Description":desc
+    }
+    console.log(body)
+    return this.api.post(this.baseUrl+'Schedules/HoldReason?ActionId='+actionID,body,{})
   }
 }

@@ -1,16 +1,17 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" autoHide="false">
       <ion-content>
-        <ion-list id="inbox-list">
+        <ion-list id="inbox-list" class="menu-list">
           <ion-list-header color="primary">Side Menu</ion-list-header>
           <ion-menu-toggle auto-hide="false" *ngFor="let pages of Pages; let i = index">
             <ion-item (click)="activeIndex = i" routerDirection="root" [routerLink]="[pages.url]" lines="none"
               detail="false" [class.selected]="activeIndex === i">
-              <ion-icon slot="start" [md]="pages.icon + '-sharp'"></ion-icon>
+              <ion-icon slot="start" [md]="pages.icon + '-sharp'" class="top-bar-items"></ion-icon>
               <ion-label>{{ pages.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+        <ion-button [routerLink]="['/login']">Logout</ion-button>
         </ion-list>
       </ion-content>
     </ion-menu>

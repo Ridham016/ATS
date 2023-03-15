@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button fill="block" color="white" slot="start" (click)="clearFilters()">
+    <ion-button fill="block" slot="start" (click)="clearFilters()">
       <ion-icon name="arrow-back-sharp" slot="icon-only"></ion-icon>
     </ion-button>
     <ion-title>Filter Applicant</ion-title>
-    <ion-button (click)="applyFilters()" slot="end" color="white" fill="block" class="mx-auto">Apply</ion-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -32,5 +32,6 @@
       </ion-select>
     </ion-item>
   </ion-list>
-  <ion-button (click)="clearFilters()" color="secondary" >Clear</ion-button>
+  <ion-button (click)="clearFilters()" color="danger" >Clear</ion-button>
+  <ion-button (click)="applyFilters()">Apply</ion-button>
 </ion-content>

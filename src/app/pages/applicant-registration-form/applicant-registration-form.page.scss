@@ -2,17 +2,19 @@
 
 ion-item{
 
-  // border-radius: 69px;
+  border-radius: 9px;
   margin-top: 24px;
-
+border: 1px solid #000;
+box-shadow: 1px 4px 5px #d9d9d9;
 
   }
 
   .my-input {
-    --border-color: #e3e6ea;
+    --border-color: #000;
     --border-width: 2px ;
     --border-style: solid;
-    --background:#252525;
+    --background:#fff;
+    color: #616161
 
   }
 ion-datetime{
@@ -35,4 +37,10 @@ swiper
 .swiper-wrapper{
   --touch-action: none;
   --pointer-events: none;
+}
+
+
+
+ion-card{
+  border-radius: 24px;
 }

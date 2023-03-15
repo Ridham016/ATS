@@ -1,11 +1,9 @@
 import { AlertController } from '@ionic/angular';
-
 import { Constant } from './../../constant';
-import { Applicant } from 'src/app/Model/applicant-details';
 import { ApiService } from 'src/app/services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomAlertService } from 'src/app/services/custom-alert.service';
+
 
 @Component({
   selector: 'app-applicant-detail',
@@ -22,7 +20,6 @@ export class ApplicantDetailPage implements OnInit {
   reasonList:any=[];
   lable=Constant;
   StatusId=0;
-  color='red';
   selectedvalue:any;
 
   constructor(
@@ -95,15 +92,67 @@ export class ApplicantDetailPage implements OnInit {
               this.ActionId = this.ActionId['Result']
               this.ActionId = this.ActionId[1]
               console.log(this.ActionId);
-            if (res.status==200){
-             await this.api.upDateReason(this.ActionId,alert).then(res=>{
-                if(res.status==200){
-                  this.router.navigate(['applicant-list-page']).then(() => {
-                    window.location.reload();;
-                  })
-                }
-              })
-            }
+
+          }).then(_=>{
+            console.log(this.ActionId,alert)
+            this.api.upDateReason(this.ActionId,alert).then(res=>{
+              if(res.status==200){
+                this.router.navigate(['applicant-list-page']).then(() => {
+                  window.location.reload();;
+                })
+              }
+            })
+
+          })
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  else if(currStatusId==4){
+    const alert = await this.alertCtrl.create({
+      header: 'Select an option',
+      message: 'Choose an option from the dropdown',
+      inputs:[
+        {
+          name: 'text',
+          type: 'textarea',
+          placeholder: 'Enter text here...'
+        }
+      ],
+
+      buttons: [ {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+        }
+      },
+        {
+          text: 'Submit',
+          handler: (alert) => {
+           console.log('Selected value:', alert.text);
+          this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(async (res)=>{
+              console.log(res.data)
+              this.ActionId = JSON.parse(res.data)
+              this.ActionId = this.ActionId['Result']
+              this.ActionId = this.ActionId[1]
+              console.log(this.ActionId);
+
+          }).then(_=>{
+            console.log(this.ActionId,alert.text)
+            this.api.onHoldStatus(this.ActionId,alert.text).then(res=>{
+              console.log(res)
+              if(res.status==200){
+                this.router.navigate(['applicant-list-page']).then(() => {
+                  window.location.reload();
+                })
+              }
+            })
+
           })
           }
         }

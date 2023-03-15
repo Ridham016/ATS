@@ -63,7 +63,8 @@ export class ApplicantFilterPage implements OnInit {
     this.label.StoredCurrentLocation='';
     this.label.StoredPreferedLocation='';
     this.label.StoredStatus='';
-   this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss();
+
   }
 
   async applyFilters(){

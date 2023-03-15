@@ -1,9 +1,19 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit ,ViewChild, LOCALE_ID, Inject } from '@angular/core';
+import { Component, OnInit ,ViewChild } from '@angular/core';
 import { CalendarComponent, CalendarMode } from 'ionic2-calendar';
 import { IEvent } from 'ionic2-calendar/calendar.interface';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
+function getRandomDate(): Date {
+  const date = new Date();
+  const daysOffset = Math.floor(Math.random() * 90) - 45;
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + daysOffset);
+}
+
+function getRandomTime(startDate: Date): Date {
+  const minutesOffset = Math.floor(Math.random() * 24 * 60);
+  return new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), 0, startDate.getMinutes() + minutesOffset);
+}
 
 @Component({
   selector: 'app-user-dash-board',
@@ -12,91 +22,49 @@ import { AlertController, ModalController } from '@ionic/angular';
 })
 export class UserDashBoardPage implements OnInit {
 
-  eventSource :any = [];
-  viewTitle! :string ;
-  
+  eventSource: IEvent[] = [];
+  viewTitle!: string;
 
   calendar = {
     mode: 'month' as CalendarMode,
-    currentDate : new Date()
+    currentDate: new Date(),
   };
 
-  @ViewChild(CalendarComponent) myCal! :CalendarComponent;
+  @ViewChild(CalendarComponent) myCal!: CalendarComponent;
 
-  constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string,public modalCtrl: ModalController) { }
+  constructor(private alertCtrl: AlertController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  next(){
+  next() {
     this.myCal.slideNext();
   }
 
-  back(){
+  back() {
     this.myCal.slidePrev();
   }
 
-  onViewTitleChanged(title: string){
-    this.viewTitle =title;
+  onViewTitleChanged(title: string) {
+    this.viewTitle = title;
   }
 
   createRandomEvents() {
-    var events = [];
-    for (var i = 0; i < 50; i += 1) {
-      var date = new Date();
-      var eventType = Math.floor(Math.random() * 2);
-      var startDay = Math.floor(Math.random() * 90) - 45;
-      var endDay = Math.floor(Math.random() * 2) + startDay;
-      var startTime;
-      var endTime;
-      if (eventType === 0) {
-        startTime = new Date(
-          Date.UTC(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate() + startDay
-          )
-        );
-        if (endDay === startDay) {
-          endDay += 1;
-        }
-        endTime = new Date(
-          Date.UTC(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate() + endDay
-          )
-        );
-        events.push({
-          title: 'All Day - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: true,
-        });
-      } else {
-        var startMinute = Math.floor(Math.random() * 24 * 60);
-        var endMinute = Math.floor(Math.random() * 180) + startMinute;
-        startTime = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate() + startDay,
-          0,
-          date.getMinutes() + startMinute
-        );
-        endTime = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate() + endDay,
-          0,
-          date.getMinutes() + endMinute
-        );
-        events.push({
-          title: 'Event - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: false,
-        });
-      }
+    const events: IEvent[] = [];
+    for (let i = 0; i < 50; i++) {
+      const date = getRandomDate();
+      const eventType = Math.floor(Math.random() * 2);
+      const startDateTime = getRandomTime(date);
+      const endDateTime = getRandomTime(new Date(startDateTime.getTime() + Math.floor(Math.random() * 180)));
+      const isAllDay = eventType === 0;
+      const eventTitle = isAllDay ? `All Day - ${i}` : `Event - ${i}`;
+      events.push({
+        title: eventTitle,
+        startTime: startDateTime,
+        endTime: endDateTime,
+        allDay: isAllDay,
+        desc: '',
+        TypeofEvent: ''
+      });
     }
     this.eventSource = events;
   }
@@ -104,25 +72,22 @@ export class UserDashBoardPage implements OnInit {
   removeEvents() {
     this.eventSource = [];
   }
-  async onEventSelected(event: IEvent){
-    let start = formatDate(event.startTime, 'medium', this.locale);
-    let end = formatDate(event.endTime, 'medium', this.locale);
+
+  async onEventSelected(event: IEvent) {
+    const start = formatDate(event.startTime, 'medium', 'en-US');
+    const end = formatDate(event.endTime, 'medium', 'en-US');
     console.log(this.eventSource);
     const alert = await this.alertCtrl.create({
-      header: 'Title : '+event.title,
-      subHeader: 'Desc : '+ event.desc,
-      message: 'From : ' + start + '<br><br>To : ' + end+ '<br><br>Level: '  +'<br> <br> Interviewer Name:',
+      header: 'Title : ' + event.title,
+      subHeader: 'Desc : ' + event.desc,
+      message: `From : ${start}<br><br>To : ${end}<br><br>Level: <br> <br> Interviewer Name:`,
       buttons:  [{
         text: 'Cancel',
         role: 'cancel',
-        handler: () => {
-
-        },
-      },
-    ]
-      });
+        handler: () => {},
+      }],
+    });
     alert.present();
   }
 
 }
-

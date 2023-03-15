@@ -40,9 +40,11 @@
       </ion-button>
     </ion-col>
 
-    <ion-col size="8" class="ion-text-center ">
-    <h2 class="cal-title">{{viewTitle}}</h2>
+    
+    <ion-col size="8" class="ion-text-center align-items-center ion-padding-top">
+      <h2 class="cal-title">{{viewTitle}}</h2>
     </ion-col>
+    
 
     <ion-col size="2">
       <ion-button fill="clear" class="cal-but" (click)="next()">
@@ -51,17 +53,17 @@
     </ion-col>
 
   </ion-row>
-  <calendar
-  [eventSource]="eventSource"
-  [calendarMode]="calendar.mode"
-  [currentDate]="calendar.currentDate"
-  (onTitleChanged)="onViewTitleChanged($event)"
-  (onEventSelected)="onEventSelected($event)"
-  [startHour]="9"
-  [endHour]="20"
-  class="calendar"
-  >
 
-  </calendar>
+<div class="my-calendar-wrapper">
+  <calendar
+    [eventSource]="eventSource"
+    [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate"
+    (onTitleChanged)="onViewTitleChanged($event)"
+    (onEventSelected)="onEventSelected($event)"
+    [startHour]="9" 
+    [endHour]="20"
+  ></calendar>
+</div>
 
 </ion-content>

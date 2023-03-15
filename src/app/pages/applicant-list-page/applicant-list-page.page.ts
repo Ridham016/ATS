@@ -113,7 +113,7 @@ export class ApplicantListPagePage implements OnInit {
 
   onLoadData(event?: any){
     let ApiList=[];
-    this.api.showLoader()
+    // this.api.showLoader()
     this.api.getApplicantsData(this.pageNumber).then(gg=>{
       console.log(gg)
       if(event){

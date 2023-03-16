@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Applicant Regestration form</ion-title>
+    <ion-title>Applicant Register</ion-title>
   </ion-toolbar>
 
   <!-- first slide -->
@@ -16,11 +16,11 @@
 
   <ng-template swiperSlide >
 
-    <ion-card  class=" w-100 ">
+    <ion-card >
 
     <form class="ion-padding"  #form="ngForm">
 
-      <h1 class="form-title">Personal Details</h1>
+      <h1 class="form-title">Details</h1>
 
       <ion-item  fill="outline"   class="my-input">
         <ion-label position="floating"> {{lable.FirstName}} </ion-label>
@@ -69,7 +69,7 @@
       </ion-modal>
 
       </ion-item>
-      <ion-button fill="solid" size="medium"  slot="end" (click)="onButtonClick(1)" [disabled]="!form.valid" (click)="progress=.66"  >
+      <ion-button fill="solid" size="medium" (click)="onButtonClick(1)" color="primary-dark" [disabled]="!form.valid" (click)="progress=.66"  >
         <ion-icon slot="end" name="chevron-forward-sharp"></ion-icon> Next </ion-button>
       </form>
 
@@ -114,9 +114,9 @@
           <ion-note *ngIf="!notice.valid && notice.touched" color="danger">Notice Period is required</ion-note>
         </ion-item>
 
-        <ion-button fill="solid" size="medium" slot="start" (click)="onButtonClick(0)" (click)="progress=.33" >
+        <ion-button fill="solid" size="medium" slot="start" color="primary-dark" (click)="onButtonClick(0)" (click)="progress=.33" >
           <ion-icon name="chevron-back-sharp"></ion-icon> Prev</ion-button>
-        <ion-button fill="solid" size="medium"  (click)="onButtonClick(2)" (click)="progress=1" [disabled]="!form.valid">  Next <ion-icon name="chevron-forward-sharp"></ion-icon>   </ion-button>
+        <ion-button fill="solid" size="medium"  color="primary-dark" (click)="onButtonClick(2)" (click)="progress=1" [disabled]="!form.valid">  Next <ion-icon name="chevron-forward-sharp"></ion-icon>   </ion-button>
 
       </form>
     </ion-card>
@@ -158,16 +158,16 @@
           <ion-input  placeholder="Enter PreferedLocation" type="text" name="PreferedLocation" required [(ngModel)]="details.PreferedLocation" #pref_loc="ngModel"></ion-input>
           <ion-note *ngIf="!pref_loc.valid && pref_loc.touched" color="danger"> Location is required</ion-note>
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label>File Upload</ion-label>
           <ion-input type="file" slot="end" (change)="onFileChange($event)"></ion-input>
         </ion-item>
         <ion-item *ngIf="file">
             <img [src]="selectedFileUrl" />
-        </ion-item>
+        </ion-item> -->
 
 
-      <ion-button fill="solid" size="medium" slot="start" (click)="onButtonClick(1)" (click)="progress=.66" >
+      <ion-button fill="solid" size="medium" color="primary-dark" slot="start" (click)="onButtonClick(1)" (click)="progress=.66" >
         <ion-icon name="chevron-back-sharp"></ion-icon> Prev   </ion-button>
       <ion-button fill="solid" size="medium" (click)="onCreate()"  [disabled]="!form.valid" >  Create  </ion-button>
 
@@ -177,10 +177,9 @@
 
 </swiper>
 
-  <ion-card *ngFor="let item of list">
+  <!-- <ion-card *ngFor="let item of list">
   <ion-item lines="none">{{item.Name}}
   </ion-item>
     <ion-button (click)="onUpdate(item.ApplicantId)">Update</ion-button>
-
-</ion-card>
+</ion-card> -->
 </ion-content>

@@ -8,6 +8,9 @@
   ion-card{
     box-shadow: 3px 4px 5px rgba(7,82,173,0.05);
     border: 2px solid rgba(7,82,173,0.05) ;
+    ion-card-header{
+      padding-left: 0px;
+    }
   }
     .custom-card {
       position: relative;
@@ -16,14 +19,22 @@
       margin: 20px;
       border-radius: 12px;
       padding: 8px 16px;
-  
+
 
     }
-
+    .alert-radio-label{
+      color:#000 !important;
+    }
     .custom-card::before {
 
 
     }
+
+    [aria-checked=true].sc-ion-alert-md .alert-radio-icon.sc-ion-alert-md {
+      border-color: var(--ion-color-primary, #3880ff);
+
+      BORDER: 11px solid var(--ion-color-primary-dark);
+  }
 
     .applicant-name{
       font-size: 20px;
@@ -34,7 +45,8 @@
     .applicant-email{
       font-size: 16px;
       font-weight: 500;
-      color: #6c757d;
+      color: #919497;
+      border: none !important;
     }
 
     .custom-status{
@@ -51,7 +63,7 @@
 
     }
     .form-title{
-      font-size: 35px;
+      font-size: 30px;
       text-align: left;
       color: #000;
       padding:0 ;
@@ -62,129 +74,66 @@
       color:red !important;
     }
 
-    .safeloader {
-      position: fixed;
-
-      z-index: 999999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: 100%;
-      top:0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      margin: auto;
-    }
-
-    .load-1 {
+    .spinner {
       position: relative;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 0;
-      border-top: 5px solid var(--ion-color-primary-dark);
-      border-bottom: 5px solid var(--ion-color-primary-dark);
-      animation: load1 2s linear infinite;
-    }
+      width: 15.7px;
+      height: 15.7px;
+   }
 
-    .load-2 {
+   .spinner div {
+      animation: spinner-4t3wzl 1.5s infinite backwards;
+      background-color: #0253cc;
+      border-radius: 50%;
+      height: 100%;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-  border-left: 5px solid var(--ion-color-primary-dark);
-      border-right: 5px solid var(--ion-color-primary-dark);
-
-
-    }
-
-    .load-3 {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      border: 0;
-      border-top: 5px solid var(--ion-color-primary-dark);
-      border-bottom: 5px solid var(--ion-color-primary-dark);
-      border-radius: 50%;
-    }
-
-    @keyframes load1 {
-      50% {
-      }
-
-      100% {
-          transform: rotate(360deg);
-      }
-    }
-
-    .sucessalert .alert-wrapper{
-
-    .alert-head{
-      background:#2dd36f;
-      color: rgb(255, 255, 255);
-      margin-bottom: 15px;
-        h2{
-          color: rgb(255, 254, 253);
-        }
-    }
-     .alert-button-group{
-      display: flex;
-      justify-content: center;
       width: 100%;
+   }
 
-      button{
-        border: 1px solid rgb(0, 0, 0);
-        width: 40%;
-        border-radius: 10px;
+   .spinner div:nth-child(1) {
+      animation-delay: 0.12s;
+      background-color: rgba(2,83,204,0.9);
+   }
+
+   .spinner div:nth-child(2) {
+      animation-delay: 0.24s;
+      background-color: rgba(2,83,204,0.8);
+   }
+
+   .spinner div:nth-child(3) {
+      animation-delay: 0.36000000000000004s;
+      background-color: rgba(2,83,204,0.7);
+   }
+
+   .spinner div:nth-child(4) {
+      animation-delay: 0.48s;
+      background-color: rgba(2,83,204,0.6);
+   }
+
+   .spinner div:nth-child(5) {
+      animation-delay: 0.6000000000000001s;
+      background-color: rgba(2,83,204,0.5);
+   }
+
+   @keyframes spinner-4t3wzl {
+      0% {
+         transform: rotate(0deg) translateY(-200%);
       }
-      span{
-        display: flex;
-        justify-content: center;
+
+      60%, 100% {
+         transform: rotate(360deg) translateY(-200%);
       }
-     }
+   }
+
+
+
+    ion-alert {
+      --background: #fff;
+      --color:#000;
+      .alert-message{
+        color: #000;
+      }
     }
 
-
-    .dangeralert .alert-wrapper{
-
-      .alert-head{
-        background:#eb445a;
-        color: rgb(255, 255, 255);
-        margin-bottom: 15px;
-          h2{
-            color: rgb(255, 254, 253);
-          }
-      }
-       .alert-button-group{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-
-        button{
-          border: 1px solid rgb(0, 0, 0);
-          width: 40%;
-          border-radius: 10px;
-
-          &:last-child{
-            background: blue;
-            color: #e3edff;
-            border: 1px solid whitesmoke;
-          }
-        }
-        span{
-          display: flex;
-          justify-content: center;
-        }
-       }
-      }
 
      .custom-loading{
       --background:none;
@@ -235,6 +184,7 @@
     }
 .top-bar-items{
   color: #808080;
+  margin-right: 10px;
 }
 .dayview-allday-label {
   float: left;
@@ -262,7 +212,7 @@
                }
         }
          }
-      
+
 
       // background-color: red;
     }
@@ -301,6 +251,14 @@
     ion-label {
       --ion-color-primary: #d9d9d9;
     }
+
+    ion-content{
+      --background: none;
+      background-image: url("/assets/body-bg-img1.svg") !important;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
 
     --ion-color-primary-dark: #0253cc;
 	--ion-color-primary-dark-rgb: 2,83,204;
@@ -389,7 +347,7 @@
 
 
 
-    --ion-background-color: #fdfdfd;
+    --ion-background-color: #f2f2f2;
     --ion-background-color-rgb: 18,18,18;
 
     --ion-text-color: ;
@@ -419,17 +377,18 @@
 
     --ion-item-background: #fff;
 
-    --ion-toolbar-background:var(--ion-color-primary);
+    --ion-toolbar-background:var(--ion-color-primary-dark);
     --ion-toolbar-color: #fff;
 
     .menu-list{
       margin-top: -10px;
 
+
       ion-list-header{
         font-size: 24px;
         height: 60px;
         padding-left: 4px;
-
+        
       }
     }
     ion-title {
@@ -471,6 +430,7 @@
 
     .cal-title{
       color:var(--ion-color-primary-dark);
+      font-size: 20px;
     }
 
     .cal-but{
@@ -553,6 +513,10 @@ color:#fb8622;
 }
 
 
+
+
+
+
 //Custom Button depending upon status
 
 
@@ -560,7 +524,7 @@ color:#fb8622;
   --background:#7c4dff;
 // background-color:#dcd0ff;
 color: #fff;
-font-size: 20px;
+font-size: 16px;
 --border-radius: 8px;
         box-shadow: 0 10px 10px rgba(0,10,10,.1);
       // box-shadow: 1px 4px 8px rgba( #7c4dff,.3);
@@ -571,7 +535,7 @@ font-size: 20px;
   --background:#989aa2;
 // background-color:#dcd0ff;
 color: #fff;
-font-size: 20px;
+font-size: 16px;
 --border-radius: 8px;
         box-shadow: 0 10px 10px rgba(0,10,10,.1);
       // box-shadow: 1px 4px 8px rgba( #7c4dff,.3);
@@ -582,7 +546,7 @@ font-size: 20px;
   --background:#00aba9;
   // background-color: #c2f0f0;
   color:#fff;
-  font-size: 20px;
+  font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
   //  box-shadow: 1px 4px 8px rgba(#00aba9 ,.3);
@@ -592,7 +556,7 @@ font-size: 20px;
   --background:#f3aa18;
   // background-color: #fcf3d7;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
   //  box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
@@ -602,7 +566,7 @@ font-size: 20px;
   --background:#2dda2d;
   // background-color: #fcf3d7;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
   //  box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
@@ -612,7 +576,7 @@ font-size: 20px;
   --background:#ff4d61;;
   // background-color: #fcf3d7;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
   //  box-shadow: 1px 4px 8px rgba( #f3aa18,.3);
@@ -622,7 +586,7 @@ font-size: 20px;
   --background:#fb8622;
 --border:1px solid #fff;
 color:#fff;
-font-size: 20px;
+font-size: 16px;
 --border-radius: 8px;
    box-shadow: 0 10px 10px rgba(0,10,10,.1);
       //  box-shadow: 1px 4px 8px rgba( #fb8622,.3);

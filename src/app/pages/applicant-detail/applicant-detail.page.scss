@@ -28,6 +28,16 @@ ion-badge {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 4px;
+  margin-top: 8px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 13px;
+}
+
+ion-button {
+  // max-width:20px;
+  width: 100%;
+  height: 50px;
 }
 
 .center1{
@@ -87,7 +97,20 @@ ion-label[slot="start"]{
 ion-accordion {
   margin: 0 auto;
   margin-bottom: 10px;
+  box-shadow: 0 10px 10px rgba(0, 10, 10, 0.1);
+  border-radius: 12px;
+
 }
+
+// ion-accordion:first-child{
+//   border-radius:12px ;
+//   box-shadow: 0 10px 10px rgba(0, 10, 10, 0.1);
+// }
+// ion-accordion:last-child{
+//   border-radius:12px ;
+//   box-shadow: 0 10px 10px rgba(0, 10, 10, 0.1);
+// }
+
 
 ion-accordion.accordion-expanding,
 ion-accordion.accordion-expanded {

@@ -1,7 +1,7 @@
 
 import { Router } from '@angular/router';
 import { ApplicantFilterPage } from './../filter/applicant-filter/applicant-filter.page';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Platform } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
@@ -14,6 +14,8 @@ import { Constant } from 'src/app/constant';
 })
 export class ApplicantListPagePage implements OnInit {
 
+  @ViewChild('swiper') swiper: any;
+
 
 
   list:any[]=[];
@@ -21,7 +23,8 @@ export class ApplicantListPagePage implements OnInit {
   pageNumber = 1;
   myCustomIcon = "/assets/view-details-icon.svg";
   lable=Constant;
-  totalRecord:any;
+  totalRecord:any=1;
+
   constructor(public api:ApiService ,
      private plt:Platform,
      public modalController: ModalController,
@@ -43,7 +46,27 @@ export class ApplicantListPagePage implements OnInit {
     });
 
     modal.onDidDismiss().then(data=>{
-      this.list=this.api.Activelist
+      let ApiList=[];
+      let page=1;
+      this.pageNumber=page;
+      this.api.showLoader()
+      console.log(this.api.UploadStatusId)
+      this.api.getApplicantsData(page,this.api.UploadStatusId).then(gg=>{
+        console.log(gg)
+        ApiList=JSON.parse(gg.data)
+        ApiList=ApiList['Result']
+        console.log(ApiList)
+        this.list=ApiList
+        this.totalRecord=Math.round(this.list[0]['TotalRecords']/4);
+        this.api.Activelist=this.list;
+        this.api.hideLoader();
+
+      }).catch(error=>{
+        console.log(error)
+        this.api.hideLoader();
+        this.api.showAlertF();
+      });
+
     })
 
     await modal.present();
@@ -57,29 +80,43 @@ export class ApplicantListPagePage implements OnInit {
       event.target.complete();
     }, 2000);
   };
+  back() {
+    if (this.swiper) {
+      this.swiper.swiperRef.slidePrev();
+      this.pageNumber--;
+      this.onNextPageLoad(this.pageNumber)
+    }
+  }
 
-  // onNextPageLoad(){
-  //   let ApiList=[];
-  //   this.api.showLoader()
-  //   this.api.getApplicantsData(this.pageNumber).then(gg=>{
-  //     console.log(gg)
-  //     ApiList=JSON.parse(gg.data)
-  //     ApiList=ApiList['Result']
-  //     console.log(ApiList)
-  //     this.list=ApiList
+  // function to go to the next slide
+  next() {
+    if (this.swiper) {
+      this.swiper.swiperRef.slideNext();
+      this.pageNumber++;
+      this.onNextPageLoad(this.pageNumber)
+    }
+  }
 
-  //     this.api.Activelist=this.list;
-  //     this.api.CopyActivelist=this.list;
-  //     this.api.hideLoader();
-  //     this.pageNumber++;
 
-  //   }).catch(error=>{
-  //     console.log(error)
-  //     this.api.hideLoader();
-  //     this.api.showAlertF();
-  //   });
+  onNextPageLoad(page:number){
+    let ApiList=[];
+    this.api.showLoader()
+    this.api.getApplicantsData(page,this.api.UploadStatusId).then(gg=>{
+      console.log(gg)
+      ApiList=JSON.parse(gg.data)
+      ApiList=ApiList['Result']
+      console.log(ApiList)
+      this.list=ApiList
+      this.api.Activelist=this.list;
+      this.api.hideLoader();
 
-  // }
+    }).catch(error=>{
+      console.log(error)
+      this.api.hideLoader();
+      this.api.showAlertF();
+    });
+
+  }
 
   // onLoadData(event?: any){
   //   let ApiList=[];
@@ -96,7 +133,7 @@ export class ApplicantListPagePage implements OnInit {
   //     }
   //     this.totalRecord=Math.round(this.list[0]['TotalRecords']/8)
   //     console.log(this.slides)
-  //     this.api.CopyActivelist=this.list;
+
   //     this.api.hideLoader();
   //     this.pageNumber++;
 
@@ -113,24 +150,17 @@ export class ApplicantListPagePage implements OnInit {
 
   onLoadData(event?: any){
     let ApiList=[];
-    // this.api.showLoader()
+    this.api.showLoader()
     this.api.getApplicantsData(this.pageNumber).then(gg=>{
       console.log(gg)
-      if(event){
-        event.target.complete();
-      }
       ApiList=JSON.parse(gg.data)
       ApiList=ApiList['Result']
       console.log(ApiList)
-      this.list=[...this.list,...ApiList]
+      this.list=ApiList;
       this.api.Activelist=this.list;
-      this.api.CopyActivelist=this.list;
+      this.totalRecord=Math.round(this.list[0]['TotalRecords']/4);
       this.api.hideLoader();
-      this.pageNumber++;
 
-      if(ApiList.length===0){
-        event.target.disabled = true;
-      }
 
     }).catch(error=>{
       console.log(error)

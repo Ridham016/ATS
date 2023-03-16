@@ -12,13 +12,12 @@ import { CustomAlertService } from './custom-alert.service';
 })
 export class ApiService {
   Activelist: any[] = [];
-  CopyActivelist: any[] = [];
   list:any
   UploadApplicantId:number=0;
   retryValue=5;
+  UploadStatusId?:number;
 
-
-  baseUrl='https://4849-2402-3a80-e53-e2e9-cc9-482b-4f07-380a.in.ngrok.io/api/';
+  baseUrl='https://e2fe-1-38-160-210.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -32,15 +31,16 @@ export class ApiService {
 
   }
 
-  getApplicantsData(PageNumber:number,PageSize:number=1000,IsAscending=true,OrderByColumn='FirstName'){
+  getApplicantsData(PageNumber:number,statusId?:number,PageSize:number=4,IsAscending:boolean=true,OrderByColumn='FirstName'){
 
     const g={
       'CurrentPageNumber':PageNumber,
       'PageSize':PageSize,
       'IsAscending':IsAscending,
-      'OrderByColumn': OrderByColumn
+      'OrderByColumn': OrderByColumn,
+      'StatusId':statusId
     }
-    return this.api.post(this.baseUrl+'Schedules/GetApplicantList',g,{})
+    return this.api.post(this.baseUrl+'Schedules/GetApplicantsParam',g,{})
 
   }
 
@@ -100,8 +100,9 @@ export class ApiService {
     const loading = await this.loadingController.create({
       spinner: null,
       cssClass:'custom-loading',
-      message: '<div class="safeloader"><div> <div class="load-1"><div class="load-2"><div class="load-3"></div></div></div></div></div>',
+      message: '<div class="spinner"><div></div><div></div><div></div><div></div><div></div></div>',
       translucent:true,
+      duration:10
     });
     await loading.present();
 

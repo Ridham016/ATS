@@ -12,17 +12,17 @@ export class AppComponent implements OnInit {
   isSplitPaneVisible: boolean = false;
   Pages = [
     {
-      title: 'DashBoard',
+      title: 'Schedule Management',
       url: '/user-dash-board',
-      icon: 'home'
+      icon: 'calendar'
     },
     {
-      title: 'List',
+      title: 'Applicant List',
       url: '/applicant-list-page',
       icon: 'list'
     },
     {
-      title: 'Add Applicant',
+      title: 'Register Applicant',
       url: '/applicant-registration-form',
       icon: 'create'
     },

@@ -124,6 +124,7 @@
           'button-5': but.ButtonId === 5,
           'button-8': but.ButtonId === 8
         }"
+        (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)"
         >{{but.ButtonName}}</ion-button>
         </div>
     </ion-accordion>

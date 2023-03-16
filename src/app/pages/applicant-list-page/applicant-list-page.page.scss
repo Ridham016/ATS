@@ -6,6 +6,17 @@
 
 }
 
+ion-badge {
+  --color: white;
+  --padding-end: 20px;
+  --padding-start: 20px;
+  box-shadow: none !important ;
+  border: 0 !important;
+  float: right;
+  font-size: 14px !important;
+}
+
+
 .header-row
 {
   background-color: #03dac6;
@@ -47,3 +58,6 @@ ion-card-title{
   padding-left: 0;
   margin-top: 8px;
 }
+
+
+

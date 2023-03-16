@@ -31,6 +31,7 @@ export class ApplicantDetailPage implements OnInit {
 
  async ngOnInit() {
     //*Gettig id Passed through Param
+    this.api.showLoader();
     this.ApplicantId=this.activatedRoute.snapshot.queryParams['id'];
     //*Callig api Service getApplicat method to fetch Single user Data & populate data variale
    await this.api.getApplicant(this.ApplicantId).then(response=>{
@@ -50,7 +51,7 @@ export class ApplicantDetailPage implements OnInit {
         this.api.getOtherReasons().then(res=>{
         this.reasonList=JSON.parse(res.data)
         this.reasonList=this.reasonList['Result']
-
+          this.api.hideLoader();
         console.log(this.reasonList)
 
       })})
@@ -71,7 +72,7 @@ export class ApplicantDetailPage implements OnInit {
   else if(currStatusId==7){
     const alert = await this.alertCtrl.create({
       header: 'Select an option',
-      message: 'Choose an option from the dropdown',
+      cssClass:'custom-alert',
       inputs: this.reasonList.map((val:any) => {
 
         return {

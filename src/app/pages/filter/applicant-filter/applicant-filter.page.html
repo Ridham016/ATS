@@ -14,10 +14,19 @@
       <ion-icon name="list" slot="start"></ion-icon>
       <ion-label>{{label.StatusName}}:</ion-label>
       <ion-select interface="popover" slot [(ngModel)]="selectedStatus" placeholder={{selectedStatus}}>
-        <ion-select-option *ngFor="let status of currStatusList" >{{status}}</ion-select-option>
+        <ion-select-option value="1" >Registered</ion-select-option>
+        <ion-select-option value="2" >Shortlisted</ion-select-option>
+        <ion-select-option value="4" >Call Scheduled</ion-select-option>
+        <ion-select-option value="5">Hold</ion-select-option>
+        <ion-select-option value="8" >Other Reasons</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
+  <ion-row>
+    <ion-col size="6"></ion-col>
+    <ion-col size="6">
   <ion-button (click)="clearFilters()" color="danger" >Clear</ion-button>
   <ion-button (click)="applyFilters()">Apply</ion-button>
+</ion-col>
+</ion-row>
 </ion-content>

@@ -24,31 +24,31 @@
 
       <ion-item  fill="outline"   class="my-input">
         <ion-label position="floating"> {{lable.FirstName}} </ion-label>
-        <ion-input type="text" placeholder="Enter First Name"  name="firstname" required [(ngModel)]="details.FirstName" #name="ngModel"></ion-input>
+        <ion-input type="name" placeholder="Enter First Name"  name="firstname" required [(ngModel)]="details.FirstName" #name="ngModel" pattern="[a-zA-Z]+"></ion-input>
         <ion-note *ngIf="!name.valid && name.touched" color="danger">First Name is required</ion-note>
       </ion-item>
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating"> {{lable.MiddleName}}</ion-label>
-        <ion-input type="text" placeholder="Enter Middle Name"  name="middlename"  [(ngModel)]="details.MiddleName" #name="ngModel"></ion-input>
+        <ion-input type="name" placeholder="Enter Middle Name"  name="middlename"  [(ngModel)]="details.MiddleName" #name="ngModel" pattern="[a-zA-Z]+"></ion-input>
         <!-- <ion-note *ngIf="!name.valid && name.touched" color="danger">Middle Name is required</ion-note> -->
       </ion-item>
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating"> {{lable.LastName}} </ion-label>
-        <ion-input type="text" placeholder="Enter First Name"  name="lastname" required [(ngModel)]="details.LastName" #name="ngModel"></ion-input>
+        <ion-input type="name" placeholder="Enter First Name"  name="lastname" required [(ngModel)]="details.LastName" #name="ngModel" pattern="[a-zA-Z]+"></ion-input>
         <ion-note *ngIf="!name.valid && name.touched" color="danger">Last Name is required</ion-note>
       </ion-item>
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating"> {{lable.Email}} </ion-label>
-        <ion-input  type="email" placeholder="Enter Email"  name="email"  [(ngModel)]="details.Email" #email="ngModel" email></ion-input>
+        <ion-input  type="email" placeholder="Enter Email"  name="email"  [(ngModel)]="details.Email" #email="ngModel"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" ></ion-input>
         <ion-note *ngIf="!email.valid && email.touched" color="danger">Email is invalid</ion-note>
       </ion-item>
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating">{{lable.Phone}} </ion-label>
-        <ion-input  type="tel" maxlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Phone" #mobile="ngModel"></ion-input>
+        <ion-input  type="tel" maxlength="10" minlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Phone" #mobile="ngModel"></ion-input>
         <ion-note *ngIf="!mobile.valid && mobile.touched" color="danger">Mobile is required</ion-note>
       </ion-item>
 
@@ -97,20 +97,20 @@
 
         <ion-item fill="outline"  class="my-input" >
           <ion-label position="floating"> {{lable.TotalExperience}} </ion-label>
-          <ion-input  placeholder="Total Experience" type="number" name="totalexp" required [(ngModel)]="details.TotalExperience" #totalexp="ngModel"></ion-input>
+          <ion-input  placeholder="Total Experience" type="number" name="totalexp" maxlength="4" required [(ngModel)]="details.TotalExperience" #totalexp="ngModel"></ion-input>
           <ion-note *ngIf="!totalexp.valid && totalexp.touched" color="danger">Total Experience is required</ion-note>
         </ion-item>
 
         <ion-item fill="outline" class="my-input">
           <ion-label position="floating"> {{lable.DetailedExperience}} </ion-label>
-          <ion-input  placeholder="Detailed Experience" type="number"  name="detailedexp" required [(ngModel)]="details.DetailedExperience" #detailedexp="ngModel"></ion-input>
+          <ion-input  placeholder="Detailed Experience" type="number"  name="detailedexp" maxlength="4" required [(ngModel)]="details.DetailedExperience" #detailedexp="ngModel"></ion-input>
           <ion-note  *ngIf="!detailedexp.valid && detailedexp.touched" color="danger">Enter Current Field Experience</ion-note>
           <ion-note slot="helper"> Enter Current Designation Experience</ion-note>
         </ion-item>
 
         <ion-item fill="outline"  class="my-input" >
           <ion-label position="floating">{{lable.NoticePeriod}} </ion-label>
-          <ion-input  placeholder="Enter Notice Period" type="number" name="NoticePeriod" required [(ngModel)]="details.NoticePeriod"  #notice="ngModel"  ></ion-input>
+          <ion-input  placeholder="Enter Notice Period" type="number" name="NoticePeriod" maxlength="2" required [(ngModel)]="details.NoticePeriod"  #notice="ngModel"  ></ion-input>
           <ion-note *ngIf="!notice.valid && notice.touched" color="danger">Notice Period is required</ion-note>
         </ion-item>
 

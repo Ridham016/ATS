@@ -17,7 +17,7 @@ export class ApiService {
   retryValue=5;
   UploadStatusId?:number;
 
-  baseUrl='https://e2fe-1-38-160-210.in.ngrok.io/api/';
+  baseUrl='https://3f2f-116-72-9-56.in.ngrok.io/api/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,

@@ -60,4 +60,8 @@ ion-card-title{
 }
 
 
+.split-pane > div,
+.split-pane > ion-toolbar {
+  touch-action: none !important;
+}
 

@@ -1,6 +1,6 @@
 <ion-app>
-  <ion-split-pane contentId="main-content" (ionSplitPaneVisible)="handleSplitPaneVisible($event)" [disabled]="!isSplitPaneVisible">
-    <ion-menu contentId="main-content" type="overlay" autoHide="false">
+  <ion-split-pane contentId="main-content" >
+    <ion-menu contentId="main-content" type="overlay" autoHide="false" menuId="gg">
       <ion-content>
         <ion-list id="inbox-list" class="menu-list">
           <ion-list-header color="primary-dark">
@@ -15,7 +15,7 @@
               <ion-label>{{ pages.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-        <!-- <ion-button [routerLink]="['/login']">Logout</ion-button> -->
+        <ion-button [routerLink]="['/login']">Logout</ion-button>
         </ion-list>
       </ion-content>
     </ion-menu>

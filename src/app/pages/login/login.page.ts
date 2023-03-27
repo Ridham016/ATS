@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthUser } from 'src/app/Model/auth-user';
 import { Router } from '@angular/router';
+import{MenuController} from '@ionic/angular'
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -13,8 +14,19 @@ export class LoginPage implements OnInit {
   };
 
   rememberMe=false;
-  constructor(private router: Router) { }
+  constructor(private router: Router,private menuController: MenuController) {
 
+   }
+
+   ionViewWillEnter() {
+    this.menuController.enable(false,'gg');
+    console.log("fired");
+  }
+
+  ionViewWillLeave() {
+    this.menuController.enable(true,'gg');
+    console.log("fired1");
+  }
   ngOnInit() {
     const storedUsername = localStorage.getItem('username');
     const storedPassword = localStorage.getItem('password');
@@ -29,6 +41,7 @@ export class LoginPage implements OnInit {
     const email = this.user.Email;
     const pass = this.user.Password;
     this.getData(email,pass);
+
 
     if(this.rememberMe){
       localStorage.setItem('username',email);

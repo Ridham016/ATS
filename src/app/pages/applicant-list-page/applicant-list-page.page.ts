@@ -57,7 +57,8 @@ export class ApplicantListPagePage implements OnInit {
         ApiList=ApiList['Result']
         console.log(ApiList)
         this.list=ApiList
-        this.totalRecord=Math.round(this.list[0]['TotalRecords']/4);
+        this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/4);
+        console.log(this.totalRecord)
         this.api.Activelist=this.list;
         this.api.hideLoader();
 
@@ -93,6 +94,22 @@ export class ApplicantListPagePage implements OnInit {
     if (this.swiper) {
       this.swiper.swiperRef.slideNext();
       this.pageNumber++;
+      this.onNextPageLoad(this.pageNumber)
+    }
+  }
+
+  goToFirstPage(){
+    if (this.swiper) {
+      this.swiper.swiperRef.slideNext();
+      this.pageNumber=1;
+      this.onNextPageLoad(this.pageNumber)
+    }
+  }
+
+  goToLastPage(){
+    if (this.swiper) {
+      this.swiper.swiperRef.slideNext();
+      this.pageNumber=this.totalRecord;
       this.onNextPageLoad(this.pageNumber)
     }
   }
@@ -158,7 +175,7 @@ export class ApplicantListPagePage implements OnInit {
       console.log(ApiList)
       this.list=ApiList;
       this.api.Activelist=this.list;
-      this.totalRecord=Math.round(this.list[0]['TotalRecords']/4);
+      this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/4);
       this.api.hideLoader();
 
 

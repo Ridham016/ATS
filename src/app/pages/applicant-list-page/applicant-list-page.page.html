@@ -10,46 +10,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+  <ion-refresher slot="fixed"  (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content
-    refreshingSpinner="circles"></ion-refresher-content>
+    refreshingSpinner="circles"  ></ion-refresher-content>
   </ion-refresher>
-
-
-<!-- <ion-card *ngFor="let item of list ; let i=index " (click)="navigate(item.ApplicantId)" class="custom-card"   [ngClass]=
-"{
-'badge-1': item.StatusId === 1,
-'badge-2': item.StatusId === 2,
-'badge-4': item.StatusId === 4,
-'badge-5': item.StatusId === 5,
-'badge-8': item.StatusId === 8
-}">
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col class="applicant-name">{{item.FirstName}} {{item.MiddleName}} {{item.LastName}}</ion-col>
-
-    </ion-row>
-    <ion-row>
-      <ion-col class="applicant-email"> {{item.Email}}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <div      >
-      <span class="ion-text-uppercase">{{item.StatusName}}</span>
-      </div></ion-col>
-      <!-- <ion-col size="4">
-        <ion-badge
-       >
-          ID :{{item.ApplicantId}}
-        </ion-badge>
-      </ion-col>
-
-    </ion-row>
-  </ion-grid>
-</ion-card>
-<ion-infinite-scroll (ionInfinite)="onLoadData($event)">
-  <ion-infinite-scroll-content></ion-infinite-scroll-content>
-</ion-infinite-scroll> -->
 
 <ion-row>
   <ion-col size="2">

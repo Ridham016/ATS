@@ -3,6 +3,8 @@ import { Constant } from './../../constant';
 import { ApiService } from 'src/app/services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 
 @Component({
@@ -27,6 +29,8 @@ export class ApplicantDetailPage implements OnInit {
     private api:ApiService,
     public alertCtrl:AlertController,
     private router:Router,
+    private file:File,
+    private fileOpener: FileOpener
   ) { }
 
  async ngOnInit() {
@@ -41,6 +45,7 @@ export class ApplicantDetailPage implements OnInit {
         //*Storing response data into Local Variable data
 
         this.data=this.data.Result;
+        console.log(this.data)
         this.StatusId=this.data['StatusId'];
         this.api.getActiveActionButton(this.StatusId).then(but_response=>{
           this.but_data=JSON.parse(but_response.data)
@@ -191,5 +196,21 @@ export class ApplicantDetailPage implements OnInit {
     await alert.present();
   }
 
+  }
+
+
+  download(fname:string){
+    this.api.showLoader();
+    const filePath =  this.file.externalRootDirectory + '/Download/' + fname;
+    this.api.downloadFile(fname, filePath).then((res:any) =>{
+      if(res){
+        this.api.hideLoader();
+      // this.api.showAlertdownloadS();
+      this.fileOpener.open(filePath, 'application/pdf')
+  .then(() => console.log('File opened successfully'))
+  .catch((error) => console.error('Error opening file', error));
+  }}).catch(error =>{
+    this.api.showAlertdownloadF();
+  });
   }
 }

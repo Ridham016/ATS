@@ -3,6 +3,7 @@
     <ion-back-button fill="clear" slot="start"  >
       <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
     </ion-back-button>
+      <ion-icon *ngIf="data.FileName!==null" (click)="download(data.FileName)" class="download_but" name="download-outline"  slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
 

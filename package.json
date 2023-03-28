@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
     "@ionic-native/email-composer": "^5.36.0",
+    "@ionic-native/file": "^5.36.0",
+    "@ionic-native/file-opener": "^5.36.0",
     "@ionic-native/http": "^5.36.0",
     "@ionic/cordova-builders": "^7.0.0",
     "bootstrap": "^5.2.3",
@@ -52,6 +54,7 @@
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-email-composer": "^0.10.1",
     "cordova-plugin-file": "^7.0.0",
+    "cordova-plugin-file-opener2": "^4.0.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -85,7 +88,8 @@
       "cordova-plugin-email-composer": {},
       "cordova-plugin-advanced-http": {
         "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
-      }
+      },
+      "cordova-plugin-file-opener2": {}
     },
     "platforms": [
       "android"

@@ -7,6 +7,8 @@ import { Platform } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { Constant } from 'src/app/constant';
 
+
+
 @Component({
   selector: 'app-applicant-list-page',
   templateUrl: './applicant-list-page.page.html',
@@ -28,7 +30,7 @@ export class ApplicantListPagePage implements OnInit {
   constructor(public api:ApiService ,
      private plt:Platform,
      public modalController: ModalController,
-     private router:Router,
+     private router:Router
       ) {
 
    }
@@ -77,7 +79,9 @@ export class ApplicantListPagePage implements OnInit {
     setTimeout(() => {
       this.list=[]
       this.pageNumber=1;
-      this.onLoadData()
+      this.lable.StoredStatus='';
+      this.api.UploadStatusId=undefined;
+      this.onLoadData();
       event.target.complete();
     }, 2000);
   };
@@ -135,35 +139,6 @@ export class ApplicantListPagePage implements OnInit {
 
   }
 
-  // onLoadData(event?: any){
-  //   let ApiList=[];
-  //   this.api.showLoader()
-  //   this.api.getApplicantsData(this.pageNumber).then(gg=>{
-  //     console.log(gg)
-  //     ApiList=JSON.parse(gg.data)
-  //     ApiList=ApiList['Result']
-  //     console.log(ApiList)
-  //     this.list=ApiList
-  //     this.api.Activelist=this.list;
-  //     for (let i = 0; i < this.list.length; i += 8) {
-  //       this.slides.push(this.list.slice(i, i + 8));
-  //     }
-  //     this.totalRecord=Math.round(this.list[0]['TotalRecords']/8)
-  //     console.log(this.slides)
-
-  //     this.api.hideLoader();
-  //     this.pageNumber++;
-
-  //   }).catch(error=>{
-  //     console.log(error)
-  //     this.api.hideLoader();
-  //     this.api.showAlertF();
-  //   });
-
-  // }
-
-
-
 
   onLoadData(event?: any){
     let ApiList=[];
@@ -193,5 +168,8 @@ export class ApplicantListPagePage implements OnInit {
         id:Applicantid
       }
     })}
+
+
+
   }
 

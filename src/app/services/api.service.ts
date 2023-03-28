@@ -17,7 +17,8 @@ export class ApiService {
   retryValue=5;
   UploadStatusId?:number;
 
-  baseUrl='https://3f2f-116-72-9-56.in.ngrok.io/api/';
+  baseUrl='https://b795-2402-3a80-16ab-28b6-45ad-81b2-23b4-e8f3.in.ngrok.io/api/';
+  baseUrldownload ='https://b795-2402-3a80-16ab-28b6-45ad-81b2-23b4-e8f3.in.ngrok.io/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -122,6 +123,21 @@ export class ApiService {
     });
      await alert.present();
   }
+  async showAlertdownloadF() {
+    const alert = await this.alertController.create({
+      header: 'file not downloaded ',
+      message: 'Please try again !!',
+      buttons: ['OK']
+    });
+     await alert.present();
+  }
+  async showAlertdownloadS() {
+    const alert = await this.alertController.create({
+      header: 'file  downloaded ',
+      buttons: ['OK']
+    });
+     await alert.present();
+  }
 
   async getApplicant(id:number){
    const param={
@@ -174,4 +190,11 @@ export class ApiService {
     console.log(body)
     return this.api.post(this.baseUrl+'Schedules/HoldReason?ActionId='+actionID,body,{})
   }
-}
+
+  async downloadFile(filename: string, filePath: string): Promise<void> {
+   return await this.api.downloadFile(this.baseUrldownload+filename, {}, {}, filePath);
+    }
+
+  }
+
+

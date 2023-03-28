@@ -31,6 +31,11 @@ export const Constant= {
 
     StoredCurrentLocation:'',
     StoredPreferedLocation:'',
-    StoredStatus:''
+    StoredStatus:'',
+
+    //Advance Search filter
+    StoredStartDate:'',
+    StoredEndDate:'',
+
 
 }

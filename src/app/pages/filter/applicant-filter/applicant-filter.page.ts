@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./applicant-filter.page.scss'],
 })
 export class ApplicantFilterPage implements OnInit {
-
+  
   selectedStatus:any;
   list:any;
   currStatusList:any=[]

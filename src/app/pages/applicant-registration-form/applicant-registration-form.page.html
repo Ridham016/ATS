@@ -30,20 +30,20 @@
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating"> {{lable.MiddleName}}</ion-label>
-        <ion-input type="name" placeholder="Enter Middle Name"  name="middlename"  [(ngModel)]="details.MiddleName" #name="ngModel" pattern="[a-zA-Z]+"></ion-input>
+        <ion-input type="name" placeholder="Enter Middle Name"  name="middlename"  [(ngModel)]="details.MiddleName" #middlename="ngModel" pattern="[a-zA-Z]+"></ion-input>
         <!-- <ion-note *ngIf="!name.valid && name.touched" color="danger">Middle Name is required</ion-note> -->
       </ion-item>
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating"> {{lable.LastName}} </ion-label>
-        <ion-input type="name" placeholder="Enter First Name"  name="lastname" required [(ngModel)]="details.LastName" #name="ngModel" pattern="[a-zA-Z]+"></ion-input>
-        <ion-note *ngIf="!name.valid && name.touched" color="danger">Last Name is required</ion-note>
+        <ion-input type="name" placeholder="Enter First Name"  name="lastname" required [(ngModel)]="details.LastName" #lastname="ngModel" pattern="[a-zA-Z]+"></ion-input>
+        <ion-note *ngIf="!lastname.valid && lastname.touched" color="danger">Last Name is required</ion-note>
       </ion-item>
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating"> {{lable.Email}} </ion-label>
-        <ion-input  type="email" placeholder="Enter Email"  name="email"  [(ngModel)]="details.Email" #email="ngModel"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" ></ion-input>
-        <ion-note *ngIf="!email.valid && email.touched" color="danger">Email is invalid</ion-note>
+        <ion-input  type="email" placeholder="Enter Email"  name="email"  [(ngModel)]="details.Email" #email1="ngModel" required  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"  ></ion-input>
+        <ion-note *ngIf="!email1.valid && email1.touched" color="danger">Email is invalid</ion-note>
       </ion-item>
 
       <ion-item fill="outline" class="my-input">

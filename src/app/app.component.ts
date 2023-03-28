@@ -1,6 +1,6 @@
 import { Router, RouterEvent} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-
+import { Platform } from '@ionic/angular';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -28,15 +28,22 @@ export class AppComponent implements OnInit {
     },
 
   ];
-  constructor(private router:Router) {
+  constructor(private router:Router , private plt: Platform) {
     // router.events.subscribe((event: RouterEvent) => {
     //   this.showMenu = event.url !== '/login'; // hide menu for login page
     // });
+    this.initializeApp();
+
+  }
+  initializeApp(){
+    this.plt.ready().then(()=>{
+      this.router.navigateByUrl('splash-screen');
+    })
   }
 
-  ngOnInit(): void {
-
+  ngOnInit() {
 }
+
 
 public handleSplitPaneVisible (event: any) {
   console.log(event);

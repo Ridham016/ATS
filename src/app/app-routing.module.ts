@@ -6,11 +6,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  {
-    path: '',
-    redirectTo: 'applicant-list-page',
-    pathMatch: 'full'
-  },
+
   {
     path: 'send-email',
     loadChildren: () => import('./pages/send-email/send-email.module').then( m => m.SendEmailPageModule)
@@ -47,6 +43,19 @@ const routes: Routes = [
     path: 'scheduling-form',
     loadChildren: () => import('./pages/scheduling-form/scheduling-form.module').then( m => m.SchedulingFormPageModule)
   },
+  {
+    path: 'advance-search',
+    loadChildren: () => import('./pages/advance-search/advance-search.module').then( m => m.AdvanceSearchPageModule)
+  },
+  {
+    path: 'advance-search-filter',
+    loadChildren: () => import('./pages/filter/advance-search-filter/advance-search-filter.module').then( m => m.AdvanceSearchFilterPageModule)
+  },
+  {
+    path: 'splash-screen',
+    loadChildren: () => import('./pages/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
+  },
+
 
 
 ];

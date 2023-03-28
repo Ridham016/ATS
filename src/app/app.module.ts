@@ -8,7 +8,6 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-
 import { SwiperModule } from 'swiper/angular';
 import { HTTP } from '@ionic-native/http/ngx';
 import { File } from '@ionic-native/file/ngx';

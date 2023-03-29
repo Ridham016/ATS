@@ -4,6 +4,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+
+  {
     path: 'send-email',
     loadChildren: () => import('./pages/send-email/send-email.module').then( m => m.SendEmailPageModule)
   },
@@ -46,10 +52,6 @@ const routes: Routes = [
   {
     path: 'advance-search-filter',
     loadChildren: () => import('./pages/filter/advance-search-filter/advance-search-filter.module').then( m => m.AdvanceSearchFilterPageModule)
-  },
-  {
-    path: 'splash-screen',
-    loadChildren: () => import('./pages/splash-screen/splash-screen.module').then( m => m.SplashScreenPageModule)
   },
 
 

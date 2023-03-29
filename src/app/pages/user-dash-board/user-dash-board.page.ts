@@ -62,33 +62,6 @@ export class UserDashBoardPage implements OnInit {
     this.viewTitle = title;
   }
 
-//   $id
-// :
-// "1"
-// ActionId
-// :
-// 203
-// ApplicantName
-// :
-// "Meet Kapadia"
-// Description
-// :
-// "Nothing to add"
-// Id
-// :
-// 1
-// InterviewerId
-// :
-// 3
-// InterviewerName
-// :
-// "Darshan Soneji"
-// ScheduleDateTime
-// :
-// "2023-03-11T19:58:00"
-// ScheduleLink
-// :
-// "www.google.com"
 
   onloadEventDetails(){
     this.api.showLoader();
@@ -124,8 +97,9 @@ export class UserDashBoardPage implements OnInit {
     const end = formatDate(event.endTime, 'medium', 'en-US');
     console.log(this.eventSource);
     const alert = await this.alertCtrl.create({
-      message: `<div class="cal-alert-time">${start}</div><div>Interview with ${event.ApplicantName}</div><div class="cal-alert-interviewer"><span><ion-icon class="cal-alert-svg"  name="person-sharp"></ion-icon></span>  ${event.InterviewerName}</div>`,
-      cssClass:'cal-alert',
+      header: 'Title : ' + event.title,
+
+      message: `From : ${start}<br><br>To : ${end}<br><br>Level: <br> <br> Interviewer Name:`,
       buttons:  [{
         text: 'ok',
         role: 'cancel',

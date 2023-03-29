@@ -1,0 +1,11 @@
+ion-datetime{
+  color: #000000;
+  background-color: #ffffff;
+
+}
+ion-datetime-button::part(native) {
+  background: #5dcb50;
+  font-size: 12px;
+    color: #fff;
+    font-weight: 800;
+}

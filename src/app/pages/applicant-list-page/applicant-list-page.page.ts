@@ -84,7 +84,7 @@ export class ApplicantListPagePage implements OnInit {
       this.onLoadData();
       event.target.complete();
     }, 2000);
-  };
+  }
   back() {
     if (this.swiper) {
       this.swiper.swiperRef.slidePrev();

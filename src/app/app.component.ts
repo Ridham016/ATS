@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   isSplitPaneVisible: boolean = false;
   Pages = [
     {
-      title: 'Schedule Management',
+      title: 'Dashboard',
       url: '/user-dash-board',
       icon: 'calendar'
     },
@@ -25,6 +25,11 @@ export class AppComponent implements OnInit {
       title: 'Register Applicant',
       url: '/applicant-registration-form',
       icon: 'create'
+    },
+    {
+      title: 'Advanced Search',
+      url: '/advance-search',
+      icon: 'search'
     },
 
   ];

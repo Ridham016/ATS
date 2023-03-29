@@ -24,14 +24,24 @@ ion-badge {
 
 
 .button-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 4px;
-  margin-top: 8px;
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-bottom: 13px;
+
+margin: 0 auto;
+padding: 0;
+list-style: none;
+
+li{
+  float: left;
+  width: 45%;
+    margin: 1.8%;
+}
+
+
+}
+.lol{
+
+  float: left;
+  width: 45%;
+    margin: 1.8%;
 }
 
 ion-button {

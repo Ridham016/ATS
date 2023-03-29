@@ -45,7 +45,7 @@
 
 <swiper #swiper  >
   <ng-template swiperSlide>
-   <ion-card *ngFor="let item of list ; let i=index " (click)="navigate(item.ApplicantId)" class="custom-card"   [ngClass]=
+   <ion-card *ngFor="let item of list " (click)="navigate(item.ApplicantId)" class="custom-card"   [ngClass]=
 "{
 'badge-1': item.StatusId === 1,
 'badge-2': item.StatusId === 2,

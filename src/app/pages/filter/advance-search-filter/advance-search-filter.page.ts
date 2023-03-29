@@ -44,6 +44,8 @@ export class AdvanceSearchFilterPage implements OnInit {
     this.label.StoredStartDate='';
     this.label.StoredEndDate='';
     this.api.UploadStatusId= undefined;
+    this.api.StartDate= undefined;
+    this.api.EndDate= undefined;
     this.modalCtrl.dismiss();
   }
 
@@ -52,6 +54,8 @@ export class AdvanceSearchFilterPage implements OnInit {
     this.label.StoredStartDate=this.selectedStartDate;
     this.label.StoredEndDate=this.selectedEndDate;
     this.api.UploadStatusId=this.selectedStatus;
+    this.api.StartDate=this.selectedStartDate.split('T')[0];
+    this.api.EndDate= this.selectedEndDate.split('T')[0];
      await this.modalCtrl.dismiss();
     }
 

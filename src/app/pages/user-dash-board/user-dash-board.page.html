@@ -4,10 +4,16 @@
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-refresher slot="fixed"  (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content
+      refreshingSpinner="circles"  ></ion-refresher-content>
+    </ion-refresher>
+    <div class="segment-container">
   <ion-segment  [(ngModel)]="calendar.mode">
     <ion-segment-button value="month">
       <ion-label>Month</ion-label>
@@ -19,20 +25,8 @@
       <ion-label>Day</ion-label>
     </ion-segment-button>
   </ion-segment>
-
-
-  <ion-row>
-    <ion-col size="6">
-      <ion-button (click)="createRandomEvents()" expand="block" fill="outline">
-        Add random events
-      </ion-button>
-    </ion-col>
-    <ion-col size="6">
-      <ion-button (click)="removeEvents()" expand="block"fill="outline">
-        Remove all events
-      </ion-button>
-    </ion-col>
-  </ion-row>
+  <ion-button (click)="today()" fill="clear">Today</ion-button>
+    </div>
   <ion-row>
     <ion-col size="2">
       <ion-button fill="clear" class="cal-but" (click)="back()">
@@ -40,11 +34,11 @@
       </ion-button>
     </ion-col>
 
-    
+
     <ion-col size="8" class="ion-text-center align-items-center ion-padding-top">
       <h2 class="cal-title">{{viewTitle}}</h2>
     </ion-col>
-    
+
 
     <ion-col size="2">
       <ion-button fill="clear" class="cal-but" (click)="next()">
@@ -61,8 +55,8 @@
     [currentDate]="calendar.currentDate"
     (onTitleChanged)="onViewTitleChanged($event)"
     (onEventSelected)="onEventSelected($event)"
-    [startHour]="9" 
-    [endHour]="20"
+    [startHour]="9"
+    [endHour]="18"
   ></calendar>
 </div>
 

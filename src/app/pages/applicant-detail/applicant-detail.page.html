@@ -109,24 +109,27 @@
     </ion-accordion>
     <ion-accordion value="3">
         <ion-item slot="header">
-            <ion-label>Authetication</ion-label>
+            <ion-label>Authentication</ion-label>
         </ion-item>
+        <div  slot="content">
+          <ul class="button-grid">
+            <li *ngFor="let but of but_data" > <ion-button
+              [ngClass]=
+              "{
+              'button-1': but.ButtonId === 1,
+              'button-2': but.ButtonId === 2,
+              'button-3': but.ButtonId === 3,
+              'button-6': but.ButtonId === 6,
+              'button-7': but.ButtonId === 7,
+              'button-4': but.ButtonId === 4,
+              'button-5': but.ButtonId === 5,
+              'button-8': but.ButtonId === 8
 
-        <div class="button-grid" slot="content">
-          <ion-button *ngFor="let but of but_data"
-          [ngClass]=
-          "{
-          'button-1': but.ButtonId === 1,
-          'button-2': but.ButtonId === 2,
-          'button-3': but.ButtonId === 3,
-          'button-6': but.ButtonId === 6,
-          'button-7': but.ButtonId === 7,
-          'button-4': but.ButtonId === 4,
-          'button-5': but.ButtonId === 5,
-          'button-8': but.ButtonId === 8
-        }"
-        (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)"
-        >{{but.ButtonName}}</ion-button>
+            }"
+            (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)"
+            >{{but.ButtonName}}</ion-button></li>
+          </ul>
+
         </div>
     </ion-accordion>
   </ion-accordion-group>

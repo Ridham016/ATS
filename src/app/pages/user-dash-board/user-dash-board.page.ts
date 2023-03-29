@@ -1,8 +1,10 @@
+import { ApiService } from 'src/app/services/api.service';
 import { formatDate } from '@angular/common';
 import { Component, OnInit ,ViewChild } from '@angular/core';
 import { CalendarComponent, CalendarMode } from 'ionic2-calendar';
 import { IEvent } from 'ionic2-calendar/calendar.interface';
 import { AlertController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 
 function getRandomDate(): Date {
   const date = new Date();
@@ -22,7 +24,8 @@ function getRandomTime(startDate: Date): Date {
 })
 export class UserDashBoardPage implements OnInit {
 
-  eventSource: IEvent[] = [];
+  eventSource:IEvent[] = [];
+  list:any;
   viewTitle!: string;
 
   calendar = {
@@ -32,9 +35,16 @@ export class UserDashBoardPage implements OnInit {
 
   @ViewChild(CalendarComponent) myCal!: CalendarComponent;
 
-  constructor(private alertCtrl: AlertController) {}
+  constructor(private alertCtrl: AlertController,
+    private api:ApiService,
+    private plt :Platform
+    ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.plt.ready().then(_=>{
+      this.onloadEventDetails()
+    })
+  }
 
   next() {
     this.myCal.slideNext();
@@ -44,45 +54,80 @@ export class UserDashBoardPage implements OnInit {
     this.myCal.slidePrev();
   }
 
+  today() {
+    this.calendar.currentDate = new Date();
+  }
+
   onViewTitleChanged(title: string) {
     this.viewTitle = title;
   }
 
-  createRandomEvents() {
-    const events: IEvent[] = [];
-    for (let i = 0; i < 50; i++) {
-      const date = getRandomDate();
-      const eventType = Math.floor(Math.random() * 2);
-      const startDateTime = getRandomTime(date);
-      const endDateTime = getRandomTime(new Date(startDateTime.getTime() + Math.floor(Math.random() * 180)));
-      const isAllDay = eventType === 0;
-      const eventTitle = isAllDay ? `All Day - ${i}` : `Event - ${i}`;
-      events.push({
-        title: eventTitle,
-        startTime: startDateTime,
-        endTime: endDateTime,
-        allDay: isAllDay,
-        desc: '',
-        TypeofEvent: ''
-      });
-    }
-    this.eventSource = events;
-  }
+//   $id
+// :
+// "1"
+// ActionId
+// :
+// 203
+// ApplicantName
+// :
+// "Meet Kapadia"
+// Description
+// :
+// "Nothing to add"
+// Id
+// :
+// 1
+// InterviewerId
+// :
+// 3
+// InterviewerName
+// :
+// "Darshan Soneji"
+// ScheduleDateTime
+// :
+// "2023-03-11T19:58:00"
+// ScheduleLink
+// :
+// "www.google.com"
 
-  removeEvents() {
-    this.eventSource = [];
-  }
+  onloadEventDetails(){
+    this.api.showLoader();
+    const events: any[] = [];
+    this.api.getEventDetails().then(res=>{
+      this.list=JSON.parse(res.data);
+      this.list=this.list['Result'];
+      console.log(this.list);
+      this.list.forEach((element: any) => {
+        const startDateTime= new Date(element.ScheduleDateTime)
+        const endDateTime = new Date(startDateTime);
+        endDateTime.setHours(startDateTime.getHours() + 1);
+
+
+        events.push({
+          ApplicantName:element.ApplicantName,
+          desc: element.Description,
+          ScheduleLink: element.ScheduleLink,
+          startTime:startDateTime,
+          endTime:endDateTime,
+          InterviewerName:element.InterviewerName,
+          title:element.Description,
+        });
+      })
+      this.eventSource=events;
+
+    console.log(this.eventSource);
+  })
+}
 
   async onEventSelected(event: IEvent) {
-    const start = formatDate(event.startTime, 'medium', 'en-US');
+    const start = formatDate(event.startTime, 'shortTime', 'en-US');
     const end = formatDate(event.endTime, 'medium', 'en-US');
     console.log(this.eventSource);
     const alert = await this.alertCtrl.create({
-      header: 'Title : ' + event.title,
-      subHeader: 'Desc : ' + event.desc,
-      message: `From : ${start}<br><br>To : ${end}<br><br>Level: <br> <br> Interviewer Name:`,
+      message: `<div class="cal-alert-time">${start}</div><div>Interview with ${event.ApplicantName}</div><div class="cal-alert-interviewer"><span><ion-icon class="cal-alert-svg"  name="person-sharp"></ion-icon></span>  ${event.InterviewerName}</div>`,
+      cssClass:'cal-alert',
       buttons:  [{
-        text: 'Cancel',
+        text: 'ok',
         role: 'cancel',
         handler: () => {},
       }],
@@ -90,4 +135,11 @@ export class UserDashBoardPage implements OnInit {
     alert.present();
   }
 
+
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      this.onloadEventDetails();
+      event.target.complete();
+    }, 2000);
+  }
 }

@@ -16,9 +16,11 @@ export class ApiService {
   UploadApplicantId:number=0;
   retryValue=5;
   UploadStatusId?:number;
+  StartDate?:string;
+  EndDate?:string;
 
-  baseUrl='https://b795-2402-3a80-16ab-28b6-45ad-81b2-23b4-e8f3.in.ngrok.io/api/';
-  baseUrldownload ='https://b795-2402-3a80-16ab-28b6-45ad-81b2-23b4-e8f3.in.ngrok.io/Attachments/Temp/';
+  baseUrl='https://e9df-2402-3a80-16af-53b0-ddd-b390-c5a3-51f6.in.ngrok.io/api/';
+  baseUrldownload =this.baseUrl+'/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -41,7 +43,18 @@ export class ApiService {
       'OrderByColumn': OrderByColumn,
       'StatusId':statusId
     }
+    console.log(g)
     return this.api.post(this.baseUrl+'Schedules/GetApplicantsParam',g,{})
+
+  }
+  getActionList(PageNumber:number,statusId?:number,StartDate?:string,EndDate?:string,PageSize:number=4){
+
+    const g={
+      'CurrentPageNumber':PageNumber,
+      'PageSize':PageSize,
+    }
+    console.log(g,statusId,StartDate,EndDate)
+    return this.api.post(this.baseUrl+'AdvancedSearch/AdvancedActionSearch?StatusId='+statusId+'&StartDate='+StartDate+'&EndDate='+EndDate,g,{})
 
   }
 
@@ -117,8 +130,8 @@ export class ApiService {
 
   async showAlertF() {
     const alert = await this.alertController.create({
-      header: 'Server Down',
-      message: 'Please Contact Harsh Dudhat',
+      header: 'Error Retriving list',
+      message: 'Please retry',
       buttons: ['OK']
     });
      await alert.present();
@@ -195,6 +208,10 @@ export class ApiService {
    return await this.api.downloadFile(this.baseUrldownload+filename, {}, {}, filePath);
     }
 
+
+    getEventDetails(){
+      return this.api.get(this.baseUrl+'Dashboard/GetEvents',{},{});
+    }
   }
 
 

@@ -19,7 +19,9 @@ export class ApplicantRegistrationFormPage implements OnInit {
 
 file!:File;
 lable=Constant;
-currentDate = new Date().toISOString();
+currentDate1 = new Date();
+currentDate! : string;
+
 date!:Date;
 selectedFileUrl: string = '';
 
@@ -39,6 +41,8 @@ selectedFileUrl: string = '';
     console.log("fired1");
   }
   ngOnInit() {
+     this.currentDate1.setFullYear(this.currentDate1.getFullYear() - 18);
+     this.currentDate = this.currentDate1.toISOString()
   }
 
   list:any;

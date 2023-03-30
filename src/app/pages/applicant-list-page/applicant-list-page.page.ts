@@ -4,7 +4,7 @@ import { ApplicantFilterPage } from './../filter/applicant-filter/applicant-filt
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Platform } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
+import { ModalController,MenuController } from '@ionic/angular';
 import { Constant } from 'src/app/constant';
 
 
@@ -30,11 +30,21 @@ export class ApplicantListPagePage implements OnInit {
   constructor(public api:ApiService ,
      private plt:Platform,
      public modalController: ModalController,
-     private router:Router
+     private router:Router,
+     private menuController:MenuController
       ) {
 
    }
 
+   ionViewWillEnter() {
+    this.menuController.enable(true,'gg');
+    console.log("fired");
+  }
+
+  ionViewWillLeave() {
+    this.menuController.enable(false,'gg');
+    console.log("fired1");
+  }
   async ngOnInit() {
     this.plt.ready().then(_=>{
       this.onLoadData();

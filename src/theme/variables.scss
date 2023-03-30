@@ -30,11 +30,22 @@
         padding: 10px;
     }
     .cal-alert-time{
-      font-size: 15px;
-      color: red;
+    font-size: 19px;
+    margin-right: 26px;
+    justify-content: left;
+    display: flex;
+    align-items: center;
+
     }
     .cal-alert-svg{
       font-size: 20px;
+      margin-right: 10px;
+
+    }
+    .cal-alert-svg2{
+      font-size: 20px;
+      margin-right: 10px;
+
     }
     .cal-alert-interviewer{
       font-size: 20px;
@@ -457,7 +468,20 @@
       background-color: red !important;
       color: #fff;
   }
-
+  .calendar-event-inner {
+    overflow: hidden;
+    background-color: var(--ion-color-primary-light) !important;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    padding: 2px;
+    font-weight: 900;
+    align-items: center;
+    line-height: 15px;
+    text-align: initial;
+    display: flex;
+    justify-content: center;
+}
 
   //Custom button depending Status
 

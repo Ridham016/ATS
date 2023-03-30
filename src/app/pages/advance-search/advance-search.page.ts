@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { Constant } from 'src/app/constant';
 import { AdvanceSearchFilterPage } from '../filter/advance-search-filter/advance-search-filter.page';
@@ -12,6 +12,8 @@ import { AdvanceSearchFilterPage } from '../filter/advance-search-filter/advance
   styleUrls: ['./advance-search.page.scss'],
 })
 export class AdvanceSearchPage implements OnInit{
+
+
 
 
   @ViewChild('swiper') swiper: any;
@@ -28,10 +30,21 @@ totalRecord:any=1;
 constructor(public api:ApiService ,
    private plt:Platform,
    public modalController: ModalController,
-   private router:Router
+   private router:Router,
+   private menuController:MenuController
     ) {
 
  }
+
+ ionViewWillEnter() {
+  this.menuController.enable(true,'gg');
+  console.log("fired");
+}
+
+ionViewWillLeave() {
+  this.menuController.enable(false,'gg');
+  console.log("fired1");
+}
 
 async ngOnInit() {
   this.plt.ready().then(_=>{

@@ -87,7 +87,8 @@
       "cordova-plugin-advanced-http": {
         "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
       },
-      "cordova-plugin-file-opener2": {}
+      "cordova-plugin-file-opener2": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "android"

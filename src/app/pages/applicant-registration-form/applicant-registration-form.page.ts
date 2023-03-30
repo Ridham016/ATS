@@ -1,3 +1,4 @@
+import { MenuController } from '@ionic/angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Applicant, ApplicantDetails } from 'src/app/Model/applicant-details';
@@ -24,10 +25,19 @@ selectedFileUrl: string = '';
 
   constructor(private a:ApiService,
     private router:Router,
-
+    private menuController:MenuController
     ) {
   }
 
+  ionViewWillEnter() {
+    this.menuController.enable(true,'gg');
+    console.log("fired");
+  }
+
+  ionViewWillLeave() {
+    this.menuController.enable(false,'gg');
+    console.log("fired1");
+  }
   ngOnInit() {
   }
 

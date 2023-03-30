@@ -202,7 +202,9 @@ export class ApplicantDetailPage implements OnInit {
   download(fname:string){
     this.api.showLoader();
     const filePath =  this.file.externalRootDirectory + '/Download/' + fname;
+    console.log(filePath)
     this.api.downloadFile(fname, filePath).then((res:any) =>{
+      console.log(res)
       if(res){
         this.api.hideLoader();
       // this.api.showAlertdownloadS();
@@ -210,6 +212,7 @@ export class ApplicantDetailPage implements OnInit {
   .then(() => console.log('File opened successfully'))
   .catch((error) => console.error('Error opening file', error));
   }}).catch(error =>{
+    console.log(error)
     this.api.showAlertdownloadF();
   });
   }

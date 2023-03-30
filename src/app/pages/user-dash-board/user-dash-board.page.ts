@@ -5,6 +5,7 @@ import { CalendarComponent, CalendarMode } from 'ionic2-calendar';
 import { IEvent } from 'ionic2-calendar/calendar.interface';
 import { AlertController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
+import{MenuController} from '@ionic/angular'
 
 function getRandomDate(): Date {
   const date = new Date();
@@ -37,9 +38,20 @@ export class UserDashBoardPage implements OnInit {
 
   constructor(private alertCtrl: AlertController,
     private api:ApiService,
-    private plt :Platform
+    private plt :Platform,
+    private menuController:MenuController
     ) {}
 
+
+    ionViewWillEnter() {
+      this.menuController.enable(true,'gg');
+      console.log("fired");
+    }
+
+    ionViewWillLeave() {
+      this.menuController.enable(false,'gg');
+      console.log("fired1");
+    }
   ngOnInit() {
     this.plt.ready().then(_=>{
       this.onloadEventDetails()
@@ -89,6 +101,8 @@ export class UserDashBoardPage implements OnInit {
       this.eventSource=events;
 
     console.log(this.eventSource);
+  }).catch(_=>{
+    this.api.showAlertF();
   })
 }
 
@@ -97,10 +111,10 @@ export class UserDashBoardPage implements OnInit {
     const end = formatDate(event.endTime, 'medium', 'en-US');
     console.log(this.eventSource);
     const alert = await this.alertCtrl.create({
-      header: 'Title : ' + event.title,
-
-      message: `From : ${start}<br><br>To : ${end}<br><br>Level: <br> <br> Interviewer Name:`,
-      buttons:  [{
+      // message: `<div class="cal-alert-time"><ion-icon class="cal-alert-svg" name="time-outline"></ion-icon>${start}</div><div class="cal-alert-time fw-bold"><ion-icon class="cal-alert-svg"  name="person-sharp"></ion-icon> ${event.ApplicantName}</div><div class="cal-alert-interviewer"><span><ion-icon class="cal-alert-svg2" name="attach-outline"></ion-icon></span>${event.InterviewerName}</div>`,
+      message: `<div><p class="mb-2"><span><ion-icon class="cal-alert-svg" name="time-outline"></ion-icon></span><span>${start}</span></p><p class="mb-2"><span><ion-icon class="cal-alert-svg" name="person-sharp"></ion-icon></span><span>Meeting with <span class="fw-bold">${event.ApplicantName}</span></span></p><p class="mb-0"><span> <ion-icon class="cal-alert-svg2" name="attach-outline"></ion-icon>By ${event.InterviewerName} </span></p></div>`,
+      cssClass:'cal-alert',
+       buttons:  [{
         text: 'ok',
         role: 'cancel',
         handler: () => {},

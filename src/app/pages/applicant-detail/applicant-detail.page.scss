@@ -25,15 +25,22 @@ ion-badge {
 
 .button-grid {
 
-margin: 0 auto;
-padding: 0;
-list-style: none;
 
-li{
-  float: left;
-  width: 45%;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0px;
     margin: 1.8%;
-}
+
+// margin: 0 auto;
+// padding: 0;
+// list-style: none;
+
+// li{
+//   float: left;
+//   width: 45%;
+//     margin: 1.8%;
+// }
 
 
 }

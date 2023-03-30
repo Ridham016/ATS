@@ -112,8 +112,8 @@
             <ion-label>Authentication</ion-label>
         </ion-item>
         <div  slot="content">
-          <ul class="button-grid">
-            <li *ngFor="let but of but_data" > <ion-button
+          <ion-row class="button-grid">
+            <ion-col *ngFor="let but of but_data" > <ion-button
               [ngClass]=
               "{
               'button-1': but.ButtonId === 1,
@@ -127,8 +127,8 @@
 
             }"
             (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)"
-            >{{but.ButtonName}}</ion-button></li>
-          </ul>
+            >{{but.ButtonName}}</ion-button></ion-col>
+          </ion-row>
 
         </div>
     </ion-accordion>

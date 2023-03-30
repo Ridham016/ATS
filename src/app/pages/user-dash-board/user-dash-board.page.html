@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="ion-no-border">
-    <ion-title>User DashBoard</ion-title>
+    <ion-title>DashBoard</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
@@ -14,7 +14,7 @@
       refreshingSpinner="circles"  ></ion-refresher-content>
     </ion-refresher>
     <div class="segment-container">
-  <ion-segment  [(ngModel)]="calendar.mode">
+  <ion-segment  [(ngModel)]="calendar.mode" class="cal-mode-row">
     <ion-segment-button value="month">
       <ion-label>Month</ion-label>
     </ion-segment-button>
@@ -25,7 +25,7 @@
       <ion-label>Day</ion-label>
     </ion-segment-button>
   </ion-segment>
-  <ion-button (click)="today()" fill="clear">Today</ion-button>
+  <ion-button (click)="today()" color="primary-dark">Today</ion-button>
     </div>
 
 

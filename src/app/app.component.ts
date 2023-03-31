@@ -41,9 +41,7 @@ export class AppComponent implements OnInit {
 
   }
   initializeApp(){
-    this.plt.ready().then(()=>{
-      this.router.navigateByUrl('splash-screen');
-    })
+
   }
 
   ngOnInit() {

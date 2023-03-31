@@ -19,7 +19,7 @@ export class ApiService {
   StartDate?:string;
   EndDate?:string;
 
-  baseUrl='https://e9df-2402-3a80-16af-53b0-ddd-b390-c5a3-51f6.in.ngrok.io/api/';
+  baseUrl='https://5e6f-117-99-57-97.in.ngrok.io/api/';
   baseUrldownload ='https://e9df-2402-3a80-16af-53b0-ddd-b390-c5a3-51f6.in.ngrok.io/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,

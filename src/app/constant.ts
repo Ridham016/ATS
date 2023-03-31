@@ -21,12 +21,14 @@ export const Constant= {
    CurrentLocation: "Current Location",
    PreferedLocation: "Prefered Location",
    StatusName:"Current Status",
+   FullName : "Name",
 
    //Scheduling Labals
    ScheduleDate: "Schedule",
    Description :"Description",
-   Link :"Link",
+   Link :"Meeting Link",
    InterviewerName:"Interviewer Name",
+   MeetingMode :"Meeting Mode",
 
 
     StoredCurrentLocation:'',

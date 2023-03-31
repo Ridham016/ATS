@@ -20,7 +20,8 @@
 'badge-8': data.StatusId === 8
 }"
 >{{data.StatusName}}</ion-badge></h3>
-  <ion-accordion-group value="1" expand="inset" >
+
+  <!-- <ion-accordion-group value="1" expand="inset" >
     <ion-accordion value="1" >
       <ion-item slot="header" >
         <ion-label>Personal Details</ion-label>
@@ -132,5 +133,54 @@
 
         </div>
     </ion-accordion>
-  </ion-accordion-group>
+  </ion-accordion-group> -->
+<ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center"> Candidate Details </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>{{lable.FullName}}</ion-col>
+      <ion-col>{{data.FirstName}}  {{data.MiddleName}}  {{data.LastName}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>{{lable.Email}}</ion-col>
+      <ion-col>{{data.Email}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>{{lable.Address}}</ion-col>
+      <ion-col>{{data.Address}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>{{lable.DateOfBirth}}</ion-col>
+      <ion-col>{{data.DateOfBirth}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>{{lable.Phone}}</ion-col>
+      <ion-col>{{data.Phone}} </ion-col>
+    </ion-row>
+
+    <ion-row class="button-grid">
+      <ion-col *ngFor="let but of but_data" > <ion-button
+        [ngClass]=
+        "{
+        'button-1': but.ButtonId === 1,
+        'button-2': but.ButtonId === 2,
+        'button-3': but.ButtonId === 3,
+        'button-6': but.ButtonId === 6,
+        'button-7': but.ButtonId === 7,
+        'button-4': but.ButtonId === 4,
+        'button-5': but.ButtonId === 5,
+        'button-8': but.ButtonId === 8
+
+      }"
+      (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)"
+      >{{but.ButtonName}}</ion-button></ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-card>
+
 </ion-content>

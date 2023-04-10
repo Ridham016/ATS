@@ -9,7 +9,7 @@
 
 <ion-content fullscreen="true" >
   <img src="/assets/avatar.svg" class="center">
-  <h3 class="ion-text-center ion-ma" >{{data.FirstName}} {{data.LastName}}<br>
+  <h3 class="ion-text-center" >{{data.FirstName}} {{data.LastName}}<br>
     <ion-badge
     [ngClass]=
 "{
@@ -163,7 +163,9 @@
     </ion-row>
 
     <ion-row class="button-grid">
-      <ion-col *ngFor="let but of but_data" > <ion-button
+      <ion-col *ngFor="let but of but_data" >
+         <ion-button
+
         [ngClass]=
         "{
         'button-1': but.ButtonId === 1,
@@ -177,10 +179,95 @@
 
       }"
       (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)"
-      >{{but.ButtonName}}</ion-button></ion-col>
+      >{{but.ButtonName}}</ion-button>
+
+    </ion-col>
     </ion-row>
 
   </ion-grid>
-</ion-card>
+</ion-card>`
+
+
+<ion-modal #modalcancelInterview (ionModalDidDismiss)="onDismiss()" [isOpen]="isModalVisibleother" [initialBreakpoint]="0.50">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Cancel Interview</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalcancelInterview.dismiss(isModalVisibleCI=false)">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content >
+      <ion-card class="custom-card">
+      <form #form="ngForm">
+
+            <ion-item fill="outline" class="mt-4">
+              <ion-label position="floating">Reason</ion-label>
+              <ion-select placeholder="Reason" name="reason"[(ngModel)]="reasonDropDown" interface="popover">
+                <ion-select-option *ngFor="let item of reasonList" value="{{item.ReasonId}}">{{item.Reason}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item fill="outline" class="mt-4">
+              <ion-textarea  placeholder="Enter Reason For Cancelaltion" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
+              <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
+            </ion-item>
+            <ion-button fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Create  </ion-button>
+      </form>
+    </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<ion-modal #modalholdReason (ionModalDidDismiss)="onDismiss()" [isOpen]="isModalVisibleHR" [initialBreakpoint]="0.50">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Cancel Interview</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalholdReason.dismiss(isModalVisibleHR=false)">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content >
+      <ion-card class="custom-card">
+      <form #form="ngForm">
+
+            <ion-item fill="outline" class="mt-4">
+              <ion-textarea  placeholder="Enter Reason For Cancelaltion" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
+              <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
+            </ion-item>
+            <ion-button fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Create  </ion-button>
+      </form>
+    </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+<ion-modal #modalComment (ionModalDidDismiss)="onDismiss()" [isOpen]="isModalVisibleother" [initialBreakpoint]="0.50">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Cancel Interview</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalComment.dismiss(isModalVisibleother =false)">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content >
+      <ion-card class="custom-card">
+      <form #form="ngForm">
+
+            <ion-item fill="outline" class="mt-4">
+              <ion-textarea  placeholder="Enter Comment" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
+              <ion-note *ngIf="!address.valid && address.touched" color="danger">Comment is Required</ion-note>
+            </ion-item>
+            <ion-button fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Create  </ion-button>
+      </form>
+    </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
 </ion-content>

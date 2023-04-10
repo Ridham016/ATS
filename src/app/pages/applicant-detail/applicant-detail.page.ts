@@ -16,13 +16,21 @@ export class ApplicantDetailPage implements OnInit {
 
   //*Local Variales
   ApplicantId!:number;
+  nextStatusId!:number;
   data:any=[];
+  isModalVisibleHR = false;
+  isModalVisibleother = false;
+  isModalVisibleCI = false;
   ActionId! : number |any;
   but_data:any=[];
   reasonList:any=[];
+  reasonDropDown!:number;
+  reasonTextBox!:string;
+  comment!:string;
   lable=Constant;
   StatusId=0;
   selectedvalue:any;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,8 +39,55 @@ export class ApplicantDetailPage implements OnInit {
     private router:Router,
     private file:File,
     private fileOpener: FileOpener
-  ) { }
+  ) {
 
+  }
+
+onCancleMeating(){
+    console.log(this.reasonTextBox,this.reasonDropDown)
+    this.api.StatusUpdate(this.ApplicantId,this.nextStatusId).then(async (res)=>{
+                this.ActionId = JSON.parse(res.data)
+                this.ActionId = this.ActionId['Result']
+                this.ActionId = this.ActionId[1]
+                console.log(this.ActionId);
+
+            }).then(_=>{
+              console.log(this.ActionId,)
+              this.api.upDateReason(this.ActionId,this.reasonDropDown,this.reasonTextBox).then(res=>{
+                if(res.status==200){
+                  this.router.navigate(['/menu/applicant-list-page']).then(() => {
+                    window.location.reload();;
+                  })
+                }
+              })
+
+            })
+  }
+  onHold(){
+    console.log(this.reasonTextBox,this.reasonDropDown)
+    this.api.StatusUpdate(this.ApplicantId,this.nextStatusId).then(async (res)=>{
+                this.ActionId = JSON.parse(res.data)
+                this.ActionId = this.ActionId['Result']
+                this.ActionId = this.ActionId[1]
+                console.log(this.ActionId);
+
+            }).then(_=>{
+              console.log(this.ActionId,)
+              this.api.onHoldStatus(this.ActionId,this.reasonTextBox).then(res=>{
+                if(res.status==200){
+                  this.router.navigate(['/menu/applicant-list-page']).then(() => {
+                    window.location.reload();;
+                  })
+                }
+              })
+
+            })
+  }
+  onDismiss(){
+    this.isModalVisibleCI = false;
+    this.isModalVisibleHR = false;
+    this.isModalVisibleother = false;
+  }
  async ngOnInit() {
     //*Gettig id Passed through Param
     this.api.showLoader();
@@ -63,9 +118,11 @@ export class ApplicantDetailPage implements OnInit {
 
   }
   async onStatusUpdate(currStatusId:number,nextStatusId:number){
+
+    this.nextStatusId=nextStatusId;
     //*Navigate to schedulling Page
     if(currStatusId==3){
-    this.router.navigate(['scheduling-form'],
+    this.router.navigate(['/menu/scheduling-form'],
     {
       queryParams: {
         id:this.ApplicantId,
@@ -75,126 +132,44 @@ export class ApplicantDetailPage implements OnInit {
     )
   }
   else if(currStatusId==7){
-    const alert = await this.alertCtrl.create({
-      header: 'Select an option',
-      cssClass:'custom-alert',
-      inputs: this.reasonList.map((val:any) => {
-
-        return {
-          type: 'radio',
-          label: val.Reason,
-          value: val.ReasonId
-        }
-      }),
-
-      buttons: [
-        {
-          text: 'Submit',
-          handler: (alert) => {
-           console.log('Selected value:', alert);
-          this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(async (res)=>{
-              console.log(res.data)
-              this.ActionId = JSON.parse(res.data)
-              this.ActionId = this.ActionId['Result']
-              this.ActionId = this.ActionId[1]
-              console.log(this.ActionId);
-
-          }).then(_=>{
-            console.log(this.ActionId,alert)
-            this.api.upDateReason(this.ActionId,alert).then(res=>{
-              if(res.status==200){
-                this.router.navigate(['applicant-list-page']).then(() => {
-                  window.location.reload();;
-                })
-              }
-            })
-
-          })
-          }
-        }
-      ]
-    });
-    await alert.present();
+    console.log("hiiii")
+    this.isModalVisibleCI = true;
   }
 
   else if(currStatusId==4){
-    const alert = await this.alertCtrl.create({
-      header: 'Select an option',
-      message: 'Choose an option from the dropdown',
-      inputs:[
-        {
-          name: 'text',
-          type: 'textarea',
-          placeholder: 'Enter text here...'
-        }
-      ],
-
-      buttons: [ {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-          console.log('Confirm Cancel');
-        }
-      },
-        {
-          text: 'Submit',
-          handler: (alert) => {
-           console.log('Selected value:', alert.text);
-          this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(async (res)=>{
-              console.log(res.data)
-              this.ActionId = JSON.parse(res.data)
-              this.ActionId = this.ActionId['Result']
-              this.ActionId = this.ActionId[1]
-              console.log(this.ActionId);
-
-          }).then(_=>{
-            console.log(this.ActionId,alert.text)
-            this.api.onHoldStatus(this.ActionId,alert.text).then(res=>{
-              console.log(res)
-              if(res.status==200){
-                this.router.navigate(['applicant-list-page']).then(() => {
-                  window.location.reload();
-                })
-              }
-            })
-
-          })
-          }
-        }
-      ]
-    });
-    await alert.present();
+    this.isModalVisibleHR = true;
   }
 
   else{
-    const alert = await this.alertCtrl.create({
-      header: 'Confirm',
-      message: 'Are you sure?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-          }
-        }, {
-          text: 'Ok',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(res=>{
-              if(res.status==200){
-                this.router.navigate(['applicant-list-page']).then(() => {
-                  window.location.reload();;
-                })
-              }
-            })
-          }
-          }
-      ]
-    });
-    await alert.present();
+    // const alert = await this.alertCtrl.create({
+    //   header: 'Confirm',
+    //   message: 'Are you sure?',
+    //   buttons: [
+    //     {
+    //       text: 'Cancel',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: (blah) => {
+    //       }
+    //     }, {
+    //       text: 'Ok',
+    //       handler: () => {
+    //         console.log('Confirm Okay');
+    //         this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(res=>{
+    //           if(res.status==200){
+    //             this.router.navigate(['applicant-list-page']).then(() => {
+    //               window.location.reload();;
+    //             })
+    //           }
+    //         })
+    //       }
+    //       }
+    //   ]
+    // });
+    // await alert.present();
+    this.isModalVisibleother=true;
   }
+
 
   }
 
@@ -206,10 +181,10 @@ export class ApplicantDetailPage implements OnInit {
     this.api.downloadFile(fname, filePath).then((res:any) =>{
       console.log(res)
       if(res){
-        this.api.hideLoader();
-      // this.api.showAlertdownloadS();
       this.fileOpener.open(filePath, 'application/pdf')
-  .then(() => console.log('File opened successfully'))
+  .then(() => console.log('File opened successfully')).then(_=>{
+    this.api.hideLoader();
+  })
   .catch((error) => console.error('Error opening file', error));
   }}).catch(error =>{
     console.log(error)

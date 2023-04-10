@@ -15,6 +15,7 @@ interviewerList:any =[];
 statusID!: number;
 ActionId! : number |any;
 ApplicantId!: number;
+LinkDisabled!:boolean
 
   constructor(private plt:Platform ,private api :ApiService,public router:Router,private activatedRoute:ActivatedRoute) { }
   labal=Constant;
@@ -34,7 +35,19 @@ ApplicantId!: number;
     })
   }
 
+
+  disableLink(event: any) {
+    if (event.detail.value == "0") { // value of selected fresher option
+      this.LinkDisabled = true;
+
+    } else {
+      console.log('triggered')
+      this.LinkDisabled = false;
+    }
+  }
+
  async onScheduleCall(){
+  console.log(this.schedule)
 
    await this.api.StatusUpdate(this.ApplicantId,this.statusID).then(res=>{
       console.log(res.data)
@@ -47,11 +60,11 @@ ApplicantId!: number;
       this.api.scheduleMeeting(this.schedule,this.ActionId).then(res=>{
         console.log(res)
         if(res.status==200){
-          this.router.navigate(['/user-dash-board']);
+          this.router.navigateByUrl('/menu/user-dash-board');
 
         }
       })
-    
+
     }
 
 

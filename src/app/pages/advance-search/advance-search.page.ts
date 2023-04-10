@@ -39,11 +39,13 @@ constructor(public api:ApiService ,
  ionViewWillEnter() {
   this.menuController.enable(true,'gg');
   console.log("fired");
+  this.menuController.close();
 }
 
 ionViewWillLeave() {
   this.menuController.enable(false,'gg');
   console.log("fired1");
+  this.menuController.close();
 }
 
 async ngOnInit() {
@@ -175,7 +177,7 @@ onLoadData(event?: any){
 }
 
 navigate(Applicantid:number){
-  this.router.navigate(['applicant-detail'], {
+  this.router.navigate(['menu/action-history'], {
     queryParams: {
       id:Applicantid
     }

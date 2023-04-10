@@ -39,11 +39,13 @@ export class ApplicantListPagePage implements OnInit {
    ionViewWillEnter() {
     this.menuController.enable(true,'gg');
     console.log("fired");
+    this.menuController.close();
   }
 
   ionViewWillLeave() {
     this.menuController.enable(false,'gg');
     console.log("fired1");
+    this.menuController.close();
   }
   async ngOnInit() {
     this.plt.ready().then(_=>{
@@ -69,7 +71,7 @@ export class ApplicantListPagePage implements OnInit {
         ApiList=ApiList['Result']
         console.log(ApiList)
         this.list=ApiList
-        this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/4);
+        this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/5);
         console.log(this.totalRecord)
         this.api.Activelist=this.list;
         this.api.hideLoader();
@@ -139,13 +141,10 @@ export class ApplicantListPagePage implements OnInit {
       console.log(ApiList)
       this.list=ApiList
       this.api.Activelist=this.list;
-      this.api.hideLoader();
-
     }).catch(error=>{
       console.log(error)
-      this.api.hideLoader();
       this.api.showAlertF();
-    });
+    }).finally(()=> this.api.hideLoader());
 
   }
 
@@ -160,7 +159,7 @@ export class ApplicantListPagePage implements OnInit {
       console.log(ApiList)
       this.list=ApiList;
       this.api.Activelist=this.list;
-      this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/4);
+      this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/5);
       this.api.hideLoader();
 
 
@@ -173,7 +172,7 @@ export class ApplicantListPagePage implements OnInit {
   }
 
   navigate(Applicantid:number){
-    this.router.navigate(['applicant-detail'], {
+    this.router.navigate(['/menu/applicant-detail'], {
       queryParams: {
         id:Applicantid
       }

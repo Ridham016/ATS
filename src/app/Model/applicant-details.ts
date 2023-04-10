@@ -18,17 +18,23 @@ export class Applicant {
   TotalExperience!: string;
   ApplicantDate!:Date;
   DetailedExperience!: string;
-  CurrentCTC!: number;
-  ExpectedCTC!: number;
+  CurrentCTC!: string;
+  ExpectedCTC!: string;
   NoticePeriod!: number;
   ReasonForChange!: string;
   CurrentLocation!: string;
   PreferedLocation!: string;
+  PortfolioLink!:string;
+  LinkInLink!:string;
+  OtherLink!:string;
+  SkillDescription!:string;
+  DOJ!:string;
 }
 export class Scheduling{
   Description!:string;
   ScheduleDateTime!:Date;
   ScheduleLink!:string;
   InterviewerId!: number;
+  ModeofInterView!:number;
 }
 

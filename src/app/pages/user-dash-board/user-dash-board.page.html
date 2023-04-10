@@ -6,13 +6,7 @@
     </ion-buttons>
 
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
-    <ion-refresher slot="fixed"  (ionRefresh)="handleRefresh($event)">
-      <ion-refresher-content
-      refreshingSpinner="circles"  ></ion-refresher-content>
-    </ion-refresher>
+  <div>
     <div class="segment-container">
   <ion-segment  [(ngModel)]="calendar.mode" class="cal-mode-row">
     <ion-segment-button value="month">
@@ -27,6 +21,15 @@
   </ion-segment>
   <ion-button (click)="today()" color="primary-dark">Today</ion-button>
     </div>
+  </div>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed"  (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content
+      refreshingSpinner="circles"  ></ion-refresher-content>
+    </ion-refresher>
+
 
 
 
@@ -58,8 +61,8 @@
     [currentDate]="calendar.currentDate"
     (onTitleChanged)="onViewTitleChanged($event)"
     (onEventSelected)="onEventSelected($event)"
-    [startHour]="9"
-    [endHour]="18"
+    [startHour]="0"
+    [endHour]="24"
   ></calendar>
 </div>
 

@@ -46,15 +46,20 @@ export class UserDashBoardPage implements OnInit {
     ionViewWillEnter() {
       this.menuController.enable(true,'gg');
       console.log("fired");
+      this.menuController.close();
     }
 
     ionViewWillLeave() {
       this.menuController.enable(false,'gg');
       console.log("fired1");
+      this.menuController.close();
     }
-  ngOnInit() {
-    this.plt.ready().then(_=>{
-      this.onloadEventDetails()
+ async ngOnInit() {
+    this.plt.ready().then(async _=>{
+      this.plt.backButton.subscribeWithPriority(9999, () => {
+        (navigator as any)['app'].exitApp();
+      });
+     await this.onloadEventDetails()
     })
   }
 
@@ -101,7 +106,8 @@ export class UserDashBoardPage implements OnInit {
       this.eventSource=events;
 
     console.log(this.eventSource);
-  }).catch(_=>{
+  }).catch(error=>{
+    console.log(error)
     this.api.showAlertF();
   })
 }

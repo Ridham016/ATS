@@ -17,7 +17,7 @@
   <ng-template swiperSlide >
 
     <ion-card >
-      
+
     <form class="ion-padding"  #form="ngForm">
 
       <h1 class="form-title">Details</h1>
@@ -70,7 +70,8 @@
 
       </ion-item>
       <ion-button fill="solid" size="medium" (click)="onButtonClick(1)" color="primary-dark" [disabled]="!form.valid" (click)="progress=.66"  >
-        <ion-icon slot="end" name="chevron-forward-sharp"></ion-icon> Next </ion-button>
+
+        <ion-icon slot="end" name="chevron-forward-sharp"  ></ion-icon> Next </ion-button>
       </form>
 
   </ion-card>
@@ -83,46 +84,67 @@
 
         <h1 class="form-title" >Professional Details</h1>
 
-        <ion-item fill="outline"  class="my-input" >
+        <ion-item fill="outline" class="my-input">
+          <ion-label position="floating"> {{lable.Status}}</ion-label>
+          <ion-select placeholder="Select Mode" name="meetingmode" interface="popover" requried [(ngModel)]="selectedStatus" #meetingmode="ngModel" (ionChange)="disableCurrentCompany($event)">
+            <ion-select-option *ngFor="let item of ApplicantStatus " value={{item.value}}>{{item.label}}</ion-select-option>
+          </ion-select>
+          <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Link is required</ion-note>
+        </ion-item>
+
+        <ion-item fill="outline"  class="my-input" *ngIf="selectedStatus">
           <ion-label position="floating"> {{lable.CurrentCompany}} </ion-label>
-          <ion-input  placeholder="Enter CurrentCompany" type="text" name="company" required [(ngModel)]="details.CurrentCompany" #currentcomp="ngModel"></ion-input>
+          <ion-input  placeholder="Enter CurrentCompany"  type="text" name="company" [disabled]="currentCompanyDisabled" required [(ngModel)]="details.CurrentCompany" #currentcomp="ngModel"></ion-input>
           <ion-note *ngIf="!currentcomp.valid && currentcomp.touched" color="danger">Current Company is required</ion-note>
         </ion-item>
 
-        <ion-item fill="outline"  class="my-input" >
+        <ion-item fill="outline"  class="my-input" *ngIf="selectedStatus">
           <ion-label position="floating"> {{lable.CurrentDesignation}} </ion-label>
-          <ion-input  placeholder="Enter Current Designation" type="text" name="designation" required [(ngModel)]="details.CurrentDesignation" #currentdeg="ngModel"></ion-input>
+          <ion-input  placeholder="Enter Current Designation" type="text" name="designation" [disabled]="currentCompanyDisabled" required [(ngModel)]="details.CurrentDesignation" #currentdeg="ngModel"></ion-input>
           <ion-note *ngIf="!currentdeg.valid && currentdeg.touched" color="danger">Currrent Designation is required</ion-note>
         </ion-item>
 
-        <ion-item fill="outline"  class="my-input" >
+        <ion-item fill="outline"  class="my-input" *ngIf="selectedStatus" >
           <ion-label position="floating"> {{lable.TotalExperience}} </ion-label>
-          <ion-input  placeholder="Total Experience" type="number" name="totalexp" maxlength="4" required [(ngModel)]="details.TotalExperience" #totalexp="ngModel"></ion-input>
+          <ion-textarea  placeholder="Total Experience"  name="totalexp" maxlength="4" [disabled]="currentCompanyDisabled" required [(ngModel)]="details.TotalExperience" #totalexp="ngModel"></ion-textarea>
           <ion-note *ngIf="!totalexp.valid && totalexp.touched" color="danger">Total Experience is required</ion-note>
         </ion-item>
 
-        <ion-item fill="outline" class="my-input">
+        <ion-item fill="outline" class="my-input" *ngIf="selectedStatus">
           <ion-label position="floating"> {{lable.DetailedExperience}} </ion-label>
-          <ion-input  placeholder="Detailed Experience" type="number"  name="detailedexp" maxlength="4" required [(ngModel)]="details.DetailedExperience" #detailedexp="ngModel"></ion-input>
+          <ion-textarea  placeholder="Detailed Experience"   name="detailedexp" maxlength="4" [disabled]="currentCompanyDisabled" required [(ngModel)]="details.DetailedExperience" #detailedexp="ngModel"></ion-textarea>
           <ion-note  *ngIf="!detailedexp.valid && detailedexp.touched" color="danger">Enter Current Field Experience</ion-note>
           <ion-note slot="helper"> Enter Current Designation Experience</ion-note>
         </ion-item>
 
-        <ion-item fill="outline"  class="my-input" >
-          <ion-label position="floating">{{lable.NoticePeriod}} </ion-label>
-          <ion-input  placeholder="Enter Notice Period" type="number" name="NoticePeriod" maxlength="2" required [(ngModel)]="details.NoticePeriod"  #notice="ngModel"  ></ion-input>
-          <ion-note *ngIf="!notice.valid && notice.touched" color="danger">Notice Period is required</ion-note>
+
+        <ion-item fill="outline"  class="my-input" *ngIf="selectedStatus" >
+          <ion-label position="floating">{{lable.CurrentCTC}}</ion-label>
+          <ion-textarea  placeholder="Enter " name="currentctc" maxlength="4" required [disabled]="currentCompanyDisabled" [(ngModel)]="details.CurrentCTC" #cctc="ngModel"></ion-textarea>
+          <ion-note *ngIf="!cctc.valid && cctc.touched" color="danger"> CTC is required</ion-note>
+        </ion-item>
+
+        <ion-item fill="outline"  class="my-input" *ngIf="selectedStatus" >
+          <ion-label position="floating"> {{lable.ReasonForChange}}  </ion-label>
+          <ion-input  placeholder="Reason For Change" type="text" name="reason" [disabled]="currentCompanyDisabled"  required [(ngModel)]="details.ReasonForChange" #reason="ngModel"></ion-input>
+          <ion-note *ngIf="!reason.valid && reason.touched" color="danger">Reason is required</ion-note>
+        </ion-item>
+
+        <ion-item fill="outline" class="my-input" *ngIf="selectedStatus">
+          <ion-label position="floating"> {{lable.CurrentLocation}} </ion-label>
+          <ion-input  placeholder=" Current Location" type="text" name="Current_loc" [disabled]="currentCompanyDisabled"  required [(ngModel)]="details.CurrentLocation" #current_loc="ngModel"></ion-input>
+          <ion-note *ngIf="!current_loc.valid && current_loc.touched" color="danger">Location is required</ion-note>
         </ion-item>
 
         <ion-button fill="solid" size="medium" slot="start" color="primary-dark" (click)="onButtonClick(0)" (click)="progress=.33" >
           <ion-icon name="chevron-back-sharp"></ion-icon> Prev</ion-button>
-        <ion-button fill="solid" size="medium"  color="primary-dark" (click)="onButtonClick(2)" (click)="progress=1" [disabled]="!form.valid">  Next <ion-icon name="chevron-forward-sharp"></ion-icon>   </ion-button>
+          <ion-button fill="solid" size="medium"  color="primary-dark" (click)="onButtonClick(2)" (click)="progress=1" [disabled]="!form.valid || !selectedStatus">  Next <ion-icon name="chevron-forward-sharp"></ion-icon>   </ion-button>
 
       </form>
     </ion-card>
   </ng-template>
 
-  <ng-template swiperSlide>
+  <ng-template swiperSlide style="vertical-align: top">
 
     <ion-card>
       <form class="ion-padding" #form="ngForm">
@@ -130,39 +152,58 @@
         <h1 class="form-title" >Professional Details</h1>
 
         <ion-item fill="outline"  class="my-input" >
-          <ion-label position="floating">{{lable.CurrentCTC}}</ion-label>
-          <ion-input  placeholder="Enter " type="tel"  name="currentctc" maxlength="4" required [(ngModel)]="details.CurrentCTC" #cctc="ngModel"></ion-input>
-          <ion-note *ngIf="!cctc.valid && cctc.touched" color="danger"> CTC is required</ion-note>
-        </ion-item>
-
-        <ion-item fill="outline"  class="my-input" >
-          <ion-label position="floating"> {{lable.ExpectedCTC}} </ion-label>
-          <ion-input  placeholder="Enter Expected CTC" type="tel" maxlength="4" name="expectedctc" required [(ngModel)]="details.ExpectedCTC" #expctc="ngModel"></ion-input>
-          <ion-note *ngIf="!expctc.valid && expctc.touched" color="danger"> CTC is required</ion-note>
-        </ion-item>
-
-        <ion-item fill="outline"  class="my-input" >
-          <ion-label position="floating"> {{lable.ReasonForChange}}  </ion-label>
-          <ion-input  placeholder="Reason For Change" type="text" name="reason" required [(ngModel)]="details.ReasonForChange" #reason="ngModel"></ion-input>
-          <ion-note *ngIf="!reason.valid && reason.touched" color="danger">Reason is required</ion-note>
-        </ion-item>
-
-        <ion-item fill="outline" class="my-input">
-          <ion-label position="floating"> {{lable.CurrentLocation}} </ion-label>
-          <ion-input  placeholder=" Current Location" type="text" name="Current_loc" required [(ngModel)]="details.CurrentLocation" #current_loc="ngModel"></ion-input>
-          <ion-note *ngIf="!current_loc.valid && current_loc.touched" color="danger">Location is required</ion-note>
-        </ion-item>
-
-        <ion-item fill="outline"  class="my-input" >
           <ion-label position="floating"> {{lable.PreferedLocation}} </ion-label>
           <ion-input  placeholder="Enter PreferedLocation" type="text" name="PreferedLocation" required [(ngModel)]="details.PreferedLocation" #pref_loc="ngModel"></ion-input>
           <ion-note *ngIf="!pref_loc.valid && pref_loc.touched" color="danger"> Location is required</ion-note>
         </ion-item>
-        <!-- <ion-item>
-          <ion-label>File Upload</ion-label>
-          <ion-input type="file" slot="end" (change)="onFileChange($event)"></ion-input>
+
+        <ion-item fill="outline" class="my-input">
+          <ion-label position="floating"> {{lable.SkillDesc}} </ion-label>
+          <ion-textarea  placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.SkillDescription" #address="ngModel"></ion-textarea>
+          <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
         </ion-item>
-        <ion-item *ngIf="file">
+
+        <ion-item fill="outline"  class="my-input" >
+          <ion-label position="floating"> {{lable.ExpectedCTC}} </ion-label>
+          <ion-textarea  placeholder="Enter Expected CTC"  maxlength="4" name="expectedctc" required [(ngModel)]="details.ExpectedCTC" #expctc="ngModel"></ion-textarea>
+          <ion-note *ngIf="!expctc.valid && expctc.touched" color="danger"> CTC is required</ion-note>
+        </ion-item>
+
+        <ion-item fill="outline" class="my-input">
+          <ion-label position="floating">{{lable.NoticePeriod}} </ion-label>
+            <ion-textarea placeholder={{lable.NoticePeriod}} name="NoticePeriod"  required [(ngModel)]="details.NoticePeriod" #notice="ngModel" >
+              <ion-note *ngIf="!notice.valid && notice.touched" color="danger">Notice Period is required</ion-note>
+          </ion-textarea>
+        </ion-item>
+        <ion-item fill="outline" class="my-input">
+          <ion-label position="floating">{{lable.DOJ}} </ion-label>
+            <ion-textarea placeholder={{lable.DOJ}} name="NoticePeriod"  required [(ngModel)]="details.DOJ" #notice="ngModel" >
+              <ion-note *ngIf="!notice.valid && notice.touched" color="danger">Notice Period is required</ion-note>
+          </ion-textarea>
+        </ion-item>
+
+      <div class="mt-3 ms-2 mb-3">
+        <h1 class="form-title" >{{lable.Link}} </h1>
+      </div>
+      <ion-item  fill="outline"  class="my-input">
+        <ion-label position="floating">{{lable.Link1}} </ion-label>
+        <ion-input placeholder={{link[0]}} name="link"  #link1="ngModel" [(ngModel)]="link[0]"></ion-input>
+        <ion-icon name="add-circle-outline" slot="end"  (click)="addInput()" *ngIf="i<1"></ion-icon>
+      </ion-item>
+
+        <ion-item *ngFor="let input of inputs ;let i = index"  fill="outline"  class="my-input">
+          <ion-label position="floating" *ngIf="i===0" >{{lable.Link2}}</ion-label>
+          <ion-label position="floating" *ngIf="i===1">{{lable.Link3}}</ion-label>
+          <ion-input placeholder={{link[i+1]}} name="link" #link1="ngModel" [(ngModel)]="link[i+1]"></ion-input>
+          <ion-icon *ngIf="i === inputs.length - 1 && i<1" name="add-circle-outline" slot="end" (click)="addInput()" ></ion-icon>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label>File Upload</ion-label>
+          <ion-input type="file" slot="end" accept="application/pdf" (change)="onFileChange($event)"></ion-input>
+        </ion-item>
+        <!-- <ion-item *ngIf="file">
             <img [src]="selectedFileUrl" />
         </ion-item> -->
 

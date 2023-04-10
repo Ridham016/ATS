@@ -1,6 +1,7 @@
 <ion-header>
 </ion-header>
 <ion-content >
+
 <div id="header">
   <div id="app-bar">
       <div id="logo">
@@ -12,29 +13,32 @@
 
 <div class="wrapper">
 
+
   <ion-card class="custom-card" >
+    <form #form="ngForm">
     <ion-card-content>
-      <ion-item fill="outline" shape="round">
+      <ion-item fill="outline" >
         <ion-icon name="mail" slot="start"></ion-icon>
         <ion-label position="floating">Email</ion-label>
-
-        <ion-input class="input" type="email" ></ion-input>
+        <ion-input class="input" type="email" name="email" required [(ngModel)]="user.Email" #email="ngModel" ></ion-input>
+        <ion-note *ngIf="!email.valid && email.touched" color="danger">Description is required</ion-note>
       </ion-item>
 
-      <ion-item  fill="outline" shape="round">
+      <ion-item  fill="outline" >
         <ion-icon slot="start" name="key"></ion-icon>
         <ion-label position="floating">Password</ion-label>
-
-        <ion-input class="input" type="password" ></ion-input>
+        <ion-input class="input" type="password"  name="password" required [(ngModel)]="user.Password" #pass="ngModel" ></ion-input>
+        <ion-note *ngIf="!pass.valid && pass.touched" color="danger">Description is required</ion-note>
       </ion-item>
 
-      <ion-item fill="outline"  lines="none" shape="round">
-        <ion-checkbox [(ngModel)]="rememberMe" slot="start"></ion-checkbox>
+      <ion-item fill="outline"  lines="none" >
+        <ion-checkbox [(ngModel)]="user.RememberMe"  name="rememberMe" slot="start"></ion-checkbox>
         <ion-label>Remember Me</ion-label>
       </ion-item>
 
-      <ion-button expand="block" (click)="onSubmit()" routerLink="/user-dash-board"> Login</ion-button>
+      <ion-button expand="block" (click)="onSubmit()" [disabled]="!form.valid"> Login</ion-button>
     </ion-card-content>
+  </form>
   </ion-card>
 </div>
 </ion-content>

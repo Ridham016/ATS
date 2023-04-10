@@ -1,11 +1,12 @@
 
-import { Injectable } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { HTTP } from "@ionic-native/http/ngx";
 import { Applicant, Scheduling } from '../Model/applicant-details';
 
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { CustomAlertService } from './custom-alert.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,23 +19,56 @@ export class ApiService {
   UploadStatusId?:number;
   StartDate?:string;
   EndDate?:string;
+  FilePath!:string;
+  FileName!:string;
+  Token!:string;
+  RoleId=1;
+  UserName!:string;
+  // headers = {
+  //   'Authorization': `${this.Token}`,
+  //   'Content-Type': 'application/json'
+  // };
 
-  baseUrl='https://5e6f-117-99-57-97.in.ngrok.io/api/';
-  baseUrldownload ='https://e9df-2402-3a80-16af-53b0-ddd-b390-c5a3-51f6.in.ngrok.io/Attachments/Temp/';
+  baseUrl='https://c773-2409-4041-6eca-785e-5c64-5ba8-1cf7-3939.ngrok-free.app/api/';
+  baseUrldownload ='https://c773-2409-4041-6eca-785e-5c64-5ba8-1cf7-3939.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
     private alertController: AlertController,
-    private alertServices :CustomAlertService
+    private alertServices :CustomAlertService,
+    private router:Router,
     ) {
       this.plt.ready().then(_=>{
         this.api.setHeader('Access-Control-Allow-Origin',this.baseUrl,'');
+        this.Token = localStorage.getItem('Token') as string;
         this.api.setRequestTimeout(10.0)
       })
 
   }
 
-  getApplicantsData(PageNumber:number,statusId?:number,PageSize:number=4,IsAscending:boolean=true,OrderByColumn='FirstName'){
+  dologin(user:{Email:string,Password:string}){
+
+    return this.api.post(`${this.baseUrl}Account/Login`,user,{})
+
+  }
+
+  getUserRole() {
+    return localStorage.getItem(String(this.RoleId));
+  }
+
+  setUserRole(role: string) {
+    localStorage.setItem(String(this.RoleId),role);
+  }
+  getToken(): string {
+    return this.Token;
+  }
+
+  setToken(token: string): void {
+    this.Token = token;
+    localStorage.setItem('Token', token);
+  }
+
+  getApplicantsData(PageNumber:number,statusId?:number,PageSize:number=5,IsAscending:boolean=true,OrderByColumn='FirstName'){
 
     const g={
       'CurrentPageNumber':PageNumber,
@@ -48,7 +82,7 @@ export class ApiService {
 
   }
   getActionList(PageNumber:number,statusId?:number,StartDate?:string,EndDate?:string,PageSize:number=4){
-
+this.api.setHeader('*','__RequestAuthToken', this.Token);
     const g={
       'CurrentPageNumber':PageNumber,
       'PageSize':PageSize,
@@ -58,40 +92,29 @@ export class ApiService {
 
   }
 
-  createApplicant(g:Applicant,formdata:any=''){
+  uploadFile(formdata:any=''){
+    this.api.setDataSerializer('multipart');
+    return this.api.post(this.baseUrl+'Upload/UploadFile?databaseName=ATS',formdata,{})
+  }
+  createApplicant(g:Applicant){
+    this.api.setDataSerializer('json');
     this.api.post(this.baseUrl+'Registrations/Register',g,{}).then(
       res=>{
         console.log('create:-',res)
         this.api.setDataSerializer('json');
         this.list=JSON.parse(res.data)
         this.UploadApplicantId=this.list['Result']
+        const g={
+          FileName:this.FileName,
+          FilePath:this.FilePath
+        }
+        this.api.post(this.baseUrl+'Registrations/FileUpload?ApplicantId='+this.UploadApplicantId+'&databaseName=ATS',g,{}).then(
+          response=>{
+            console.log('Database Res:-',response)
+          }
 
-        this.api.setDataSerializer('multipart');
-        this.api.post(this.baseUrl+'Upload/UploadFile?databaseName=ATS',formdata,{}).then(
-            Upload_res=>{
-
-             this.api.setDataSerializer('json');
-              this.list=JSON.parse(Upload_res.data)
-              console.log(this.list)
-
-              this.list=this.list['Result']
-
-              console.log(this.list)
-
-              const g={
-                FileName:this.list.FileName,
-                FilePath:this.list.FilePath
-              }
-              this.api.post(this.baseUrl+'Registrations/FileUpload?ApplicantId='+this.UploadApplicantId,g,{}).then(
-                response=>{
-                  console.log('Database Res:-',response)
-                }
-              ).catch( error=>console.log('Database:-',error));
-            }
-        ).catch(error=>{
-             console.log('Upload Error:- ',error)
-        });
-
+        ).catch( error=>console.log('Database:-',error));
+        this.router.navigateByUrl('/menu/applicant-list-page')
       }
     ).catch(error=>{
       console.log('CreateError:- ',error)
@@ -99,16 +122,6 @@ export class ApiService {
     });
   }
 
-  updateApplicant(g:Applicant,id:number){
-    this.api.post(this.baseUrl+'Registrations/Register/',g,{}).then(
-      res=>{
-        console.log(res)
-      }
-    ).catch(error=>{
-      console.log(error)
-      this.showAlertF();
-    });
-  }
 
   async showLoader() {
     const loading = await this.loadingController.create({
@@ -174,6 +187,7 @@ export class ApiService {
       "ScheduleDateTime":gg.ScheduleDateTime,
       "ScheduleLink":gg.ScheduleLink,
       "InterviewerId": gg.InterviewerId,
+      "Mode":gg.ModeofInterView,
       "ActionId": ActionId
    }
    console.log(g);
@@ -188,11 +202,12 @@ export class ApiService {
     return this.api.get(this.baseUrl+'Schedules/GetReasons',{},{})
   }
 
-  upDateReason(actionID:number,resonId:number){
+  upDateReason(actionID:number,resonId:number,reason:string){
     const g={
-      "ReasonId":resonId
+      "ReasonId":resonId,
+      "Reason":reason
     }
-    return this.api.post(this.baseUrl+'Schedules/UpdateReason?ActionId='+actionID+'&ReasonId='+resonId,{},{})
+    return this.api.post(this.baseUrl+'Schedules/UpdateReason?ActionId='+actionID,g,{})
   }
 
 
@@ -201,7 +216,7 @@ export class ApiService {
       "Description":desc
     }
     console.log(body)
-    return this.api.post(this.baseUrl+'Schedules/HoldReason?ActionId='+actionID,body,{})
+    return this.api.post(this.baseUrl+'Schedules/Comment?ActionId='+actionID,body,{})
   }
 
   async downloadFile(filename: string, filePath: string): Promise<void> {
@@ -210,7 +225,20 @@ export class ApiService {
 
 
     getEventDetails(){
+      this.api.setHeader('*','__RequestAuthToken', this.Token);
       return this.api.get(this.baseUrl+'Dashboard/GetEvents',{},{});
+    }
+
+    getApplicantHistory(appid:number){
+      this.api.setHeader('*','__RequestAuthToken', this.Token);
+      const payload={
+        "ApplicantId":appid
+      }
+      console.log(this.Token)
+
+
+
+      return this.api.get(`${this.baseUrl}AdvancedSearch/ApplicantTimeline_APP`,payload,{});
     }
   }
 

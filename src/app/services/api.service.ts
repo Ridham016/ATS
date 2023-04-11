@@ -29,8 +29,8 @@ export class ApiService {
   //   'Content-Type': 'application/json'
   // };
 
-  baseUrl='https://c773-2409-4041-6eca-785e-5c64-5ba8-1cf7-3939.ngrok-free.app/api/';
-  baseUrldownload ='https://c773-2409-4041-6eca-785e-5c64-5ba8-1cf7-3939.ngrok-free.app/Attachments/Temp/';
+  baseUrl='https://0b51-61-2-232-135.ngrok-free.app/api/';
+  baseUrldownload ='https://0b51-61-2-232-135.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -61,6 +61,14 @@ export class ApiService {
   }
   getToken(): string {
     return this.Token;
+  }
+
+  setUsername(token: string): void {
+    this.UserName = token;
+
+  }
+  getUsername(): string {
+    return localStorage.getItem('username')as string;
   }
 
   setToken(token: string): void {
@@ -96,7 +104,7 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     this.api.setDataSerializer('multipart');
     return this.api.post(this.baseUrl+'Upload/UploadFile?databaseName=ATS',formdata,{})
   }
-  createApplicant(g:Applicant){
+  createApplicant(g:Applicant, ogFile:string){
     this.api.setDataSerializer('json');
     this.api.post(this.baseUrl+'Registrations/Register',g,{}).then(
       res=>{
@@ -106,7 +114,8 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
         this.UploadApplicantId=this.list['Result']
         const g={
           FileName:this.FileName,
-          FilePath:this.FilePath
+          FilePath:this.FilePath,
+          OriginalFileName:ogFile
         }
         this.api.post(this.baseUrl+'Registrations/FileUpload?ApplicantId='+this.UploadApplicantId+'&databaseName=ATS',g,{}).then(
           response=>{
@@ -160,6 +169,14 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
   async showAlertdownloadS() {
     const alert = await this.alertController.create({
       header: 'file  downloaded ',
+      buttons: ['OK']
+    });
+     await alert.present();
+  }
+  async loginFailed() {
+    const alert = await this.alertController.create({
+      header: 'Login Failed ',
+      message:'Invaild Email or Password ',
       buttons: ['OK']
     });
      await alert.present();

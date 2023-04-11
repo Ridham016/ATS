@@ -44,9 +44,10 @@ export class UserDashBoardPage implements OnInit {
 
 
     ionViewWillEnter() {
+      this.api.hideLoader();
       this.menuController.enable(true,'gg');
-      console.log("fired");
-      this.menuController.close();
+      console.log("fired")
+
     }
 
     ionViewWillLeave() {
@@ -56,9 +57,6 @@ export class UserDashBoardPage implements OnInit {
     }
  async ngOnInit() {
     this.plt.ready().then(async _=>{
-      this.plt.backButton.subscribeWithPriority(9999, () => {
-        (navigator as any)['app'].exitApp();
-      });
      await this.onloadEventDetails()
     })
   }
@@ -91,7 +89,13 @@ export class UserDashBoardPage implements OnInit {
         const startDateTime= new Date(element.ScheduleDateTime)
         const endDateTime = new Date(startDateTime);
         endDateTime.setHours(startDateTime.getHours() + 1);
-
+        let mode
+        if(element.Mode=='1'){
+          mode='Online'
+        }
+        else if(element.Mode=='0'){
+          mode='Offline'
+        }
 
         events.push({
           ApplicantName:element.ApplicantName,
@@ -101,6 +105,7 @@ export class UserDashBoardPage implements OnInit {
           endTime:endDateTime,
           InterviewerName:element.InterviewerName,
           title:element.Description,
+          Mode:mode,
         });
       })
       this.eventSource=events;
@@ -118,7 +123,7 @@ export class UserDashBoardPage implements OnInit {
     console.log(this.eventSource);
     const alert = await this.alertCtrl.create({
       // message: `<div class="cal-alert-time"><ion-icon class="cal-alert-svg" name="time-outline"></ion-icon>${start}</div><div class="cal-alert-time fw-bold"><ion-icon class="cal-alert-svg"  name="person-sharp"></ion-icon> ${event.ApplicantName}</div><div class="cal-alert-interviewer"><span><ion-icon class="cal-alert-svg2" name="attach-outline"></ion-icon></span>${event.InterviewerName}</div>`,
-      message: `<div><p class="mb-2"><span><ion-icon class="cal-alert-svg" name="time-outline"></ion-icon></span><span>${start}</span></p><p class="mb-2"><span><ion-icon class="cal-alert-svg" name="person-sharp"></ion-icon></span><span>Meeting with <span class="fw-bold">${event.ApplicantName}</span></span></p><p class="mb-0"><span> <ion-icon class="cal-alert-svg2" name="attach-outline"></ion-icon>By ${event.InterviewerName} </span></p></div>`,
+      message: `<div><p class="mb-2"><span><ion-icon class="cal-alert-svg" name="time-outline"></ion-icon></span><span>${start}</span></p><p class="mb-2"><span><ion-icon class="cal-alert-svg" name="person-sharp"></ion-icon></span><span>Meeting with <span class="fw-bold">${event.ApplicantName}</span></span></p><p class="mb-0"><span> <ion-icon class="cal-alert-svg2" name="attach-outline"></ion-icon>By ${event.InterviewerName} </span></p>${event.Mode}</div>`,
       cssClass:'cal-alert',
        buttons:  [{
         text: 'ok',

@@ -32,7 +32,7 @@
     </ion-item>
     <ion-item fill="outline" class="mt-4">
       <ion-label position="floating"> {{labal.InterviewerName}}</ion-label>
-      <ion-select placeholder="Select Mode" name="meetingmode" requried [(ngModel)]="schedule.InterviewerId" #meetingmode="ngModel">
+      <ion-select placeholder="Select Mode" name="meetingmode" requried interface="popover" [(ngModel)]="schedule.InterviewerId" #meetingmode="ngModel">
         <ion-select-option *ngFor="let item of interviewerList" value={{item.InterviewerId}}>{{item.InterviewerName}}</ion-select-option>
       </ion-select>
       <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Link is required</ion-note>
@@ -40,7 +40,7 @@
 
     <ion-item fill="outline" class="mt-4">
       <ion-label position="floating"> {{labal.MeetingMode}}</ion-label>
-      <ion-select placeholder="Select Mode" name="meetingmode" requried [(ngModel)]="schedule.ModeofInterView"  (ionChange)="disableLink($event)" #meetingmode="ngModel">
+      <ion-select placeholder="Select Mode" name="meetingmode" requried interface="popover" [(ngModel)]="schedule.ModeofInterView"  (ionChange)="disableLink($event)" #meetingmode="ngModel">
         <ion-select-option value=1>Online</ion-select-option>
         <ion-select-option value=0>Ofline</ion-select-option>
       </ion-select>

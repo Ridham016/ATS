@@ -36,18 +36,17 @@ export class ApplicantListPagePage implements OnInit {
 
    }
 
-   ionViewWillEnter() {
-    this.menuController.enable(true,'gg');
+   async ionViewDidEnter() {
+   await this.menuController.enable(true,'gg');
     console.log("fired");
-    this.menuController.close();
   }
 
-  ionViewWillLeave() {
-    this.menuController.enable(false,'gg');
+  async ionViewWillLeave() {
+    await this.menuController.enable(false,'gg');
     console.log("fired1");
     this.menuController.close();
   }
-  async ngOnInit() {
+  ngOnInit() {
     this.plt.ready().then(_=>{
       this.onLoadData();
     })

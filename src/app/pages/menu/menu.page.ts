@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { NavigationEnd, Route, Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -74,29 +75,51 @@ export class MenuPage implements OnInit {
 
   ];
 page:any=[];
+selectedpath='';
  roleID=this.api.getUserRole();
+ username=this.api.getUsername();
+ customAnimation:any;
+ role!:string;
   constructor(
     public api:ApiService,
-    private router:Router
+    private router:Router,
+    private animationCtrl: AnimationController
   ) {
-
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.selectedpath=event.url;
+      }
+    });
   }
 
  async ngOnInit() {
 await this.loadpages();
+const element = document.getElementById('my-element');
+if(element!==null){
+this.customAnimation = this.animationCtrl.create()
+.addElement(element)
+.duration(500)
+.fromTo('transform', 'translateX(-100%)', 'translateX(0)')
+.easing('ease-in-out');
 }
+ }
 doLogout(){
   localStorage.setItem('Token','')
-  this.router.navigate(['/login'],{replaceUrl:true})
+  this.router.navigate(['/login'],{
+    skipLocationChange: true,
+    replaceUrl: true
+  })
 }
 loadpages(){
 
   if(this.roleID=='1'){
+    this.role='Admin';
     console.log('working')
       this.page=this.AdminPages;
   }
   else if(this.roleID=='2'){
     this.page=this.HRPages;
+    this.role='HR';
   }
   else{
     this.page=this.InterviwerPages

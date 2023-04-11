@@ -1,0 +1,17 @@
+.side-memu-header-icon{
+  height: 60%;
+  width: 30%;
+  margin-right: 10px;
+}
+
+.side-menu-header-username{
+  font-size: 20px;
+
+}
+.side-menu-header-role{
+  font-size: 14px;
+}
+.active-item{
+border-left: 5px solid var(--ion-color-primary-dark);
+}
+

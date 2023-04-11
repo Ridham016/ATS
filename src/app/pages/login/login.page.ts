@@ -23,13 +23,6 @@ export class LoginPage implements OnInit {
    ionViewWillEnter() {
     this.menuController.enable(false,'gg');
     console.log("fired");
-  }
-
-  ionViewWillLeave() {
-    this.menuController.enable(true,'gg');
-    console.log("fired1");
-  }
-  ngOnInit() {
     const storedUsername = localStorage.getItem('username');
     let storedPassword = localStorage.getItem('password');
     if(storedPassword){
@@ -41,6 +34,16 @@ export class LoginPage implements OnInit {
       this.user.RememberMe = true;
     }
   }
+
+  ionViewWillLeave() {
+    this.menuController.enable(true,'gg');
+    console.log("fired1");
+  }
+  ngOnInit() {
+
+  }
+
+
 
   onSubmit(){
 console.log(this.user.RememberMe)
@@ -54,30 +57,44 @@ console.log(this.user.RememberMe)
       localStorage.setItem('password',Password);
 
     }
+    else{
+      localStorage.setItem('username','');
+      localStorage.setItem('password','');
+
+    }
     console.log(Email,Password)
     if(Email!='' && Password!=''){
 
     this.api.dologin({Email,Password}).then(
       res=>{
+        console.log(res)
         this.userDetails = JSON.parse (res.data)
+        console.log(this.userDetails)
+        if(this.userDetails['MessageType']==1)
+        {
         this.userDetails=this.userDetails['Result']
-        this.api.UserName=this.userDetails['UserName']
+       let UserName=this.userDetails['UserName']
+       this.api.setUsername(UserName);
         this.api.setUserRole(this.userDetails['RoleId'])
         let Token=this.userDetails['Token'];
         this.api.setToken(Token);
         console.log(this.api.RoleId)
         localStorage.setItem('Token',this.api.Token);
-        this.router.navigateByUrl('/menu/user-dash-board').then(
-          ()=>{
-            this.api.hideLoader();
-          }
-        );
+        this.user.Email=''
+        this.user.Password=''
+        this.router.navigateByUrl('/menu/user-dash-board')
+        }
+        else{
+          this.api.loginFailed();
 
+        }
       }
 
     ).catch(
       error=>{
-        console.log(error);
+
+        this.api.loginFailed();
+        console.log(error.status);
       }
     )
     }

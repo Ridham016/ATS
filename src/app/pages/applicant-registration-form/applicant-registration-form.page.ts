@@ -41,6 +41,7 @@ date!:Date;
 selectedFileUrl: string = '';
   currentCompanyDisabled!: boolean;
   inputs:any[]=[];
+  ogFile:any;
   link:any []=[];
   public i=0;
 
@@ -113,6 +114,7 @@ selectedFileUrl: string = '';
         console.log(this.list)
         this.a.FilePath=this.list.FilePath;
         this.a.FileName=this.list.FileName;
+        this.ogFile=this.list.OriginalFileName;
       }
   ).catch(error=>{
     this.a.showAlertdownloadF();
@@ -142,8 +144,8 @@ selectedFileUrl: string = '';
     this.details.OtherLink=this.link[2];
     }
     console.log(this.details)
-    this.a.createApplicant(this.details)
-
+    this.a.createApplicant(this.details,this.ogFile)
+    this.details=new Applicant();
   }
 
 }

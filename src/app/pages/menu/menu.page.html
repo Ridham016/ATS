@@ -1,19 +1,22 @@
 <ion-split-pane contentId="main-content">
-  <ion-menu contentId="main-content" type="overlay" autoHide="false" menuId="gg" *ngIf="api.getUserRole()">
+  <ion-menu contentId="main-content" type="overlay" autoHide="false" menuId="gg" *ngIf="api.getUserRole()" animation="customAnimation">
     <ion-content>
       <ion-list id="inbox-list" class="menu-list">
         <ion-list-header color="primary-dark">
-          <ion-avatar class="side-memu-header-icon">
-            <img src="/assets/company-logo-sm.png"/>
-           </ion-avatar>
-           Side Menu</ion-list-header>
-        <ion-menu-toggle auto-hide="false" *ngFor="let pages of page">
-          <ion-item  routerDirection="root" [routerLink]="[pages.url]" lines="none"
-            detail="false">
+            <!-- <img src="/assets/company-logo-sm.png"/> -->
+            <ion-icon class="side-memu-header-icon" name="person-circle-outline"></ion-icon>
+           <div class="side-menu-header-username w-100">{{username}}
+
+           <div class="side-menu-header-role">{{role}}</div>
+          </div>
+          </ion-list-header>
+
+          <ion-item  routerDirection="root" *ngFor="let pages of page" [routerLink]="[pages.url]" lines="none"
+            detail="false" [class.active-item]="selectedpath===pages.url">
             <ion-icon slot="start" [md]="pages.icon + '-sharp'" class="top-bar-items"></ion-icon>
             <ion-label>{{ pages.title }}</ion-label>
           </ion-item>
-        </ion-menu-toggle>
+
 
       </ion-list>
     </ion-content>

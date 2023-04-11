@@ -37,7 +37,7 @@ LinkDisabled!:boolean
 
 
   disableLink(event: any) {
-    if (event.detail.value == "0") { // value of selected fresher option
+    if (event.detail.value == "1") { // value of selected fresher option
       this.LinkDisabled = true;
 
     } else {

@@ -175,12 +175,24 @@
               <ion-note *ngIf="!notice.valid && notice.touched" color="danger">Notice Period is required</ion-note>
           </ion-textarea>
         </ion-item>
-        <ion-item fill="outline" class="my-input">
+
+      <ion-item fill="outline"  class="my-input" >
+        <ion-label >  {{lable.DOJ}}</ion-label>
+        <ion-datetime-button datetime="date" color="" > </ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime   presentation="date" [showDefaultButtons]="true" displayFormat="YYYY-DD-MM"  min="{{currentDate}}" id="date"  name="doj" required [(ngModel)]="details.DOJ" #notic="ngModel"></ion-datetime>
+            <ion-note *ngIf="!notic.valid && notic.touched" color="danger">Date is required</ion-note>
+         </ng-template>
+      </ion-modal>
+      </ion-item>
+
+        <!-- <ion-item fill="outline" class="my-input">
           <ion-label position="floating">{{lable.DOJ}} </ion-label>
             <ion-textarea placeholder={{lable.DOJ}} name="NoticePeriod"  required [(ngModel)]="details.DOJ" #notice="ngModel" >
               <ion-note *ngIf="!notice.valid && notice.touched" color="danger">Notice Period is required</ion-note>
           </ion-textarea>
-        </ion-item>
+        </ion-item> -->
 
       <div class="mt-3 ms-2 mb-3">
         <h1 class="form-title" >{{lable.Link}} </h1>

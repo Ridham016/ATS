@@ -136,34 +136,35 @@
   </ion-accordion-group> -->
 <ion-card>
 
-  <ion-grid>
+  <ion-grid >
     <ion-row>
-      <ion-col class="ion-text-center"> Candidate Details </ion-col>
+      <ion-col class="ion-text-center h4 detail-card-title"> Candidate Details </ion-col>
     </ion-row>
 
+
     <ion-row>
-      <ion-col>{{lable.FullName}}</ion-col>
-      <ion-col>{{data.FirstName}}  {{data.MiddleName}}  {{data.LastName}}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>{{lable.Email}}</ion-col>
+      <ion-col  size="2"><ion-icon name="mail"></ion-icon></ion-col>
       <ion-col>{{data.Email}} </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>{{lable.Address}}</ion-col>
+      <ion-col  size="2"><ion-icon name="location"></ion-icon></ion-col>
       <ion-col>{{data.Address}} </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>{{lable.DateOfBirth}}</ion-col>
-      <ion-col>{{data.DateOfBirth}} </ion-col>
+      <ion-col  size="2"><ion-icon name="calendar"></ion-icon></ion-col>
+      <ion-col>{{data.DateOfBirth | date :'mediumDate'}} </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>{{lable.Phone}}</ion-col>
+      <ion-col  size="2"><ion-icon name="call"></ion-icon></ion-col>
       <ion-col>{{data.Phone}} </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col  size="2"><ion-icon name="pencil"></ion-icon></ion-col>
+      <ion-col>{{data.SkillDescription}} </ion-col>
+    </ion-row>
 
-    <ion-row class="button-grid">
-      <ion-col *ngFor="let but of but_data" >
+    <ion-row class="but-rows" >
+      <ion-col size="6" *ngFor="let but of but_data" >
          <ion-button
 
         [ngClass]=
@@ -188,7 +189,7 @@
 </ion-card>`
 
 
-<ion-modal #modalcancelInterview (ionModalDidDismiss)="onDismiss()" [isOpen]="isModalVisibleother" [initialBreakpoint]="0.50">
+<ion-modal #modalcancelInterview (ionModalDidDismiss)="onDismiss()" [isOpen]="isModalVisibleCI" [initialBreakpoint]="0.50">
   <ng-template>
     <ion-header>
       <ion-toolbar>
@@ -225,7 +226,7 @@
   <ng-template>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Cancel Interview</ion-title>
+        <ion-title>Hold</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="modalholdReason.dismiss(isModalVisibleHR=false)">Close</ion-button>
         </ion-buttons>
@@ -236,7 +237,7 @@
       <form #form="ngForm">
 
             <ion-item fill="outline" class="mt-4">
-              <ion-textarea  placeholder="Enter Reason For Cancelaltion" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
+              <ion-textarea  placeholder="Enter Reason For Hold" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
               <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
             </ion-item>
             <ion-button fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Submit   </ion-button>
@@ -245,6 +246,8 @@
     </ion-content>
   </ng-template>
 </ion-modal>
+
+
 <ion-modal #modalComment (ionModalDidDismiss)="onDismiss()" [isOpen]="isModalVisibleother" [initialBreakpoint]="0.50">
   <ng-template>
     <ion-header>

@@ -30,6 +30,9 @@ export const Constant= {
    Link1:"Potfolio Link",
    Link2:"LinkedIn",
    Link3:"Other",
+   CompanyName:"Company",
+  Venue:"Venue",
+  Position:"Position",
    InterViewerNotes:"Comment",
 
    //Scheduling Labals

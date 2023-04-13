@@ -36,5 +36,8 @@ export class Scheduling{
   ScheduleLink!:string;
   InterviewerId!: number;
   ModeofInterView!:number;
+  CompanyId!:number;
+  PositionId!:number;
+  Venue!:string;
 }
 

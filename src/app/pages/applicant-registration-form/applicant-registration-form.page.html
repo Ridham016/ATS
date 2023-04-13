@@ -178,10 +178,10 @@
 
       <ion-item fill="outline"  class="my-input" >
         <ion-label >  {{lable.DOJ}}</ion-label>
-        <ion-datetime-button datetime="date" color="" > </ion-datetime-button>
+        <ion-datetime-button datetime="datedoj" color="" > </ion-datetime-button>
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
-            <ion-datetime   presentation="date" [showDefaultButtons]="true" displayFormat="YYYY-DD-MM"  min="{{currentDate}}" id="date"  name="doj" required [(ngModel)]="details.DOJ" #notic="ngModel"></ion-datetime>
+            <ion-datetime   presentation="date" [showDefaultButtons]="true" displayFormat="YYYY-DD-MM"  min="{{date}}" id="datedoj"  name="doj" required [(ngModel)]="details.DOJ" #notic="ngModel"></ion-datetime>
             <ion-note *ngIf="!notic.valid && notic.touched" color="danger">Date is required</ion-note>
          </ng-template>
       </ion-modal>

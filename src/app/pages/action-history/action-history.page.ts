@@ -27,6 +27,12 @@ export class ActionHistoryPage implements OnInit {
       this.list=JSON.parse(res.data)
       this.list=this.list.Result;
       console.log(this.list);
+    }).catch(error=>{
+      if( this.api.handleSessionTimeout(error)){
+        console.log(error)
+        this.api.hideLoader();
+        this.api.showAlertF();
+      }
     })
   }
 }

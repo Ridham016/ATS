@@ -37,6 +37,10 @@ constructor(public api:ApiService ,
  }
 
  ionViewWillEnter() {
+  this.plt.backButton.subscribe(() => {
+    console.log('CAlled');
+    this.api.presentAlertConfirm();
+  });
   this.menuController.enable(true,'gg');
   console.log("fired");
   this.menuController.close();
@@ -79,9 +83,11 @@ async openSearchFilter() {
       this.api.hideLoader();
 
     }).catch(error=>{
-      console.log(error)
-      this.api.hideLoader();
-      this.api.showAlertF();
+      if( this.api.handleSessionTimeout(error)){
+        console.log(error)
+        this.api.hideLoader();
+        this.api.showAlertF();
+      }
     });
 
   })
@@ -146,9 +152,11 @@ onNextPageLoad(page:number){
     this.api.hideLoader();
 
   }).catch(error=>{
-    console.log(error)
-    this.api.hideLoader();
-    this.api.showAlertF();
+    if( this.api.handleSessionTimeout(error)){
+      console.log(error)
+      this.api.hideLoader();
+      this.api.showAlertF();
+    }
   });
 
 }
@@ -169,9 +177,11 @@ onLoadData(event?: any){
 
 
   }).catch(error=>{
-    console.log(error)
-    this.api.hideLoader();
-    this.api.showAlertF();
+    if( this.api.handleSessionTimeout(error)){
+      console.log(error)
+      this.api.hideLoader();
+      this.api.showAlertF();
+    }
   });
 
 }

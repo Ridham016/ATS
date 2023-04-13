@@ -1,6 +1,6 @@
 import { Router, RouterEvent} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -33,7 +33,8 @@ export class AppComponent implements OnInit {
     },
 
   ];
-  constructor(private router:Router , private plt: Platform) {
+  constructor(private router:Router , private platform: Platform,
+    private alertController:AlertController) {
     // router.events.subscribe((event: RouterEvent) => {
     //   this.showMenu = event.url !== '/login'; // hide menu for login page
     // });
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
 }
 
 

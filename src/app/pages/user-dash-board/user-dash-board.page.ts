@@ -6,6 +6,7 @@ import { IEvent } from 'ionic2-calendar/calendar.interface';
 import { AlertController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import{MenuController} from '@ionic/angular'
+import { Router } from '@angular/router';
 
 function getRandomDate(): Date {
   const date = new Date();
@@ -39,11 +40,16 @@ export class UserDashBoardPage implements OnInit {
   constructor(private alertCtrl: AlertController,
     private api:ApiService,
     private plt :Platform,
-    private menuController:MenuController
+    private menuController:MenuController,
+    private router : Router
     ) {}
 
 
     ionViewWillEnter() {
+      this.plt.backButton.subscribe(() => {
+        console.log('CAlled');
+        this.api.presentAlertConfirm();
+      });
       this.api.hideLoader();
       this.menuController.enable(true,'gg');
       console.log("fired")
@@ -112,9 +118,11 @@ export class UserDashBoardPage implements OnInit {
 
     console.log(this.eventSource);
   }).catch(error=>{
-    console.log(error)
-    this.api.showAlertF();
-  })
+    if( this.api.handleSessionTimeout(error)){
+      this.api.showAlertF();
+      console.log('eror',error)
+    }
+    })
 }
 
   async onEventSelected(event: IEvent) {

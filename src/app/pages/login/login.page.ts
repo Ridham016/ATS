@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthUser } from 'src/app/Model/auth-user';
 import { Router } from '@angular/router';
-import{MenuController} from '@ionic/angular'
+import{MenuController,Platform,AlertController} from '@ionic/angular'
 import * as CryptoJS from 'crypto-js';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -15,12 +15,22 @@ export class LoginPage implements OnInit {
     Email:'', Password:'',RememberMe:false
   };
   userDetails:any=[]
-  constructor(private router: Router,private menuController: MenuController,
-    private api:ApiService) {
+  constructor(
+    private router: Router,
+    private menuController: MenuController,
+    private api:ApiService,
+    private platform: Platform,
+    private alertController: AlertController
+    ) {
 
    }
 
    ionViewWillEnter() {
+
+      this.platform.backButton.subscribe(() => {
+        console.log('CAlled');
+        this.api.presentAlertConfirm();
+      });
     this.menuController.enable(false,'gg');
     console.log("fired");
     const storedUsername = localStorage.getItem('username');
@@ -40,8 +50,8 @@ export class LoginPage implements OnInit {
     console.log("fired1");
   }
   ngOnInit() {
-
   }
+
 
 
 
@@ -70,7 +80,9 @@ console.log(this.user.RememberMe)
         console.log(res)
         this.userDetails = JSON.parse (res.data)
         console.log(this.userDetails)
-        if(this.userDetails['MessageType']==1)
+        let restype=this.api.handleMessageType(this.userDetails)
+        console.log(restype);
+          if(restype)
         {
         this.userDetails=this.userDetails['Result']
        let UserName=this.userDetails['UserName']
@@ -82,7 +94,7 @@ console.log(this.user.RememberMe)
         localStorage.setItem('Token',this.api.Token);
         this.user.Email=''
         this.user.Password=''
-        this.router.navigateByUrl('/menu/user-dash-board')
+        this.router.navigateByUrl('/menu/user-dash-board',{replaceUrl:true})
         }
         else{
           this.api.loginFailed();
@@ -92,9 +104,8 @@ console.log(this.user.RememberMe)
 
     ).catch(
       error=>{
-
         this.api.loginFailed();
-        console.log(error.status);
+        console.log('Status',error.status);
       }
     )
     }

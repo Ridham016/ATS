@@ -45,14 +45,21 @@ export class ApplicantDetailPage implements OnInit {
 
 onCancleMeating(){
     console.log(this.reasonTextBox,this.reasonDropDown)
+    this.api.showLoader();
     this.api.StatusUpdate(this.ApplicantId,this.nextStatusId).then(async (res)=>{
                 this.ActionId = JSON.parse(res.data)
                 this.ActionId = this.ActionId['Result']
                 this.ActionId = this.ActionId[1]
                 console.log(this.ActionId);
 
+            }).catch(error=>{
+              if( this.api.handleSessionTimeout(error)){
+                console.log(error)
+                this.api.hideLoader();
+                this.api.showAlertF();
+              }
             }).then(_=>{
-              console.log(this.ActionId,)
+              console.log(this.ActionId)
               this.api.upDateReason(this.ActionId,this.reasonDropDown,this.reasonTextBox).then(res=>{
                 if(res.status==200){
                   this.router.navigate(['/menu/applicant-list-page']).then(() => {
@@ -61,6 +68,12 @@ onCancleMeating(){
                 }
               })
 
+            }).catch(error=>{
+              if( this.api.handleSessionTimeout(error)){
+                console.log(error)
+                this.api.hideLoader();
+                this.api.showAlertF();
+              }
             })
   }
   onHold(){
@@ -71,6 +84,12 @@ onCancleMeating(){
                 this.ActionId = this.ActionId[1]
                 console.log(this.ActionId);
 
+            }).catch(error=>{
+              if( this.api.handleSessionTimeout(error)){
+                console.log(error)
+                this.api.hideLoader();
+                this.api.showAlertF();
+              }
             }).then(_=>{
               console.log(this.ActionId,)
               this.api.onHoldStatus(this.ActionId,this.reasonTextBox).then(res=>{
@@ -81,6 +100,12 @@ onCancleMeating(){
                 }
               })
 
+            }).catch(error=>{
+              if( this.api.handleSessionTimeout(error)){
+                console.log(error)
+                this.api.hideLoader();
+                this.api.showAlertF();
+              }
             })
   }
   onDismiss(){
@@ -107,6 +132,12 @@ onCancleMeating(){
           this.but_data=this.but_data.Result
           console.log(this.but_data)
         })
+      }).catch(error=>{
+        if( this.api.handleSessionTimeout(error)){
+          console.log(error)
+          this.api.hideLoader();
+          this.api.showAlertF();
+        }
       }).then(_=>{
         this.api.getOtherReasons().then(res=>{
         this.reasonList=JSON.parse(res.data)
@@ -114,7 +145,13 @@ onCancleMeating(){
           this.api.hideLoader();
         console.log(this.reasonList)
 
-      })})
+      })}).catch(error=>{
+        if( this.api.handleSessionTimeout(error)){
+          console.log(error)
+          this.api.hideLoader();
+          this.api.showAlertF();
+        }
+      })
 
   }
   async onStatusUpdate(currStatusId:number,nextStatusId:number){
@@ -140,33 +177,36 @@ onCancleMeating(){
     this.isModalVisibleHR = true;
   }
 
+  else if(currStatusId==5){
+     const alert = await this.alertCtrl.create({
+      header: 'Confirm',
+      message: 'Are you sure?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'Ok',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(res=>{
+              if(res.status==200){
+                this.router.navigate(['/menu/applicant-list-page']).then(() => {
+                  window.location.reload();;
+                })
+              }
+            })
+          }
+          }
+      ]
+    });
+    await alert.present();
+
+  }
   else{
-    // const alert = await this.alertCtrl.create({
-    //   header: 'Confirm',
-    //   message: 'Are you sure?',
-    //   buttons: [
-    //     {
-    //       text: 'Cancel',
-    //       role: 'cancel',
-    //       cssClass: 'secondary',
-    //       handler: (blah) => {
-    //       }
-    //     }, {
-    //       text: 'Ok',
-    //       handler: () => {
-    //         console.log('Confirm Okay');
-    //         this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(res=>{
-    //           if(res.status==200){
-    //             this.router.navigate(['applicant-list-page']).then(() => {
-    //               window.location.reload();;
-    //             })
-    //           }
-    //         })
-    //       }
-    //       }
-    //   ]
-    // });
-    // await alert.present();
     this.isModalVisibleother=true;
   }
 
@@ -185,10 +225,16 @@ onCancleMeating(){
   .then(() => console.log('File opened successfully')).then(_=>{
     this.api.hideLoader();
   })
-  .catch((error) => console.error('Error opening file', error));
+  .catch((error) => {
+    if( this.api.handleSessionTimeout(error)){
+      console.error('Error opening file', error)
+    }
+  });
   }}).catch(error =>{
-    console.log(error)
-    this.api.showAlertdownloadF();
+    if( this.api.handleSessionTimeout(error)){
+      console.log(error)
+      this.api.showAlertdownloadF();
+    }
   });
   }
 }

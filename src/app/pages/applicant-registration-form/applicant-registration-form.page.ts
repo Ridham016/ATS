@@ -23,6 +23,7 @@ file!:File;
 lable=Constant;
 currentDate1 = new Date();
 currentDate! : string;
+date=new Date().toISOString();
 selectedStatus!:number;
 ApplicantStatus = [
   { value: 1, label: 'Fresher' },
@@ -37,7 +38,6 @@ ApplicantStatus = [
 //   {value:5, label:'45 to 60 days'},
 // ]
 
-date!:Date;
 selectedFileUrl: string = '';
   currentCompanyDisabled!: boolean;
   inputs:any[]=[];
@@ -119,6 +119,7 @@ selectedFileUrl: string = '';
   ).catch(error=>{
     this.a.showAlertdownloadF();
        console.log('Upload Error:- ',error)
+       this.a.handleSessionTimeout(error);
   });
   }}
   onButtonClick(swiperINdex:number){

@@ -29,8 +29,8 @@ export class ApiService {
   //   'Content-Type': 'application/json'
   // };
 
-  baseUrl='https://0b51-61-2-232-135.ngrok-free.app/api/';
-  baseUrldownload ='https://0b51-61-2-232-135.ngrok-free.app/Attachments/Temp/';
+  baseUrl='https://21a8-2409-4041-6eca-785e-19ae-729a-40f5-1d69.ngrok-free.app/api/';
+  baseUrldownload ='https://21a8-2409-4041-6eca-785e-19ae-729a-40f5-1d69.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -40,8 +40,9 @@ export class ApiService {
     ) {
       this.plt.ready().then(_=>{
         this.api.setHeader('Access-Control-Allow-Origin',this.baseUrl,'');
+        this.api.setHeader('*','__RequestAuthToken', this.getToken());
         this.Token = localStorage.getItem('Token') as string;
-        this.api.setRequestTimeout(10.0)
+        this.api.setRequestTimeout(20.0)
       })
 
   }
@@ -60,6 +61,9 @@ export class ApiService {
     localStorage.setItem(String(this.RoleId),role);
   }
   getToken(): string {
+    if(localStorage.getItem('Token')!=''){
+      this.Token=localStorage.getItem('Token') as string
+    }
     return this.Token;
   }
 
@@ -120,14 +124,22 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
         this.api.post(this.baseUrl+'Registrations/FileUpload?ApplicantId='+this.UploadApplicantId+'&databaseName=ATS',g,{}).then(
           response=>{
             console.log('Database Res:-',response)
+            this.router.navigateByUrl('/menu/applicant-list-page')
           }
 
-        ).catch( error=>console.log('Database:-',error));
-        this.router.navigateByUrl('/menu/applicant-list-page')
+        ).catch( error=>
+          {
+            if(this.handleSessionTimeout(error)){
+              console.log('Database:-',error)
+            }
+        });
       }
     ).catch(error=>{
-      console.log('CreateError:- ',error)
-      this.showAlertF();
+      if( this.handleSessionTimeout(error)){
+        console.log('CreateError:- ',error)
+        this.showAlertF();
+
+      }
     });
   }
 
@@ -152,7 +164,7 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
 
   async showAlertF() {
     const alert = await this.alertController.create({
-      header: 'Error Retriving list',
+      header: 'Error!',
       message: 'Please retry',
       buttons: ['OK']
     });
@@ -181,6 +193,14 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     });
      await alert.present();
   }
+  async sessionTimeOut() {
+    const alert = await this.alertController.create({
+      header: 'Session TimeOut ',
+      message:'Please Login Again',
+      buttons: ['OK']
+    });
+     await alert.present();
+  }
 
   async getApplicant(id:number){
    const param={
@@ -205,7 +225,10 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
       "ScheduleLink":gg.ScheduleLink,
       "InterviewerId": gg.InterviewerId,
       "Mode":gg.ModeofInterView,
-      "ActionId": ActionId
+      "ActionId": ActionId,
+      "PositionId":gg.PositionId,
+      "CompanyId":gg.CompanyId,
+      "Venue":gg.Venue
    }
    console.log(g);
     return this.api.post(this.baseUrl+'Schedules/ScheduleInterview',g,{} )
@@ -252,10 +275,55 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
         "ApplicantId":appid
       }
       console.log(this.Token)
-
-
-
       return this.api.get(`${this.baseUrl}AdvancedSearch/ApplicantTimeline_APP`,payload,{});
+    }
+
+    getCompanyList(){
+      return this.api.get(`${this.baseUrl}Schedules/GetCompanyDetails`,{},{})
+    }
+    getPosition(){
+      return this.api.get(`${this.baseUrl}Schedules/GetPositionDetails`,{},{})
+    }
+
+    handleMessageType(response:any){
+      if(response['MessageType']===1){
+        return true
+      }
+      else{
+        return false
+      }
+
+    }
+
+    handleSessionTimeout(error:any){
+      let err=JSON.parse(error.error);
+      if(err['MessageType']===0 && error.status==401){
+        localStorage.setItem('Token','')
+        this.router.navigate(['/login'],{replaceUrl:true})
+        this.sessionTimeOut();
+        return false
+      }
+      return true
+    }
+
+    async presentAlertConfirm() {
+      const alert = await this.alertController.create({
+        header: 'Exit App',
+        message: 'Are you sure you want to exit the app?',
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel'
+          }, {
+            text: 'Yes',
+            handler: () => {
+              (navigator as any).app.exitApp();
+            }
+          }
+        ]
+      });
+
+      await alert.present();
     }
   }
 

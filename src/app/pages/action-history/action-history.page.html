@@ -37,7 +37,7 @@
                 <ion-row *ngIf="item.Level>=1">
                   <ion-col >Current Level :   {{item.Level}}</ion-col>
                 </ion-row>
-                <ion-row >
+                <ion-row *ngIf="item.Comment" >
                   <ion-col >Note : {{item.Comment}}</ion-col>
                 </ion-row>
               </ion-grid>

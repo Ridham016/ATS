@@ -13,7 +13,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SwiperModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },EmailComposer,HTTP,File,FileOpener],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },EmailComposer,HTTP,FileOpener,File],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -37,6 +37,10 @@ export class ApplicantListPagePage implements OnInit {
    }
 
    async ionViewDidEnter() {
+    this.plt.backButton.subscribe(() => {
+      console.log('CAlled');
+      this.api.presentAlertConfirm();
+    });
    await this.menuController.enable(true,'gg');
     console.log("fired");
   }
@@ -76,9 +80,11 @@ export class ApplicantListPagePage implements OnInit {
         this.api.hideLoader();
 
       }).catch(error=>{
-        console.log(error)
-        this.api.hideLoader();
-        this.api.showAlertF();
+        if( this.api.handleSessionTimeout(error)){
+          console.log(error)
+          this.api.hideLoader();
+          this.api.showAlertF();
+        }
       });
 
     })
@@ -141,8 +147,10 @@ export class ApplicantListPagePage implements OnInit {
       this.list=ApiList
       this.api.Activelist=this.list;
     }).catch(error=>{
-      console.log(error)
-      this.api.showAlertF();
+      if( this.api.handleSessionTimeout(error)){
+        console.log(error)
+        this.api.showAlertF();
+      }
     }).finally(()=> this.api.hideLoader());
 
   }
@@ -163,9 +171,11 @@ export class ApplicantListPagePage implements OnInit {
 
 
     }).catch(error=>{
-      console.log(error)
-      this.api.hideLoader();
-      this.api.showAlertF();
+      if( this.api.handleSessionTimeout(error)){
+        console.log(error)
+        this.api.hideLoader();
+        this.api.showAlertF();
+      }
     });
 
   }
@@ -176,8 +186,5 @@ export class ApplicantListPagePage implements OnInit {
         id:Applicantid
       }
     })}
-
-
-
   }
 

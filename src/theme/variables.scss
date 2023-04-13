@@ -786,18 +786,14 @@
       color: #fff;
   }
   .calendar-event-inner {
-    overflow: hidden;
     background-color: var(--ion-color-primary-light) !important;
     color: #fff;
-    height: 100%;
     width: 100%;
+    height: auto !important;
     padding: 2px;
     font-weight: 900;
-    align-items: center;
     line-height: 15px;
     text-align: initial;
-    display: flex;
-    justify-content: center;
 }
 
   //Custom button depending Status
@@ -894,7 +890,7 @@ color: #fff;
 font-size: 16px;
 --border-radius: 8px;
         box-shadow: 0 10px 10px rgba(0,10,10,.1);
-
+        white-space: pre-line;
 
 }
 .button-2{
@@ -904,7 +900,7 @@ font-size: 16px;
 --border-radius: 8px;
         box-shadow: 0 10px 10px rgba(0,10,10,.1);
 
-
+        white-space: pre-line;
 }
 .button-3{
   --background:var(--ion-color-ats-scheduled-btn);
@@ -912,7 +908,7 @@ font-size: 16px;
   font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
-
+    white-space: pre-line;
 }
 .button-4{
   --background:var(--ion-color-ats-hold-btn);
@@ -920,7 +916,7 @@ font-size: 16px;
   font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
-
+    white-space: pre-line;
 }
 .button-5{
   --background:var(--ion-color-ats-hired-btn);
@@ -928,7 +924,7 @@ font-size: 16px;
   font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
-
+    white-space: pre-line;
 }
 .button-6{
   --background:var(--ion-color-ats-reject-btn);
@@ -937,7 +933,7 @@ font-size: 16px;
   font-size: 16px;
   --border-radius: 8px;
     box-shadow: 0 10px 10px rgba(0,10,10,.1);
-
+    white-space: pre-line;
 
 }
 .button-7{
@@ -947,7 +943,7 @@ color:#fff;
 font-size: 16px;
 --border-radius: 8px;
    box-shadow: 0 10px 10px rgba(0,10,10,.1);
-
+   white-space: pre-line;
 }
 
 }

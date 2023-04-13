@@ -46,10 +46,7 @@ export class UserDashBoardPage implements OnInit {
 
 
     ionViewWillEnter() {
-      this.plt.backButton.subscribe(() => {
-        console.log('CAlled');
-        this.api.presentAlertConfirm();
-      });
+   
       this.api.hideLoader();
       this.menuController.enable(true,'gg');
       console.log("fired")

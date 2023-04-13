@@ -2,7 +2,7 @@
 import { Injectable, NgModule } from '@angular/core';
 import { HTTP } from "@ionic-native/http/ngx";
 import { Applicant, Scheduling } from '../Model/applicant-details';
-
+import * as CryptoJS from 'crypto-js';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { CustomAlertService } from './custom-alert.service';
@@ -47,9 +47,9 @@ export class ApiService {
 
   }
 
-  dologin(user:{Email:string,Password:string}){
+ async dologin(user:{Email:string,Password:string}){
 
-    return this.api.post(`${this.baseUrl}Account/Login`,user,{})
+    return await this.api.post(`${this.baseUrl}Account/Login`,user,{})
 
   }
 
@@ -300,30 +300,47 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
       if(err['MessageType']===0 && error.status==401){
         localStorage.setItem('Token','')
         this.router.navigate(['/login'],{replaceUrl:true})
+        localStorage.setItem('isLogedIn','');
         this.sessionTimeOut();
         return false
       }
       return true
     }
 
-    async presentAlertConfirm() {
-      const alert = await this.alertController.create({
-        header: 'Exit App',
-        message: 'Are you sure you want to exit the app?',
-        buttons: [
-          {
-            text: 'No',
-            role: 'cancel'
-          }, {
-            text: 'Yes',
-            handler: () => {
-              (navigator as any).app.exitApp();
-            }
-          }
-        ]
-      });
 
-      await alert.present();
+
+
+
+
+
+
+
+    encyptData(data:string){
+      const key = CryptoJS.enc.Utf8.parse('acg7ay8h447825cg');
+      const iv = CryptoJS.enc.Utf8.parse('8080808080808080');
+      const encryptedData = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(data), key, {
+        keySize: 128 / 8,
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      }).toString();
+      console.log(encryptedData)
+      return encodeURIComponent(encryptedData)
+
+    }
+    decyptData(data:string){
+      data=decodeURIComponent(data);
+      const key = CryptoJS.enc.Utf8.parse('acg7ay8h447825cg');
+      const iv = CryptoJS.enc.Utf8.parse('8080808080808080');
+      const decryptedData = CryptoJS.AES.decrypt(data, key, {
+        keySize: 128 / 8,
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      }).toString(CryptoJS.enc.Utf8);
+      console.log(decryptedData)
+      return decryptedData
+
     }
   }
 

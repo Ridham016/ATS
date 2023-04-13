@@ -105,13 +105,13 @@ this.customAnimation = this.animationCtrl.create()
  }
 doLogout(){
   localStorage.setItem('Token','')
+  localStorage.setItem('isLogedIn','');
   this.router.navigate(['/login'],{
     skipLocationChange: true,
     replaceUrl: true
   })
 }
 loadpages(){
-
   if(this.roleID=='1'){
     this.role='Admin';
     console.log('working')

@@ -37,10 +37,7 @@ export class ApplicantListPagePage implements OnInit {
    }
 
    async ionViewDidEnter() {
-    this.plt.backButton.subscribe(() => {
-      console.log('CAlled');
-      this.api.presentAlertConfirm();
-    });
+  
    await this.menuController.enable(true,'gg');
     console.log("fired");
   }

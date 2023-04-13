@@ -37,10 +37,7 @@ constructor(public api:ApiService ,
  }
 
  ionViewWillEnter() {
-  this.plt.backButton.subscribe(() => {
-    console.log('CAlled');
-    this.api.presentAlertConfirm();
-  });
+ 
   this.menuController.enable(true,'gg');
   console.log("fired");
   this.menuController.close();

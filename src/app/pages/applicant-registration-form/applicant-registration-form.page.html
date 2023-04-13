@@ -49,13 +49,13 @@
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating">{{lable.Phone}} </ion-label>
         <ion-input  type="tel" maxlength="10" minlength="10" placeholder="Enter Mobile No." name="mobile" required [(ngModel)]="details.Phone" #mobile="ngModel"></ion-input>
-        <ion-note *ngIf="!mobile.valid && mobile.touched" color="danger">Mobile is required</ion-note>
+        <ion-note *ngIf="!mobile.valid && mobile.touched" color="danger">Mobile No. is required</ion-note>
       </ion-item>
 
       <ion-item fill="outline" class="my-input">
         <ion-label position="floating"> {{lable.Address}} </ion-label>
-        <ion-textarea  placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.Address" #address="ngModel"></ion-textarea>
-        <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
+        <ion-textarea  placeholder="Enter Address" type="text" name="address"  [(ngModel)]="details.Address" #address="ngModel"></ion-textarea>
+        <!-- <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note> -->
       </ion-item>
 
       <ion-item fill="outline"  class="my-input" >
@@ -89,7 +89,7 @@
           <ion-select placeholder="Select Mode" name="meetingmode" interface="popover" requried [(ngModel)]="selectedStatus" #meetingmode="ngModel" (ionChange)="disableCurrentCompany($event)">
             <ion-select-option *ngFor="let item of ApplicantStatus " value={{item.value}}>{{item.label}}</ion-select-option>
           </ion-select>
-          <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Link is required</ion-note>
+          <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Meeting Link is required</ion-note>
         </ion-item>
 
         <ion-item fill="outline"  class="my-input" *ngIf="selectedStatus">
@@ -154,13 +154,13 @@
         <ion-item fill="outline"  class="my-input" >
           <ion-label position="floating"> {{lable.PreferedLocation}} </ion-label>
           <ion-input  placeholder="Enter PreferedLocation" type="text" name="PreferedLocation" required [(ngModel)]="details.PreferedLocation" #pref_loc="ngModel"></ion-input>
-          <ion-note *ngIf="!pref_loc.valid && pref_loc.touched" color="danger"> Location is required</ion-note>
+          <ion-note *ngIf="!pref_loc.valid && pref_loc.touched" color="danger"> Prefered Location is required</ion-note>
         </ion-item>
 
         <ion-item fill="outline" class="my-input">
           <ion-label position="floating"> {{lable.SkillDesc}} </ion-label>
-          <ion-textarea  placeholder="Enter Address" type="text" name="address" required [(ngModel)]="details.SkillDescription" #address="ngModel"></ion-textarea>
-          <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
+          <ion-textarea  placeholder="Enter Skill Description" type="text" name="address" required [(ngModel)]="details.SkillDescription" #address="ngModel"></ion-textarea>
+          <ion-note *ngIf="!address.valid && address.touched" color="danger">Skill Description is required</ion-note>
         </ion-item>
 
         <ion-item fill="outline"  class="my-input" >
@@ -212,7 +212,7 @@
 
 
         <ion-item>
-          <ion-label>File Upload</ion-label>
+          <ion-label> Upload File </ion-label>
           <ion-input type="file" slot="end" accept="application/pdf" (change)="onFileChange($event)"></ion-input>
         </ion-item>
         <!-- <ion-item *ngIf="file">

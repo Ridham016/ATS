@@ -21,14 +21,14 @@
         <ion-icon name="mail" slot="start"></ion-icon>
         <ion-label position="floating">Email</ion-label>
         <ion-input class="input" type="email" name="email" required [(ngModel)]="user.Email" #email="ngModel" ></ion-input>
-        <ion-note *ngIf="!email.valid && email.touched" color="danger">Description is required</ion-note>
+        <ion-note *ngIf="!email.valid && email.touched" color="danger">Email is required</ion-note>
       </ion-item>
 
       <ion-item  fill="outline" >
         <ion-icon slot="start" name="key"></ion-icon>
         <ion-label position="floating">Password</ion-label>
         <ion-input class="input" type="password"  name="password" required [(ngModel)]="user.Password" #pass="ngModel" ></ion-input>
-        <ion-note *ngIf="!pass.valid && pass.touched" color="danger">Description is required</ion-note>
+        <ion-note *ngIf="!pass.valid && pass.touched" color="danger">Password is required</ion-note>
       </ion-item>
 
       <ion-item fill="outline"  lines="none" >

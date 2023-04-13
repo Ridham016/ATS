@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {
       });
     this.menuController.enable(false,'gg');
     console.log("fired");
-    const storedUsername = localStorage.getItem('username');
+    const storedUsername = localStorage.getItem('email');
     let storedPassword = localStorage.getItem('password');
     if(storedPassword){
     storedPassword=this.decyptData(storedPassword);
@@ -63,11 +63,12 @@ console.log(this.user.RememberMe)
 
    const Password= this.encyptData(this.user.Password);
     if(this.user.RememberMe){
-      localStorage.setItem('username',Email);
+      localStorage.setItem('email',Email);
       localStorage.setItem('password',Password);
 
     }
     else{
+      localStorage.setItem('email','');
       localStorage.setItem('username','');
       localStorage.setItem('password','');
 
@@ -85,8 +86,9 @@ console.log(this.user.RememberMe)
           if(restype)
         {
         this.userDetails=this.userDetails['Result']
-       let UserName=this.userDetails['UserName']
+       let UserName=this.userDetails['User']
        this.api.setUsername(UserName);
+       localStorage.setItem('username',UserName);
         this.api.setUserRole(this.userDetails['RoleId'])
         let Token=this.userDetails['Token'];
         this.api.setToken(Token);

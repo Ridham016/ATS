@@ -26,6 +26,7 @@ export class ApplicantListPagePage implements OnInit {
   myCustomIcon = "/assets/view-details-icon.svg";
   lable=Constant;
   totalRecord:any=1;
+  loaded=false;
 
   constructor(public api:ApiService ,
      private plt:Platform,

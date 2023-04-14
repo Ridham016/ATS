@@ -44,10 +44,11 @@
 </ion-row>
 
 <swiper #swiper  >
-  <ng-template swiperSlide>
-   <ion-card *ngFor="let item of list " (click)="navigate(item.ApplicantId)" class="custom-card"   [ngClass]=
-"{
-'badge-1': item.StatusId === 1,
+  <ng-template swiperSlide  >
+    <div *ngIf="loaded"> 
+      <ion-card *ngFor="let item of list " (click)="navigate(item.ApplicantId)" class="custom-card"  [ngClass]=
+      "{
+        'badge-1': item.StatusId === 1,
 'badge-2': item.StatusId === 2,
 'badge-4': item.StatusId === 4,
 'badge-5': item.StatusId === 5,
@@ -76,6 +77,26 @@
     </ion-row>
   </ion-grid>
 </ion-card>
-  </ng-template>
+</div >
+
+<div  *ngIf="!loaded">
+<ion-card  class="custom-card" *ngFor="let i of [1, 2, 3, 4, 5]" >
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-skeleton-text [animated]="true" style="width: 80px; float: right;"></ion-skeleton-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="applicant-name">  <ion-skeleton-text [animated]="true" style="width: 50%"></ion-skeleton-text></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="applicant-email">  <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+</div>
+
+</ng-template>
 </swiper>
 </ion-content>

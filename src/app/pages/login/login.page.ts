@@ -45,6 +45,7 @@ export class LoginPage implements OnInit {
     console.log("fired1");
   }
   ngOnInit() {
+   
   }
 
 

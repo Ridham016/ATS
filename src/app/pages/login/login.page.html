@@ -1,6 +1,6 @@
-<ion-header>
+<ion-header >
 </ion-header>
-<ion-content >
+<ion-content fullscreen="true" >
 
 <div id="header">
   <div id="app-bar">
@@ -27,7 +27,8 @@
       <ion-item  fill="outline" >
         <ion-icon slot="start" name="key"></ion-icon>
         <ion-label position="floating">Password</ion-label>
-        <ion-input class="input" type="password"  name="password" required [(ngModel)]="user.Password" #pass="ngModel" ></ion-input>
+        <ion-input class="input" type="{{ hide ? 'password' : 'text' }}" name="password" required [(ngModel)]="user.Password" #pass="ngModel"></ion-input>
+        <ion-icon slot="end" name="{{ hide ? 'eye' : 'eye-off' }}" (click)="togglePassword()"></ion-icon>
         <ion-note *ngIf="!pass.valid && pass.touched" color="danger">Password is required</ion-note>
       </ion-item>
 

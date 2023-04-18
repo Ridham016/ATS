@@ -29,8 +29,8 @@ export class ApiService {
   //   'Content-Type': 'application/json'
   // };
 
-  baseUrl='https://21a8-2409-4041-6eca-785e-19ae-729a-40f5-1d69.ngrok-free.app/api/';
-  baseUrldownload ='https://21a8-2409-4041-6eca-785e-19ae-729a-40f5-1d69.ngrok-free.app/Attachments/Temp/';
+  baseUrl='https://065d-2409-4041-6ecf-ce35-c5d7-84b2-bd61-bd4a.ngrok-free.app/api/';
+  baseUrldownload ='https://065d-2409-4041-6ecf-ce35-c5d7-84b2-bd61-bd4a.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -93,7 +93,7 @@ export class ApiService {
     return this.api.post(this.baseUrl+'Schedules/GetApplicantsParam',g,{})
 
   }
-  getActionList(PageNumber:number,statusId?:number,StartDate?:string,EndDate?:string,PageSize:number=4){
+  getActionList(PageNumber:number,statusId?:number,StartDate?:string,EndDate?:string,PageSize:number=5){
 this.api.setHeader('*','__RequestAuthToken', this.Token);
     const g={
       'CurrentPageNumber':PageNumber,
@@ -296,6 +296,7 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     }
 
     handleSessionTimeout(error:any){
+      if(error.error!=undefined){
       let err=JSON.parse(error.error);
       if(err['MessageType']===0 && error.status==401){
         localStorage.setItem('Token','')
@@ -304,12 +305,9 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
         this.sessionTimeOut();
         return false
       }
+    }
       return true
     }
-
-
-
-
 
 
 

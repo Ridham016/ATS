@@ -13,7 +13,7 @@
 
           <ion-item  routerDirection="root" *ngFor="let pages of page" [routerLink]="[pages.url]" lines="none"
             detail="false" [class.active-item]="selectedpath===pages.url">
-            <ion-icon slot="start" [md]="pages.icon + '-sharp'" class="top-bar-items"></ion-icon>
+            <fa-icon  slot="start" [icon]="['fas', pages.icon]" class="top-bar-items" style='font-size:20px;'></fa-icon>
             <ion-label>{{ pages.title }}</ion-label>
           </ion-item>
 
@@ -21,7 +21,7 @@
       </ion-list>
     </ion-content>
     <ion-footer>
-      <ion-button expand="block" color="primary-dark" (click)="doLogout()" ><ion-icon class="me-3" name="log-out-outline"></ion-icon> Logout</ion-button>
+      <ion-button expand="block" color="primary-dark" (click)="doLogout()" ><fa-icon class="me-2" [icon]="['fas','right-from-bracket']"></fa-icon> Logout</ion-button>
     </ion-footer>
   </ion-menu>
   <ion-router-outlet id="main-content"></ion-router-outlet>

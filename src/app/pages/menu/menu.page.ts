@@ -13,29 +13,29 @@ export class MenuPage implements OnInit {
   activePageTitle = 'Dashboard';
   activeIndex!:number;
   visiable=true;
-   AdminPages = [
+  AdminPages = [
     {
       title: 'Dashboard',
       url: '/menu/user-dash-board',
-      icon: 'calendar',
+      icon: 'house',
       minRole: 'user'
     },
     {
       title: 'Applicant List',
       url: '/menu/applicant-list-page',
-      icon: 'list',
+      icon: 'list-ul',
       minRole: 'admin'
     },
     {
       title: 'Register Applicant',
       url: '/menu/applicant-registration-form',
-      icon: 'create',
+      icon: 'gears',
       minRole: 'admin'
     },
     {
       title: 'Advanced Search',
       url: '/menu/advance-search',
-      icon: 'search',
+      icon: 'magnifying-glass',
       minRole: 'user'
     },
   ];
@@ -43,19 +43,19 @@ export class MenuPage implements OnInit {
     {
       title: 'Dashboard',
       url: '/menu/user-dash-board',
-      icon: 'calendar',
+      icon: 'house',
       minRole: 'user'
     },
     {
       title: 'Applicant List',
       url: '/menu/applicant-list-page',
-      icon: 'list',
+      icon: 'list-ul',
       minRole: 'admin'
     },
     {
       title: 'Register Applicant',
       url: '/menu/applicant-registration-form',
-      icon: 'create',
+      icon: 'gears',
       minRole: 'admin'
     },
   ];
@@ -63,13 +63,13 @@ export class MenuPage implements OnInit {
     {
       title: 'Dashboard',
       url: '/menu/user-dash-board',
-      icon: 'calendar',
+      icon: 'house',
       minRole: 'user'
     },
     {
       title: 'Applicant List',
       url: '/menu/applicant-list-page',
-      icon: 'list',
+      icon: 'list-ul',
       minRole: 'admin'
     },
 

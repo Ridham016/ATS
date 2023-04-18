@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
   user:AuthUser ={
     Email:'', Password:'',RememberMe:false
   };
+  hide = true;
   userDetails:any=[]
   constructor(
     private router: Router,
@@ -39,13 +40,16 @@ export class LoginPage implements OnInit {
 
     }
   }
+  togglePassword() {
+    this.hide = !this.hide;
+  }
 
   ionViewWillLeave() {
     this.menuController.enable(true,'gg');
     console.log("fired1");
   }
   ngOnInit() {
-   
+
   }
 
 

@@ -62,7 +62,7 @@ onCancleMeating(){
               console.log(this.ActionId)
               this.api.upDateReason(this.ActionId,this.reasonDropDown,this.reasonTextBox).then(res=>{
                 if(res.status==200){
-                  this.router.navigate(['/menu/applicant-list-page']).then(() => {
+                  this.router.navigateByUrl('/menu/applicant-list-page').then(() => {
                     window.location.reload();;
                   })
                 }
@@ -94,7 +94,7 @@ onCancleMeating(){
               console.log(this.ActionId,)
               this.api.onHoldStatus(this.ActionId,this.reasonTextBox).then(res=>{
                 if(res.status==200){
-                  this.router.navigate(['/menu/applicant-list-page']).then(() => {
+                  this.router.navigateByUrl('/menu/applicant-list-page').then(() => {
                     window.location.reload();;
                   })
                 }
@@ -194,7 +194,7 @@ onCancleMeating(){
             console.log('Confirm Okay');
             this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(res=>{
               if(res.status==200){
-                this.router.navigate(['/menu/applicant-list-page']).then(() => {
+                this.router.navigateByUrl('/menu/applicant-list-page').then(() => {
                   window.location.reload();;
                 })
               }

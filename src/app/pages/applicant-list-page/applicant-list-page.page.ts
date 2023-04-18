@@ -38,7 +38,7 @@ export class ApplicantListPagePage implements OnInit {
    }
 
    async ionViewDidEnter() {
-  
+
    await this.menuController.enable(true,'gg');
     console.log("fired");
   }
@@ -55,7 +55,9 @@ export class ApplicantListPagePage implements OnInit {
   }
 
   async openSearchFilter() {
+    this.loaded=false
     const modal = await this.modalController.create({
+
       component: ApplicantFilterPage,
       componentProps: { }
     });
@@ -64,7 +66,6 @@ export class ApplicantListPagePage implements OnInit {
       let ApiList=[];
       let page=1;
       this.pageNumber=page;
-      this.api.showLoader()
       console.log(this.api.UploadStatusId)
       this.api.getApplicantsData(page,this.api.UploadStatusId).then(gg=>{
         console.log(gg)
@@ -75,13 +76,16 @@ export class ApplicantListPagePage implements OnInit {
         this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/5);
         console.log(this.totalRecord)
         this.api.Activelist=this.list;
-        this.api.hideLoader();
+        this.loaded=true
 
       }).catch(error=>{
+        debugger
         if( this.api.handleSessionTimeout(error)){
           console.log(error)
           this.api.hideLoader();
           this.api.showAlertF();
+          this.loaded=true
+          this.totalRecord=1
         }
       });
 
@@ -93,6 +97,7 @@ export class ApplicantListPagePage implements OnInit {
   handleRefresh(event:any) {
     setTimeout(() => {
       this.list=[]
+      this.loaded=false
       this.pageNumber=1;
       this.lable.StoredStatus='';
       this.api.UploadStatusId=undefined;
@@ -104,6 +109,7 @@ export class ApplicantListPagePage implements OnInit {
     if (this.swiper) {
       this.swiper.swiperRef.slidePrev();
       this.pageNumber--;
+      this.loaded=false
       this.onNextPageLoad(this.pageNumber)
     }
   }
@@ -113,6 +119,7 @@ export class ApplicantListPagePage implements OnInit {
     if (this.swiper) {
       this.swiper.swiperRef.slideNext();
       this.pageNumber++;
+      this.loaded=false
       this.onNextPageLoad(this.pageNumber)
     }
   }
@@ -121,12 +128,14 @@ export class ApplicantListPagePage implements OnInit {
     if (this.swiper) {
       this.swiper.swiperRef.slideNext();
       this.pageNumber=1;
+      this.loaded=false
       this.onNextPageLoad(this.pageNumber)
     }
   }
 
   goToLastPage(){
     if (this.swiper) {
+      this.loaded=false
       this.swiper.swiperRef.slideNext();
       this.pageNumber=this.totalRecord;
       this.onNextPageLoad(this.pageNumber)
@@ -136,7 +145,6 @@ export class ApplicantListPagePage implements OnInit {
 
   onNextPageLoad(page:number){
     let ApiList=[];
-    this.api.showLoader()
     this.api.getApplicantsData(page,this.api.UploadStatusId).then(gg=>{
       console.log(gg)
       ApiList=JSON.parse(gg.data)
@@ -144,19 +152,19 @@ export class ApplicantListPagePage implements OnInit {
       console.log(ApiList)
       this.list=ApiList
       this.api.Activelist=this.list;
+      this.loaded=true;
     }).catch(error=>{
       if( this.api.handleSessionTimeout(error)){
         console.log(error)
         this.api.showAlertF();
       }
-    }).finally(()=> this.api.hideLoader());
+    })
 
   }
 
 
   onLoadData(event?: any){
     let ApiList=[];
-    this.api.showLoader()
     this.api.getApplicantsData(this.pageNumber).then(gg=>{
       console.log(gg)
       ApiList=JSON.parse(gg.data)
@@ -165,7 +173,7 @@ export class ApplicantListPagePage implements OnInit {
       this.list=ApiList;
       this.api.Activelist=this.list;
       this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/5);
-      this.api.hideLoader();
+      this.loaded=true;
 
 
     }).catch(error=>{

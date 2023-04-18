@@ -26,6 +26,7 @@ pageNumber = 1;
 myCustomIcon = "/assets/view-details-icon.svg";
 lable=Constant;
 totalRecord:any=1;
+loaded=false;
 
 constructor(public api:ApiService ,
    private plt:Platform,
@@ -37,7 +38,7 @@ constructor(public api:ApiService ,
  }
 
  ionViewWillEnter() {
- 
+
   this.menuController.enable(true,'gg');
   console.log("fired");
   this.menuController.close();
@@ -56,6 +57,7 @@ async ngOnInit() {
 }
 
 async openSearchFilter() {
+  this.loaded=false
   const modal = await this.modalController.create({
     component: AdvanceSearchFilterPage,
     componentProps: { }
@@ -65,7 +67,6 @@ async openSearchFilter() {
     let ApiList=[];
     let page=1;
     this.pageNumber=page;
-    this.api.showLoader()
     console.log(this.api.UploadStatusId)
 
     this.api.getActionList(page,this.api.UploadStatusId,this.api.StartDate,this.api.EndDate).then(gg=>{
@@ -74,16 +75,18 @@ async openSearchFilter() {
       ApiList=ApiList['Result']
       console.log(ApiList)
       this.list=ApiList
-      this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/4);
+      this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/5);
       console.log(this.totalRecord)
       this.api.Activelist=this.list;
-      this.api.hideLoader();
+      this.loaded=true
+
 
     }).catch(error=>{
       if( this.api.handleSessionTimeout(error)){
         console.log(error)
-        this.api.hideLoader();
         this.api.showAlertF();
+        this.loaded=true
+        this.totalRecord=1
       }
     });
 
@@ -95,6 +98,7 @@ async openSearchFilter() {
 handleRefresh(event:any) {
   setTimeout(() => {
     this.list=[]
+    this.loaded=false
     this.pageNumber=1;
     this.lable.StoredStatus='';
     this.api.UploadStatusId=undefined;
@@ -106,6 +110,7 @@ back() {
   if (this.swiper) {
     this.swiper.swiperRef.slidePrev();
     this.pageNumber--;
+    this.loaded=false
     this.onNextPageLoad(this.pageNumber)
   }
 }
@@ -115,6 +120,7 @@ next() {
   if (this.swiper) {
     this.swiper.swiperRef.slideNext();
     this.pageNumber++;
+    this.loaded=false
     this.onNextPageLoad(this.pageNumber)
   }
 }
@@ -123,6 +129,7 @@ goToFirstPage(){
   if (this.swiper) {
     this.swiper.swiperRef.slideNext();
     this.pageNumber=1;
+    this.loaded=false
     this.onNextPageLoad(this.pageNumber)
   }
 }
@@ -131,6 +138,7 @@ goToLastPage(){
   if (this.swiper) {
     this.swiper.swiperRef.slideNext();
     this.pageNumber=this.totalRecord;
+    this.loaded=false
     this.onNextPageLoad(this.pageNumber)
   }
 }
@@ -146,7 +154,7 @@ onNextPageLoad(page:number){
     console.log(ApiList)
     this.list=ApiList
     this.api.Activelist=this.list;
-    this.api.hideLoader();
+    this.loaded=true
 
   }).catch(error=>{
     if( this.api.handleSessionTimeout(error)){
@@ -161,7 +169,6 @@ onNextPageLoad(page:number){
 
 onLoadData(event?: any){
   let ApiList=[];
-  this.api.showLoader()
   this.api.getActionList(this.pageNumber).then(gg=>{
     console.log(gg)
     ApiList=JSON.parse(gg.data)
@@ -169,14 +176,16 @@ onLoadData(event?: any){
     console.log(ApiList)
     this.list=ApiList;
     this.api.Activelist=this.list;
-    this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/4);
-    this.api.hideLoader();
+    this.totalRecord=Math.ceil(this.list[0]['TotalRecords']/5);
+    this.loaded=true;
+
 
 
   }).catch(error=>{
     if( this.api.handleSessionTimeout(error)){
       console.log(error)
-      this.api.hideLoader();
+      this.loaded=false;
+      this.totalRecord=1
       this.api.showAlertF();
     }
   });

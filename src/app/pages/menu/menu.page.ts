@@ -38,6 +38,12 @@ export class MenuPage implements OnInit {
       icon: 'magnifying-glass',
       minRole: 'user'
     },
+    {
+      title: 'Job Listing',
+      url: '/menu/job-posting',
+      icon: 'list-ul',
+      minRole: 'user'
+    },
   ];
    HRPages = [
     {
@@ -58,6 +64,12 @@ export class MenuPage implements OnInit {
       icon: 'gears',
       minRole: 'admin'
     },
+    {
+      title: 'Job Listing',
+      url: '/menu/job-posting',
+      icon: 'list-ul',
+      minRole: 'user'
+    },
   ];
    InterviwerPages = [
     {
@@ -72,6 +84,7 @@ export class MenuPage implements OnInit {
       icon: 'list-ul',
       minRole: 'admin'
     },
+
 
   ];
 page:any=[];

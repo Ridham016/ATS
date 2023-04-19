@@ -2,6 +2,9 @@ import { Router, RouterEvent} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Platform, AlertController } from '@ionic/angular';
 import { ApiService } from './services/api.service';
+import { Network } from '@ionic-native/network/ngx';
+import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,9 +13,32 @@ import { ApiService } from './services/api.service';
 export class AppComponent implements OnInit {
 
   constructor(private router:Router , private platform: Platform,
-    private api:ApiService) {
-
+    private api:ApiService, private network: Network, private  alertCtrl : AlertController,private diagnostic: Diagnostic ) {
+      window.addEventListener('offline',()=>{
+          this.openAlert();
+      })
   }
+
+ async openAlert(){
+  const alert1 = this.alertCtrl.create({
+    header: 'Turn On Internet',
+    message: 'Please go to your app settings to enable Internet.',
+    buttons: [{
+    text: 'Cancel',
+    handler :() =>{
+      this.openAlert();
+    }
+   },{
+    text: 'Open Settings',
+    handler: () => {
+      this.diagnostic.switchToMobileDataSettings();
+   }
+    }]
+  });
+    (await alert1).present();
+  }
+
+
   initializeApp(){
 
     let log=localStorage.getItem('isLogedIn');
@@ -31,7 +57,7 @@ export class AppComponent implements OnInit {
           }
         }
         else{
-          this.router.navigateByUrl('/login',{replaceUrl:true})
+         this.router.navigateByUrl('/login',{replaceUrl:true})
         }
 
   }
@@ -41,5 +67,6 @@ export class AppComponent implements OnInit {
      this.initializeApp();
     })
 }
+
 
 }

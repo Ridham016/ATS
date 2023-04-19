@@ -24,12 +24,13 @@ export class ApiService {
   Token!:string;
   RoleId=1;
   UserName!:string;
+
   // headers = {
   //   'Authorization': `${this.Token}`,
   //   'Content-Type': 'application/json'
   // };
 
-  baseUrl='https://065d-2409-4041-6ecf-ce35-c5d7-84b2-bd61-bd4a.ngrok-free.app/api/';
+  baseUrl='https://2ed3-2409-4041-6eb1-4f2a-6cc2-87cc-bc2e-aeec.ngrok-free.app/api/';
   baseUrldownload ='https://065d-2409-4041-6ecf-ce35-c5d7-84b2-bd61-bd4a.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
@@ -46,6 +47,10 @@ export class ApiService {
       })
 
   }
+
+ getjobListing(){
+    return this.api.get(`${this.baseUrl}JobListing/GetJobPostingList`,{},{})
+ }
 
  async dologin(user:{Email:string,Password:string}){
 
@@ -308,9 +313,6 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     }
       return true
     }
-
-
-
 
 
     encyptData(data:string){

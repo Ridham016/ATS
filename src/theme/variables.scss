@@ -706,6 +706,44 @@
         right:inherit;
       }
     }
+    .time-icon {
+
+      padding: 5px;
+      color: #f8788f;
+      border-radius: var(--ats-border-radius);
+      margin-right: 5px;
+      font-size: 18px;
+      line-height: 12px;
+  }
+
+  .interview-icon {
+
+      padding: 5px;
+      color: #6265ff;
+      border-radius: var(--ats-border-radius);
+      margin-right: 5px;
+      font-size: 18px;
+      line-height: 12px;
+  }
+
+  .meeting-icon {
+
+      padding: 5px;
+      color: #ffa21d;
+      border-radius: var(--ats-border-radius);
+      margin-right: 5px;
+      font-size: 15px;
+      line-height: 12px;
+  }
+
+  .interview-mode-icon {
+      padding: 5px;
+      color: #11c311;
+      border-radius: var(--ats-border-radius);
+      margin-right: 5px;
+      font-size: 15px;
+      line-height: 7px;
+  }
 
     //********************************************************/
 

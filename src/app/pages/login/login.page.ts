@@ -19,8 +19,7 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private menuController: MenuController,
-    private api:ApiService,
-
+    private api:ApiService,       
     ) {
 
    }
@@ -48,6 +47,7 @@ export class LoginPage implements OnInit {
     this.menuController.enable(true,'gg');
     console.log("fired1");
   }
+
   ngOnInit() {
 
   }

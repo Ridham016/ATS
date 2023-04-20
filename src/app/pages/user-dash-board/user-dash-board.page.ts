@@ -58,9 +58,10 @@ export class UserDashBoardPage implements OnInit {
       console.log("fired1");
       this.menuController.close();
     }
- async ngOnInit() {
+
+  ngOnInit() {
     this.plt.ready().then(async _=>{
-     await this.onloadEventDetails()
+     this.onloadEventDetails()
     })
   }
 
@@ -118,6 +119,9 @@ export class UserDashBoardPage implements OnInit {
     if( this.api.handleSessionTimeout(error)){
       this.api.showAlertF();
       console.log('eror',error)
+    }
+    else{
+      console.log(error);
     }
     })
 }

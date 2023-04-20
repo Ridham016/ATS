@@ -45,8 +45,10 @@
 
 <swiper #swiper>
   <ng-template swiperSlide>
-   <ion-card *ngFor="let item of list" class="custom-card" (click)="navigate(item.ApplicantId)"   [ngClass]=
-"{
+    <div *ngIf="loaded">
+
+      <ion-card *ngFor="let item of list" class="custom-card" (click)="navigate(item.ApplicantId)"   [ngClass]=
+      "{
   'badge-1': item.StatusId === 1,
   'badge-2': item.StatusId === 2,
   'badge-3': item.StatusId === 3,
@@ -69,9 +71,9 @@
           <ion-badge
           [ngClass]=
       "{
-      'badge-1': item.StatusId === 1,
-      'badge-2': item.StatusId === 2,
-      'badge-3': item.StatusId === 3,
+        'badge-1': item.StatusId === 1,
+        'badge-2': item.StatusId === 2,
+        'badge-3': item.StatusId === 3,
       'badge-4': item.StatusId === 4,
       'badge-5': item.StatusId === 5,
       'badge-6': item.StatusId === 6,
@@ -81,9 +83,11 @@
       >{{item.StatusName}}</ion-badge>
     </ion-col>
 
-    </ion-row>
-  </ion-grid>
+  </ion-row>
+</ion-grid>
 </ion-card>
+</div>
+
 
 <div  *ngIf="!loaded">
   <ion-card  class="custom-card" *ngFor="let i of [1, 2, 3, 4, 5]" >

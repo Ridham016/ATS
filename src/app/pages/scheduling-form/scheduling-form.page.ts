@@ -31,27 +31,15 @@ isChecked=false;
     this.statusID = this.activatedRoute.snapshot.queryParams['nextStatus'];
     this.plt.ready().then(_=>{
 
-      this.api.getCompanyList().then(
+      this.api.getCompanyList(this.ApplicantId).then(
         res=>{
           this.companyList = JSON.parse (res.data)
           this.companyList=this.companyList['Result']
-
           console.log(this.companyList);
         })
 
-      this.api.getPosition().then(
-        res=>{
-          this.positionList = JSON.parse (res.data)
-          this.positionList=this.positionList['Result']
-
-          console.log(this.positionList);
-        })
-
-
-
         this.api.getInterviwer().then(res=>{
           this.interviewerList = JSON.parse (res.data)
-
           this.interviewerList=this.interviewerList['Result']
           console.log(this.interviewerList);
         })
@@ -59,7 +47,7 @@ isChecked=false;
   }
   onVenueChange(){
     if (this.isChecked===true) {
-      this.schedule.Venue = this.companyList[this.schedule.CompanyId]['Venue'];
+      this.schedule.Venue = this.companyList.Venue;
     } else {
       this.schedule.Venue  = '';
     }

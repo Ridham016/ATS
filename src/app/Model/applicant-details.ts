@@ -29,6 +29,7 @@ export class Applicant {
   OtherLink!:string;
   SkillDescription!:string;
   DOJ!:string;
+  PostingId!:number;
 }
 export class Scheduling{
   Description!:string;

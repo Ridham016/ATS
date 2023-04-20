@@ -12,14 +12,13 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas, faR, faB } from '@fortawesome/free-solid-svg-icons';
-
 import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
-
 import { Network } from '@ionic-native/network/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SwiperModule, CommonModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },EmailComposer,HTTP,FileOpener,File,Network,Diagnostic ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Network,EmailComposer,HTTP,FileOpener,File,Diagnostic],
   bootstrap: [AppComponent],
 })
 export class AppModule {

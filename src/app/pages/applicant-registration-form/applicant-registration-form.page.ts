@@ -1,6 +1,6 @@
 import { MenuController } from '@ionic/angular';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Applicant, ApplicantDetails } from 'src/app/Model/applicant-details';
 import { ApiService } from 'src/app/services/api.service';
 import { SwiperComponent } from 'swiper/angular';
@@ -44,10 +44,13 @@ selectedFileUrl: string = '';
   ogFile:any;
   link:any []=[];
   public i=0;
+  PostingId: number;
 
   constructor(private a:ApiService,
-    private menuController:MenuController
+    private menuController:MenuController,
+    private activatedRoute:ActivatedRoute
     ) {
+      this.PostingId = this.activatedRoute.snapshot.queryParams['id'];
   }
   addInput() {
     let i=1;
@@ -143,7 +146,9 @@ selectedFileUrl: string = '';
     {
     this.details.LinkInLink=this.link[1];
     this.details.OtherLink=this.link[2];
+
     }
+    this.details.PostingId=this.PostingId;
     console.log(this.details)
     this.a.createApplicant(this.details,this.ogFile)
     this.details=new Applicant();

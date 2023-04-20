@@ -1,6 +1,6 @@
 import { Router, RouterEvent} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Platform, AlertController } from '@ionic/angular';
+import { Platform, AlertController, AlertButton } from '@ionic/angular';
 import { ApiService } from './services/api.service';
 import { Network } from '@ionic-native/network/ngx';
 import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
@@ -11,33 +11,58 @@ import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
+  disconnectSubscription: any;
+  networkAlert: any;
+  util: any;
+  connectSubscription: any;
   constructor(private router:Router , private platform: Platform,
     private api:ApiService, private network: Network, private  alertCtrl : AlertController,private diagnostic: Diagnostic ) {
-      window.addEventListener('offline',()=>{
-          this.openAlert();
-      })
-  }
 
- async openAlert(){
-  const alert1 = this.alertCtrl.create({
-    header: 'Turn On Internet',
-    message: 'Please go to your app settings to enable Internet.',
-    buttons: [{
-    text: 'Cancel',
-    handler :() =>{
-      this.openAlert();
+  }
+checkNet(){
+  // window.addEventListener('offline',async (res)=>{
+  //   console.log(res)
+  //   this.openAlert();
+
+  // })
+  // window.addEventListener('online',async (res)=>{
+  //   const loading = await this.alertCtrl.getTop();
+  //   if (loading) {
+  //     await loading.dismiss();
+  //   }
+  // })
+
+
+  this.disconnectSubscription = this.network.onDisconnect().subscribe(async () => {
+    console.log('network was disconnected :-(');
+    this.networkAlert = await this.createAlert('No Internet', false, 'Please Check you internet Connection and try again',{
+    text: '',
+    role: '',
+    cssClass: 'secondary',
+    });
+    this.networkAlert.present();
+    });
+    this.connectSubscription = this.network.onConnect().subscribe(() => {
+    console.log('network connected!');
+    if(this.networkAlert) {
+    this.networkAlert.dismiss();
     }
-   },{
-    text: 'Open Settings',
-    handler: () => {
-      this.diagnostic.switchToMobileDataSettings();
-   }
-    }]
-  });
-    (await alert1).present();
+    });
   }
 
+
+
+  async createAlert(header: any, backdropDismiss: any, message: any, buttonOptions1: string | AlertButton, buttonOptions2?: string | AlertButton): Promise<HTMLIonAlertElement> {
+    this.diagnostic.switchToMobileDataSettings();
+    const alert = await this.alertCtrl.create({
+    header,
+    backdropDismiss,
+    message,
+    cssClass:'offile-alert',
+    buttons: !buttonOptions2 ? [buttonOptions1] : [buttonOptions1, buttonOptions2]
+    });
+    return alert;
+    }
 
   initializeApp(){
 
@@ -46,8 +71,9 @@ export class AppComponent implements OnInit {
     {
       let Email = localStorage.getItem('email');
       let Password = localStorage.getItem('password');
-      console.log(Email,Password);
-      if (Email && Password) {
+      let Token=localStorage.getItem('Token') as string;
+      if (Email && Password && Token)  {
+        this.api.setToken(Token);
             this.router.navigateByUrl('/menu/user-dash-board',{replaceUrl:true})
             localStorage.setItem('isLogedIn','1');
           }
@@ -64,9 +90,13 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     await  this.platform.ready().then( () =>{
+      this.checkNet();
      this.initializeApp();
     })
+
+
 }
+
 
 
 }

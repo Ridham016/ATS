@@ -30,8 +30,8 @@ export class ApiService {
   //   'Content-Type': 'application/json'
   // };
 
-  baseUrl='https://2ed3-2409-4041-6eb1-4f2a-6cc2-87cc-bc2e-aeec.ngrok-free.app/api/';
-  baseUrldownload ='https://065d-2409-4041-6ecf-ce35-c5d7-84b2-bd61-bd4a.ngrok-free.app/Attachments/Temp/';
+  baseUrl='https://9b82-61-1-58-16.ngrok-free.app/api/';
+  baseUrldownload ='https://9b82-61-1-58-16.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -283,8 +283,9 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
       return this.api.get(`${this.baseUrl}AdvancedSearch/ApplicantTimeline_APP`,payload,{});
     }
 
-    getCompanyList(){
-      return this.api.get(`${this.baseUrl}Schedules/GetCompanyDetails`,{},{})
+    getCompanyList(applicntId:number){
+
+      return this.api.get(`${this.baseUrl}Schedules/GetCompanyDetails/?ApplicantId=${applicntId}`,{},{})
     }
     getPosition(){
       return this.api.get(`${this.baseUrl}Schedules/GetPositionDetails`,{},{})
@@ -301,9 +302,10 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     }
 
     handleSessionTimeout(error:any){
-      if(error.error!=undefined){
+      debugger
+      if(error.error!=undefined && error.status==401){
       let err=JSON.parse(error.error);
-      if(err['MessageType']===0 && error.status==401){
+      if(err['MessageType']===0 ){
         localStorage.setItem('Token','')
         this.router.navigate(['/login'],{replaceUrl:true})
         localStorage.setItem('isLogedIn','');

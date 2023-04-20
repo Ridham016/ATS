@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import{MenuController} from '@ionic/angular'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-job-posting',
   templateUrl: './job-posting.page.html',
@@ -8,7 +9,12 @@ import{MenuController} from '@ionic/angular'
 })
 export class JobPostingPage implements OnInit {
   joblist : any[] = [];
-  constructor(private api: ApiService, private menuController: MenuController) { }
+  constructor(
+    private api: ApiService,
+    private menuController: MenuController,
+    private router:Router
+
+    ) { }
 
   ngOnInit() {
     this.jobListingData();
@@ -38,5 +44,15 @@ export class JobPostingPage implements OnInit {
         console.log(Apilist)
         this.joblist = Apilist
       })
+  }
+
+  register(postingId:number){
+    this.router.navigate(['/menu/applicant-registration-form'],
+    {
+      queryParams: {
+        id:postingId,
+      }
+    }
+    )
   }
 }

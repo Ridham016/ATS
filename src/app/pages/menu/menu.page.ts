@@ -27,12 +27,6 @@ export class MenuPage implements OnInit {
       minRole: 'admin'
     },
     {
-      title: 'Register Applicant',
-      url: '/menu/applicant-registration-form',
-      icon: 'gears',
-      minRole: 'admin'
-    },
-    {
       title: 'Advanced Search',
       url: '/menu/advance-search',
       icon: 'magnifying-glass',
@@ -56,12 +50,6 @@ export class MenuPage implements OnInit {
       title: 'Applicant List',
       url: '/menu/applicant-list-page',
       icon: 'list-ul',
-      minRole: 'admin'
-    },
-    {
-      title: 'Register Applicant',
-      url: '/menu/applicant-registration-form',
-      icon: 'gears',
       minRole: 'admin'
     },
     {

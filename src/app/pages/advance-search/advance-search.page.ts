@@ -146,7 +146,6 @@ goToLastPage(){
 
 onNextPageLoad(page:number){
   let ApiList=[];
-  this.api.showLoader()
   this.api.getActionList(page,this.api.UploadStatusId,this.api.StartDate,this.api.EndDate).then(gg=>{
     console.log(gg)
     ApiList=JSON.parse(gg.data)

@@ -33,9 +33,16 @@ isChecked=false;
 
       this.api.getCompanyList(this.ApplicantId).then(
         res=>{
+          debugger
           this.companyList = JSON.parse (res.data)
-          this.companyList=this.companyList['Result']
           console.log(this.companyList);
+          if(this.companyList.MessageType===1){
+            this.companyList=this.companyList['Result']
+            console.log(this.companyList);
+          }
+          else if(this.companyList.MessageType===0){
+            this.api.showAlertF();
+          }
         })
 
         this.api.getInterviwer().then(res=>{
@@ -46,10 +53,12 @@ isChecked=false;
     })
   }
   onVenueChange(){
-    if (this.isChecked===true) {
+    debugger
+    if (this.isChecked===true && this.companyList.Venue==null) {
       this.schedule.Venue = this.companyList.Venue;
     } else {
       this.schedule.Venue  = '';
+      this.VenueDisabled=false;
     }
   }
 

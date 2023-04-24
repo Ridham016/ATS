@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class JobPostingPage implements OnInit {
   joblist : any[] = [];
+  loaded = false;
   constructor(
     private api: ApiService,
     private menuController: MenuController,
@@ -42,7 +43,14 @@ export class JobPostingPage implements OnInit {
         Apilist = JSON.parse(list.data)
         Apilist = Apilist['Result']
         console.log(Apilist)
-        this.joblist = Apilist
+        this.joblist = Apilist;
+        this.loaded =true;
+      }).catch(error=>{
+        if(this.api.handleSessionTimeout(error)){
+          console.log('error')
+          this.api.showAlertF();
+          this.loaded = true;
+        }
       })
   }
 

@@ -47,6 +47,7 @@ export class AdvanceSearchFilterPage implements OnInit {
     this.api.StartDate= undefined;
     this.api.EndDate= undefined;
     this.modalCtrl.dismiss();
+  
   }
 
   async applyFilters(){

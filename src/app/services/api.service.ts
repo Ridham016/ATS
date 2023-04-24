@@ -1,6 +1,6 @@
 
 import { Injectable, NgModule } from '@angular/core';
-import { HTTP } from "@ionic-native/http/ngx";
+import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 import { Applicant, Scheduling } from '../Model/applicant-details';
 import * as CryptoJS from 'crypto-js';
 import { LoadingController, AlertController } from '@ionic/angular';
@@ -30,7 +30,7 @@ export class ApiService {
   //   'Content-Type': 'application/json'
   // };
 
-  baseUrl='https://9b82-61-1-58-16.ngrok-free.app/api/';
+  baseUrl='https://9a76-117-212-137-199.ngrok-free.app/api/';
   baseUrldownload ='https://9b82-61-1-58-16.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,

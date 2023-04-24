@@ -8,42 +8,42 @@
 </ion-header>
 
 <ion-content>
-
+<div *ngIf="loaded">
     <ion-card class="shadow" *ngFor=" let h of joblist ">
 
-      <div class="card joblist p-3">
+      <div class="card joblist p-3" *ngIf="loaded">
         <div class="row">
-          <div class="col-9"><h4 class="card-title">{{h.PositionName}}</h4>
-            <p class="card-subtitle text-success">{{h.CompanyName}}</p>
+          <div class="col-9"><h4 class="card-title job-position">{{h.PositionName}}</h4>
+            <p class="card-subtitle text-success job-companyname">{{h.CompanyName}}</p>
             </div>
             <div class="col-3">
-              <div class="company-logo"><img src="/assets/avatar.svg" class="img-fluid rounded" ></div>
+              <div class="company-logo job-companylogo"><img src="/assets/avatar.svg" class="img-fluid rounded" ></div>
             </div>
         </div>
         <div class="d-flex mt-3">
             <div class="group">
               <fa-icon   class="fa-solid fa-briefcase"></fa-icon>
-                <span class="">{{h.Experience}}</span>
+                <span class="job-experience">{{h.Experience}}</span>
             </div>
             <span class="me-3 ms-3 border-end"></span>
             <div class="group">
 
              <fa-icon [icon]="['fas','indian-rupee-sign' ]"></fa-icon>
-                <span class="">{{h.Salary}}</span>
+                <span class="job-salary">{{h.Salary}}</span>
 
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-lg-12">
               <fa-icon [icon]=" ['fas','location-dot']"></fa-icon>
-                <span class="">{{h.CompanyVenue}}</span>
+                <span class="job-companyvenue">{{h.CompanyVenue}}</span>
             </div>
         </div>
         <hr />
         <div class="mt-0 d-flex justify-content-between">
             <div class="group">
                 Posted :
-                <span class="ms-1"><b>{{h.Posted}}+</b> days ago</span>
+                <span class="ms-1 job-posted"><b>{{h.Posted}}+</b> days ago</span>
             </div>
             <div class="group">
                 <ion-button (click)="register(h.PostingId)" color="success">Register</ion-button>
@@ -51,5 +51,52 @@
         </div>
     </div>
     </ion-card>
+    </div>
 
+    <div *ngIf="!loaded">
+      <ion-card class="shadow" *ngFor=" let h of joblist ">
+
+        <div class="card joblist p-3" *ngIf="loaded">
+          <div class="row">
+            <div class="col-9"><h4 class="card-title job-position"><ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text></h4>
+              <p class="card-subtitle text-success job-companyname"><ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text></p>
+              </div>
+              <div class="col-3">
+                <div class="company-logo job-companylogo"><img src="/assets/avatar.svg" class="img-fluid rounded" ></div>
+              </div>
+          </div>
+          <div class="d-flex mt-3">
+              <div class="group">
+                <fa-icon   class="fa-solid fa-briefcase"></fa-icon>
+                  <span class="job-experience"><ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text></span>
+              </div>
+              <span class="me-3 ms-3 border-end"></span>
+              <div class="group">
+
+               <fa-icon [icon]="['fas','indian-rupee-sign' ]"></fa-icon>
+                  <span class="job-salary"><ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text></span>
+
+              </div>
+          </div>
+          <div class="row mt-2">
+              <div class="col-lg-12">
+                <fa-icon [icon]=" ['fas','location-dot']"></fa-icon>
+                  <span class="job-companyvenue"><ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text></span>
+              </div>
+          </div>
+          <hr />
+          <div class="mt-0 d-flex justify-content-between">
+              <div class="group">
+                  Posted :
+                  <span class="ms-1 job-posted"><b><ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>+</b> days ago</span>
+              </div>
+              <div class="group">
+                  <ion-button (click)="register(h.PostingId)" color="success">Register</ion-button>
+              </div>
+          </div>
+      </div>
+      </ion-card>
+      </div>
+
+  
 </ion-content>

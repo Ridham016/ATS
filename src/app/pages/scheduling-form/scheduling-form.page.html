@@ -21,7 +21,9 @@
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" showDefaultButtons="true" pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.ScheduleDateTime" > </ion-datetime>
+          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" showDefaultButtons="true" pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.ScheduleDateTime" #scheduledate ="ngModel" > </ion-datetime>
+          <ion-note *ngIf="!scheduledate.valid && scheduledate.touched" color="danger">Date is required</ion-note>
+
         </ng-template>
       </ion-modal>
     </ion-item>

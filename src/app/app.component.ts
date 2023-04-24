@@ -2,7 +2,7 @@ import { Router, RouterEvent} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Platform, AlertController, AlertButton } from '@ionic/angular';
 import { ApiService } from './services/api.service';
-import { Network } from '@ionic-native/network/ngx';
+import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
 
 @Component({

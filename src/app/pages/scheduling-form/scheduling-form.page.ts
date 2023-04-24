@@ -30,7 +30,7 @@ isChecked=false;
     this.ApplicantId = this.activatedRoute.snapshot.queryParams['id'];
     this.statusID = this.activatedRoute.snapshot.queryParams['nextStatus'];
     this.plt.ready().then(_=>{
-
+      this.api.showLoader();
       this.api.getCompanyList(this.ApplicantId).then(
         res=>{
           debugger

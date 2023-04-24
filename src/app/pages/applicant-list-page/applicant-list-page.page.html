@@ -45,7 +45,7 @@
 
 <swiper #swiper  >
   <ng-template swiperSlide  >
-    <div *ngIf="loaded"> 
+    <div *ngIf="loaded">
       <ion-card *ngFor="let item of list " (click)="navigate(item.ApplicantId)" class="custom-card"  [ngClass]=
       "{
         'badge-1': item.StatusId === 1,
@@ -79,7 +79,7 @@
 </ion-card>
 </div >
 
-<div  *ngIf="!loaded">
+<div *ngIf="!loaded">
 <ion-card  class="custom-card" *ngFor="let i of [1, 2, 3, 4, 5]" >
   <ion-grid fixed>
     <ion-row>

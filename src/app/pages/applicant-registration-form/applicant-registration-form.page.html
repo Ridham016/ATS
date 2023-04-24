@@ -165,7 +165,7 @@
 
         <ion-item fill="outline"  class="my-input" >
           <ion-label position="floating"> {{lable.ExpectedCTC}} </ion-label>
-          <ion-textarea  placeholder="Enter Expected CTC"  maxlength="4" name="expectedctc" required [(ngModel)]="details.ExpectedCTC" #expctc="ngModel"></ion-textarea>
+          <ion-textarea  placeholder="Enter Expected CTC" type="text" name="expectedctc" required [(ngModel)]="details.ExpectedCTC" #expctc="ngModel"></ion-textarea>
           <ion-note *ngIf="!expctc.valid && expctc.touched" color="danger"> CTC is required</ion-note>
         </ion-item>
 

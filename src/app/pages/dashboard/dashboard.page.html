@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <div *ngFor="let item of datalist">
+    <div class="row mt-4 mx-3">
+      <div class="col-12">
+        <div class="card dashboard-card-1 mt-4">
+          <div class="card-content">
+            <div class="card-bg"></div>
+            <div class="row d-flex align-items-center">
+              <div class="col-3 dashboard-item-icon">
+                <div class="icon-div">
+                  <img src="/src/assets/meetings-icon.svg" />
+                </div>
+              </div>
+              <div class="col-9 text-center">
+                <p class="info-number">{{item.MeetingsScheduled}}</p>
+                <div class="dashboard-card-title">Meetings Scheduled</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card dashboard-card-2 mt-4">
+          <div class="card-content">
+            <div class="card-bg"></div>
+            <div class="row d-flex align-items-center">
+              <div class="col-3 dashboard-item-icon">
+                <div class="icon-div">
+                  <img src="/src/assets/openings-icon.svg" />
+                </div>
+              </div>
+              <div class="col-9 text-center">
+                <p class="info-number">{{item.JobOpenings}}</p>
+                <div class="dashboard-card-title">Job Openings</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-3">
+      <div class="col-12">
+        <div class="card dashboard-card-3 mt-4">
+          <div class="card-content">
+            <div class="card-bg"></div>
+            <div class="row d-flex align-items-center">
+              <div class="col-3 dashboard-item-icon">
+                <div class="icon-div">
+                  <img src="/src/assets/applications.svg" />
+                </div>
+              </div>
+              <div class="col-9 text-center">
+                <p class="info-number">{{item.ApplicantsRegistered}}</p>
+                <div class="dashboard-card-title">Total Applications</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card dashboard-card-4 mt-4">
+          <div class="card-content">
+            <div class="card-bg"></div>
+            <div class="row d-flex align-items-center">
+              <div class="col-3 dashboard-item-icon">
+                <div class="icon-div">
+                  <img src="/src/assets/hired.svg" />
+                </div>
+              </div>
+              <div class="col-9 text-center">
+                <p class="info-number">{{item.ApplicantsHired}}</p>
+                <div class="dashboard-card-title">Applicants Hired</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

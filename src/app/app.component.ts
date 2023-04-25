@@ -74,7 +74,7 @@ checkNet(){
       let Token=localStorage.getItem('Token') as string;
       if (Email && Password && Token)  {
         this.api.setToken(Token);
-            this.router.navigateByUrl('/menu/user-dash-board',{replaceUrl:true})
+            this.router.navigateByUrl('/dashboard',{replaceUrl:true})
             localStorage.setItem('isLogedIn','1');
           }
           else{

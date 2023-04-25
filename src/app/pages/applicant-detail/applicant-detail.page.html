@@ -214,7 +214,7 @@
               <ion-textarea  placeholder="Enter Reason For Cancelaltion" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
               <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
             </ion-item>
-            <ion-button fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Submit </ion-button>
+            <ion-button fill="solid" color="primary-dark" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Submit </ion-button>
       </form>
     </ion-card>
     </ion-content>
@@ -240,7 +240,7 @@
               <ion-textarea  placeholder="Enter Reason For Hold" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
               <ion-note *ngIf="!address.valid && address.touched" color="danger">Address is required</ion-note>
             </ion-item>
-            <ion-button fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Submit   </ion-button>
+            <ion-button color="primary-dark" fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Submit   </ion-button>
       </form>
     </ion-card>
     </ion-content>
@@ -266,7 +266,7 @@
               <ion-textarea  placeholder="Enter Comment" type="text" name="address" required [(ngModel)]="reasonTextBox" #address="ngModel"></ion-textarea>
               <ion-note *ngIf="!address.valid && address.touched" color="danger">Comment is Required</ion-note>
             </ion-item>
-            <ion-button fill="solid" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Submit   </ion-button>
+            <ion-button fill="solid" color="primary-dark" size="medium" (click)="onCancleMeating()"  [disabled]="!form.valid" >  Submit   </ion-button>
       </form>
     </ion-card>
     </ion-content>

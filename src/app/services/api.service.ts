@@ -30,8 +30,8 @@ export class ApiService {
   //   'Content-Type': 'application/json'
   // };
 
-  baseUrl='https://9a76-117-212-137-199.ngrok-free.app/api/';
-  baseUrldownload ='https://9b82-61-1-58-16.ngrok-free.app/Attachments/Temp/';
+  baseUrl='https://e7d4-2409-4041-6ecc-4bc2-fc83-b340-25d2-574e.ngrok-free.app/api/';
+  baseUrldownload ='https://e7d4-2409-4041-6ecc-4bc2-fc83-b340-25d2-574e.ngrok-free.app/Attachments/Temp/';
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -48,7 +48,13 @@ export class ApiService {
 
   }
 
+ getDashboardData(){
+  this.api.setHeader('*','__RequestAuthToken', this.Token);
+  return this.api.get(`${this.baseUrl}Dashboard/GetCounts_APP`,{},{})
+ }
+
  getjobListing(){
+  
     return this.api.get(`${this.baseUrl}JobListing/GetJobPostingList`,{},{})
  }
 
@@ -271,7 +277,7 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
 
     getEventDetails(){
       this.api.setHeader('*','__RequestAuthToken', this.Token);
-      return this.api.get(this.baseUrl+'Dashboard/GetEvents',{},{});
+      return this.api.get(this.baseUrl+'Calendar/GetEvents',{},{});
     }
 
     getApplicantHistory(appid:number){

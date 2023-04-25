@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private menuController: MenuController,
-    private api:ApiService,       
+    private api:ApiService,
     ) {
 
    }
@@ -97,7 +97,7 @@ console.log(this.user.RememberMe)
         localStorage.setItem('Token',this.api.Token);
         this.user.Email=''
         this.user.Password=''
-        this.router.navigateByUrl('/menu/user-dash-board',{replaceUrl:true})
+        this.router.navigateByUrl('/dashboard',{replaceUrl:true})
         localStorage.setItem('isLogedIn','1');
         }
         else{

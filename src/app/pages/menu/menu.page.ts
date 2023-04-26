@@ -16,8 +16,14 @@ export class MenuPage implements OnInit {
   AdminPages = [
     {
       title: 'Dashboard',
-      url: '/menu/user-dash-board',
+      url: '/menu/dashboard',
       icon: 'house',
+      minRole: 'user'
+    },
+    {
+      title: 'Calendar',
+      url: '/menu/user-dash-board',
+      icon: 'calendar-day',
       minRole: 'user'
     },
     {
@@ -42,8 +48,14 @@ export class MenuPage implements OnInit {
    HRPages = [
     {
       title: 'Dashboard',
-      url: '/menu/user-dash-board',
+      url: '/menu/dashboard',
       icon: 'house',
+      minRole: 'user'
+    },
+    {
+      title: 'Calendar',
+      url: '/menu/user-dash-board',
+      icon: 'calendar-day',
       minRole: 'user'
     },
     {
@@ -62,8 +74,14 @@ export class MenuPage implements OnInit {
    InterviwerPages = [
     {
       title: 'Dashboard',
-      url: '/menu/user-dash-board',
+      url: '/menu/dashboard',
       icon: 'house',
+      minRole: 'user'
+    },
+    {
+      title: 'Calendar',
+      url: '/menu/user-dash-board',
+      icon: 'calendar-day',
       minRole: 'user'
     },
     {

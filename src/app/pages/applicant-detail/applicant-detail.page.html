@@ -8,164 +8,110 @@
 </ion-header>
 
 <ion-content fullscreen="true" >
-  <img src="/assets/avatar.svg" class="center">
-  <h3 class="ion-text-center" >{{data.FirstName}} {{data.LastName}}<br>
-    <ion-badge
-    [ngClass]=
-"{
-'badge-1': data.StatusId === 1,
-'badge-2': data.StatusId === 2,
-'badge-4': data.StatusId === 4,
-'badge-5': data.StatusId === 5,
-'badge-8': data.StatusId === 8
-}"
->{{data.StatusName}}</ion-badge></h3>
 
-  <!-- <ion-accordion-group value="1" expand="inset" >
-    <ion-accordion value="1" >
-      <ion-item slot="header" >
-        <ion-label>Personal Details</ion-label>
-      </ion-item>
-      <div class="accord-lable" slot="content">
-        <ion-list lines="none" class="gg">
-          <ion-item >
-            <ion-label slot="start">{{lable.FirstName}}</ion-label>
-            <p >{{data.FirstName}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-label slot="start">{{lable.MiddleName}}</ion-label>
-            <p >{{data.MiddleName}}</p>
-          </ion-item>
-          <ion-item  >
-            <ion-label slot="start">{{lable.LastName}}</ion-label>
-            <p >{{data.LastName}}</p>
-          </ion-item>
-          <ion-item >
-            <ion-label slot="start">{{lable.Email}}</ion-label>
-            <p >{{data.Email}}</p>
-          </ion-item>
-          <ion-item  >
-            <ion-label slot="start">{{lable.Phone}}</ion-label>
-            <p >{{data.Phone}}</p>
-          </ion-item>
-          <ion-item  >
-            <ion-label slot="start">{{lable.Address}}</ion-label>
-            <p >{{data.Address}}</p>
-          </ion-item>
-          <ion-item  >
-            <ion-label slot="start">{{lable.DateOfBirth}}</ion-label>
-            <p >{{data.DateOfBirth}}</p>
-          </ion-item>
-          </ion-list>
+  <!-- <div class="card user-details-card border-0">
+  <div class="row user-img-details">
+    <div class="col-12">
+      <img src="/assets/avatar.svg" class="center">
+    </div>
+  </div>
+  <div class="row user-img-details">
+    <div class="col-6">
+      <ion-badge
+      [ngClass]=
+      "{
+        'badge-1': data.StatusId === 1,
+        'badge-2': data.StatusId === 2,
+        'badge-4': data.StatusId === 4,
+        'badge-5': data.StatusId === 5,
+        'badge-8': data.StatusId === 8
+      }"
+      >{{data.StatusName}}</ion-badge>
+    </div>
+    <div class="col-6">
+      <div class="user-dob">
+        {{data.DateOfBirth | date :'mediumDate'}}
       </div>
-    </ion-accordion>
-    <ion-accordion value="2">
-        <ion-item slot="header">
-            <ion-label>Professional Details</ion-label>
-        </ion-item>
-        <div   slot="content">
-            <ion-list lines="none" class="gg">
-              <ion-item >
-                  <ion-label slot="start">{{lable.CurrentCompany}}</ion-label>
-                  <p>{{data.CurrentCompany}}</p>
-              </ion-item>
-              <ion-item>
-                  <ion-label slot="start">{{lable.CurrentDesignation}}</ion-label>
-                  <p>{{data.CurrentDesignation}}</p>
-              </ion-item>
-              <ion-item  >
-                  <ion-label slot="start">{{lable.TotalExperience}}</ion-label>
-                  <p >{{data.TotalExperience}}</p>
-              </ion-item>
-              <ion-item  >
-                  <ion-label slot="start">{{lable.DetailedExperience}}</ion-label>
-                  <p>{{data.DetailedExperience}}</p>
-              </ion-item>
-              <ion-item>
-                  <ion-label slot="start">{{lable.NoticePeriod}}</ion-label>
-                  <p>{{data.NoticePeriod}}</p>
-              </ion-item>
-              <ion-item  >
-                  <ion-label slot="start">{{lable.CurrentCTC}}</ion-label>
-                  <p>{{data.CurrentCTC}}</p>
-              </ion-item>
-              <ion-item  >
-                  <ion-label slot="start">{{lable.ExpectedCTC}}</ion-label>
-                  <p>{{data.ExpectedCTC}}</p>
-              </ion-item>
-              <ion-item  >
-                  <ion-label slot="start">{{lable.ReasonForChange}}</ion-label>
-                  <p>{{data.ReasonForChange}}</p>
-              </ion-item>
-              <ion-item  >
-                  <ion-label slot="start">{{lable.CurrentLocation}}</ion-label>
-                  <p>{{data.CurrentLocation}}</p>
-              </ion-item>
-              <ion-item  >
-                  <ion-label slot="start">{{lable.PreferedLocation}}</ion-label>
-                  <p>{{data.PreferedLocation}}</p>
-              </ion-item>
-            </ion-list>
-        </div>
-    </ion-accordion>
-    <ion-accordion value="3">
-        <ion-item slot="header">
-            <ion-label>Authentication</ion-label>
-        </ion-item>
-        <div  slot="content">
-          <ion-row class="button-grid">
-            <ion-col *ngFor="let but of but_data" > <ion-button
-              [ngClass]=
-              "{
-              'button-1': but.ButtonId === 1,
-              'button-2': but.ButtonId === 2,
-              'button-3': but.ButtonId === 3,
-              'button-6': but.ButtonId === 6,
-              'button-7': but.ButtonId === 7,
-              'button-4': but.ButtonId === 4,
-              'button-5': but.ButtonId === 5,
-              'button-8': but.ButtonId === 8
-
-            }"
-            (click)="onStatusUpdate(but.ButtonId,but.NextStatusId)"
-            >{{but.ButtonName}}</ion-button></ion-col>
-          </ion-row>
-
-        </div>
-    </ion-accordion>
-  </ion-accordion-group> -->
-<ion-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <h3 class="ion-text-center" >{{data.FirstName}} {{data.LastName}}</h3>
+        <h6 class="ion-text-center user-skill">
+          <ion-badge
+          [ngClass]=
+          "{
+            'badge-1': data.StatusId === 1,
+            'badge-2': data.StatusId === 2,
+            'badge-4': data.StatusId === 4,
+            'badge-5': data.StatusId === 5,
+            'badge-8': data.StatusId === 8
+          }"
+          >{{data.StatusName}}</ion-badge>
+          {{data.SkillDescription}}
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-8">
+      <div class="user-email">
+        {{data.Email}}
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="user-phone-no text-end">
+        {{data.Phone}}
+      </div>
+    </div>
+  </div>
+  </div> -->
+<div class="card user-details-card">
 
   <ion-grid >
+    <img src="/assets/avatar.svg" class="center">
+    <h3 class="ion-text-center" >{{data.FirstName}} {{data.LastName}}<br>
+      <ion-badge
+      [ngClass]=
+  "{
+  'badge-1': data.StatusId === 1,
+  'badge-2': data.StatusId === 2,
+  'badge-4': data.StatusId === 4,
+  'badge-5': data.StatusId === 5,
+  'badge-8': data.StatusId === 8
+  }"
+  >{{data.StatusName}}</ion-badge></h3>
+
     <ion-row>
-      <ion-col class="ion-text-center h4 detail-card-title"> Candidate Details </ion-col>
+      <ion-col  size="2"><fa-icon class="fa-solid fa-envelope"></fa-icon></ion-col>
+      <ion-col class="user-details">{{data.Email}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  size="2"><fa-icon class="fa-solid fa-location-dot"></fa-icon></ion-col>
+      <ion-col class="user-details">{{data.Address}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  size="2"><fa-icon class="fa-solid fa-cake-candles"></fa-icon></ion-col>
+      <ion-col class="user-details">{{data.DateOfBirth | date :'mediumDate'}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  size="2"><fa-icon class="fa-solid fa-phone"></fa-icon></ion-col>
+      <ion-col class="user-details">{{data.Phone}} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col  size="2"><fa-icon class="fa-solid fa-star"></fa-icon></ion-col>
+      <ion-col class="user-details">{{data.SkillDescription}} </ion-col>
+    </ion-row>
+    <ion-row class="mt-5">
+      <ion-col  size="12"><fa-icon class="fa-solid fa-bolt me-3"></fa-icon>Actions</ion-col>
+
     </ion-row>
 
-
-    <ion-row>
-      <ion-col  size="2"><ion-icon name="mail"></ion-icon></ion-col>
-      <ion-col>{{data.Email}} </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col  size="2"><ion-icon name="location"></ion-icon></ion-col>
-      <ion-col>{{data.Address}} </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col  size="2"><ion-icon name="calendar"></ion-icon></ion-col>
-      <ion-col>{{data.DateOfBirth | date :'mediumDate'}} </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col  size="2"><ion-icon name="call"></ion-icon></ion-col>
-      <ion-col>{{data.Phone}} </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col  size="2"><ion-icon name="pencil"></ion-icon></ion-col>
-      <ion-col>{{data.SkillDescription}} </ion-col>
-    </ion-row>
-
-    <ion-row class="but-rows" >
+    <ion-row class="d-flex justify-content-center" >
       <ion-col size="6" *ngFor="let but of but_data" >
-         <ion-button
+
+        <ion-button
 
         [ngClass]=
         "{
@@ -186,7 +132,7 @@
     </ion-row>
 
   </ion-grid>
-</ion-card>`
+</div>`
 
 
 <ion-modal #modalcancelInterview (ionModalDidDismiss)="onDismiss()" [isOpen]="isModalVisibleCI" [initialBreakpoint]="0.50">

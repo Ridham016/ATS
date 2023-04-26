@@ -53,7 +53,7 @@ export class UserDashBoardPage implements OnInit {
 
     }
 
-    ionViewWillLeave() {
+    ionViewWillLeave() {  
       this.menuController.enable(false,'gg');
       console.log("fired1");
       this.menuController.close();

@@ -63,6 +63,10 @@ const routes: Routes = [
         path: 'job-posting',
         loadChildren: () => import('./pages/job-posting/job-posting.module').then( m => m.JobPostingPageModule)
       },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+      },
 
     ]
   },
@@ -78,9 +82,6 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
-  },  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
 
 

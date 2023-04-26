@@ -87,9 +87,9 @@ console.log(this.user.RememberMe)
 
           }
         this.userDetails=this.userDetails['Result']
-       let UserName=this.userDetails['User']
-       this.api.setUsername(UserName);
-       localStorage.setItem('username',UserName);
+        let UserName=this.userDetails['User']
+        this.api.setUsername(UserName);
+        localStorage.setItem('username',UserName);
         this.api.setUserRole(this.userDetails['RoleId'])
         let Token=this.userDetails['Token'];
         this.api.setToken(Token);
@@ -97,7 +97,7 @@ console.log(this.user.RememberMe)
         localStorage.setItem('Token',this.api.Token);
         this.user.Email=''
         this.user.Password=''
-        this.router.navigateByUrl('/dashboard',{replaceUrl:true})
+        this.router.navigateByUrl('/menu/dashboard',{replaceUrl:true})
         localStorage.setItem('isLogedIn','1');
         }
         else{

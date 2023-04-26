@@ -17,6 +17,7 @@ export class ApplicantDetailPage implements OnInit {
   //*Local Variales
   ApplicantId!:number;
   nextStatusId!:number;
+  currenID!:number;
   data:any=[];
   isModalVisibleHR = false;
   isModalVisibleother = false;
@@ -43,10 +44,10 @@ export class ApplicantDetailPage implements OnInit {
 
   }
 
-onCancleMeating(){
+  onCancleMeating(){
     console.log(this.reasonTextBox,this.reasonDropDown)
     this.api.showLoader();
-    this.api.StatusUpdate(this.ApplicantId,this.nextStatusId).then(async (res)=>{
+    this.api.StatusUpdate(this.ApplicantId,this.nextStatusId,this.StatusId).then(async (res)=>{
                 this.ActionId = JSON.parse(res.data)
                 this.ActionId = this.ActionId['Result']
                 this.ActionId = this.ActionId[1]
@@ -78,7 +79,7 @@ onCancleMeating(){
   }
   onHold(){
     console.log(this.reasonTextBox,this.reasonDropDown)
-    this.api.StatusUpdate(this.ApplicantId,this.nextStatusId).then(async (res)=>{
+    this.api.StatusUpdate(this.ApplicantId,this.nextStatusId,this.StatusId).then(async (res)=>{
                 this.ActionId = JSON.parse(res.data)
                 this.ActionId = this.ActionId['Result']
                 this.ActionId = this.ActionId[1]
@@ -123,7 +124,6 @@ onCancleMeating(){
         this.data=JSON.parse(response.data)
 
         //*Storing response data into Local Variable data
-
         this.data=this.data.Result;
         console.log(this.data)
         this.StatusId=this.data['StatusId'];
@@ -157,13 +157,15 @@ onCancleMeating(){
   async onStatusUpdate(currStatusId:number,nextStatusId:number){
 
     this.nextStatusId=nextStatusId;
+    this.currenID=this.StatusId;
     //*Navigate to schedulling Page
     if(currStatusId==3){
     this.router.navigate(['/menu/scheduling-form'],
     {
       queryParams: {
         id:this.ApplicantId,
-        nextStatus: nextStatusId
+        nextStatus: nextStatusId,
+        currentStatus:this.currenID
       }
     }
     )
@@ -192,12 +194,16 @@ onCancleMeating(){
           text: 'Ok',
           handler: () => {
             console.log('Confirm Okay');
-            this.api.StatusUpdate(this.ApplicantId,nextStatusId).then(res=>{
-              if(res.status==200){
-                this.router.navigateByUrl('/menu/applicant-list-page').then(() => {
+            this.api.StatusUpdate(this.ApplicantId,nextStatusId,this.StatusId).then(res=>{
+              let messsageType=JSON.parse(res.data)
+              if( messsageType.MessageType==1){
+                this.router.navigateByUrl('/menu/applicant-list-page',{replaceUrl:true}).then(() => {
                   window.location.reload();;
                 })
               }
+            }).catch(error=>{
+              console.log(error)
+              this.api.hideLoader();
             })
           }
           }

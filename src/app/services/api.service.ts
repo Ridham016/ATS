@@ -25,13 +25,12 @@ export class ApiService {
   RoleId=1;
   UserName!:string;
 
-  // headers = {
-  //   'Authorization': `${this.Token}`,
-  //   'Content-Type': 'application/json'
-  // };
 
-  baseUrl='https://e7d4-2409-4041-6ecc-4bc2-fc83-b340-25d2-574e.ngrok-free.app/api/';
-  baseUrldownload ='https://e7d4-2409-4041-6ecc-4bc2-fc83-b340-25d2-574e.ngrok-free.app/Attachments/Temp/';
+
+  baseUrl='https://3db2-2402-3a80-16a0-7837-6534-9263-7ef-d8c.ngrok-free.app/api/';
+  baseUrldownload ='https://3db2-2402-3a80-16a0-7837-6534-9263-7ef-d8c.ngrok-free.app/Attachments/Temp/';
+
+
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
@@ -54,7 +53,7 @@ export class ApiService {
  }
 
  getjobListing(){
-  
+
     return this.api.get(`${this.baseUrl}JobListing/GetJobPostingList`,{},{})
  }
 
@@ -224,8 +223,8 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     return this.api.get(this.baseUrl+'Schedules/GetButtons?StatusId='+id,{},{})
   }
 
-  StatusUpdate(applicantID:number,nextStatusId:number){
-    return this.api.post(this.baseUrl+'Schedules/UpdateStatus/?ApplicantId='+applicantID+'&StatusId='+nextStatusId,{},{})
+  StatusUpdate(applicantID:number,nextStatusId:number,currentStatusId:number){
+    return this.api.post(this.baseUrl+'Schedules/UpdateStatus/?ApplicantId='+applicantID+'&StatusId='+nextStatusId+'&CurrentStatusId='+currentStatusId,{},{})
 
   }
 
@@ -308,7 +307,6 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     }
 
     handleSessionTimeout(error:any){
-      debugger
       if(error.error!=undefined && error.status==401){
       let err=JSON.parse(error.error);
       if(err['MessageType']===0 ){

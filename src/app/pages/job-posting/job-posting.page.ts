@@ -27,6 +27,7 @@ export class JobPostingPage implements OnInit {
     this.api.hideLoader();
     this.menuController.enable(true,'gg');
     console.log("fired")
+    this.loaded = false;
 
   }
 
@@ -52,6 +53,15 @@ export class JobPostingPage implements OnInit {
           this.loaded = true;
         }
       })
+  }
+
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      this.joblist=[]
+      this.loaded=false
+      this.jobListingData();
+      event.target.complete();
+    }, 2000);
   }
 
   register(postingId:number){

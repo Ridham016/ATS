@@ -15,22 +15,16 @@ export class AppComponent implements OnInit {
   networkAlert: any;
   util: any;
   connectSubscription: any;
-  constructor(private router:Router , private platform: Platform,
-    private api:ApiService, private network: Network, private  alertCtrl : AlertController,private diagnostic: Diagnostic ) {
+  constructor(
+    private router:Router ,
+    private platform: Platform,
+    private api:ApiService,
+    private network: Network,
+    private  alertCtrl : AlertController,
+    private diagnostic: Diagnostic ) {
 
   }
 checkNet(){
-  // window.addEventListener('offline',async (res)=>{
-  //   console.log(res)
-  //   this.openAlert();
-
-  // })
-  // window.addEventListener('online',async (res)=>{
-  //   const loading = await this.alertCtrl.getTop();
-  //   if (loading) {
-  //     await loading.dismiss();
-  //   }
-  // })
 
 
   this.disconnectSubscription = this.network.onDisconnect().subscribe(async () => {
@@ -74,7 +68,7 @@ checkNet(){
       let Token=localStorage.getItem('Token') as string;
       if (Email && Password && Token)  {
         this.api.setToken(Token);
-            this.router.navigateByUrl('/dashboard',{replaceUrl:true})
+            this.router.navigateByUrl('/menu/dashboard',{replaceUrl:true})
             localStorage.setItem('isLogedIn','1');
           }
           else{

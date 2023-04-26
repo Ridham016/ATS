@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +17,7 @@
             <div class="row d-flex align-items-center">
               <div class="col-3 dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/src/assets/meetings-icon.svg" />
+                  <img src="/assets/meetings-icon.svg" />
                 </div>
               </div>
               <div class="col-9 text-center">
@@ -32,7 +35,7 @@
             <div class="row d-flex align-items-center">
               <div class="col-3 dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/src/assets/openings-icon.svg" />
+                  <img src="/assets/openings-icon.svg" />
                 </div>
               </div>
               <div class="col-9 text-center">
@@ -53,7 +56,7 @@
             <div class="row d-flex align-items-center">
               <div class="col-3 dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/src/assets/applications.svg" />
+                  <img src="/assets/applications.svg" />
                 </div>
               </div>
               <div class="col-9 text-center">
@@ -72,7 +75,7 @@
             <div class="row d-flex align-items-center">
               <div class="col-3 dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/src/assets/hired.svg" />
+                  <img src="/assets/hired.svg" />
                 </div>
               </div>
               <div class="col-9 text-center">
@@ -85,4 +88,23 @@
       </div>
     </div>
   </div>
+
+  <div style="text-align:center" class="card m-2">
+    <apx-chart
+      [chart]="chartOptions.chart"
+      [series]="chartOptions.series"
+      [xaxis]="chartOptions.xaxis"
+      [title]="chartOptions.title"
+      [labels]="chartOptions.labels"
+      [title]="chartOptions.title"
+      [legend]="chartOptions.legend"
+      [dataLabels]="chartOptions.dataLabels"
+      [tooltip]="chartOptions.tooltip"
+      [colors]="chartOptions.colors"
+    ></apx-chart>
+  </div>
+
+
+
+
 </ion-content>

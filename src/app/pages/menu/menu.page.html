@@ -2,7 +2,7 @@
   <ion-menu contentId="main-content" type="overlay" autoHide="false" menuId="gg" *ngIf="api.getUserRole()" animation="customAnimation">
     <ion-content>
       <ion-list id="inbox-list" class="menu-list">
-        <ion-list-header color="primary-dark">
+        <ion-list-header color="primary-dark" class="mb-4">
             <!-- <img src="/assets/company-logo-sm.png"/> -->
             <ion-icon class="side-memu-header-icon" name="person-circle-outline"></ion-icon>
            <div class="side-menu-header-username w-100">{{username}}
@@ -13,7 +13,7 @@
 
           <ion-item  routerDirection="root" *ngFor="let pages of page" [routerLink]="[pages.url]" lines="none"
             detail="false" [class.active-item]="selectedpath===pages.url">
-            <fa-icon  slot="start" [icon]="['fas', pages.icon]" class="top-bar-items" style='font-size:20px;'></fa-icon>
+            <fa-icon  slot="start" [icon]="['fas', pages.icon]"  [class.active-icon]="selectedpath===pages.url" class="top-bar-items" style='font-size:20px;'></fa-icon>
             <ion-label>{{ pages.title }}</ion-label>
           </ion-item>
 

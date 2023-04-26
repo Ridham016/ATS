@@ -8,38 +8,38 @@
 </ion-header>
 
 <ion-content >
-  <div *ngFor="let item of datalist">
-    <div class="row mt-4 mx-3">
-      <div class="col-12">
-        <div class="card dashboard-card-1 mt-4">
+  <div>
+    <div class="row mt-2 mx-3">
+      <div class="col-6">
+        <div class="card dashboard-card-1 mt-4 dashboard-card-glb">
           <div class="card-content">
             <div class="card-bg"></div>
-            <div class="row d-flex align-items-center">
-              <div class="col-3 dashboard-item-icon">
+            <div class="row dashboard-card-row">
+              <div class="dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/assets/meetings-icon.svg" />
+                  <img src="/assets/meetings-icon.svg" class="dashboard-icon" />
                 </div>
               </div>
-              <div class="col-9 text-center">
-                <p class="info-number">{{item.MeetingsScheduled}}</p>
+              <div class="text-center mt-2">
+                <p class="info-number">{{schedull_count}}</p>
                 <div class="dashboard-card-title">Meetings Scheduled</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <div class="card dashboard-card-2 mt-4">
+      <div class="col-6">
+        <div class="card dashboard-card-2 mt-4 dashboard-card-glb">
           <div class="card-content">
             <div class="card-bg"></div>
-            <div class="row d-flex align-items-center">
-              <div class="col-3 dashboard-item-icon">
+            <div class="row dashboard-card-row">
+              <div class="dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/assets/openings-icon.svg" />
+                  <img src="/assets/openings-icon.svg"  class="dashboard-icon" />
                 </div>
               </div>
-              <div class="col-9 text-center">
-                <p class="info-number">{{item.JobOpenings}}</p>
+              <div class="text-center mt-2">
+                <p class="info-number">{{job_count}}</p>
                 <div class="dashboard-card-title">Job Openings</div>
               </div>
             </div>
@@ -49,18 +49,18 @@
     </div>
 
     <div class="row mx-3">
-      <div class="col-12">
-        <div class="card dashboard-card-3 mt-4">
+      <div class="col-6">
+        <div class="card dashboard-card-3 mt-4  dashboard-card-glb">
           <div class="card-content">
             <div class="card-bg"></div>
-            <div class="row d-flex align-items-center">
-              <div class="col-3 dashboard-item-icon">
+            <div class="row dasboard-card-row">
+              <div class="dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/assets/applications.svg" />
+                  <img src="/assets/applications.svg" class="dashboard-icon" />
                 </div>
               </div>
-              <div class="col-9 text-center">
-                <p class="info-number">{{item.ApplicantsRegistered}}</p>
+              <div class="text-center mt-2">
+                <p class="info-number">{{registred_count}}</p>
                 <div class="dashboard-card-title">Total Applications</div>
               </div>
             </div>
@@ -68,18 +68,18 @@
         </div>
       </div>
 
-      <div class="col-12">
-        <div class="card dashboard-card-4 mt-4">
+      <div class="col-6">
+        <div class="card dashboard-card-4 mt-4  dashboard-card-glb">
           <div class="card-content">
             <div class="card-bg"></div>
-            <div class="row d-flex align-items-center">
-              <div class="col-3 dashboard-item-icon">
+            <div class="row dashboard-card-row ">
+              <div class="dashboard-item-icon">
                 <div class="icon-div">
-                  <img src="/assets/hired.svg" />
+                  <img src="/assets/hired.svg" class="dashboard-icon" />
                 </div>
               </div>
-              <div class="col-9 text-center">
-                <p class="info-number">{{item.ApplicantsHired}}</p>
+              <div class="text-center mt-2">
+                <p class="info-number">{{hired_count}}</p>
                 <div class="dashboard-card-title">Applicants Hired</div>
               </div>
             </div>
@@ -89,7 +89,7 @@
     </div>
   </div>
 
-  <div style="text-align:center" class="card m-2">
+  <div style="text-align:center" class="card m-4 p-3">
     <apx-chart
       [chart]="chartOptions.chart"
       [series]="chartOptions.series"

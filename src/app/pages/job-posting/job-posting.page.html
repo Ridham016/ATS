@@ -13,8 +13,8 @@
     refreshingSpinner="circles"  ></ion-refresher-content>
   </ion-refresher>
 
-    <div *ngIf="loaded">
-    <ion-card class="shadow" *ngFor=" let h of joblist ">
+    <div *ngIf="loaded" class="job-listing-card">
+    <div class="mb-3 card"  *ngFor=" let h of joblist ">
 
       <div class="card joblist p-3" *ngIf="loaded">
         <div class="row">
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    </ion-card>
+    </div>
     </div>
 
     <div *ngIf="!loaded">

@@ -6,11 +6,14 @@ fa-icon{
 
 }
 ion-card{
-  height :240px;
+  height :100%;
 }
 
 ion-skeleton-text {
   --border-radius: 9999px;
   --background: rgba(188, 0, 255, 0.065);
   --background-rgb: 188, 0, 255;
+}
+.job-listing-card{
+  margin: 20px;
 }

@@ -53,7 +53,7 @@ export class UserDashBoardPage implements OnInit {
 
     }
 
-    ionViewWillLeave() {  
+    ionViewWillLeave() {
       this.menuController.enable(false,'gg');
       console.log("fired1");
       this.menuController.close();
@@ -108,7 +108,7 @@ export class UserDashBoardPage implements OnInit {
           startTime:startDateTime,
           endTime:endDateTime,
           InterviewerName:element.InterviewerName,
-          title:element.Description,
+          title: 'for '+element.PositionName,
           Mode:mode,
         });
       })

@@ -1,5 +1,5 @@
 export class AuthUser {
   Email!: string;
   Password!: string;
-  RememberMe!:boolean;
+  RememberMe!: boolean;
 }

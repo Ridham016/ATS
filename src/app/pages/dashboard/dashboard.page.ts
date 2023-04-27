@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import {Platform,MenuController} from '@ionic/angular'
+import { Platform, MenuController } from '@ionic/angular';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -10,23 +10,20 @@ import {
   ApexDataLabels,
   ApexTooltip,
   ApexPlotOptions,
-  ApexLegend
-} from "ng-apexcharts";
-
-
+  ApexLegend,
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries | any;
   chart: ApexChart | any;
-  xaxis: ApexXAxis| any;
-  title: ApexTitleSubtitle| any;
-  dataLabels: ApexDataLabels| any;
-  plotOptions: ApexPlotOptions| any;
+  xaxis: ApexXAxis | any;
+  title: ApexTitleSubtitle | any;
+  dataLabels: ApexDataLabels | any;
+  plotOptions: ApexPlotOptions | any;
   labels: string | any;
-  legend:ApexLegend |any;
+  legend: ApexLegend | any;
   tooltip: ApexTooltip | any;
   colors: any;
-
 };
 
 @Component({
@@ -45,31 +42,40 @@ export class DashboardPage implements OnInit {
 
   chartOptions!: Partial<ChartOptions>;
   constructor(
-   private api: ApiService,
-  private plt : Platform,
-  private menuController : MenuController
+    private api: ApiService,
+    private plt: Platform,
+    private menuController: MenuController
   ) {
     this.chartOptions = {
-    dataLabels: {
+      dataLabels: {
         enabled: false,
-    },
-    plotOptions: {
+      },
+      plotOptions: {
         pie: {
-            customScale: 0.8,
-            donut: {
-                size: '60%',
-            },
-            offsetY: 20,
+          customScale: 0.8,
+          donut: {
+            size: '60%',
+          },
+          offsetY: 20,
         },
-    },
-    colors:['#007bff', '#008a9b', '#a66b55', '#4680ff', '#6c757d', '#0e9e4a', '#ff2c2c','#ffa21d'],
-    title: {
+      },
+      colors: [
+        '#007bff',
+        '#008a9b',
+        '#a66b55',
+        '#4680ff',
+        '#6c757d',
+        '#0e9e4a',
+        '#ff2c2c',
+        '#ffa21d',
+      ],
+      title: {
         text: 'Applicant Status',
         align: 'center',
         style: {
-            fontSize: '16px',
-            fontWeight: 'bold',
-            color: '#000'
+          fontSize: '16px',
+          fontWeight: 'bold',
+          color: '#000',
         },
     },
     series: [0,0,0,0,0,0,0,0],
@@ -89,24 +95,25 @@ export class DashboardPage implements OnInit {
 })
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
   ionViewWillEnter() {
-
     this.api.hideLoader();
-    this.menuController.enable(true,'gg');
-    console.log("fired")
-
+    this.menuController.enable(true, 'gg');
+    console.log('fired');
   }
 
   ionViewWillLeave() {
-    this.menuController.enable(false,'gg');
-    console.log("fired1");
+    this.menuController.enable(false, 'gg');
+    console.log('fired1');
     this.menuController.close();
   }
 
-
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      this.getCounts();
+      event.target.complete();
+    }, 2000);
+  }
 
 
  async getCounts(){
@@ -118,9 +125,19 @@ export class DashboardPage implements OnInit {
         Dashlist = Dashlist['Result']
         console.log(Dashlist)
         this.datalist = Dashlist;
-      }).then(()=>{
-        this.chartOptions.series= [this.datalist[0].Registered, this.datalist[0].Shortlisted, this.datalist[0].Discarded, this.datalist[0].InterviewScheduled, this.datalist[0].Hold, this.datalist[0].ApplicantsHired, this.datalist[0].Rejected, this.datalist[0].InterviewCancelled]
-        this.chartOptions.chart= {
+      })
+      .then(() => {
+        this.chartOptions.series = [
+          this.datalist[0].Registered,
+          this.datalist[0].Shortlisted,
+          this.datalist[0].Discarded,
+          this.datalist[0].InterviewScheduled,
+          this.datalist[0].Hold,
+          this.datalist[0].ApplicantsHired,
+          this.datalist[0].Rejected,
+          this.datalist[0].InterviewCancelled,
+        ];
+        this.chartOptions.chart = {
           type: 'donut',
           width: '100%',
           height: 350,
@@ -135,6 +152,14 @@ export class DashboardPage implements OnInit {
        this.startCounter(3,list['ApplicantsRegistered'],Math.floor(list['ApplicantsRegistered']/min))
        this.startCounter(4,list['ApplicantsHired'],Math.floor(list['ApplicantsHired']/min))
      }
+    }).catch(error => {
+      if( this.api.handleSessionTimeout(error)){
+        this.api.showAlertF();
+        console.log('eror',error)
+      }
+      else{
+        console.log(error);
+      }
     })
 
   }

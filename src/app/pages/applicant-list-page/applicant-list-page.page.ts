@@ -67,7 +67,7 @@ export class ApplicantListPagePage implements OnInit {
       let page=1;
       this.pageNumber=page;
       console.log(this.api.UploadStatusId)
-      this.api.getApplicantsData(page,this.api.UploadStatusId).then(gg=>{
+      this.api.getApplicantsData(page,this.api.UploadStatusId,this.api.CompanyId,this.api.PositionId).then(gg=>{
         console.log(gg)
         ApiList=JSON.parse(gg.data)
         ApiList=ApiList['Result']
@@ -101,6 +101,8 @@ export class ApplicantListPagePage implements OnInit {
       this.pageNumber=1;
       this.lable.StoredStatus='';
       this.api.UploadStatusId=undefined;
+      this.api.CompanyId = undefined;
+      this.api.PositionId = undefined;
       this.onLoadData();
       event.target.complete();
     }, 2000);
@@ -145,7 +147,7 @@ export class ApplicantListPagePage implements OnInit {
 
   onNextPageLoad(page:number){
     let ApiList=[];
-    this.api.getApplicantsData(page,this.api.UploadStatusId).then(gg=>{
+    this.api.getApplicantsData(page,this.api.UploadStatusId,this.api.CompanyId,this.api.PositionId).then(gg=>{
       console.log(gg)
       ApiList=JSON.parse(gg.data)
       ApiList=ApiList['Result']
@@ -165,7 +167,7 @@ export class ApplicantListPagePage implements OnInit {
 
   onLoadData(event?: any){
     let ApiList=[];
-    this.api.getApplicantsData(this.pageNumber).then(gg=>{
+    this.api.getApplicantsData(this.pageNumber,this.api.CompanyId,this.api.PositionId).then(gg=>{
       console.log(gg)
       ApiList=JSON.parse(gg.data)
       ApiList=ApiList['Result']

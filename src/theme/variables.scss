@@ -451,7 +451,7 @@
     .table-bordered {
       tr{
 
-        border: 1px solid #000 !important;
+        // border: 1px solid #000 !important;
       }
     }
 
@@ -486,6 +486,7 @@
 
 
     .table{
+      border-spacing: 10px !important;
       thead{
         color:#fff;
          background-color: var(--ion-color-success);
@@ -499,13 +500,15 @@
         }
          tbody{
           tr{
+            border: none !important;
             td{
-               border: 1px solid #333 !important;
-               }
+              border: none !important;
+              border-radius: 50%;
+
+
         }
          }
-
-
+        }
       // background-color: red;
     }
 

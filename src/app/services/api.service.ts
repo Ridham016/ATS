@@ -19,6 +19,8 @@ export class ApiService {
   UploadStatusId?:number;
   StartDate?:string;
   EndDate?:string;
+  CompanyId?:number;
+  PositionId?:number;
   FilePath!:string;
   FileName!:string;
   Token!:string;
@@ -27,7 +29,7 @@ export class ApiService {
 
 
 
-  baseUrl='https://3db2-2402-3a80-16a0-7837-6534-9263-7ef-d8c.ngrok-free.app/api/';
+  baseUrl='https://6598-116-72-9-56.ngrok-free.app/api/';
   baseUrldownload ='https://3db2-2402-3a80-16a0-7837-6534-9263-7ef-d8c.ngrok-free.app/Attachments/Temp/';
 
 
@@ -90,27 +92,26 @@ export class ApiService {
     localStorage.setItem('Token', token);
   }
 
-  getApplicantsData(PageNumber:number,statusId?:number,PageSize:number=5,IsAscending:boolean=true,OrderByColumn='FirstName'){
+  getApplicantsData(PageNumber:number,statusId?:number,CompanyId?:number,PositionId?:number,PageSize:number=5){
 
     const g={
       'CurrentPageNumber':PageNumber,
       'PageSize':PageSize,
-      'IsAscending':IsAscending,
-      'OrderByColumn': OrderByColumn,
       'StatusId':statusId
     }
     console.log(g)
-    return this.api.post(this.baseUrl+'Schedules/GetApplicantsParam',g,{})
+    return this.api.post(this.baseUrl+'Schedules/GetApplicantsParam?CompanyId='+CompanyId+'&PositionId='+PositionId,g,{})
 
   }
-  getActionList(PageNumber:number,statusId?:number,StartDate?:string,EndDate?:string,PageSize:number=5){
+
+  getActionList(PageNumber:number,statusId?:number,StartDate?:string,EndDate?:string,CompanyId?:number,PositionId?:number,PageSize:number=5){
 this.api.setHeader('*','__RequestAuthToken', this.Token);
     const g={
       'CurrentPageNumber':PageNumber,
       'PageSize':PageSize,
     }
     console.log(g,statusId,StartDate,EndDate)
-    return this.api.post(this.baseUrl+'AdvancedSearch/AdvancedActionSearch?StatusId='+statusId+'&StartDate='+StartDate+'&EndDate='+EndDate,g,{})
+    return this.api.post(this.baseUrl+'AdvancedSearch/AdvancedActionSearch?StatusId='+statusId+'&StartDate='+StartDate+'&EndDate='+EndDate+'&CompanyId='+CompanyId+'&PositionId='+PositionId,g,{})
 
   }
 
@@ -288,12 +289,19 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
       return this.api.get(`${this.baseUrl}AdvancedSearch/ApplicantTimeline_APP`,payload,{});
     }
 
-    getCompanyList(applicntId:number){
+    getCompanyList(applicntId?:number){
 
-      return this.api.get(`${this.baseUrl}Schedules/GetCompanyDetails/?ApplicantId=${applicntId}`,{},{})
+        return this.api.get(`${this.baseUrl}Schedules/GetCompanyDetails/?ApplicantId=${applicntId}`,{},{})
+
+
     }
+
+    getCompany(){
+      return this.api.get(`${this.baseUrl}AdvancedSearch/GetCompanyDetails`,{},{})
+    }
+
     getPosition(){
-      return this.api.get(`${this.baseUrl}Schedules/GetPositionDetails`,{},{})
+      return this.api.get(`${this.baseUrl}AdvancedSearch/GetPositionDetails`,{},{})
     }
 
     handleMessageType(response:any){

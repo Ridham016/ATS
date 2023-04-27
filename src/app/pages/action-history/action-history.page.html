@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button fill="clear" slot="start"  >
+    <ion-back-button fill="clear" slot="start">
       <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
     </ion-back-button>
     <ion-title>TimeLine</ion-title>
@@ -8,19 +8,17 @@
 </ion-header>
 <ion-content>
   <div class="m-2">
-  <div class="timeline">
-    <ul>
-      <li *ngFor="let item of list" >
-        <div class="content" >
-          <p>
+    <div class="timeline">
+      <ul>
+        <li *ngFor="let item of list">
+          <div class="content">
+            <p>
 
-            <ion-card  class="custom-card">
-              <ion-grid fixed>
-                <ion-row>
-                  <ion-col size="12">
-                      <ion-badge
-                      [ngClass]=
-                  "{
+              <ion-card class="custom-card">
+                <ion-grid fixed>
+                  <ion-row>
+                    <ion-col size="12">
+                      <ion-badge [ngClass]="{
                   'badge-1': item.StatusId === 1,
                   'badge-2': item.StatusId === 2,
                   'badge-3': item.StatusId === 3,
@@ -29,27 +27,26 @@
                   'badge-6': item.StatusId === 6,
                   'badge-7': item.StatusId === 7,
                   'badge-8': item.StatusId === 8
-                  }"
-                  >{{item.StatusName}}</ion-badge>
-                </ion-col>
+                  }">{{item.StatusName}}</ion-badge>
+                    </ion-col>
 
-                </ion-row>
-                <ion-row *ngIf="item.Level>=1">
-                  <ion-col >Current Level :   {{item.Level}}</ion-col>
-                </ion-row>
-                <ion-row *ngIf="item.Comment" >
-                  <ion-col >Note : {{item.Comment}}</ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
+                  </ion-row>
+                  <ion-row *ngIf="item.Level>=1">
+                    <ion-col>Current Level : {{item.Level}}</ion-col>
+                  </ion-row>
+                  <ion-row *ngIf="item.Comment">
+                    <ion-col>Note : {{item.Comment}}</ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card>
 
-          </p>
-        </div>
-        <div class="time">
-          <h4>{{item.EntryDate| date:'medium'}}</h4>
-        </div>
-      </li>
-    </ul>
+            </p>
+          </div>
+          <div class="time">
+            <h4>{{item.EntryDate| date:'medium'}}</h4>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
 </ion-content>

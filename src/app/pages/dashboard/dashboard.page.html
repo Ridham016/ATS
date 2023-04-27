@@ -7,7 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content >
+  <ion-refresher slot="fixed"  (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+    refreshingSpinner="circles"  ></ion-refresher-content>
+  </ion-refresher>
   <div>
     <div class="row mt-2 mx-3">
       <div class="col-6">

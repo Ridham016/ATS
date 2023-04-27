@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Scheduling-form</ion-title>
-    <ion-back-button fill="clear" slot="start"  >
+    <ion-back-button fill="clear" slot="start">
       <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
     </ion-back-button>
   </ion-toolbar>
@@ -9,67 +9,75 @@
 </ion-header>
 
 <ion-content>
-<ion-card class="custom-card">
-<ion-card-header>
-  <ion-title class="form-title">Interview Details</ion-title>
-</ion-card-header>
+  <ion-card class="custom-card">
+    <ion-card-header>
+      <ion-title class="form-title">Interview Details</ion-title>
+    </ion-card-header>
 
-  <form #form="ngForm">
+    <form #form="ngForm">
 
-    <ion-item fill="outline" class="m-3"  >
-      <ion-label > {{labal.ScheduleDate}} </ion-label>
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" showDefaultButtons="true" pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.ScheduleDateTime" #scheduledate ="ngModel" > </ion-datetime>
-          <ion-note *ngIf="!scheduledate.valid && scheduledate.touched" color="danger">Date is required</ion-note>
+      <ion-item fill="outline" class="m-3">
+        <ion-label> {{labal.ScheduleDate}} </ion-label>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime" displayFormat="MM/DD/YYYY HH:mm" min="{{currentDate}}" showDefaultButtons="true"
+              pickerFormat="MM/DD/YYYY HH:mm" name="DateNTime" requried [(ngModel)]="schedule.ScheduleDateTime"
+              #scheduledate="ngModel"> </ion-datetime>
+            <ion-note *ngIf="!scheduledate.valid && scheduledate.touched" color="danger">Date is required</ion-note>
 
-        </ng-template>
-      </ion-modal>
-    </ion-item>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
 
-    <ion-item fill="outline" class="m-3">
-      <ion-label position="floating"> {{labal.InterviewerName}}</ion-label>
-      <ion-select placeholder="Select Mode" name="meetingmode" requried interface="popover" [(ngModel)]="schedule.InterviewerId" #meetingmode="ngModel">
-        <ion-select-option *ngFor="let item of interviewerList" value={{item.InterviewerId}}>{{item.InterviewerName}}</ion-select-option>
-      </ion-select>
-      <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Link is required</ion-note>
-    </ion-item>
+      <ion-item fill="outline" class="m-3">
+        <ion-label position="floating"> {{labal.InterviewerName}}</ion-label>
+        <ion-select placeholder="Select Mode" name="meetingmode" requried interface="popover"
+          [(ngModel)]="schedule.InterviewerId" #meetingmode="ngModel">
+          <ion-select-option *ngFor="let item of interviewerList"
+            value={{item.InterviewerId}}>{{item.InterviewerName}}</ion-select-option>
+        </ion-select>
+        <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Link is required</ion-note>
+      </ion-item>
 
-    <ion-item fill="outline" class="m-3">
-      <ion-label position="floating"> {{labal.MeetingMode}}</ion-label>
-      <ion-select placeholder="Select Mode" name="meetingmode" requried interface="popover" [(ngModel)]="schedule.ModeofInterView"  (ionChange)="disableLink($event)" #meetingmode="ngModel">
-        <ion-select-option value=1>Online</ion-select-option>
-        <ion-select-option value=0>Offline</ion-select-option>
-      </ion-select>
-      <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Link is required</ion-note>
-    </ion-item>
+      <ion-item fill="outline" class="m-3">
+        <ion-label position="floating"> {{labal.MeetingMode}}</ion-label>
+        <ion-select placeholder="Select Mode" name="meetingmode" requried interface="popover"
+          [(ngModel)]="schedule.ModeofInterView" (ionChange)="disableLink($event)" #meetingmode="ngModel">
+          <ion-select-option value=1>Online</ion-select-option>
+          <ion-select-option value=0>Offline</ion-select-option>
+        </ion-select>
+        <ion-note *ngIf="!meetingmode.valid && meetingmode.touched" color="danger"> Link is required</ion-note>
+      </ion-item>
 
-    <ion-item fill="outline" lines="none" class="m-3" *ngIf="VenueDisabled">
-    <ion-checkbox name="chk" slot="start" [(ngModel)]="isChecked" (ionChange)="onVenueChange()"></ion-checkbox>
-    <ion-label>Use Office Address</ion-label>
-    </ion-item>
+      <ion-item fill="outline" lines="none" class="m-3" *ngIf="VenueDisabled">
+        <ion-checkbox name="chk" slot="start" [(ngModel)]="isChecked" (ionChange)="onVenueChange()"></ion-checkbox>
+        <ion-label>Use Office Address</ion-label>
+      </ion-item>
 
-    <ion-item fill="outline" class="m-3" *ngIf="VenueDisabled" >
-      <ion-label position="floating">{{labal.Venue}} </ion-label>
-      <ion-textarea [disabled]="isChecked" type="text" placeholder="Enter First Name" class="h-25" name="venue" required [(ngModel)]="schedule.Venue" #venue="ngModel"></ion-textarea>
-      <ion-note *ngIf="!venue.valid && venue.touched" color="danger">Description is required</ion-note>
-    </ion-item>
+      <ion-item fill="outline" class="m-3" *ngIf="VenueDisabled">
+        <ion-label position="floating">{{labal.Venue}} </ion-label>
+        <ion-textarea [disabled]="isChecked" type="text" placeholder="Enter First Name" class="h-25" name="venue"
+          required [(ngModel)]="schedule.Venue" #venue="ngModel"></ion-textarea>
+        <ion-note *ngIf="!venue.valid && venue.touched" color="danger">Description is required</ion-note>
+      </ion-item>
 
-    <ion-item fill="outline" class="m-3" change="schedule.ModeofInterView"   *ngIf="LinkDisabled" >
-      <ion-label position="floating">{{labal.Link}} </ion-label>
-      <ion-textarea type="text" placeholder="Enter First Name"  name="link" required [(ngModel)]="schedule.ScheduleLink" #link="ngModel"></ion-textarea>
-      <ion-note *ngIf="!link.valid && link.touched" color="danger"> Link is required</ion-note>
-    </ion-item>
+      <ion-item fill="outline" class="m-3" change="schedule.ModeofInterView" *ngIf="LinkDisabled">
+        <ion-label position="floating">{{labal.Link}} </ion-label>
+        <ion-textarea type="text" placeholder="Enter First Name" name="link" required
+          [(ngModel)]="schedule.ScheduleLink" #link="ngModel"></ion-textarea>
+        <ion-note *ngIf="!link.valid && link.touched" color="danger"> Link is required</ion-note>
+      </ion-item>
 
-    <ion-item fill="outline" class="m-3" >
-      <ion-label position="floating">{{labal.Description}} </ion-label>
-      <ion-textarea type="text" placeholder="Enter First Name" class="h-25" name="description" required [(ngModel)]="schedule.Description" #desc="ngModel"></ion-textarea>
-      <ion-note *ngIf="!desc.valid && desc.touched" color="danger">Description is required</ion-note>
-    </ion-item>
-    <ion-button  expand="block"  color="primary-dark" shape="round" (click)="onScheduleCall()" [disabled]="!form.valid" >
-      Schedule
-    </ion-button>
-  </form>
-</ion-card>
+      <ion-item fill="outline" class="m-3">
+        <ion-label position="floating">{{labal.Description}} </ion-label>
+        <ion-textarea type="text" placeholder="Enter First Name" class="h-25" name="description" required
+          [(ngModel)]="schedule.Description" #desc="ngModel"></ion-textarea>
+        <ion-note *ngIf="!desc.valid && desc.touched" color="danger">Description is required</ion-note>
+      </ion-item>
+      <ion-button expand="block" color="primary-dark" shape="round" (click)="onScheduleCall()" [disabled]="!form.valid">
+        Schedule
+      </ion-button>
+    </form>
+  </ion-card>
 </ion-content>

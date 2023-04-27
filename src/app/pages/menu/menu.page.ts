@@ -9,140 +9,136 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-
   activePageTitle = 'Dashboard';
-  activeIndex!:number;
-  visiable=true;
+  activeIndex!: number;
+  visiable = true;
   AdminPages = [
     {
       title: 'Dashboard',
       url: '/menu/dashboard',
       icon: 'house',
-      minRole: 'user'
+      minRole: 'user',
     },
     {
       title: 'Calendar',
       url: '/menu/user-dash-board',
       icon: 'calendar-day',
-      minRole: 'user'
+      minRole: 'user',
     },
     {
       title: 'Applicant List',
       url: '/menu/applicant-list-page',
       icon: 'list-ul',
-      minRole: 'admin'
+      minRole: 'admin',
     },
     {
       title: 'Advanced Search',
       url: '/menu/advance-search',
       icon: 'magnifying-glass',
-      minRole: 'user'
+      minRole: 'user',
     },
     {
       title: 'Job Listing',
       url: '/menu/job-posting',
       icon: 'list-ul',
-      minRole: 'user'
+      minRole: 'user',
     },
   ];
-   HRPages = [
+  HRPages = [
     {
       title: 'Dashboard',
       url: '/menu/dashboard',
       icon: 'house',
-      minRole: 'user'
+      minRole: 'user',
     },
     {
       title: 'Calendar',
       url: '/menu/user-dash-board',
       icon: 'calendar-day',
-      minRole: 'user'
+      minRole: 'user',
     },
     {
       title: 'Applicant List',
       url: '/menu/applicant-list-page',
       icon: 'list-ul',
-      minRole: 'admin'
+      minRole: 'admin',
     },
     {
       title: 'Job Listing',
       url: '/menu/job-posting',
       icon: 'list-ul',
-      minRole: 'user'
+      minRole: 'user',
     },
   ];
-   InterviwerPages = [
+  InterviwerPages = [
     {
       title: 'Dashboard',
       url: '/menu/dashboard',
       icon: 'house',
-      minRole: 'user'
+      minRole: 'user',
     },
     {
       title: 'Calendar',
       url: '/menu/user-dash-board',
       icon: 'calendar-day',
-      minRole: 'user'
+      minRole: 'user',
     },
     {
       title: 'Applicant List',
       url: '/menu/applicant-list-page',
       icon: 'list-ul',
-      minRole: 'admin'
+      minRole: 'admin',
     },
-
-
   ];
-page:any=[];
-selectedpath='';
- roleID=this.api.getUserRole();
- username=this.api.getUsername();
- customAnimation:any;
- role!:string;
+  page: any = [];
+  selectedpath = '';
+  roleID = this.api.getUserRole();
+  username = this.api.getUsername();
+  customAnimation: any;
+  role!: string;
   constructor(
-    public api:ApiService,
-    private router:Router,
+    public api: ApiService,
+    private router: Router,
     private animationCtrl: AnimationController
   ) {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.selectedpath=event.url;
+        this.selectedpath = event.url;
       }
     });
   }
 
- async ngOnInit() {
-await this.loadpages();
-const element = document.getElementById('my-element');
-if(element!==null){
-this.customAnimation = this.animationCtrl.create()
-.addElement(element)
-.duration(500)
-.fromTo('transform', 'translateX(-100%)', 'translateX(0)')
-.easing('ease-in-out');
-}
- }
-doLogout(){
-  localStorage.setItem('Token','')
-  localStorage.setItem('isLogedIn','');
-  this.router.navigate(['/login'],{
-    skipLocationChange: true,
-    replaceUrl: true
-  })
-}
-loadpages(){
-  if(this.roleID=='1'){
-    this.role='Admin';
-    console.log('working')
-      this.page=this.AdminPages;
+  async ngOnInit() {
+    await this.loadpages();
+    const element = document.getElementById('my-element');
+    if (element !== null) {
+      this.customAnimation = this.animationCtrl
+        .create()
+        .addElement(element)
+        .duration(500)
+        .fromTo('transform', 'translateX(-100%)', 'translateX(0)')
+        .easing('ease-in-out');
+    }
   }
-  else if(this.roleID=='2'){
-    this.page=this.HRPages;
-    this.role='HR';
+  doLogout() {
+    localStorage.setItem('Token', '');
+    localStorage.setItem('isLogedIn', '');
+    this.router.navigate(['/login'], {
+      skipLocationChange: true,
+      replaceUrl: true,
+    });
   }
-  else{
-    this.page=this.InterviwerPages
+  loadpages() {
+    if (this.roleID == '1') {
+      this.role = 'Admin';
+      console.log('working');
+      this.page = this.AdminPages;
+    } else if (this.roleID == '2') {
+      this.page = this.HRPages;
+      this.role = 'HR';
+    } else {
+      this.page = this.InterviwerPages;
+    }
+    console.log(this.page);
   }
-  console.log(this.page)
-}
 }

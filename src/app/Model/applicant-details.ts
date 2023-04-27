@@ -1,9 +1,6 @@
-export class ApplicantDetails {
-
-}
+export class ApplicantDetails {}
 
 export class Applicant {
-
   ApplicantId!: number;
   FirstName!: string;
   MiddleName!: string;
@@ -11,12 +8,12 @@ export class Applicant {
   Email!: string;
   Phone!: string;
   Address!: string;
-  IsActive: boolean=true;
-  CurrentCompany! : string;
+  IsActive: boolean = true;
+  CurrentCompany!: string;
   CurrentDesignation!: string;
-  DateOfBirth!:Date;
+  DateOfBirth!: Date;
   TotalExperience!: string;
-  ApplicantDate!:Date;
+  ApplicantDate!: Date;
   DetailedExperience!: string;
   CurrentCTC!: string;
   ExpectedCTC!: string;
@@ -24,21 +21,20 @@ export class Applicant {
   ReasonForChange!: string;
   CurrentLocation!: string;
   PreferedLocation!: string;
-  PortfolioLink!:string;
-  LinkInLink!:string;
-  OtherLink!:string;
-  SkillDescription!:string;
-  DOJ!:string;
-  PostingId!:number;
+  PortfolioLink!: string;
+  LinkInLink!: string;
+  OtherLink!: string;
+  SkillDescription!: string;
+  DOJ!: string;
+  PostingId!: number;
 }
-export class Scheduling{
-  Description!:string;
-  ScheduleDateTime!:Date;
-  ScheduleLink!:string;
+export class Scheduling {
+  Description!: string;
+  ScheduleDateTime!: Date;
+  ScheduleLink!: string;
   InterviewerId!: number;
-  ModeofInterView!:number;
-  CompanyId!:number;
-  PositionId!:number;
-  Venue!:string;
+  ModeofInterView!: number;
+  CompanyId!: number;
+  PositionId!: number;
+  Venue!: string;
 }
-

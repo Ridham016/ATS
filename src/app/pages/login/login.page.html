@@ -1,6 +1,6 @@
-<ion-header >
+<ion-header>
 </ion-header>
-<ion-content fullscreen="true" >
+<ion-content fullscreen="true">
   <div class="login-background">
 
 
@@ -14,37 +14,39 @@
     </div>
   </div>
 
-<div class="wrapper">
+  <div class="wrapper">
 
 
-  <ion-card class="login-card" >
-    <form #form="ngForm">
-    <ion-card-content>
-      <ion-item fill="outline" >
-        <ion-icon name="mail" slot="start"></ion-icon>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input class="input" type="email" name="email" required [(ngModel)]="user.Email" #email="ngModel" ></ion-input>
-        <ion-note *ngIf="!email.valid && email.touched" color="danger">Email is required</ion-note>
-      </ion-item>
+    <ion-card class="login-card">
+      <form #form="ngForm">
+        <ion-card-content>
+          <ion-item fill="outline">
+            <ion-icon name="mail" slot="start"></ion-icon>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input class="input" type="email" name="email" required [(ngModel)]="user.Email"
+              #email="ngModel"></ion-input>
+            <ion-note *ngIf="!email.valid && email.touched" color="danger">Email is required</ion-note>
+          </ion-item>
 
-      <ion-item  fill="outline" >
-        <ion-icon slot="start" name="key"></ion-icon>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input class="input" type="{{ hide ? 'password' : 'text' }}" name="password" required [(ngModel)]="user.Password" #pass="ngModel"></ion-input>
-        <ion-icon slot="end" name="{{ hide ? 'eye' : 'eye-off' }}" (click)="togglePassword()"></ion-icon>
-        <ion-note *ngIf="!pass.valid && pass.touched" color="danger">Password is required</ion-note>
-      </ion-item>
+          <ion-item fill="outline">
+            <ion-icon slot="start" name="key"></ion-icon>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input class="input" type="{{ hide ? 'password' : 'text' }}" name="password" required
+              [(ngModel)]="user.Password" #pass="ngModel"></ion-input>
+            <ion-icon slot="end" name="{{ hide ? 'eye' : 'eye-off' }}" (click)="togglePassword()"></ion-icon>
+            <ion-note *ngIf="!pass.valid && pass.touched" color="danger">Password is required</ion-note>
+          </ion-item>
 
-      <ion-item fill="outline"  lines="none" >
-        <ion-checkbox [(ngModel)]="user.RememberMe"  name="rememberMe" slot="start"></ion-checkbox>
-        <ion-label>Remember Me</ion-label>
-      </ion-item>
+          <ion-item fill="outline" lines="none">
+            <ion-checkbox [(ngModel)]="user.RememberMe" name="rememberMe" slot="start"></ion-checkbox>
+            <ion-label>Remember Me</ion-label>
+          </ion-item>
 
-      <ion-button expand="block" (click)="onSubmit()" [disabled]="!form.valid"> Login</ion-button>
-    </ion-card-content>
-  </form>
-  </ion-card>
-</div>
+          <ion-button expand="block" (click)="onSubmit()" [disabled]="!form.valid"> Login</ion-button>
+        </ion-card-content>
+      </form>
+    </ion-card>
+  </div>
 
 
 

@@ -4,7 +4,6 @@
       <ion-icon name="arrow-back-sharp" slot="icon-only"></ion-icon>
     </ion-button>
     <ion-title>List Filter</ion-title>
-
   </ion-toolbar>
 </ion-header>
 
@@ -13,15 +12,22 @@
     <ion-item lines="none">
       <ion-icon name="list" slot="start"></ion-icon>
       <ion-label>{{label.StatusName}}:</ion-label>
-      <ion-select interface="popover" slot [(ngModel)]="selectedStatus" placeholder={{selectedStatus}}>
-        <ion-select-option value="1" >Registered</ion-select-option>
-        <ion-select-option value="2" >Shortlisted</ion-select-option>
-        <ion-select-option value="3" >Not Matched with Requirement</ion-select-option>
-        <ion-select-option value="4" >Call Scheduled</ion-select-option>
+      <ion-select
+        interface="popover"
+        slot
+        [(ngModel)]="selectedStatus"
+        placeholder="{{selectedStatus}}"
+      >
+        <ion-select-option value="1">Registered</ion-select-option>
+        <ion-select-option value="2">Shortlisted</ion-select-option>
+        <ion-select-option value="3"
+          >Not Matched with Requirement</ion-select-option
+        >
+        <ion-select-option value="4">Call Scheduled</ion-select-option>
         <ion-select-option value="5">Hold</ion-select-option>
         <ion-select-option value="6">Hired</ion-select-option>
         <ion-select-option value="7">Reject</ion-select-option>
-        <ion-select-option value="8" >Other Reasons</ion-select-option>
+        <ion-select-option value="8">Other Reasons</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item lines="none">
@@ -30,10 +36,20 @@
       <ion-datetime-button datetime="StartTime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime  presentation="date" id="StartTime" displayFormat="MM/DD/YYYY" showDefaultButtons="true" pickerFormat="MM/DD/YYYY" name="DateNTime" requried [(ngModel)]="selectedStartDate" > </ion-datetime>
+          <ion-datetime
+            presentation="date"
+            id="StartTime"
+            displayFormat="MM/DD/YYYY"
+            showDefaultButtons="true"
+            pickerFormat="MM/DD/YYYY"
+            name="DateNTime"
+            requried
+            [(ngModel)]="selectedStartDate"
+          >
+          </ion-datetime>
         </ng-template>
       </ion-modal>
-     </ion-item>
+    </ion-item>
 
     <ion-item lines="none">
       <ion-icon name="calendar" slot="start"></ion-icon>
@@ -41,19 +57,64 @@
       <ion-datetime-button datetime="EndTime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime  presentation="date" id="EndTime" displayFormat="MM/DD/YYYY" showDefaultButtons="true" pickerFormat="MM/DD/YYYY" name="DateNTime" requried [(ngModel)]="selectedEndDate" > </ion-datetime>
+          <ion-datetime
+            presentation="date"
+            id="EndTime"
+            displayFormat="MM/DD/YYYY"
+            showDefaultButtons="true"
+            pickerFormat="MM/DD/YYYY"
+            name="DateNTime"
+            requried
+            [(ngModel)]="selectedEndDate"
+          >
+          </ion-datetime>
         </ng-template>
       </ion-modal>
-     </ion-item>
-  </ion-list>
+    </ion-item>
 
+    <ion-item lines="none">
+      <ion-icon name="list" slot="start"></ion-icon>
+      <ion-label>CompanyName:</ion-label>
+      <ion-select
+        interface="popover"
+        [(ngModel)]="selectedCompanyId"
+        placeholder="{{selectedCompanyId}}"
+      >
+        <ion-select-option
+          *ngFor=" let item  of companylist"
+          value="{{item.Id}}"
+        >
+          {{item.CompanyName}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-icon name="list" slot="start"></ion-icon>
+      <ion-label>Position Name:</ion-label>
+      <ion-select
+        interface="popover"
+        [(ngModel)]="selectedPositionId"
+        placeholder="{{selectedPositionId}}"
+      >
+        <ion-select-option
+          *ngFor=" let item  of positionlist"
+          value="{{item.Id}}"
+        >
+          {{item.PositionName}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-content>
 <ion-footer>
   <ion-row>
     <ion-col size="6"></ion-col>
     <ion-col size="6">
-  <ion-button (click)="clearFilters()" color="danger" >Clear</ion-button>
-  <ion-button (click)="applyFilters()" color="primary-dark">Apply</ion-button>
-</ion-col>
-</ion-row>
+      <ion-button (click)="clearFilters()" color="danger">Clear</ion-button>
+      <ion-button (click)="applyFilters()" color="primary-dark"
+        >Apply</ion-button
+      >
+    </ion-col>
+  </ion-row>
 </ion-footer>

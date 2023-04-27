@@ -69,7 +69,7 @@ async openSearchFilter() {
     this.pageNumber=page;
     console.log(this.api.UploadStatusId)
 
-    this.api.getActionList(page,this.api.UploadStatusId,this.api.StartDate,this.api.EndDate).then(gg=>{
+    this.api.getActionList(page,this.api.UploadStatusId,this.api.StartDate,this.api.EndDate, this.api.CompanyId,this.api.PositionId).then(gg=>{
       console.log(gg)
       ApiList=JSON.parse(gg.data)
       ApiList=ApiList['Result']

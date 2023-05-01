@@ -8,8 +8,10 @@
             <ion-icon class="side-memu-header-icon" name="person-circle-outline"></ion-icon>
            <div class="side-menu-header-username w-100">{{username}}
 
-            <div class="side-menu-header-role">{{role}}</div>
+            <div class="side-menu-header-role">{{role}} <span><app-user-role ></app-user-role></span> </div>
+
           </div>
+
         </ion-list-header>
 
           <ion-item  routerDirection="root" *ngFor="let pages of page" [routerLink]="[pages.url]" lines="none"
@@ -28,3 +30,4 @@
   </ion-menu>
   <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-split-pane>
+

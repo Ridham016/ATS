@@ -29,8 +29,8 @@ export class ApiService {
 
 
 
-  baseUrl='https://6598-116-72-9-56.ngrok-free.app/api/';
-  baseUrldownload ='https://3db2-2402-3a80-16a0-7837-6534-9263-7ef-d8c.ngrok-free.app/Attachments/Temp/';
+  baseUrl=' https://f280-2402-3a80-16a2-1cb0-8cfb-bea5-840-9ef4.ngrok-free.app/api/';
+  baseUrldownload =' https://9106-14-192-30-155.ngrok-free.app/Attachments/Temp/';
 
 
   constructor(private api:HTTP,
@@ -69,7 +69,7 @@ export class ApiService {
     return localStorage.getItem(String(this.RoleId));
   }
 
-  setUserRole(role: string) {
+  setUserRole(role: any) {
     localStorage.setItem(String(this.RoleId),role);
   }
   getToken(): string {

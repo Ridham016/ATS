@@ -137,6 +137,7 @@ export class MenuPage implements OnInit {
       this.page = this.HRPages;
       this.role = 'HR';
     } else {
+      this.role ='Recruiter'
       this.page = this.InterviwerPages;
     }
     console.log(this.page);

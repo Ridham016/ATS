@@ -69,22 +69,28 @@ export class AppComponent implements OnInit {
   }
 
   initializeApp() {
+
     let log = localStorage.getItem('isLogedIn');
-    if (log === '1') {
+    let path =window.location.pathname;
+    if (log === '1' && path=='/') {
       let Email = localStorage.getItem('email');
       let Password = localStorage.getItem('password');
       let Token = localStorage.getItem('Token') as string;
-      if (Email && Password && Token) {
+      console.log(path)
+      if (Email && Password && Token ) {
         this.api.setToken(Token);
-        this.router.navigateByUrl('/menu/dashboard', { replaceUrl: true });
+         this.router.navigateByUrl('/menu/dashboard', { replaceUrl: true });
         localStorage.setItem('isLogedIn', '1');
       } else {
         this.api.loginFailed();
         this.router.navigateByUrl('/login', { replaceUrl: true });
       }
-    } else {
-      this.router.navigateByUrl('/login', { replaceUrl: true });
+    } else if(path!='/') {
+      this.router.navigateByUrl('path', { replaceUrl: true });
     }
+    else {
+      this.router.navigateByUrl('/login', { replaceUrl: true });
+  }
   }
 
   async ngOnInit() {

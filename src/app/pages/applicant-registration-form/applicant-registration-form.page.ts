@@ -30,13 +30,7 @@ ApplicantStatus = [
   { value: 0, label: 'Experienced' }
 ];
 
-// NoticePeriod=[
-//   {value:1, label:'Immediately'},
-//   {value:2, label:'0 to 15 days'},
-//   {value:3, label:'15 to 30 days'},
-//   {value:4, label:'30 to 45 days'},
-//   {value:5, label:'45 to 60 days'},
-// ]
+
 
 selectedFileUrl: string = '';
   currentCompanyDisabled!: boolean;

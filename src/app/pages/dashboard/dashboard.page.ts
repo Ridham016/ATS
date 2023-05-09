@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Platform, MenuController } from '@ionic/angular';
+import SwiperCore,{ Pagination } from 'swiper';
+SwiperCore.use([Pagination]);
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -11,6 +13,8 @@ import {
   ApexTooltip,
   ApexPlotOptions,
   ApexLegend,
+  ApexFill,
+  ApexYAxis,
 } from 'ng-apexcharts';
 
 export type ChartOptions = {
@@ -24,6 +28,8 @@ export type ChartOptions = {
   legend: ApexLegend | any;
   tooltip: ApexTooltip | any;
   colors: any;
+  fill:ApexFill|any;
+  yaxis:ApexYAxis|any;
 };
 
 @Component({
@@ -39,14 +45,26 @@ export class DashboardPage implements OnInit {
  schedull_count:number=0;
  hired_count:number=0;
  registred_count:number=0;
-
-  chartOptions!: Partial<ChartOptions>;
+mode:any=0;
+  chartOptionsD!: Partial<ChartOptions>;
+  chartOptionsS!: Partial<ChartOptions>;
+  registred: any=[];
+  accepted: any=[];
+  rejected: any=[];
+  month:any=[];
+  r: any;
   constructor(
     private api: ApiService,
     private plt: Platform,
     private menuController: MenuController
   ) {
-    this.chartOptions = {
+    this.chartOptionsD = {
+      chart:{
+        type: 'donut',
+        width: '100%',
+        height: 350,
+        redrawOnWindowResize: true
+      },
       dataLabels: {
         enabled: false,
       },
@@ -87,12 +105,61 @@ export class DashboardPage implements OnInit {
       enabled:true
     }
 }
+    this.chartOptionsS=
+      {
+        chart: {
+            type: 'bar',
+            height: 380,
+            width: '100%',
+            stacked: true,
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '45%',
+            }
+        },
+        fill: {
+            opacity: 1,
+        },
+        colors: ['#007bff', '#3ecd5e', '#e44022'],
+        series: [],
+        labels: this.month,
+        xaxis: {
+            labels: {
+                show: true
+            },
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+        },
+        yaxis: {
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            labels: {
+                style: {
+                    colors: '#78909c'
+                }
+            }
+        },
+        title: {
+            text: 'Number of Offers',
+            align: 'center',
+            style: {
+                fontSize: '16px'
+            }
+        }
+    }
     this.plt.ready().then(async _=>{
-       this.getCounts();
-    }).then(()=>{
-
-
-})
+       this.getCounts(this.mode);
+       this.getdata();
+    })
   }
 
   ngOnInit() {}
@@ -110,16 +177,43 @@ export class DashboardPage implements OnInit {
 
   handleRefresh(event:any) {
     setTimeout(() => {
-      this.getCounts();
+      this.getCounts(this.mode);
       event.target.complete();
     }, 2000);
   }
 
-
- async getCounts(){
-
+async getdata(){
+this.api.showLoader();
+let Dashlist = [];
+await this.api.getDashboardDataStackedBar().then (list =>{
+  console.log(list)
+  Dashlist = JSON.parse(list.data)
+  Dashlist = Dashlist['Result']
+  console.log('Stacked',Dashlist)
+  for (let index = 0; index < Dashlist.length; index++) {
+    this.registred.push(Dashlist[index].ApplicantsRegistered)
+    this.rejected.push(Dashlist[index].ApplicantsRejected)
+    this.accepted.push(Dashlist[index].ApplicantsHired)
+    this.month.push(Dashlist[index].Months)
+  }
+}).then(() => {
+  this.chartOptionsS.series=[{
+    name: "Applicants Registered",
+    data: this.registred
+}, {
+    name: "Accepted",
+    data: this.accepted,
+}, {
+    name: "Rejected",
+    data: this.rejected,
+}];
+})
+}
+ async getCounts(tf:any){
+  this.mode=tf
+      this.api.showLoader();
       let Dashlist = [];
-      this.api.getDashboardData().then (list =>{
+      await this.api.getDashboardDataDounet(this.mode).then (list =>{
         console.log(list)
         Dashlist = JSON.parse(list.data)
         Dashlist = Dashlist['Result']
@@ -127,7 +221,7 @@ export class DashboardPage implements OnInit {
         this.datalist = Dashlist;
       })
       .then(() => {
-        this.chartOptions.series = [
+        this.chartOptionsD.series = [
           this.datalist[0].Registered,
           this.datalist[0].Shortlisted,
           this.datalist[0].Discarded,
@@ -137,12 +231,7 @@ export class DashboardPage implements OnInit {
           this.datalist[0].Rejected,
           this.datalist[0].InterviewCancelled,
         ];
-        this.chartOptions.chart = {
-          type: 'donut',
-          width: '100%',
-          height: 350,
-          redrawOnWindowResize: true
-      }
+
      if(this.datalist){
       let min=Math.min(this.datalist[0]['ApplicantsRegistered'], this.datalist[0]['ApplicantsHired'],this.datalist[0]['JobOpenings'],this.datalist[0]['MeetingsScheduled'])
        console.log(min)
@@ -151,8 +240,10 @@ export class DashboardPage implements OnInit {
        this.startCounter(2,list['JobOpenings'],Math.floor(list['JobOpenings']/min))
        this.startCounter(3,list['ApplicantsRegistered'],Math.floor(list['ApplicantsRegistered']/min))
        this.startCounter(4,list['ApplicantsHired'],Math.floor(list['ApplicantsHired']/min))
+       this.api.hideLoader();
      }
     }).catch(error => {
+      this.api.hideLoader();
       if( this.api.handleSessionTimeout(error)){
         this.api.showAlertF();
         console.log('eror',error)
@@ -229,5 +320,4 @@ export class DashboardPage implements OnInit {
       }
     }, 100);
 }
-
 }

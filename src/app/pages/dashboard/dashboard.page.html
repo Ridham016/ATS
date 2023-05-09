@@ -5,6 +5,21 @@
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
+  <div>
+    <div class="segment-container">
+      <ion-segment [(ngModel)]="mode">
+        <ion-segment-button value=0 (click)="getCounts(0)">
+          <ion-label>Week</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value=1 (click)="getCounts(1)">
+          <ion-label>Month</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value=2 (click)="getCounts(2)">
+          <ion-label>Year</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+  </div>
 </ion-header>
 
 
@@ -94,20 +109,40 @@
     </div>
   </div>
 
-  <div style="text-align:center" class="card m-4 p-3">
-    <apx-chart
-      [chart]="chartOptions.chart"
-      [series]="chartOptions.series"
-      [xaxis]="chartOptions.xaxis"
-      [title]="chartOptions.title"
-      [labels]="chartOptions.labels"
-      [title]="chartOptions.title"
-      [legend]="chartOptions.legend"
-      [dataLabels]="chartOptions.dataLabels"
-      [tooltip]="chartOptions.tooltip"
-      [colors]="chartOptions.colors"
-    ></apx-chart>
-  </div>
+    <swiper #swiper>
+    <ng-template swiperSlide>
+      <div class="card m-2 p-3">
+      <apx-chart
+        [chart]="chartOptionsD.chart"
+        [series]="chartOptionsD.series"
+        [xaxis]="chartOptionsD.xaxis"
+        [title]="chartOptionsD.title"
+        [labels]="chartOptionsD.labels"
+        [title]="chartOptionsD.title"
+        [legend]="chartOptionsD.legend"
+        [dataLabels]="chartOptionsD.dataLabels"
+        [tooltip]="chartOptionsD.tooltip"
+        [colors]="chartOptionsD.colors"
+      ></apx-chart>
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="card m-2 p-3">
+        <apx-chart
+        [chart]="chartOptionsS.chart"
+        [plotOptions]="chartOptionsS.plotOptions"
+        [fill]="chartOptionsS.fill"
+        [colors]="chartOptionsS.colors"
+        [series]="chartOptionsS.series"
+        [xaxis]="chartOptionsS.xaxis"
+        [yaxis]="chartOptionsS.yaxis"
+        [title]="chartOptionsS.title"
+        [labels]="chartOptionsS.labels"
+        [legend]="chartOptionsS.legend"
+        ></apx-chart>
+      </div>
+    </ng-template>
+  </swiper>
 
 
 

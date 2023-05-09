@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-icon name="funnel-outline" slot="end" class="filterIcon"  color="white" (click)="openSearchFilter()">
   </ion-icon>
-    <ion-title>Applicant List</ion-title>
+    <ion-title>Schedule Management</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -42,7 +42,9 @@
   </ion-button>
   </ion-col>
 </ion-row>
-
+<ion-row>
+  <ion-searchbar class="search-bar p-0" debounce="2000" (ionChange)="handlesearch($event)"></ion-searchbar>
+</ion-row>
 <swiper #swiper  >
   <ng-template swiperSlide  >
     <div *ngIf="loaded">

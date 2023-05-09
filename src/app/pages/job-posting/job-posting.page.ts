@@ -23,6 +23,7 @@ export class JobPostingPage implements OnInit {
   ionViewWillEnter() {
     this.api.hideLoader();
     this.menuController.enable(true, 'gg');
+    this.jobListingData();
     console.log('fired');
     this.loaded = false;
   }
@@ -35,21 +36,22 @@ export class JobPostingPage implements OnInit {
 
   jobListingData() {
     let Apilist = [];
-    this.api
-      .getjobListing()
-      .then((list) => {
+    this.api.getjobListing().then((list) => {
         console.log(list);
         Apilist = JSON.parse(list.data);
         Apilist = Apilist['Result'];
         console.log(Apilist);
         this.joblist = Apilist;
         this.loaded = true;
-      })
-      .catch((error) => {
+      }).catch((error) => {
+
         if (this.api.handleSessionTimeout(error)) {
-          console.log('error');
+          console.log(error);
           this.api.showAlertF();
           this.loaded = true;
+        }
+        else{
+          console.log(error);
         }
       });
   }

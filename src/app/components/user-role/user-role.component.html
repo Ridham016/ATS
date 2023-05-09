@@ -1,11 +1,11 @@
 <ion-icon name="ellipsis-vertical-sharp" id="role" ></ion-icon>
-<ion-popover trigger="role">
+<ion-popover trigger="role"[backdropDismiss]="false">
     <ng-template >
       <ion-content>
         <ion-radio-group [(ngModel)]="selectedRole">
           <ion-item >
             <ion-label> HR</ion-label>
-            <ion-radio slot="end" value="2" (ionFocus)="roleChange(2)" >  </ion-radio>
+            <ion-radio slot="end" value="2"  (ionFocus)="roleChange(2)" >  </ion-radio>
           </ion-item>
           <ion-item >
             <ion-label> Admin</ion-label>

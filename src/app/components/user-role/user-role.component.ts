@@ -6,10 +6,11 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./user-role.component.scss'],
 })
 export class UserRoleComponent implements OnInit {
-  selectedRole :string | undefined;
-  constructor(private api : ApiService ) { }
+  selectedRole =this.api.getUserRole();
+  constructor(public api : ApiService ) { }
 
   roleChange(id:number){
+    console.log(this.selectedRole)
     this.api.setUserRole(id);
     console.log(this.api.getUserRole());
     window.location.reload();

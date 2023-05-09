@@ -29,8 +29,8 @@ export class ApiService {
 
 
 
-  baseUrl=' https://f280-2402-3a80-16a2-1cb0-8cfb-bea5-840-9ef4.ngrok-free.app/api/';
-  baseUrldownload =' https://9106-14-192-30-155.ngrok-free.app/Attachments/Temp/';
+  baseUrl=' https://103e-2409-4041-6e91-9df3-20db-3a40-8d5-6021.ngrok-free.app/api/';
+  baseUrldownload ='https://103e-2409-4041-6e91-9df3-20db-3a40-8d5-6021.ngrok-free.app/Attachments/Temp/';
 
 
   constructor(private api:HTTP,
@@ -49,14 +49,22 @@ export class ApiService {
 
   }
 
- getDashboardData(){
+ getDashboardDataDounet(tf:any){
   this.api.setHeader('*','__RequestAuthToken', this.Token);
-  return this.api.get(`${this.baseUrl}Dashboard/GetCounts_APP`,{},{})
+  return this.api.get(`${this.baseUrl}Dashboard/GetCounts_APP?timeFrame=${tf}`,{},{})
+ }
+ getDashboardDataStackedBar(){
+  this.api.setHeader('*','__RequestAuthToken', this.Token);
+  return this.api.get(`${this.baseUrl}Dashboard/GetStackedCount`,{},{})
  }
 
  getjobListing(){
+  const payload={
+    "OrderByColumn":"EntryDate",
+    "IsAssending":false,
+  }
 
-    return this.api.get(`${this.baseUrl}JobListing/GetJobPostingList`,{},{})
+    return this.api.post(`${this.baseUrl}JobListing/GetJobPostingList`,payload,{})
  }
 
  async dologin(user:{Email:string,Password:string}){
@@ -92,12 +100,13 @@ export class ApiService {
     localStorage.setItem('Token', token);
   }
 
-  getApplicantsData(PageNumber:number,statusId?:number,CompanyId?:number,PositionId?:number,PageSize:number=5){
+  getApplicantsData(PageNumber:number,search?:string,statusId?:number,CompanyId?:number,PositionId?:number,PageSize:number=5){
 
     const g={
       'CurrentPageNumber':PageNumber,
       'PageSize':PageSize,
-      'StatusId':statusId
+      'StatusId':statusId,
+      'Search':search
     }
     console.log(g)
     return this.api.post(this.baseUrl+'Schedules/GetApplicantsParam?CompanyId='+CompanyId+'&PositionId='+PositionId,g,{})
@@ -213,11 +222,8 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
      await alert.present();
   }
 
-  async getApplicant(id:number){
-   const param={
-      'ApplicantId':id
-    }
-    return this.api.get(this.baseUrl+'Schedules/GetApplicant',param,{})
+ getApplicant(id:number){
+    return this.api.get(`${this.baseUrl}Schedules/GetApplicant?ApplicantId=${id}`,{},{})
   }
   async getActiveActionButton(id:number){
 
@@ -356,6 +362,15 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
       return decryptedData
 
     }
-  }
 
+    generatecode(email:string){
+      return this.api.post(this.baseUrl+'Account/GenerateCode',{"Email":email},{})
+    }
+    verifyCode(code:string){
+      return this.api.get(`${this.baseUrl}Account/IsCodeValid?code=${code}`,{},{})
+    }
+    resetpassword(password:string,userId:number){
+      return this.api.post(this.baseUrl+'Account/ResetPassword',{"Password":password,"UserId":userId},{})
+    }
+}
 

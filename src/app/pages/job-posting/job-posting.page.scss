@@ -1,7 +1,6 @@
 fa-icon{
   margin-right: 10px;
 }
-
 .company-logo{
 
 }
@@ -16,4 +15,8 @@ ion-skeleton-text {
 }
 .job-listing-card{
   margin: 20px;
+}
+ion-button{
+--color:#fff;
+--background:var(--ion-color-success)
 }

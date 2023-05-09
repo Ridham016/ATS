@@ -63,3 +63,18 @@ ion-skeleton-text {
   --background: rgba(188, 0, 255, 0.065);
   --background-rgb: 188, 0, 255;
 }
+
+.search-icon{
+  margin-right: 10px;
+}
+.search-bar{
+  margin: 20px;
+  margin-bottom: 0;
+  --background: var(--ion-color-dark);
+  --color: #000;
+  --placeholder-color: #000;
+  --icon-color: #000;
+  --clear-button-color: #000;
+  --border-radius: 8px;
+  --box-shadow:6px 15px 21px 5px rgba(0,0,0,0.75);
+}

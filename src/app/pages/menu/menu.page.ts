@@ -26,7 +26,7 @@ export class MenuPage implements OnInit {
       minRole: 'user',
     },
     {
-      title: 'Applicant List',
+      title: 'Schedule Management',
       url: '/menu/applicant-list-page',
       icon: 'list-ul',
       minRole: 'admin',
@@ -38,7 +38,7 @@ export class MenuPage implements OnInit {
       minRole: 'user',
     },
     {
-      title: 'Job Listing',
+      title: 'Job Openings',
       url: '/menu/job-posting',
       icon: 'list-ul',
       minRole: 'user',
@@ -58,13 +58,13 @@ export class MenuPage implements OnInit {
       minRole: 'user',
     },
     {
-      title: 'Applicant List',
+      title: 'Schedule Management',
       url: '/menu/applicant-list-page',
       icon: 'list-ul',
       minRole: 'admin',
     },
     {
-      title: 'Job Listing',
+      title: 'Job Openings',
       url: '/menu/job-posting',
       icon: 'list-ul',
       minRole: 'user',
@@ -84,7 +84,7 @@ export class MenuPage implements OnInit {
       minRole: 'user',
     },
     {
-      title: 'Applicant List',
+      title: 'Schedule Management',
       url: '/menu/applicant-list-page',
       icon: 'list-ul',
       minRole: 'admin',
@@ -134,7 +134,7 @@ export class MenuPage implements OnInit {
       console.log('working');
       this.page = this.AdminPages;
     } else if (this.roleID == '2') {
-      this.page = this.HRPages;
+      this.page = this.AdminPages;
       this.role = 'HR';
     } else {
       this.role ='Recruiter'

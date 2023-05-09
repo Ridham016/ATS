@@ -28,7 +28,7 @@
             <ion-note *ngIf="!email.valid && email.touched" color="danger">Email is required</ion-note>
           </ion-item>
 
-          <ion-item fill="outline">
+          <ion-item fill="outline" class="mb-0">
             <ion-icon slot="start" name="key"></ion-icon>
             <ion-label position="floating">Password</ion-label>
             <ion-input class="input" type="{{ hide ? 'password' : 'text' }}" name="password" required
@@ -36,64 +36,65 @@
             <ion-icon slot="end" name="{{ hide ? 'eye' : 'eye-off' }}" (click)="togglePassword()"></ion-icon>
             <ion-note *ngIf="!pass.valid && pass.touched" color="danger">Password is required</ion-note>
           </ion-item>
+          <div class="align-items-center d-flex justify-content-between">
+            <ion-checkbox [(ngModel)]="user.RememberMe" name="rememberMe" slot="start" ></ion-checkbox>
+            <span >
+                <ion-label >Remember Me</ion-label>
+              </span>
+          <div class="me-0 m-3 forget-pass float-end" (click)="opemModel()">Forgotten password?</div>
+            </div>
+            <ion-button expand="block" (click)="onSubmit()" [disabled]="!form.valid"> Login</ion-button>
 
-          <ion-item fill="outline" lines="none">
-            <ion-checkbox [(ngModel)]="user.RememberMe" name="rememberMe" slot="start"></ion-checkbox>
-            <ion-label>Remember Me</ion-label>
-          </ion-item>
-
-          <ion-button expand="block" (click)="onSubmit()" [disabled]="!form.valid"> Login</ion-button>
-        </ion-card-content>
+          </ion-card-content>
       </form>
     </ion-card>
   </div>
 
 
 
-</ion-content>
 
-
-
-<!-- validation -->
-
-<!--
-<ion-header>
-</ion-header>
-<ion-content>
-  <div id="header">
-    <div id="app-bar">
-      <div id="logo">
-        <img src="assets/logo.png" alt="">
+  <ion-modal  [initialBreakpoint]="0.50" #forgetpassword [isOpen]="modelVisible" (ionModalDidDismiss)="onDismiss()">
+  <ng-template>
+    <ion-content >
+      <div>
+      <div *ngIf="currentStep === 1" class="px-4 py-5">
+        <h3 class="fw-bold">Forgot Password</h3>
+        <ion-text class="mt-4 text-muted">Enter your Email for verification process, a 6 digit verification code will be send to your email.</ion-text>
+        <ion-item class="mt-4" lines="none" fill="outline">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" name="email" [(ngModel)]="email1"></ion-input>
+        </ion-item>
+        <ion-button class="mt-4" expand="block"  (click)="sendEmail()">Send Email</ion-button>
       </div>
-    </div>
-  </div>
 
-  <div class="wrapper">
-    <ion-card class="custom-card">
-      <ion-card-content>
-        <form [formGroup]="loginForm">
-          <ion-item fill="outline" shape="round">
-            <ion-icon name="mail" slot="start"></ion-icon>
-            <ion-label position="floating">Email</ion-label>
+      <div *ngIf="currentStep === 2" class="px-4 py-5">
 
-            <ion-input formControlName="email" class="input" type="email"></ion-input>
-          </ion-item>
+          <h3 class="fw-bold">Enter recieved Code</h3>
+          <div class="my-4  text-muted">Enter the 6 digit verification code that you recieved on your email.</div>
+          <span >
+            <ng-otp-input   (onInputChange)="onOtpChange($event)" allowNumbersOnly="true"  [config]="{length:6,allowNumbersOnly:true,inputClass:'otpinput',containerClass:'otpcontainer'}"></ng-otp-input>
+        </span>
+        <div class="float-start m-4 ms-0 text-muted" *ngIf="countdownTime > 0">Resend OTP in <span class="text-black">{{ countdownText }}</span></div>
+        <div class="float-end m-4 me-0 text-muted"  *ngIf="countdownTime === 0" (click)="sendEmail()">
+          <fa-icon class="fa fa-rotate "></fa-icon> Resend Code
+        </div>
+        <ion-button class="mt-4 mx-0" expand="block" shape="round" (click)="validateCode()">Validate</ion-button>
+      </div>
 
-          <ion-item fill="outline" shape="round">
-            <ion-icon slot="start" name="key"></ion-icon>
-            <ion-label position="floating">Password</ion-label>
+      <div *ngIf="currentStep === 3" class="px-4 py-5">
+        <ion-item  lines="none" fill="outline">
+          <ion-label position="floating">New Password</ion-label>
+          <ion-input type="password" name="newPassword" [(ngModel)]="newPassword"></ion-input>
+        </ion-item>
+        <ion-item class="mt-4" lines="none" fill="outline">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input type="password" name="confirmPassword" [(ngModel)]="confirmPassword"></ion-input>
+        </ion-item>
+        <ion-button class="mt-4 mx-0" shape="round" expand="block" [disabled]="newPassword !== confirmPassword" (click)="resetPassword()">Reset Password</ion-button>
+        </div>
+        </div>
+        </ion-content>
+  </ng-template>
+</ion-modal>
 
-            <ion-input formControlName="password" class="input" type="password"></ion-input>
-          </ion-item>
-
-          <ion-item fill="outline" lines="none" shape="round">
-            <ion-checkbox formControlName="rememberMe" slot="start"></ion-checkbox>
-            <ion-label>Remember Me</ion-label>
-          </ion-item>
-
-          <ion-button expand="block" (click)="onSubmit()" [disabled]="!loginForm.valid || isSubmitting">Login</ion-button>
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </div>
-</ion-content> -->
+</ion-content>

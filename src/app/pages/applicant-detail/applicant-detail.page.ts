@@ -42,26 +42,20 @@ export class ApplicantDetailPage implements OnInit {
   onCancleMeating() {
     console.log(this.reasonTextBox, this.reasonDropDown);
     this.api.showLoader();
-    this.api
-      .StatusUpdate(this.ApplicantId, this.nextStatusId, this.StatusId)
-      .then(async (res) => {
+    this.api.StatusUpdate(this.ApplicantId, this.nextStatusId, this.StatusId).then(async (res) => {
         this.ActionId = JSON.parse(res.data);
         this.ActionId = this.ActionId['Result'];
         this.ActionId = this.ActionId[1];
         console.log(this.ActionId);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if (this.api.handleSessionTimeout(error)) {
           console.log(error);
           this.api.hideLoader();
           this.api.showAlertF();
         }
-      })
-      .then((_) => {
+      }).then((_) => {
         console.log(this.ActionId);
-        this.api
-          .upDateReason(this.ActionId, this.reasonDropDown, this.reasonTextBox)
-          .then((res) => {
+        this.api.upDateReason(this.ActionId, this.reasonDropDown, this.reasonTextBox).then((res) => {
             if (res.status == 200) {
               this.router
                 .navigateByUrl('/menu/applicant-list-page')
@@ -70,8 +64,7 @@ export class ApplicantDetailPage implements OnInit {
                 });
             }
           });
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if (this.api.handleSessionTimeout(error)) {
           console.log(error);
           this.api.hideLoader();
@@ -81,22 +74,18 @@ export class ApplicantDetailPage implements OnInit {
   }
   onHold() {
     console.log(this.reasonTextBox, this.reasonDropDown);
-    this.api
-      .StatusUpdate(this.ApplicantId, this.nextStatusId, this.StatusId)
-      .then(async (res) => {
+    this.api.StatusUpdate(this.ApplicantId, this.nextStatusId, this.StatusId).then(async (res) => {
         this.ActionId = JSON.parse(res.data);
         this.ActionId = this.ActionId['Result'];
         this.ActionId = this.ActionId[1];
         console.log(this.ActionId);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if (this.api.handleSessionTimeout(error)) {
           console.log(error);
           this.api.hideLoader();
           this.api.showAlertF();
         }
-      })
-      .then((_) => {
+      }).then((_) => {
         console.log(this.ActionId);
         this.api.onHoldStatus(this.ActionId, this.reasonTextBox).then((res) => {
           if (res.status == 200) {
@@ -105,8 +94,7 @@ export class ApplicantDetailPage implements OnInit {
             });
           }
         });
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if (this.api.handleSessionTimeout(error)) {
           console.log(error);
           this.api.hideLoader();
@@ -120,13 +108,11 @@ export class ApplicantDetailPage implements OnInit {
     this.isModalVisibleother = false;
   }
   async ngOnInit() {
-    //*Gettig id Passed through Param
+    //*Getting id Passed through Param
     this.api.showLoader();
     this.ApplicantId = this.activatedRoute.snapshot.queryParams['id'];
-    //*Callig api Service getApplicat method to fetch Single user Data & populate data variale
-    await this.api
-      .getApplicant(this.ApplicantId)
-      .then((response) => {
+    //*Calling api Service getApplicat method to fetch Single user Data & populate data variale
+    await this.api.getApplicant(this.ApplicantId).then(response => {
         console.log(response);
         this.data = JSON.parse(response.data);
 
@@ -138,24 +124,24 @@ export class ApplicantDetailPage implements OnInit {
           this.but_data = JSON.parse(but_response.data);
           this.but_data = this.but_data.Result;
           console.log(this.but_data);
-        });
-      })
-      .catch((error) => {
+        })
+      }).catch((error) => {
         if (this.api.handleSessionTimeout(error)) {
           console.log(error);
           this.api.hideLoader();
           this.api.showAlertF();
         }
-      })
-      .then((_) => {
+        else{
+          console.log(error);
+        }
+      }).then(() => {
         this.api.getOtherReasons().then((res) => {
           this.reasonList = JSON.parse(res.data);
           this.reasonList = this.reasonList['Result'];
           this.api.hideLoader();
           console.log(this.reasonList);
         });
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if (this.api.handleSessionTimeout(error)) {
           console.log(error);
           this.api.hideLoader();
@@ -195,21 +181,16 @@ export class ApplicantDetailPage implements OnInit {
             text: 'Ok',
             handler: () => {
               console.log('Confirm Okay');
-              this.api
-                .StatusUpdate(this.ApplicantId, nextStatusId, this.StatusId)
-                .then((res) => {
+              this.api.StatusUpdate(this.ApplicantId, nextStatusId, this.StatusId).then((res) => {
                   let messsageType = JSON.parse(res.data);
                   if (messsageType.MessageType == 1) {
-                    this.router
-                      .navigateByUrl('/menu/applicant-list-page', {
+                    this.router.navigateByUrl('/menu/applicant-list-page', {
                         replaceUrl: true,
-                      })
-                      .then(() => {
+                      }).then(() => {
                         window.location.reload();
                       });
                   }
-                })
-                .catch((error) => {
+                }).catch((error) => {
                   console.log(error);
                   this.api.hideLoader();
                 });
@@ -227,25 +208,18 @@ export class ApplicantDetailPage implements OnInit {
     this.api.showLoader();
     const filePath = this.file.externalRootDirectory + '/Download/' + fname;
     console.log(filePath);
-    this.api
-      .downloadFile(fname, filePath)
-      .then((res: any) => {
+    this.api.downloadFile(fname, filePath).then((res: any) => {
         console.log(res);
         if (res) {
-          this.fileOpener
-            .open(filePath, 'application/pdf')
-            .then(() => console.log('File opened successfully'))
-            .then((_) => {
+          this.fileOpener.open(filePath, 'application/pdf').then(() => console.log('File opened successfully')).then((_) => {
               this.api.hideLoader();
-            })
-            .catch((error) => {
+            }).catch((error) => {
               if (this.api.handleSessionTimeout(error)) {
                 console.error('Error opening file', error);
               }
             });
         }
-      })
-      .catch((error) => {
+      }).catch((error) => {
         if (this.api.handleSessionTimeout(error)) {
           console.log(error);
           this.api.showAlertdownloadF();

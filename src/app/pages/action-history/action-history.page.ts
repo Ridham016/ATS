@@ -22,9 +22,7 @@ export class ActionHistoryPage implements OnInit {
   }
 
   onloadData() {
-    this.api
-      .getApplicantHistory(this.ApplicantId)
-      .then((res) => {
+    this.api.getApplicantHistory(this.ApplicantId).then((res) => {
         this.list = JSON.parse(res.data);
         this.list = this.list.Result;
         console.log(this.list);

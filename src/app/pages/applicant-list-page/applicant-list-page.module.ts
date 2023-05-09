@@ -8,12 +8,14 @@ import { IonicModule } from '@ionic/angular';
 import { ApplicantListPagePageRoutingModule } from './applicant-list-page-routing.module';
 
 import { ApplicantListPagePage } from './applicant-list-page.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    FontAwesomeModule,
     ApplicantListPagePageRoutingModule,
     SwiperModule
   ],

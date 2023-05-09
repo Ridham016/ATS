@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthUser } from 'src/app/Model/auth-user';
 import { Router } from '@angular/router';
-import { MenuController, Platform, AlertController } from '@ionic/angular';
-
+import { MenuController, Platform, AlertController, ModalController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-login',
@@ -10,6 +10,16 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  email1!: string;
+  digit1!: string;
+  countdownText!:string;
+  countdownTime: number = 60;
+  newPassword!: string;
+  userid!:number;
+  modelVisible=false;
+  confirmPassword!: string;
+  currentStep: number = 1;
+  response: any;
   user: AuthUser = {
     Email: '',
     Password: '',
@@ -20,7 +30,9 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private menuController: MenuController,
-    private api: ApiService
+    private api: ApiService,
+    private modalController: ModalController,
+    private toastController:ToastController
   ) {}
 
   ionViewWillEnter() {
@@ -97,5 +109,99 @@ export class LoginPage implements OnInit {
           console.log('Status', error.status);
         });
     }
+  }
+   sendEmail() {
+    // code to send password reset email
+    this.api.generatecode(this.email1).then((res) => {
+      console.log(res.data);
+      this.response=JSON.parse(res.data);
+      const result=this.response['Result'];
+      const MessageType=this.response['MessageType'];
+      if(MessageType==1){
+        this.userid=result;
+        this.currentStep = 2;
+        if(this.currentStep==2){
+          this.startCountdown();
+        }
+      }
+    }).catch((error) => {
+      this.presentToast()
+    })
+  }
+
+ validateCode() {
+    // code to validate reset code
+    console.log(this.digit1)
+    this.api.verifyCode(this.digit1).then((res) => {
+      console.log(res.data);
+      this.response=JSON.parse(res.data);
+      const result=this.response['Result'];
+      const MessageType=this.response['MessageType'];
+      if(MessageType==1 ){
+        this.currentStep = 3;
+      }
+    }).catch((error) => {
+      this.presentToast()
+    })
+  }
+
+ resetPassword() {
+  const pass=this.api.encyptData(this.newPassword);
+  this.api.resetpassword(pass,this.userid).then((res) => {
+    console.log(res.data);
+    this.response=JSON.parse(res.data);
+    const result=this.response['Result'];
+    const MessageType=this.response['MessageType'];
+    if(MessageType==1 ){
+      this.dismissModal();
+    }
+  }).catch((error) => {
+    this.presentToast()
+  })
+
+
+  }
+
+  opemModel(){
+    this.modelVisible=true;
+  }
+  onDismiss(){
+    this.modelVisible=false;
+    if (this.currentStep==3){
+      this.currentStep=1
+    }
+  }
+  async dismissModal() {
+    await this.modalController.dismiss();
+    this.modelVisible=false
+  }
+  onOtpChange(event:any){
+    this.digit1=event;
+    if(event.length==6){
+      this.validateCode();
+    }
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Hello Styled World!',
+      duration: 3000,
+      cssClass: 'custom-toast',
+    });
+
+    await toast.present();
+  }
+
+  startCountdown() {
+    const intervalId = setInterval(() => {
+      if (this.countdownTime > 0) {
+        this.countdownTime--;
+        const minutes = Math.floor(this.countdownTime / 60);
+        const seconds = this.countdownTime % 60;
+        this.countdownText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      } else {
+        clearInterval(intervalId);
+        this.countdownText = '';
+      }
+    }, 1000);
   }
 }

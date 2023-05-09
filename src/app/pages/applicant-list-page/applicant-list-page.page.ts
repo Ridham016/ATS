@@ -27,6 +27,7 @@ export class ApplicantListPagePage implements OnInit {
   lable=Constant;
   totalRecord:any=1;
   loaded=false;
+  searchvalue:any=undefined;
 
   constructor(public api:ApiService ,
      private plt:Platform,
@@ -67,7 +68,7 @@ export class ApplicantListPagePage implements OnInit {
       let page=1;
       this.pageNumber=page;
       console.log(this.api.UploadStatusId)
-      this.api.getApplicantsData(page,this.api.UploadStatusId,this.api.CompanyId,this.api.PositionId).then(gg=>{
+      this.api.getApplicantsData(page,this.searchvalue,this.api.UploadStatusId,this.api.CompanyId,this.api.PositionId).then(gg=>{
         console.log(gg)
         ApiList=JSON.parse(gg.data)
         ApiList=ApiList['Result']
@@ -94,6 +95,13 @@ export class ApplicantListPagePage implements OnInit {
     await modal.present();
 
   }
+  handlesearch(event:any){
+    console.log(event.target.value)
+    this.pageNumber=1;
+    this.searchvalue=event.target.value;
+    this.onLoadData();
+
+  }
   handleRefresh(event:any) {
     setTimeout(() => {
       this.list=[]
@@ -103,6 +111,7 @@ export class ApplicantListPagePage implements OnInit {
       this.api.UploadStatusId=undefined;
       this.api.CompanyId = undefined;
       this.api.PositionId = undefined;
+      this.searchvalue='';
       this.onLoadData();
       event.target.complete();
     }, 2000);
@@ -147,7 +156,7 @@ export class ApplicantListPagePage implements OnInit {
 
   onNextPageLoad(page:number){
     let ApiList=[];
-    this.api.getApplicantsData(page,this.api.UploadStatusId,this.api.CompanyId,this.api.PositionId).then(gg=>{
+    this.api.getApplicantsData(page,this.searchvalue,this.api.UploadStatusId,this.api.CompanyId,this.api.PositionId).then(gg=>{
       console.log(gg)
       ApiList=JSON.parse(gg.data)
       ApiList=ApiList['Result']
@@ -167,7 +176,7 @@ export class ApplicantListPagePage implements OnInit {
 
   onLoadData(event?: any){
     let ApiList=[];
-    this.api.getApplicantsData(this.pageNumber,this.api.CompanyId,this.api.PositionId).then(gg=>{
+    this.api.getApplicantsData(this.pageNumber,this.searchvalue,this.api.UploadStatusId,this.api.CompanyId,this.api.PositionId).then(gg=>{
       console.log(gg)
       ApiList=JSON.parse(gg.data)
       ApiList=ApiList['Result']

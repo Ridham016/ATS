@@ -15,10 +15,12 @@ import { fas, faR, faB } from '@fortawesome/free-solid-svg-icons';
 import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import{StatusBar} from '@ionic-native/status-bar/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SwiperModule, CommonModule,NgApexchartsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Network,EmailComposer,FileOpener,File,Diagnostic,HTTP],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Network,EmailComposer,FileOpener,File,Diagnostic,HTTP,StatusBar],
   bootstrap: [AppComponent],
 })
 export class AppModule {

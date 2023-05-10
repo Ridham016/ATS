@@ -72,4 +72,14 @@ export class JobPostingPage implements OnInit {
       },
     });
   }
+
+  navigate(postingId: number) {
+    this.router.navigate(['/job-description'], {
+      queryParams: {
+        id: postingId,
+      },
+    });
+  }
+
+
 }

@@ -14,7 +14,7 @@
   </ion-refresher>
 
     <div *ngIf="loaded" class="job-listing-card">
-    <div class="mb-3 card"  *ngFor=" let h of joblist ">
+    <div class="mb-3 card"  *ngFor=" let h of joblist " (click)="navigate(h.PostingId)">
 
       <div class="card joblist p-3" *ngIf="loaded">
         <div class="row">

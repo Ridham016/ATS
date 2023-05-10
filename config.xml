@@ -15,7 +15,10 @@
         <preference name="AndroidXEnabled" value="true" />
         <preference name="Scheme" value="http" />
         <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/splash.png" />
+        <preference name="StatusBarOverlaysWebView" value="true" />
+        <preference name="StatusBarDefaultScrollToTop" value="false" />
         <preference name="AndroidWindowSplashScreenBackground" value="#fff" />
+        <preference name="StatusBarBackgroundColor" value="#2674f0" />
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
         </edit-config>

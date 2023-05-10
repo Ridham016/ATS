@@ -117,7 +117,11 @@ const routes: Routes = [
     path: 'menu',
     loadChildren: () =>
       import('./pages/menu/menu.module').then((m) => m.MenuPageModule),
+  },  {
+    path: 'job-description',
+    loadChildren: () => import('./pages/job-description/job-description.module').then( m => m.JobDescriptionPageModule)
   },
+
 ];
 
 @NgModule({

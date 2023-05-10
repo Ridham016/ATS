@@ -29,8 +29,8 @@ export class ApiService {
 
 
 
-  baseUrl=' https://103e-2409-4041-6e91-9df3-20db-3a40-8d5-6021.ngrok-free.app/api/';
-  baseUrldownload ='https://103e-2409-4041-6e91-9df3-20db-3a40-8d5-6021.ngrok-free.app/Attachments/Temp/';
+  baseUrl=' https://b6fa-150-107-191-75.ngrok-free.app/api/';
+  baseUrldownload ='https://b6fa-150-107-191-75.ngrok-free.app/Attachments/Temp/';
 
 
   constructor(private api:HTTP,
@@ -66,6 +66,11 @@ export class ApiService {
 
     return this.api.post(`${this.baseUrl}JobListing/GetJobPostingList`,payload,{})
  }
+
+getJobDescription(PositionId:any){
+  return this.api.get(`${this.baseUrl}JobListing/GetDescription?PostingId=${PositionId}`,{},{})
+}
+
 
  async dologin(user:{Email:string,Password:string}){
 
@@ -120,7 +125,7 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
       'PageSize':PageSize,
     }
     console.log(g,statusId,StartDate,EndDate)
-    return this.api.post(this.baseUrl+'AdvancedSearch/AdvancedActionSearch?StatusId='+statusId+'&StartDate='+StartDate+'&EndDate='+EndDate+'&CompanyId='+CompanyId+'&PositionId='+PositionId,g,{})
+    return this.api.post(`${this.baseUrl}AdvancedSearch/AdvancedActionSearch?StatusId=${statusId}&StartDate=${StartDate}&EndDate=${EndDate}&CompanyId=${CompanyId}&PositionId=${PositionId}`,g,{})
 
   }
 

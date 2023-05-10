@@ -7,11 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { JobDescriptionPageRoutingModule } from './job-description-routing.module';
 
 import { JobDescriptionPage } from './job-description.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    FontAwesomeModule,
     IonicModule,
     JobDescriptionPageRoutingModule
   ],

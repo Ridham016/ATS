@@ -1,9 +1,99 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
-    <ion-title>job_description</ion-title>
+    <ion-title>Job Description</ion-title>
+    <ion-back-button fill="clear"  slot="start">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-back-button>
   </ion-toolbar>
 </ion-header>
+<ion-content fullscreen="true">
+  <ion-card class="m-3 p-3 pt-0 ">
+    <ion-card-header>
+      <ion-card-subtitle>
+        <fa-icon class="fa-solid fa-location-dot text-color"></fa-icon> {{jddata.CompanyVenue}}
+      </ion-card-subtitle>
+      <ion-card-title> {{jddata.PositionName}}</ion-card-title>
+    <ion-card-subtitle>{{jddata.CompanyName}}</ion-card-subtitle>
+  </ion-card-header>
 
-<ion-content>
-    
+    <ion-grid>
+    <ion-row>
+      <ion-col>
+        Salary
+      </ion-col>
+      <ion-col>
+        Experience
+      </ion-col>
+      <ion-col>
+        Posted
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="fw-bold text-color" *ngIf="jddata.Salary==='Not Disclosed'">
+        -
+      </ion-col>
+      <ion-col class="fw-bold text-color" *ngIf="jddata.Salary!=='Not Disclosed'">
+        {{jddata.Salary}}
+      </ion-col>
+      <ion-col class="fw-bold text-color">
+        {{jddata.Experience}}
+      </ion-col>
+      <ion-col class="fw-bold text-color" >
+        +{{jddata.Posted}} days ago
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  </ion-card>
+  <ion-card class="m-3 p-3" *ngIf="jddata.JobDetail || jddata.EmploymentType || jddata.Education_PG || jddata.Education_UG">
+    <div *ngIf="jddata.JobDetail">
+    <ion-row>
+      <ion-col size="12" class="text-color fw-bold">Job Description</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="text-muted">{{jddata.JobDetail}}</ion-col>
+    </ion-row>
+  </div>
+  <div *ngIf="jddata.EmploymentType">
+    <ion-row>
+      <ion-col size="12" class="text-color ">Employment type: <span class="text-muted">{{jddata.EmploymentType}}</span></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="text-color fw-bold"></ion-col>
+    </ion-row>
+  </div>
+    <div *ngIf="jddata.Education_PG || jddata.Education_UG">
+    <ion-row >
+      <ion-col size="12" class="text-color fw-bold">Education</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="text-color ">PG : <span class="text-muted">{{jddata.Education_PG}}</span></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="text-color ">UG : <span class="text-muted">{{jddata.Education_UG}}</span></ion-col>
+    </ion-row>
+    </div>
+    <div *ngIf="jddata.Skills">
+    <ion-row >
+      <ion-col size="12" class="text-color fw-bold">Key Skills</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="text-muted">{{jddata.Skills}}</ion-col>
+    </ion-row>
+    </div>
+  </ion-card>
+
+  <ion-card class="m-3 p-3">
+    <ion-row >
+      <ion-col size="12" class="text-color fw-bold">About Company</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" class="text-muted"> {{jddata.CompanyDetail}}</ion-col>
+    </ion-row>
+  </ion-card>
+
+
 </ion-content>
+<ion-footer>
+  <ion-button (click)="register(jddata.PostingId)" expand="block">Register</ion-button>
+</ion-footer>

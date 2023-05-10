@@ -1,0 +1,18 @@
+
+ion-card-header {
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+ion-card-title{
+  --color:#000;
+  font-size: 24px;
+}
+
+.text-color{
+  color:#000;
+}
+ion-button{
+  --color:#fff;
+  --background:var(--ion-color-success);
+  }

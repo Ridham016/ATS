@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
-import{StatusBar} from '@ionic-native/status-bar/ngx';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -10,17 +10,18 @@ import{StatusBar} from '@ionic-native/status-bar/ngx';
   styleUrls: ['./job-description.page.scss'],
 })
 export class JobDescriptionPage implements OnInit {
-  jddata : any[] = [];
+  jddata : any=[];
   postingId =this.activatedRoute.snapshot.queryParams['id'];
+  // postingId =2;
   constructor(
     private api:ApiService,
     private activatedRoute: ActivatedRoute,
-    private status:StatusBar
+    private router:Router
      ) { }
 
   ngOnInit() {
     this.getJobDescriptionData();
-    this.status.backgroundColorByName('white');
+    // this.status.backgroundColorByName('white');
   }
 
 
@@ -39,6 +40,14 @@ export class JobDescriptionPage implements OnInit {
       console.log(err);
       this.api.showAlertF();
     })
+  }
+
+  register(postingId: number) {
+    this.router.navigate(['/menu/applicant-registration-form'], {
+      queryParams: {
+        id: postingId,
+      },
+    });
   }
 
   }

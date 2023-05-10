@@ -68,6 +68,7 @@ export class ApiService {
  }
 
 getJobDescription(PositionId:any){
+  this.api.setHeader('*','__RequestAuthToken', this.getToken());
   return this.api.get(`${this.baseUrl}JobListing/GetDescription?PostingId=${PositionId}`,{},{})
 }
 
@@ -292,12 +293,8 @@ this.api.setHeader('*','__RequestAuthToken', this.Token);
     }
 
     getApplicantHistory(appid:number){
-      this.api.setHeader('*','__RequestAuthToken', this.Token);
-      const payload={
-        "ApplicantId":appid
-      }
       console.log(this.Token)
-      return this.api.get(`${this.baseUrl}AdvancedSearch/ApplicantTimeline_APP`,payload,{});
+      return this.api.get(`${this.baseUrl}AdvancedSearch/ApplicantTimeline_APP?ApplicantId=${appid}`,{},{});
     }
 
     getCompanyList(applicntId?:number){

@@ -1,7 +1,12 @@
-<ion-icon name="ellipsis-vertical-sharp" id="role" ></ion-icon>
-<ion-popover trigger="role"[backdropDismiss]="false">
+{{role}}
+<span>
+  <ion-icon name="ellipsis-vertical-sharp" id="role" ></ion-icon>
+</span>
+  <ion-popover trigger="role">
     <ng-template >
       <ion-content>
+
+
         <ion-radio-group [(ngModel)]="selectedRole">
           <ion-item >
             <ion-label> HR</ion-label>
@@ -16,6 +21,7 @@
             <ion-radio slot="end" value="0" (ionFocus)="roleChange(0)" >  </ion-radio>
           </ion-item>
         </ion-radio-group>
+
       </ion-content>
     </ng-template>
 

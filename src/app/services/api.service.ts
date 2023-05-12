@@ -29,8 +29,8 @@ export class ApiService {
 
 
 
-  baseUrl=' https://b6fa-150-107-191-75.ngrok-free.app/api/';
-  baseUrldownload ='https://b6fa-150-107-191-75.ngrok-free.app/Attachments/Temp/';
+  baseUrl='  https://3847-150-107-191-119.ngrok-free.app/api/';
+  baseUrldownload =' https://3847-150-107-191-119.ngrok-free.app/Attachments/Temp/';
 
 
   constructor(private api:HTTP,

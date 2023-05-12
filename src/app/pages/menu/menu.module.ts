@@ -8,7 +8,6 @@ import { MenuPageRoutingModule } from './menu-routing.module';
 
 import { MenuPage } from './menu.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { UserRoleComponent } from 'src/app/components/user-role/user-role.component';
 
 @NgModule({
   imports: [
@@ -18,6 +17,6 @@ import { UserRoleComponent } from 'src/app/components/user-role/user-role.compon
     IonicModule,
     MenuPageRoutingModule
   ],
-  declarations: [MenuPage,UserRoleComponent]
+  declarations: [MenuPage]
 })
 export class MenuPageModule {}

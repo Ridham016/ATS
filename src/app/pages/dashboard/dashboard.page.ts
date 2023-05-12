@@ -37,7 +37,11 @@ export type ChartOptions = {
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
+
+
 export class DashboardPage implements OnInit {
+[x: string]: any;
+
 
   @ViewChild("chart") chart!: ChartComponent;
  datalist : any;
@@ -54,7 +58,7 @@ mode:any=0;
   month:any=[];
   r: any;
   constructor(
-    private api: ApiService,
+    public api: ApiService,
     private plt: Platform,
     private menuController: MenuController
   ) {
@@ -162,7 +166,9 @@ mode:any=0;
     })
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
   ionViewWillEnter() {
     this.api.hideLoader();
     this.menuController.enable(true, 'gg');
@@ -181,6 +187,8 @@ mode:any=0;
       event.target.complete();
     }, 2000);
   }
+
+
 
 async getdata(){
 this.api.showLoader();

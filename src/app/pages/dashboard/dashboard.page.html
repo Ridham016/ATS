@@ -1,9 +1,11 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar *ngIf="api.getUserRole()" >
     <ion-title>Dashboard</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
+    <div class="role-wrapper">  <app-user-role></app-user-role> </div>
+
   </ion-toolbar>
   <div>
     <div class="segment-container">
@@ -20,6 +22,7 @@
       </ion-segment>
     </div>
   </div>
+
 </ion-header>
 
 

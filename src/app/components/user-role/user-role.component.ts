@@ -7,6 +7,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class UserRoleComponent implements OnInit {
   selectedRole =this.api.getUserRole();
+  roleID = this.api.getUserRole();
+  role!: string;
   constructor(public api : ApiService ) { }
 
   roleChange(id:number){
@@ -15,7 +17,19 @@ export class UserRoleComponent implements OnInit {
     console.log(this.api.getUserRole());
     window.location.reload();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.changeRole();
+  }
 
+  changeRole() {
+    if (this.roleID == '1') {
+      this.role = 'Admin';
+      console.log('working');
+    } else if (this.roleID == '2') {
+      this.role = 'HR';
+    } else {
+      this.role ='Recruiter'
+    }
+  }
 
 }

@@ -29,15 +29,14 @@ export class ApiService {
 
 
 
-  baseUrl='  https://3847-150-107-191-119.ngrok-free.app/api/';
-  baseUrldownload =' https://3847-150-107-191-119.ngrok-free.app/Attachments/Temp/';
+  baseUrl='http://askesquare.southindia.cloudapp.azure.com:61159/api/';
+  baseUrldownload =' http://askesquare.southindia.cloudapp.azure.com:61159/Attachments/';
 
 
   constructor(private api:HTTP,
     private loadingController:LoadingController ,
     private plt : Platform,
     private alertController: AlertController,
-    private alertServices :CustomAlertService,
     private router:Router,
     ) {
       this.plt.ready().then(_=>{

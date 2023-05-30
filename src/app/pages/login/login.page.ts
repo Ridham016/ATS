@@ -106,7 +106,7 @@ export class LoginPage implements OnInit {
         })
         .catch((error) => {
           this.api.loginFailed();
-          console.log('Status', error.status);
+          console.log('Status', error);
         });
     }
   }
